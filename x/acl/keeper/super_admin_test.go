@@ -6,13 +6,16 @@ import (
 
 	keepertest "github.com/GGEZLabs/vvtxchain/testutil/keeper"
 	"github.com/GGEZLabs/vvtxchain/testutil/nullify"
+	"github.com/GGEZLabs/vvtxchain/testutil/sample"
 	"github.com/GGEZLabs/vvtxchain/x/acl/keeper"
 	"github.com/GGEZLabs/vvtxchain/x/acl/types"
 	"github.com/stretchr/testify/require"
 )
 
 func createTestSuperAdmin(keeper keeper.Keeper, ctx context.Context) types.SuperAdmin {
-	item := types.SuperAdmin{}
+	item := types.SuperAdmin{
+		Address: sample.AccAddress(),
+	}
 	keeper.SetSuperAdmin(ctx, item)
 	return item
 }

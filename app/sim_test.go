@@ -413,7 +413,7 @@ func TestAppStateDeterminism(t *testing.T) {
 			}
 
 			db := dbm.NewMemDB()
-			bApp:= New(
+			bApp := New(
 				logger,
 				db,
 				nil,

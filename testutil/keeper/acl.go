@@ -20,13 +20,14 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func AclKeeper(t testing.TB) (keeper.Keeper, sdk.Context) {
+func AclKeeper(tb testing.TB) (keeper.Keeper, sdk.Context) {
+	tb.Helper()
 	storeKey := storetypes.NewKVStoreKey(types.StoreKey)
 
 	db := dbm.NewMemDB()
 	stateStore := store.NewCommitMultiStore(db, log.NewNopLogger(), metrics.NewNoOpMetrics())
 	stateStore.MountStoreWithDB(storeKey, storetypes.StoreTypeIAVL, db)
-	require.NoError(t, stateStore.LoadLatestVersion())
+	require.NoError(tb, stateStore.LoadLatestVersion())
 
 	registry := codectypes.NewInterfaceRegistry()
 	cdc := codec.NewProtoCodec(registry)

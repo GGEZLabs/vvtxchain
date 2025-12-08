@@ -52,8 +52,9 @@ func initRootCmd(
 		keys.Commands(),
 	)
 }
+
 func addModuleInitFlags(startCmd *cobra.Command) {
-	crisis.AddModuleInitFlags(startCmd) // nolint:staticcheck
+	crisis.AddModuleInitFlags(startCmd) //nolint:staticcheck
 }
 
 func queryCommand() *cobra.Command {
