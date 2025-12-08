@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+package vvtxchain.acl;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "vvtxchain/acl/params.proto";
+import "vvtxchain/acl/super_admin.proto";
+import "vvtxchain/acl/acl_admin.proto";
+import "vvtxchain/acl/acl_authority.proto";
+
+option go_package = "github.com/GGEZLabs/vvtxchain/x/acl/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/GGEZLabs/vvtxchain/acl/params";
+  
+  }
+  
+  // Queries a SuperAdmin by index.
+  rpc SuperAdmin (QueryGetSuperAdminRequest) returns (QueryGetSuperAdminResponse) {
+    option (google.api.http).get = "/GGEZLabs/vvtxchain/acl/super_admin";
+  
+  }
+  
+  // Queries a list of AclAdmin items.
+  rpc AclAdmin    (QueryGetAclAdminRequest) returns (QueryGetAclAdminResponse) {
+    option (google.api.http).get = "/GGEZLabs/vvtxchain/acl/acl_admin/{address}";
+  
+  }
+  rpc AclAdminAll (QueryAllAclAdminRequest) returns (QueryAllAclAdminResponse) {
+    option (google.api.http).get = "/GGEZLabs/vvtxchain/acl/acl_admin";
+  
+  }
+  
+  // Queries a list of AclAuthority items.
+  rpc AclAuthority    (QueryGetAclAuthorityRequest) returns (QueryGetAclAuthorityResponse) {
+    option (google.api.http).get = "/GGEZLabs/vvtxchain/acl/acl_authority/{address}";
+  
+  }
+  rpc AclAuthorityAll (QueryAllAclAuthorityRequest) returns (QueryAllAclAuthorityResponse) {
+    option (google.api.http).get = "/GGEZLabs/vvtxchain/acl/acl_authority";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+message QueryGetSuperAdminRequest {}
+
+message QueryGetSuperAdminResponse {
+  SuperAdmin SuperAdmin = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetAclAdminRequest {
+  string address = 1;
+}
+
+message QueryGetAclAdminResponse {
+  AclAdmin aclAdmin = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllAclAdminRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllAclAdminResponse {
+  repeated AclAdmin                               aclAdmin   = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetAclAuthorityRequest {
+  string address = 1;
+}
+
+message QueryGetAclAuthorityResponse {
+  AclAuthority aclAuthority = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllAclAuthorityRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllAclAuthorityResponse {
+  repeated AclAuthority                           aclAuthority = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination   = 2;
+}
+

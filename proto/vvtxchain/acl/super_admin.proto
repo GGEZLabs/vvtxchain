@@ -1,0 +1,9 @@
+syntax = "proto3";
+package vvtxchain.acl;
+
+option go_package = "github.com/GGEZLabs/vvtxchain/x/acl/types";
+
+message SuperAdmin {
+  string address = 1; 
+  
+}

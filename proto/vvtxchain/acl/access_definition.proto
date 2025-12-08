@@ -1,0 +1,11 @@
+syntax = "proto3";
+package vvtxchain.acl;
+
+option go_package = "github.com/GGEZLabs/vvtxchain/x/acl/types";
+
+message AccessDefinition {
+  
+  string module = 1; 
+  bool isMaker = 2; 
+  bool isChecker = 3; 
+}

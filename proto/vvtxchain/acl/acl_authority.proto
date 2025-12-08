@@ -1,0 +1,12 @@
+syntax = "proto3";
+package vvtxchain.acl;
+
+option go_package = "github.com/GGEZLabs/vvtxchain/x/acl/types";
+
+message AclAuthority {
+  string address = 1; 
+  string name = 2; 
+  string accessDefinitions = 3; 
+  
+}
+

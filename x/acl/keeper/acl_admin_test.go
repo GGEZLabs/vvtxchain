@@ -1,0 +1,63 @@
+package keeper_test
+
+import (
+	"context"
+	"strconv"
+	"testing"
+
+	keepertest "github.com/GGEZLabs/vvtxchain/testutil/keeper"
+	"github.com/GGEZLabs/vvtxchain/testutil/nullify"
+	"github.com/GGEZLabs/vvtxchain/x/acl/keeper"
+	"github.com/GGEZLabs/vvtxchain/x/acl/types"
+	"github.com/stretchr/testify/require"
+)
+
+// Prevent strconv unused error
+var _ = strconv.IntSize
+
+func createNAclAdmin(keeper keeper.Keeper, ctx context.Context, n int) []types.AclAdmin {
+	items := make([]types.AclAdmin, n)
+	for i := range items {
+		items[i].Address = strconv.Itoa(i)
+
+		keeper.SetAclAdmin(ctx, items[i])
+	}
+	return items
+}
+
+func TestAclAdminGet(t *testing.T) {
+	keeper, ctx := keepertest.AclKeeper(t)
+	items := createNAclAdmin(keeper, ctx, 10)
+	for _, item := range items {
+		rst, found := keeper.GetAclAdmin(ctx,
+			item.Address,
+		)
+		require.True(t, found)
+		require.Equal(t,
+			nullify.Fill(&item),
+			nullify.Fill(&rst),
+		)
+	}
+}
+func TestAclAdminRemove(t *testing.T) {
+	keeper, ctx := keepertest.AclKeeper(t)
+	items := createNAclAdmin(keeper, ctx, 10)
+	for _, item := range items {
+		keeper.RemoveAclAdmin(ctx,
+			item.Address,
+		)
+		_, found := keeper.GetAclAdmin(ctx,
+			item.Address,
+		)
+		require.False(t, found)
+	}
+}
+
+func TestAclAdminGetAll(t *testing.T) {
+	keeper, ctx := keepertest.AclKeeper(t)
+	items := createNAclAdmin(keeper, ctx, 10)
+	require.ElementsMatch(t,
+		nullify.Fill(items),
+		nullify.Fill(keeper.GetAllAclAdmin(ctx)),
+	)
+}

@@ -1,0 +1,70 @@
+package keeper
+
+import (
+	"context"
+
+	"cosmossdk.io/store/prefix"
+	storetypes "cosmossdk.io/store/types"
+	"github.com/GGEZLabs/vvtxchain/x/acl/types"
+	"github.com/cosmos/cosmos-sdk/runtime"
+)
+
+// SetAclAdmin set a specific aclAdmin in the store from its index
+func (k Keeper) SetAclAdmin(ctx context.Context, aclAdmin types.AclAdmin) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.AclAdminKeyPrefix))
+	b := k.cdc.MustMarshal(&aclAdmin)
+	store.Set(types.AclAdminKey(
+		aclAdmin.Address,
+	), b)
+}
+
+// GetAclAdmin returns a aclAdmin from its index
+func (k Keeper) GetAclAdmin(
+	ctx context.Context,
+	address string,
+
+) (val types.AclAdmin, found bool) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.AclAdminKeyPrefix))
+
+	b := store.Get(types.AclAdminKey(
+		address,
+	))
+	if b == nil {
+		return val, false
+	}
+
+	k.cdc.MustUnmarshal(b, &val)
+	return val, true
+}
+
+// RemoveAclAdmin removes a aclAdmin from the store
+func (k Keeper) RemoveAclAdmin(
+	ctx context.Context,
+	address string,
+
+) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.AclAdminKeyPrefix))
+	store.Delete(types.AclAdminKey(
+		address,
+	))
+}
+
+// GetAllAclAdmin returns all aclAdmin
+func (k Keeper) GetAllAclAdmin(ctx context.Context) (list []types.AclAdmin) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.AclAdminKeyPrefix))
+	iterator := storetypes.KVStorePrefixIterator(store, []byte{})
+
+	defer iterator.Close()
+
+	for ; iterator.Valid(); iterator.Next() {
+		var val types.AclAdmin
+		k.cdc.MustUnmarshal(iterator.Value(), &val)
+		list = append(list, val)
+	}
+
+	return
+}
