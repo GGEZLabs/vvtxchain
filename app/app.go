@@ -11,7 +11,6 @@ import (
 	circuitkeeper "cosmossdk.io/x/circuit/keeper"
 	feegrantkeeper "cosmossdk.io/x/feegrant/keeper"
 	upgradekeeper "cosmossdk.io/x/upgrade/keeper"
-
 	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
 	"github.com/GGEZLabs/vvtxchain/docs"
 	abci "github.com/cometbft/cometbft/abci/types"
@@ -93,7 +92,7 @@ type App struct {
 	AuthzKeeper           authzkeeper.Keeper
 	ConsensusParamsKeeper consensuskeeper.Keeper
 	CircuitBreakerKeeper  circuitkeeper.Keeper
-	ParamsKeeper          paramskeeper.Keeper
+	ParamsKeeper          paramskeeper.Keeper //nolint:staticcheck
 
 	// ibc keepers
 	IBCKeeper           *ibckeeper.Keeper
@@ -216,7 +215,7 @@ func New(
 		if err := app.UpgradeKeeper.SetModuleVersionMap(ctx, app.ModuleManager.GetVersionMap()); err != nil {
 			return nil, err
 		}
-		return app.App.InitChainer(ctx, req)
+		return app.InitChainer(ctx, req)
 	})
 
 	if err := app.Load(loadLatest); err != nil {
