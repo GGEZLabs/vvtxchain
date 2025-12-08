@@ -1,119 +1,236 @@
-BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
+#!/usr/bin/make -f
+
+include scripts/makefiles/lint.mk
+
+.DEFAULT_GOAL := help
+help:
+	@echo "Available commands:"
+	@echo ""
+	@echo "Usage:"
+	@echo "    make [command]"
+	@echo ""
+	@echo "  make install               Install vvtxchaind binary"
+	@echo "  make build                 Build vvtxchaind binary"
+	@echo "  make lint                  Show available lint commands"
+	@echo "  make test                  Run unit tests"
+	@echo "  make test-e2e              Run e2e tests"
+	@echo "  make mocks                 Generate mock files"
+	@echo "  make proto-gen             Generate proto"
+	@echo ""
+
+VERSION := $(shell echo $(shell git describe --tags) | sed 's/^v//')
 COMMIT := $(shell git log -1 --format='%H')
+LEDGER_ENABLED ?= true
+# for dockerized protobuf tools
+DOCKER := $(shell which docker)
+OUTPUT_DIR := build
+PLATFORMS = linux/amd64 darwin/amd64 darwin/arm64
 APPNAME := vvtxchain
+
+export GO111MODULE = on
 
 # don't override user values
 ifeq (,$(VERSION))
-  VERSION := $(shell git describe --exact-match 2>/dev/null)
+  VERSION := $(shell git describe --tags --always)
   # if VERSION is empty, then populate it with branch's name and raw commit hash
   ifeq (,$(VERSION))
     VERSION := $(BRANCH)-$(COMMIT)
   endif
 endif
 
-# Update the ldflags with the app, client & server names
-ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=$(APPNAME) \
-	-X github.com/cosmos/cosmos-sdk/version.AppName=$(APPNAME)d \
-	-X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
-	-X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT)
+# process build tags
 
-BUILD_FLAGS := -ldflags '$(ldflags)'
+build_tags = netgo
+ifeq ($(LEDGER_ENABLED),true)
+  ifeq ($(OS),Windows_NT)
+    GCCEXE = $(shell where gcc.exe 2> NUL)
+    ifeq ($(GCCEXE),)
+      $(error gcc.exe not installed for ledger support, please install or set LEDGER_ENABLED=false)
+    else
+      build_tags += ledger
+    endif
+  else
+    UNAME_S = $(shell uname -s)
+    ifeq ($(UNAME_S),OpenBSD)
+      $(warning OpenBSD detected, disabling ledger support (https://github.com/cosmos/cosmos-sdk/issues/1988))
+    else
+      GCC = $(shell command -v gcc 2> /dev/null)
+      ifeq ($(GCC),)
+        $(error gcc not installed for ledger support, please install or set LEDGER_ENABLED=false)
+      else
+        build_tags += ledger
+      endif
+    endif
+  endif
+endif
 
-##############
-###  Test  ###
-##############
+ifeq ($(WITH_CLEVELDB),yes)
+  build_tags += gcc
+endif
+build_tags += $(BUILD_TAGS)
+build_tags := $(strip $(build_tags))
+
+whitespace :=
+empty = $(whitespace) $(whitespace)
+comma := ,
+build_tags_comma_sep := $(subst $(empty),$(comma),$(build_tags))
+
+# flags '-s -w' resolves an issue with xcode 16 and signing of go binaries
+# ref: https://github.com/golang/go/issues/63997
+ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=vvtxchain \
+		  -X github.com/cosmos/cosmos-sdk/version.AppName=vvtxchaind \
+		  -X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
+		  -X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT) \
+		  -X "github.com/cosmos/cosmos-sdk/version.BuildTags=$(build_tags_comma_sep)" \
+		  -s -w
+
+ifeq ($(WITH_CLEVELDB),yes)
+  ldflags += -X github.com/cosmos/cosmos-sdk/types.DBBackend=cleveldb
+endif
+ifeq ($(LINK_STATICALLY),true)
+	ldflags += -linkmode=external -extldflags "-Wl,-z,muldefs -static"
+endif
+ldflags += $(LDFLAGS)
+ldflags := $(strip $(ldflags))
+
+BUILD_FLAGS := -tags "$(build_tags_comma_sep)" -ldflags '$(ldflags)' -trimpath
+
+all: test-all lint-all install
+
+build: go.sum
+ifeq ($(OS),Windows_NT)
+	$(error wasmd server not supported. Use "make build-windows-client" for client)
+	exit 1
+else
+	go build -mod=readonly $(BUILD_FLAGS) -o $(OUTPUT_DIR)/vvtxchaind ./cmd/vvtxchaind
+endif
+
+build-windows-client: go.sum
+	GOOS=windows GOARCH=amd64 go build -mod=readonly $(BUILD_FLAGS) -o $(OUTPUT_DIR)/vvtxchaind.exe ./cmd/vvtxchaind
+
+install: go.sum
+	go install -mod=readonly $(BUILD_FLAGS) ./cmd/vvtxchaind
+
+build-image:
+	docker build -f Dockerfile -t ggezlabs/vvtxchain .
+
+mocks:
+	@go install go.uber.org/mock/mockgen@v0.5.0
+	sh ./scripts/mockgen.sh
+
+########################################
+### Tools & dependencies
+########################################
+
+go-mod-cache: go.sum
+	@echo "--> Download go modules to local cache"
+	@go mod download
+
+go.sum: go.mod
+	@echo "--> Ensure dependencies have not been modified"
+	@go mod verify
+
+clean:
+	rm -rf $(OUTPUT_DIR)/*
+
+.PHONY: all build  build-windows-client \
+		install build-image mocks\
+	    go-mod-cache clean \
+   
+
+########################################
+### Testing
+########################################
+PACKAGES_E2E=$(shell cd tests/e2e && go list ./... | grep '/e2e')
+PACKAGES_UNIT=$(shell go list ./... | grep -v -e '/tests/e2e')
+
+test-all: test-unit test-race test-cover
 
 test-unit:
-	@echo Running unit tests...
-	@go test -mod=readonly -v -timeout 30m ./...
+	@VERSION=$(VERSION) go test -mod=readonly -tags='ledger test_ledger_mock'  $(PACKAGES_UNIT)
 
 test-race:
-	@echo Running unit tests with race condition reporting...
-	@go test -mod=readonly -v -race -timeout 30m ./...
+	@VERSION=$(VERSION) go test -mod=readonly -race -tags='ledger test_ledger_mock'  $(PACKAGES_UNIT)
 
 test-cover:
-	@echo Running unit tests and creating coverage report...
-	@go test -mod=readonly -v -timeout 30m -coverprofile=$(COVER_FILE) -covermode=atomic ./...
-	@go tool cover -html=$(COVER_FILE) -o $(COVER_HTML_FILE)
-	@rm $(COVER_FILE)
+	@go test -mod=readonly -timeout 30m -race -coverprofile=coverage.txt -covermode=atomic -tags='ledger test_ledger_mock' $(PACKAGES_UNIT)
 
-bench:
-	@echo Running unit tests with benchmarking...
-	@go test -mod=readonly -v -timeout 30m -bench=. ./...
+test-e2e: build-image
+	@VERSION=$(VERSION) go test -mod=readonly -timeout=35m -v $(PACKAGES_E2E)
 
-test: govet govulncheck test-unit
+benchmark:
+	@go test -mod=readonly -bench=. $(PACKAGES_UNIT)
 
-.PHONY: test test-unit test-race test-cover bench
+.PHONY: test-all test-unit \
+	test-race test-cover\
+	test-e2e benchmark
 
-#################
-###  Install  ###
-#################
+###############################################################################
+###                                Linting                                  ###
+###############################################################################
 
-all: install
+# golangci_lint_cmd=golangci-lint
+# golangci_version=v1.61.0
 
-install:
-	@echo "--> ensure dependencies have not been modified"
-	@go mod verify
-	@echo "--> installing $(APPNAME)d"
-	@go install $(BUILD_FLAGS) -mod=readonly ./cmd/$(APPNAME)d
+# lint:
+# 	@echo "--> Running linter"
+# 	@go install github.com/golangci/golangci-lint/cmd/golangci-lint@$(golangci_version)
+# 	@$(golangci_lint_cmd) run ./... --timeout 15m
 
-.PHONY: all install
+format-tools:
+	go install mvdan.cc/gofumpt@v0.4.0
+	go install github.com/client9/misspell/cmd/misspell@v0.3.4
+	go install github.com/daixiang0/gci@v0.11.2
 
-##################
-###  Protobuf  ###
-##################
+format: format-tools
+	find . -name '*.go' -type f -not -path "./vendor*" -not -path "./tests/system/vendor*" -not -path "*.git*" -not -path "./client/lcd/statik/statik.go" | xargs gofumpt -w
+	find . -name '*.go' -type f -not -path "./vendor*" -not -path "./tests/system/vendor*" -not -path "*.git*" -not -path "./client/lcd/statik/statik.go" | xargs misspell -w
+	find . -name '*.go' -type f -not -path "./vendor*" -not -path "./tests/system/vendor*" -not -path "*.git*" -not -path "./client/lcd/statik/statik.go" | xargs gci write --skip-generated -s standard -s default -s "prefix(cosmossdk.io)" -s "prefix(github.com/cosmos/cosmos-sdk)" -s "prefix(github.com/CosmWasm/wasmd)" --custom-order
 
-# Use this target if you do not want to use Ignite for generating proto files
-GOLANG_PROTOBUF_VERSION=1.28.1
-GRPC_GATEWAY_VERSION=1.16.0
-GRPC_GATEWAY_PROTOC_GEN_OPENAPIV2_VERSION=2.20.0
+mod-tidy:
+	go mod tidy
 
-proto-deps:
-	@echo "Installing proto deps"
-	@go install github.com/bufbuild/buf/cmd/buf@v1.50.0
-	@go install github.com/cosmos/gogoproto/protoc-gen-gogo@latest
-	@go install github.com/cosmos/cosmos-proto/cmd/protoc-gen-go-pulsar@latest
-	@go install google.golang.org/protobuf/cmd/protoc-gen-go@v$(GOLANG_PROTOBUF_VERSION)
-	@go install github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway@v$(GRPC_GATEWAY_VERSION)
-	@go install github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2@v$(GRPC_GATEWAY_PROTOC_GEN_OPENAPIV2_VERSION)
-	@go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+.PHONY: format-tools format mod-tidy lint
+
+
+###############################################################################
+###                                Protobuf                                 ###
+###############################################################################
+CURRENT_UID := $(shell id -u)
+CURRENT_GID := $(shell id -g)
+
+protoVer=0.13.2
+protoImageName=ghcr.io/cosmos/proto-builder:$(protoVer)
+protoImage="$(DOCKER)" run -e BUF_CACHE_DIR=/tmp/buf --rm -v "$(CURDIR)":/workspace:rw --user ${CURRENT_UID}:${CURRENT_GID} --workdir /workspace $(protoImageName)
 
 proto-gen:
 	@echo "Generating protobuf files..."
 	@ignite generate proto-go --yes
 
-.PHONY: proto-deps proto-gen
+proto-format:
+	@echo "Formatting Protobuf files"
+	@$(protoImage) find ./ -name "*.proto" -exec clang-format -i {} \;
 
-#################
-###  Linting  ###
-#################
+.PHONY: proto-gen proto-format
 
-golangci_lint_cmd=golangci-lint
-golangci_version=v1.61.0
+###############################################################################
+###                                    testnet                              ###
+###############################################################################
 
-lint:
-	@echo "--> Running linter"
-	@go install github.com/golangci/golangci-lint/cmd/golangci-lint@$(golangci_version)
-	@$(golangci_lint_cmd) run ./... --timeout 15m
+setup-testnet: mod-tidy set-testnet-configs setup-testnet-keys
 
-lint-fix:
-	@echo "--> Running linter and fixing issues"
-	@go install github.com/golangci/golangci-lint/cmd/golangci-lint@$(golangci_version)
-	@$(golangci_lint_cmd) run ./... --fix --timeout 15m
+# Run this before testnet keys are added
+# This chain id is used in the testnet.json as well
+set-testnet-configs:
+	vvtxchaind config set client chain-id localchain_9000-1
+	vvtxchaind config set client keyring-backend test
+	vvtxchaind config set client output text
 
-.PHONY: lint lint-fix
-
-###################
-### Development ###
-###################
-
-govet:
-	@echo Running go vet...
-	@go vet ./...
-
-govulncheck:
-	@echo Running govulncheck...
-	@go install golang.org/x/vuln/cmd/govulncheck@latest
-	@govulncheck ./...
-
-.PHONY: govet govulncheck
+# import keys from testnet.json into test keyring
+setup-testnet-keys:
+	@echo "Adding acc0..."
+	@echo "decorate bright ozone fork gallery riot bus exhaust worth way bone indoor calm squirrel merry zero scheme cotton until shop any excess stage laundry" | vvtxchaind keys add acc0 --recover
+	@echo "Adding acc1..."
+	@echo "wealth flavor believe regret funny network recall kiss grape useless pepper cram hint member few certain unveil rather brick bargain curious require crowd raise" | vvtxchaind keys add acc1 --recover
+	
+.PHONY: setup-testnet set-testnet-configs setup-testnet-keys
