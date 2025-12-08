@@ -4,12 +4,11 @@ import (
 	"context"
 	"testing"
 
-	"github.com/stretchr/testify/require"
-
 	keepertest "github.com/GGEZLabs/vvtxchain/testutil/keeper"
 	"github.com/GGEZLabs/vvtxchain/testutil/nullify"
 	"github.com/GGEZLabs/vvtxchain/x/acl/keeper"
 	"github.com/GGEZLabs/vvtxchain/x/acl/types"
+	"github.com/stretchr/testify/require"
 )
 
 func createTestSuperAdmin(keeper keeper.Keeper, ctx context.Context) types.SuperAdmin {

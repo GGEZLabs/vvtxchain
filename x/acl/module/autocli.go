@@ -2,7 +2,6 @@ package acl
 
 import (
 	autocliv1 "cosmossdk.io/api/cosmos/autocli/v1"
-
 	modulev1 "github.com/GGEZLabs/vvtxchain/api/vvtxchain/acl"
 )
 

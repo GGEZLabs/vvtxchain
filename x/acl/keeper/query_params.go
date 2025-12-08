@@ -3,11 +3,10 @@ package keeper
 import (
 	"context"
 
+	"github.com/GGEZLabs/vvtxchain/x/acl/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-
-	"github.com/GGEZLabs/vvtxchain/x/acl/types"
 )
 
 func (k Keeper) Params(goCtx context.Context, req *types.QueryParamsRequest) (*types.QueryParamsResponse, error) {

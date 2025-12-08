@@ -3,14 +3,13 @@ package acl
 import (
 	"math/rand"
 
+	"github.com/GGEZLabs/vvtxchain/testutil/sample"
+	aclsimulation "github.com/GGEZLabs/vvtxchain/x/acl/simulation"
+	"github.com/GGEZLabs/vvtxchain/x/acl/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
 	"github.com/cosmos/cosmos-sdk/x/simulation"
-
-	"github.com/GGEZLabs/vvtxchain/testutil/sample"
-	aclsimulation "github.com/GGEZLabs/vvtxchain/x/acl/simulation"
-	"github.com/GGEZLabs/vvtxchain/x/acl/types"
 )
 
 // avoid unused import issue

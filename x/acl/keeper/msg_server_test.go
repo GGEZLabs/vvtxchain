@@ -4,11 +4,10 @@ import (
 	"context"
 	"testing"
 
-	"github.com/stretchr/testify/require"
-
 	keepertest "github.com/GGEZLabs/vvtxchain/testutil/keeper"
 	"github.com/GGEZLabs/vvtxchain/x/acl/keeper"
 	"github.com/GGEZLabs/vvtxchain/x/acl/types"
+	"github.com/stretchr/testify/require"
 )
 
 func setupMsgServer(t testing.TB) (keeper.Keeper, types.MsgServer, context.Context) {

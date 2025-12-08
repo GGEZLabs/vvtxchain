@@ -5,11 +5,10 @@ import (
 
 	keepertest "github.com/GGEZLabs/vvtxchain/testutil/keeper"
 	"github.com/GGEZLabs/vvtxchain/testutil/nullify"
+	"github.com/GGEZLabs/vvtxchain/testutil/sample"
 	acl "github.com/GGEZLabs/vvtxchain/x/acl/module"
 	"github.com/GGEZLabs/vvtxchain/x/acl/types"
 	"github.com/stretchr/testify/require"
-	"github.com/GGEZLabs/vvtxchain/testutil/sample"
-
 )
 
 func TestGenesis(t *testing.T) {

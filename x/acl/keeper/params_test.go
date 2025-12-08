@@ -3,10 +3,9 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
-
 	keepertest "github.com/GGEZLabs/vvtxchain/testutil/keeper"
 	"github.com/GGEZLabs/vvtxchain/x/acl/types"
+	"github.com/stretchr/testify/require"
 )
 
 func TestGetParams(t *testing.T) {
@@ -14,5 +13,5 @@ func TestGetParams(t *testing.T) {
 	params := types.DefaultParams()
 
 	require.NoError(t, k.SetParams(ctx, params))
-	require.EqualValues(t, params, k.GetParams(ctx))
+	require.Equal(t, params, k.GetParams(ctx))
 }

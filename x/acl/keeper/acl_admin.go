@@ -34,7 +34,6 @@ func (k Keeper) SetAclAdmins(ctx context.Context, aclAdmins []types.AclAdmin) {
 func (k Keeper) GetAclAdmin(
 	ctx context.Context,
 	address string,
-
 ) (val types.AclAdmin, found bool) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.AclAdminKeyPrefix))
@@ -54,7 +53,6 @@ func (k Keeper) GetAclAdmin(
 func (k Keeper) RemoveAclAdmin(
 	ctx context.Context,
 	address string,
-
 ) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.AclAdminKeyPrefix))

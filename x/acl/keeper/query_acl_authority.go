@@ -30,7 +30,6 @@ func (k Keeper) AclAuthorityAll(ctx context.Context, req *types.QueryAllAclAutho
 		aclAuthoritys = append(aclAuthoritys, aclAuthority)
 		return nil
 	})
-
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}

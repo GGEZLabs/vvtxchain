@@ -8,7 +8,7 @@ import (
 
 // x/acl module sentinel errors
 var (
-	ErrInvalidSigner = sdkerrors.Register(ModuleName, 1100, "expected gov account as only signer for proposal message")
+	ErrInvalidSigner                 = sdkerrors.Register(ModuleName, 1100, "expected gov account as only signer for proposal message")
 	ErrEmptyName                     = sdkerrors.Register(ModuleName, 1101, "address name is required and cannot be empty")
 	ErrInvalidAccessDefinitionList   = sdkerrors.Register(ModuleName, 1102, "invalid access definition list format")
 	ErrInvalidAccessDefinitionObject = sdkerrors.Register(ModuleName, 1103, "invalid access definition object format")

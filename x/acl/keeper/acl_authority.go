@@ -23,7 +23,6 @@ func (k Keeper) SetAclAuthority(ctx context.Context, aclAuthority types.AclAutho
 func (k Keeper) GetAclAuthority(
 	ctx context.Context,
 	address string,
-
 ) (val types.AclAuthority, found bool) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.AclAuthorityKeyPrefix))
@@ -43,7 +42,6 @@ func (k Keeper) GetAclAuthority(
 func (k Keeper) RemoveAclAuthority(
 	ctx context.Context,
 	address string,
-
 ) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.AclAuthorityKeyPrefix))

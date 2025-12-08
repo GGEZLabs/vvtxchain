@@ -4,14 +4,13 @@ import (
 	"strconv"
 	"testing"
 
+	keepertest "github.com/GGEZLabs/vvtxchain/testutil/keeper"
+	"github.com/GGEZLabs/vvtxchain/testutil/nullify"
+	"github.com/GGEZLabs/vvtxchain/x/acl/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-
-	keepertest "github.com/GGEZLabs/vvtxchain/testutil/keeper"
-	"github.com/GGEZLabs/vvtxchain/testutil/nullify"
-	"github.com/GGEZLabs/vvtxchain/x/acl/types"
 )
 
 // Prevent strconv unused error

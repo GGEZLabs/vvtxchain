@@ -7,6 +7,7 @@ import (
 	"cosmossdk.io/client/v2/autocli"
 	"cosmossdk.io/depinject"
 	"cosmossdk.io/log"
+	"github.com/GGEZLabs/vvtxchain/app"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/config"
 	"github.com/cosmos/cosmos-sdk/client/flags"
@@ -19,8 +20,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
-
-	"github.com/GGEZLabs/vvtxchain/app"
 )
 
 // NewRootCmd creates a new root command for vvtxchaind. It is called once in the main function.

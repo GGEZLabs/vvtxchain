@@ -30,7 +30,6 @@ func (k Keeper) AclAdminAll(ctx context.Context, req *types.QueryAllAclAdminRequ
 		aclAdmins = append(aclAdmins, aclAdmin)
 		return nil
 	})
-
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
