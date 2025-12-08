@@ -20,6 +20,7 @@ import (
 	mintmodulev1 "cosmossdk.io/api/cosmos/mint/module/v1"
 	nftmodulev1 "cosmossdk.io/api/cosmos/nft/module/v1"
 	paramsmodulev1 "cosmossdk.io/api/cosmos/params/module/v1"
+	protocolpoolmodulev1 "cosmossdk.io/api/cosmos/protocolpool/module/v1"
 	slashingmodulev1 "cosmossdk.io/api/cosmos/slashing/module/v1"
 	stakingmodulev1 "cosmossdk.io/api/cosmos/staking/module/v1"
 	txconfigv1 "cosmossdk.io/api/cosmos/tx/config/v1"
@@ -69,6 +70,9 @@ import (
 	ibctransfertypes "github.com/cosmos/ibc-go/v10/modules/apps/transfer/types"
 	ibcexported "github.com/cosmos/ibc-go/v10/modules/core/exported"
 	"google.golang.org/protobuf/types/known/durationpb"
+
+	_ "github.com/cosmos/cosmos-sdk/x/protocolpool" // import for side-effects
+	protocolpooltypes "github.com/cosmos/cosmos-sdk/x/protocolpool/types"
 )
 
 var (
@@ -82,7 +86,10 @@ var (
 		{Account: nft.ModuleName},
 		{Account: ibctransfertypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner}},
 		{Account: icatypes.ModuleName},
-		{Account: wasmtypes.ModuleName, Permissions: []string{authtypes.Burner}}}
+		{Account: wasmtypes.ModuleName, Permissions: []string{authtypes.Burner}},
+		{Account: protocolpooltypes.ModuleName},
+		{Account: protocolpooltypes.ProtocolPoolEscrowAccount},
+	}
 
 	// blocked account addresses
 	blockAccAddrs = []string{
@@ -116,6 +123,7 @@ var (
 					BeginBlockers: []string{
 						minttypes.ModuleName,
 						distrtypes.ModuleName,
+						protocolpooltypes.ModuleName,
 						slashingtypes.ModuleName,
 						evidencetypes.ModuleName,
 						stakingtypes.ModuleName,
@@ -134,6 +142,7 @@ var (
 						group.ModuleName,
 						// chain modules
 						wasmtypes.ModuleName,
+						protocolpooltypes.ModuleName,
 						// this line is used by starport scaffolding # stargate/app/endBlockers
 					},
 					// The following is mostly only needed when ModuleName != StoreKey name.
@@ -151,6 +160,7 @@ var (
 						authtypes.ModuleName,
 						banktypes.ModuleName,
 						distrtypes.ModuleName,
+						protocolpooltypes.ModuleName,
 						stakingtypes.ModuleName,
 						slashingtypes.ModuleName,
 						govtypes.ModuleName,
@@ -266,6 +276,10 @@ var (
 			{
 				Name:   epochstypes.ModuleName,
 				Config: appconfig.WrapAny(&epochsmodulev1.Module{}),
+			},
+			{
+				Name:   protocolpooltypes.ModuleName,
+				Config: appconfig.WrapAny(&protocolpoolmodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},

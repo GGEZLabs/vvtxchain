@@ -13,6 +13,7 @@ import (
 	upgradekeeper "cosmossdk.io/x/upgrade/keeper"
 
 	wasmkeeper "github.com/CosmWasm/wasmd/x/wasm/keeper"
+	"github.com/GGEZLabs/vvtxchain/docs"
 	abci "github.com/cometbft/cometbft/abci/types"
 	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
 	dbm "github.com/cosmos/cosmos-db"
@@ -35,20 +36,20 @@ import (
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 	consensuskeeper "github.com/cosmos/cosmos-sdk/x/consensus/keeper"
 	distrkeeper "github.com/cosmos/cosmos-sdk/x/distribution/keeper"
+	epochskeeper "github.com/cosmos/cosmos-sdk/x/epochs/keeper"
 	"github.com/cosmos/cosmos-sdk/x/genutil"
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 	govkeeper "github.com/cosmos/cosmos-sdk/x/gov/keeper"
 	mintkeeper "github.com/cosmos/cosmos-sdk/x/mint/keeper"
 	paramskeeper "github.com/cosmos/cosmos-sdk/x/params/keeper"
 	paramstypes "github.com/cosmos/cosmos-sdk/x/params/types"
+	protocolpoolkeeper "github.com/cosmos/cosmos-sdk/x/protocolpool/keeper"
 	slashingkeeper "github.com/cosmos/cosmos-sdk/x/slashing/keeper"
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	icacontrollerkeeper "github.com/cosmos/ibc-go/v10/modules/apps/27-interchain-accounts/controller/keeper"
 	icahostkeeper "github.com/cosmos/ibc-go/v10/modules/apps/27-interchain-accounts/host/keeper"
 	ibctransferkeeper "github.com/cosmos/ibc-go/v10/modules/apps/transfer/keeper"
 	ibckeeper "github.com/cosmos/ibc-go/v10/modules/core/keeper"
-
-	"github.com/GGEZLabs/vvtxchain/docs"
 )
 
 const (
@@ -101,9 +102,11 @@ type App struct {
 	TransferKeeper      ibctransferkeeper.Keeper
 
 	// simulation manager
-	sm             *module.SimulationManager
-	WasmKeeper     wasmkeeper.Keeper
-	FeeGrantKeeper feegrantkeeper.Keeper
+	sm                 *module.SimulationManager
+	WasmKeeper         wasmkeeper.Keeper
+	FeeGrantKeeper     feegrantkeeper.Keeper
+	ProtocolPoolKeeper protocolpoolkeeper.Keeper
+	EpochsKeeper       epochskeeper.Keeper
 }
 
 func init() {
@@ -175,7 +178,10 @@ func New(
 		&app.AuthzKeeper,
 		&app.ConsensusParamsKeeper,
 		&app.CircuitBreakerKeeper,
-		&app.ParamsKeeper, &app.FeeGrantKeeper,
+		&app.ParamsKeeper,
+		&app.FeeGrantKeeper,
+		&app.ProtocolPoolKeeper,
+		&app.EpochsKeeper,
 	); err != nil {
 		panic(err)
 	}
