@@ -3,11 +3,7 @@ package app
 import sdk "github.com/cosmos/cosmos-sdk/types"
 
 func init() {
-	// Set bond denom
-
-	sdk.DefaultBondDenom = "vvtx"
-
-	// Set address prefixes
+	// Set prefixes
 	accountPubKeyPrefix := AccountAddressPrefix + "pub"
 	validatorAddressPrefix := AccountAddressPrefix + "valoper"
 	validatorPubKeyPrefix := AccountAddressPrefix + "valoperpub"

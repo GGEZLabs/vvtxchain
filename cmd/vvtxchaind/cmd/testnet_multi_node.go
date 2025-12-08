@@ -12,17 +12,19 @@ import (
 	"strings"
 	"time"
 
-	"cosmossdk.io/math"
 	cmtconfig "github.com/cometbft/cometbft/config"
 	types "github.com/cometbft/cometbft/types"
 	tmtime "github.com/cometbft/cometbft/types/time"
+	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
+
+	"cosmossdk.io/math"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	"github.com/cosmos/cosmos-sdk/crypto/hd"
 	"github.com/cosmos/cosmos-sdk/crypto/keyring"
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
-	runtime "github.com/cosmos/cosmos-sdk/runtime"
 	"github.com/cosmos/cosmos-sdk/server"
 	srvconfig "github.com/cosmos/cosmos-sdk/server/config"
 	"github.com/cosmos/cosmos-sdk/testutil"
@@ -33,8 +35,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/genutil"
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	"github.com/spf13/cobra"
-	"github.com/spf13/pflag"
+
+	runtime "github.com/cosmos/cosmos-sdk/runtime"
 )
 
 var (
@@ -109,6 +111,7 @@ Example:
 					args.validatorsStakesAmount[top] = sdk.NewCoin(sdk.DefaultBondDenom, a)
 					top += 1
 				}
+
 			}
 			top = 0
 			if s, err := cmd.Flags().GetString(flagPorts); err == nil {
@@ -174,7 +177,7 @@ func initTestnetFiles(
 	appConfig := srvconfig.DefaultConfig()
 	appConfig.MinGasPrices = args.minGasPrices
 	appConfig.API.Enable = false
-	appConfig.MinGasPrices = "0.0001" + sdk.DefaultBondDenom
+	appConfig.BaseConfig.MinGasPrices = "0.0001" + sdk.DefaultBondDenom
 	appConfig.Telemetry.EnableHostnameLabel = false
 	appConfig.Telemetry.Enabled = false
 	appConfig.Telemetry.PrometheusRetentionTime = 0
@@ -323,10 +326,7 @@ func initTestnetFiles(
 			if err != nil || yes {
 				continue
 			}
-			_, err = copyFile(file, gentxsDir)
-			if err != nil {
-				return err
-			}
+			copyFile(file, gentxsDir)
 		}
 	}
 	err := collectGenFiles(
@@ -445,7 +445,7 @@ func collectGenFiles(
 		nodeConfig.P2P.AllowDuplicateIP = true
 		nodeConfig.P2P.ListenAddress = "tcp://0.0.0.0:" + strconv.Itoa(26656-3*i)
 		nodeConfig.RPC.ListenAddress = "tcp://127.0.0.1:" + args.ports[i]
-		nodeConfig.ProxyApp = "tcp://127.0.0.1:" + strconv.Itoa(26658-3*i)
+		nodeConfig.BaseConfig.ProxyApp = "tcp://127.0.0.1:" + strconv.Itoa(26658-3*i)
 		nodeConfig.Instrumentation.PrometheusListenAddr = ":" + strconv.Itoa(26660+i)
 		nodeConfig.Instrumentation.Prometheus = true
 		cmtconfig.WriteConfigFile(filepath.Join(nodeConfig.RootDir, "config", "config.toml"), nodeConfig)
@@ -527,7 +527,7 @@ func isSubDir(src, dstDir string) (bool, error) {
 // generateRandomString generates a random string of the specified length.
 func generateRandomString(length int) string {
 	const charset = "abcdefghijklmnopqrstuvwxyz0123456789"
-	seededRand := rand.New(rand.NewSource(time.Now().UnixNano()))
+	var seededRand *rand.Rand = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 	b := make([]byte, length)
 	for i := range b {

@@ -5,9 +5,10 @@ import (
 	"os"
 
 	clienthelpers "cosmossdk.io/client/v2/helpers"
+	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
+
 	"github.com/GGEZLabs/vvtxchain/app"
 	"github.com/GGEZLabs/vvtxchain/cmd/vvtxchaind/cmd"
-	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 )
 
 func main() {
