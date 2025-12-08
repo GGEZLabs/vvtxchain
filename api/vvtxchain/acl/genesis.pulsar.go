@@ -2,18 +2,68 @@
 package acl
 
 import (
-	fmt "fmt"
-	io "io"
-	reflect "reflect"
-	sync "sync"
-
 	_ "cosmossdk.io/api/amino"
+	fmt "fmt"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
 	_ "github.com/cosmos/gogoproto/gogoproto"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	io "io"
+	reflect "reflect"
+	sync "sync"
 )
+
+var _ protoreflect.List = (*_GenesisState_2_list)(nil)
+
+type _GenesisState_2_list struct {
+	list *[]*AclAuthority
+}
+
+func (x *_GenesisState_2_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_GenesisState_2_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_GenesisState_2_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*AclAuthority)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_GenesisState_2_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*AclAuthority)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_GenesisState_2_list) AppendMutable() protoreflect.Value {
+	v := new(AclAuthority)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_GenesisState_2_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_GenesisState_2_list) NewElement() protoreflect.Value {
+	v := new(AclAuthority)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_GenesisState_2_list) IsValid() bool {
+	return x.list != nil
+}
 
 var _ protoreflect.List = (*_GenesisState_3_list)(nil)
 
@@ -66,72 +116,21 @@ func (x *_GenesisState_3_list) IsValid() bool {
 	return x.list != nil
 }
 
-var _ protoreflect.List = (*_GenesisState_4_list)(nil)
-
-type _GenesisState_4_list struct {
-	list *[]*AclAuthority
-}
-
-func (x *_GenesisState_4_list) Len() int {
-	if x.list == nil {
-		return 0
-	}
-	return len(*x.list)
-}
-
-func (x *_GenesisState_4_list) Get(i int) protoreflect.Value {
-	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
-}
-
-func (x *_GenesisState_4_list) Set(i int, value protoreflect.Value) {
-	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*AclAuthority)
-	(*x.list)[i] = concreteValue
-}
-
-func (x *_GenesisState_4_list) Append(value protoreflect.Value) {
-	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*AclAuthority)
-	*x.list = append(*x.list, concreteValue)
-}
-
-func (x *_GenesisState_4_list) AppendMutable() protoreflect.Value {
-	v := new(AclAuthority)
-	*x.list = append(*x.list, v)
-	return protoreflect.ValueOfMessage(v.ProtoReflect())
-}
-
-func (x *_GenesisState_4_list) Truncate(n int) {
-	for i := n; i < len(*x.list); i++ {
-		(*x.list)[i] = nil
-	}
-	*x.list = (*x.list)[:n]
-}
-
-func (x *_GenesisState_4_list) NewElement() protoreflect.Value {
-	v := new(AclAuthority)
-	return protoreflect.ValueOfMessage(v.ProtoReflect())
-}
-
-func (x *_GenesisState_4_list) IsValid() bool {
-	return x.list != nil
-}
-
 var (
-	md_GenesisState                  protoreflect.MessageDescriptor
-	fd_GenesisState_params           protoreflect.FieldDescriptor
-	fd_GenesisState_superAdmin       protoreflect.FieldDescriptor
-	fd_GenesisState_aclAdminList     protoreflect.FieldDescriptor
-	fd_GenesisState_aclAuthorityList protoreflect.FieldDescriptor
+	md_GenesisState                 protoreflect.MessageDescriptor
+	fd_GenesisState_params          protoreflect.FieldDescriptor
+	fd_GenesisState_acl_authorities protoreflect.FieldDescriptor
+	fd_GenesisState_acl_admins      protoreflect.FieldDescriptor
+	fd_GenesisState_super_admin     protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_vvtxchain_acl_genesis_proto_init()
 	md_GenesisState = File_vvtxchain_acl_genesis_proto.Messages().ByName("GenesisState")
 	fd_GenesisState_params = md_GenesisState.Fields().ByName("params")
-	fd_GenesisState_superAdmin = md_GenesisState.Fields().ByName("superAdmin")
-	fd_GenesisState_aclAdminList = md_GenesisState.Fields().ByName("aclAdminList")
-	fd_GenesisState_aclAuthorityList = md_GenesisState.Fields().ByName("aclAuthorityList")
+	fd_GenesisState_acl_authorities = md_GenesisState.Fields().ByName("acl_authorities")
+	fd_GenesisState_acl_admins = md_GenesisState.Fields().ByName("acl_admins")
+	fd_GenesisState_super_admin = md_GenesisState.Fields().ByName("super_admin")
 }
 
 var _ protoreflect.Message = (*fastReflection_GenesisState)(nil)
@@ -205,21 +204,21 @@ func (x *fastReflection_GenesisState) Range(f func(protoreflect.FieldDescriptor,
 			return
 		}
 	}
+	if len(x.AclAuthorities) != 0 {
+		value := protoreflect.ValueOfList(&_GenesisState_2_list{list: &x.AclAuthorities})
+		if !f(fd_GenesisState_acl_authorities, value) {
+			return
+		}
+	}
+	if len(x.AclAdmins) != 0 {
+		value := protoreflect.ValueOfList(&_GenesisState_3_list{list: &x.AclAdmins})
+		if !f(fd_GenesisState_acl_admins, value) {
+			return
+		}
+	}
 	if x.SuperAdmin != nil {
 		value := protoreflect.ValueOfMessage(x.SuperAdmin.ProtoReflect())
-		if !f(fd_GenesisState_superAdmin, value) {
-			return
-		}
-	}
-	if len(x.AclAdminList) != 0 {
-		value := protoreflect.ValueOfList(&_GenesisState_3_list{list: &x.AclAdminList})
-		if !f(fd_GenesisState_aclAdminList, value) {
-			return
-		}
-	}
-	if len(x.AclAuthorityList) != 0 {
-		value := protoreflect.ValueOfList(&_GenesisState_4_list{list: &x.AclAuthorityList})
-		if !f(fd_GenesisState_aclAuthorityList, value) {
+		if !f(fd_GenesisState_super_admin, value) {
 			return
 		}
 	}
@@ -240,12 +239,12 @@ func (x *fastReflection_GenesisState) Has(fd protoreflect.FieldDescriptor) bool 
 	switch fd.FullName() {
 	case "vvtxchain.acl.GenesisState.params":
 		return x.Params != nil
-	case "vvtxchain.acl.GenesisState.superAdmin":
+	case "vvtxchain.acl.GenesisState.acl_authorities":
+		return len(x.AclAuthorities) != 0
+	case "vvtxchain.acl.GenesisState.acl_admins":
+		return len(x.AclAdmins) != 0
+	case "vvtxchain.acl.GenesisState.super_admin":
 		return x.SuperAdmin != nil
-	case "vvtxchain.acl.GenesisState.aclAdminList":
-		return len(x.AclAdminList) != 0
-	case "vvtxchain.acl.GenesisState.aclAuthorityList":
-		return len(x.AclAuthorityList) != 0
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.GenesisState"))
@@ -264,12 +263,12 @@ func (x *fastReflection_GenesisState) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
 	case "vvtxchain.acl.GenesisState.params":
 		x.Params = nil
-	case "vvtxchain.acl.GenesisState.superAdmin":
+	case "vvtxchain.acl.GenesisState.acl_authorities":
+		x.AclAuthorities = nil
+	case "vvtxchain.acl.GenesisState.acl_admins":
+		x.AclAdmins = nil
+	case "vvtxchain.acl.GenesisState.super_admin":
 		x.SuperAdmin = nil
-	case "vvtxchain.acl.GenesisState.aclAdminList":
-		x.AclAdminList = nil
-	case "vvtxchain.acl.GenesisState.aclAuthorityList":
-		x.AclAuthorityList = nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.GenesisState"))
@@ -289,21 +288,21 @@ func (x *fastReflection_GenesisState) Get(descriptor protoreflect.FieldDescripto
 	case "vvtxchain.acl.GenesisState.params":
 		value := x.Params
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "vvtxchain.acl.GenesisState.superAdmin":
-		value := x.SuperAdmin
-		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "vvtxchain.acl.GenesisState.aclAdminList":
-		if len(x.AclAdminList) == 0 {
+	case "vvtxchain.acl.GenesisState.acl_authorities":
+		if len(x.AclAuthorities) == 0 {
+			return protoreflect.ValueOfList(&_GenesisState_2_list{})
+		}
+		listValue := &_GenesisState_2_list{list: &x.AclAuthorities}
+		return protoreflect.ValueOfList(listValue)
+	case "vvtxchain.acl.GenesisState.acl_admins":
+		if len(x.AclAdmins) == 0 {
 			return protoreflect.ValueOfList(&_GenesisState_3_list{})
 		}
-		listValue := &_GenesisState_3_list{list: &x.AclAdminList}
+		listValue := &_GenesisState_3_list{list: &x.AclAdmins}
 		return protoreflect.ValueOfList(listValue)
-	case "vvtxchain.acl.GenesisState.aclAuthorityList":
-		if len(x.AclAuthorityList) == 0 {
-			return protoreflect.ValueOfList(&_GenesisState_4_list{})
-		}
-		listValue := &_GenesisState_4_list{list: &x.AclAuthorityList}
-		return protoreflect.ValueOfList(listValue)
+	case "vvtxchain.acl.GenesisState.super_admin":
+		value := x.SuperAdmin
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.GenesisState"))
@@ -326,16 +325,16 @@ func (x *fastReflection_GenesisState) Set(fd protoreflect.FieldDescriptor, value
 	switch fd.FullName() {
 	case "vvtxchain.acl.GenesisState.params":
 		x.Params = value.Message().Interface().(*Params)
-	case "vvtxchain.acl.GenesisState.superAdmin":
-		x.SuperAdmin = value.Message().Interface().(*SuperAdmin)
-	case "vvtxchain.acl.GenesisState.aclAdminList":
+	case "vvtxchain.acl.GenesisState.acl_authorities":
+		lv := value.List()
+		clv := lv.(*_GenesisState_2_list)
+		x.AclAuthorities = *clv.list
+	case "vvtxchain.acl.GenesisState.acl_admins":
 		lv := value.List()
 		clv := lv.(*_GenesisState_3_list)
-		x.AclAdminList = *clv.list
-	case "vvtxchain.acl.GenesisState.aclAuthorityList":
-		lv := value.List()
-		clv := lv.(*_GenesisState_4_list)
-		x.AclAuthorityList = *clv.list
+		x.AclAdmins = *clv.list
+	case "vvtxchain.acl.GenesisState.super_admin":
+		x.SuperAdmin = value.Message().Interface().(*SuperAdmin)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.GenesisState"))
@@ -361,23 +360,23 @@ func (x *fastReflection_GenesisState) Mutable(fd protoreflect.FieldDescriptor) p
 			x.Params = new(Params)
 		}
 		return protoreflect.ValueOfMessage(x.Params.ProtoReflect())
-	case "vvtxchain.acl.GenesisState.superAdmin":
+	case "vvtxchain.acl.GenesisState.acl_authorities":
+		if x.AclAuthorities == nil {
+			x.AclAuthorities = []*AclAuthority{}
+		}
+		value := &_GenesisState_2_list{list: &x.AclAuthorities}
+		return protoreflect.ValueOfList(value)
+	case "vvtxchain.acl.GenesisState.acl_admins":
+		if x.AclAdmins == nil {
+			x.AclAdmins = []*AclAdmin{}
+		}
+		value := &_GenesisState_3_list{list: &x.AclAdmins}
+		return protoreflect.ValueOfList(value)
+	case "vvtxchain.acl.GenesisState.super_admin":
 		if x.SuperAdmin == nil {
 			x.SuperAdmin = new(SuperAdmin)
 		}
 		return protoreflect.ValueOfMessage(x.SuperAdmin.ProtoReflect())
-	case "vvtxchain.acl.GenesisState.aclAdminList":
-		if x.AclAdminList == nil {
-			x.AclAdminList = []*AclAdmin{}
-		}
-		value := &_GenesisState_3_list{list: &x.AclAdminList}
-		return protoreflect.ValueOfList(value)
-	case "vvtxchain.acl.GenesisState.aclAuthorityList":
-		if x.AclAuthorityList == nil {
-			x.AclAuthorityList = []*AclAuthority{}
-		}
-		value := &_GenesisState_4_list{list: &x.AclAuthorityList}
-		return protoreflect.ValueOfList(value)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.GenesisState"))
@@ -394,15 +393,15 @@ func (x *fastReflection_GenesisState) NewField(fd protoreflect.FieldDescriptor) 
 	case "vvtxchain.acl.GenesisState.params":
 		m := new(Params)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "vvtxchain.acl.GenesisState.superAdmin":
-		m := new(SuperAdmin)
-		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "vvtxchain.acl.GenesisState.aclAdminList":
+	case "vvtxchain.acl.GenesisState.acl_authorities":
+		list := []*AclAuthority{}
+		return protoreflect.ValueOfList(&_GenesisState_2_list{list: &list})
+	case "vvtxchain.acl.GenesisState.acl_admins":
 		list := []*AclAdmin{}
 		return protoreflect.ValueOfList(&_GenesisState_3_list{list: &list})
-	case "vvtxchain.acl.GenesisState.aclAuthorityList":
-		list := []*AclAuthority{}
-		return protoreflect.ValueOfList(&_GenesisState_4_list{list: &list})
+	case "vvtxchain.acl.GenesisState.super_admin":
+		m := new(SuperAdmin)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.GenesisState"))
@@ -476,21 +475,21 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 			l = options.Size(x.Params)
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
+		if len(x.AclAuthorities) > 0 {
+			for _, e := range x.AclAuthorities {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		if len(x.AclAdmins) > 0 {
+			for _, e := range x.AclAdmins {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
 		if x.SuperAdmin != nil {
 			l = options.Size(x.SuperAdmin)
 			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		if len(x.AclAdminList) > 0 {
-			for _, e := range x.AclAdminList {
-				l = options.Size(e)
-				n += 1 + l + runtime.Sov(uint64(l))
-			}
-		}
-		if len(x.AclAuthorityList) > 0 {
-			for _, e := range x.AclAuthorityList {
-				l = options.Size(e)
-				n += 1 + l + runtime.Sov(uint64(l))
-			}
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -521,25 +520,23 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.AclAuthorityList) > 0 {
-			for iNdEx := len(x.AclAuthorityList) - 1; iNdEx >= 0; iNdEx-- {
-				encoded, err := options.Marshal(x.AclAuthorityList[iNdEx])
-				if err != nil {
-					return protoiface.MarshalOutput{
-						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-						Buf:               input.Buf,
-					}, err
-				}
-				i -= len(encoded)
-				copy(dAtA[i:], encoded)
-				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-				i--
-				dAtA[i] = 0x22
+		if x.SuperAdmin != nil {
+			encoded, err := options.Marshal(x.SuperAdmin)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
 			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0x22
 		}
-		if len(x.AclAdminList) > 0 {
-			for iNdEx := len(x.AclAdminList) - 1; iNdEx >= 0; iNdEx-- {
-				encoded, err := options.Marshal(x.AclAdminList[iNdEx])
+		if len(x.AclAdmins) > 0 {
+			for iNdEx := len(x.AclAdmins) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.AclAdmins[iNdEx])
 				if err != nil {
 					return protoiface.MarshalOutput{
 						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -553,19 +550,21 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 				dAtA[i] = 0x1a
 			}
 		}
-		if x.SuperAdmin != nil {
-			encoded, err := options.Marshal(x.SuperAdmin)
-			if err != nil {
-				return protoiface.MarshalOutput{
-					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-					Buf:               input.Buf,
-				}, err
+		if len(x.AclAuthorities) > 0 {
+			for iNdEx := len(x.AclAuthorities) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.AclAuthorities[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x12
 			}
-			i -= len(encoded)
-			copy(dAtA[i:], encoded)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-			i--
-			dAtA[i] = 0x12
 		}
 		if x.Params != nil {
 			encoded, err := options.Marshal(x.Params)
@@ -668,6 +667,74 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 				iNdEx = postIndex
 			case 2:
 				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AclAuthorities", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.AclAuthorities = append(x.AclAuthorities, &AclAuthority{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.AclAuthorities[len(x.AclAuthorities)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			case 3:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AclAdmins", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.AclAdmins = append(x.AclAdmins, &AclAdmin{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.AclAdmins[len(x.AclAdmins)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			case 4:
+				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field SuperAdmin", wireType)
 				}
 				var msglen int
@@ -699,74 +766,6 @@ func (x *fastReflection_GenesisState) ProtoMethods() *protoiface.Methods {
 					x.SuperAdmin = &SuperAdmin{}
 				}
 				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.SuperAdmin); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				iNdEx = postIndex
-			case 3:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AclAdminList", wireType)
-				}
-				var msglen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					msglen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.AclAdminList = append(x.AclAdminList, &AclAdmin{})
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.AclAdminList[len(x.AclAdminList)-1]); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				iNdEx = postIndex
-			case 4:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AclAuthorityList", wireType)
-				}
-				var msglen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					msglen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.AclAuthorityList = append(x.AclAuthorityList, &AclAuthority{})
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.AclAuthorityList[len(x.AclAuthorityList)-1]); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
@@ -825,10 +824,10 @@ type GenesisState struct {
 	unknownFields protoimpl.UnknownFields
 
 	// params defines all the parameters of the module.
-	Params           *Params         `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
-	SuperAdmin       *SuperAdmin     `protobuf:"bytes,2,opt,name=superAdmin,proto3" json:"superAdmin,omitempty"`
-	AclAdminList     []*AclAdmin     `protobuf:"bytes,3,rep,name=aclAdminList,proto3" json:"aclAdminList,omitempty"`
-	AclAuthorityList []*AclAuthority `protobuf:"bytes,4,rep,name=aclAuthorityList,proto3" json:"aclAuthorityList,omitempty"`
+	Params         *Params         `protobuf:"bytes,1,opt,name=params,proto3" json:"params,omitempty"`
+	AclAuthorities []*AclAuthority `protobuf:"bytes,2,rep,name=acl_authorities,json=aclAuthorities,proto3" json:"acl_authorities,omitempty"`
+	AclAdmins      []*AclAdmin     `protobuf:"bytes,3,rep,name=acl_admins,json=aclAdmins,proto3" json:"acl_admins,omitempty"`
+	SuperAdmin     *SuperAdmin     `protobuf:"bytes,4,opt,name=super_admin,json=superAdmin,proto3" json:"super_admin,omitempty"`
 }
 
 func (x *GenesisState) Reset() {
@@ -858,23 +857,23 @@ func (x *GenesisState) GetParams() *Params {
 	return nil
 }
 
+func (x *GenesisState) GetAclAuthorities() []*AclAuthority {
+	if x != nil {
+		return x.AclAuthorities
+	}
+	return nil
+}
+
+func (x *GenesisState) GetAclAdmins() []*AclAdmin {
+	if x != nil {
+		return x.AclAdmins
+	}
+	return nil
+}
+
 func (x *GenesisState) GetSuperAdmin() *SuperAdmin {
 	if x != nil {
 		return x.SuperAdmin
-	}
-	return nil
-}
-
-func (x *GenesisState) GetAclAdminList() []*AclAdmin {
-	if x != nil {
-		return x.AclAdminList
-	}
-	return nil
-}
-
-func (x *GenesisState) GetAclAuthorityList() []*AclAuthority {
-	if x != nil {
-		return x.AclAuthorityList
 	}
 	return nil
 }
@@ -895,35 +894,36 @@ var file_vvtxchain_acl_genesis_proto_rawDesc = []byte{
 	0x6c, 0x2f, 0x61, 0x63, 0x6c, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x1a, 0x21, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c,
 	0x2f, 0x61, 0x63, 0x6c, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x22, 0x95, 0x02, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73,
+	0x72, 0x6f, 0x74, 0x6f, 0x22, 0x98, 0x02, 0x0a, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73,
 	0x53, 0x74, 0x61, 0x74, 0x65, 0x12, 0x38, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69,
 	0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde,
 	0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12,
-	0x39, 0x0a, 0x0a, 0x73, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e,
-	0x61, 0x63, 0x6c, 0x2e, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x0a,
-	0x73, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x41, 0x0a, 0x0c, 0x61, 0x63,
-	0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b,
-	0x32, 0x17, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c,
-	0x2e, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52,
-	0x0c, 0x61, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x4d, 0x0a,
-	0x10, 0x61, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x4c, 0x69, 0x73,
-	0x74, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68,
-	0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f,
-	0x72, 0x69, 0x74, 0x79, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x10, 0x61, 0x63, 0x6c, 0x41,
-	0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x4c, 0x69, 0x73, 0x74, 0x42, 0xa7, 0x01, 0x0a,
-	0x11, 0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61,
-	0x63, 0x6c, 0x42, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f,
-	0x50, 0x01, 0x5a, 0x2f, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x47,
-	0x47, 0x45, 0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69,
-	0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f,
-	0x61, 0x63, 0x6c, 0xa2, 0x02, 0x03, 0x56, 0x41, 0x58, 0xaa, 0x02, 0x0d, 0x56, 0x76, 0x74, 0x78,
-	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x41, 0x63, 0x6c, 0xca, 0x02, 0x0d, 0x56, 0x76, 0x74, 0x78,
-	0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x41, 0x63, 0x6c, 0xe2, 0x02, 0x19, 0x56, 0x76, 0x74, 0x78,
-	0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x41, 0x63, 0x6c, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74,
-	0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0e, 0x56, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69,
-	0x6e, 0x3a, 0x3a, 0x41, 0x63, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x4f, 0x0a, 0x0f, 0x61, 0x63, 0x6c, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x69,
+	0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68,
+	0x6f, 0x72, 0x69, 0x74, 0x79, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01,
+	0x52, 0x0e, 0x61, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x69, 0x65, 0x73,
+	0x12, 0x41, 0x0a, 0x0a, 0x61, 0x63, 0x6c, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x73, 0x18, 0x03,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e,
+	0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x42, 0x09, 0xc8,
+	0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x09, 0x61, 0x63, 0x6c, 0x41, 0x64, 0x6d,
+	0x69, 0x6e, 0x73, 0x12, 0x3a, 0x0a, 0x0b, 0x73, 0x75, 0x70, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x6d,
+	0x69, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64,
+	0x6d, 0x69, 0x6e, 0x52, 0x0a, 0x73, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x42,
+	0xa7, 0x01, 0x0a, 0x11, 0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69,
+	0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x42, 0x0c, 0x47, 0x65, 0x6e, 0x65, 0x73, 0x69, 0x73, 0x50, 0x72,
+	0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x2f, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x47, 0x47, 0x45, 0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f, 0x76, 0x76, 0x74, 0x78, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61,
+	0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0xa2, 0x02, 0x03, 0x56, 0x41, 0x58, 0xaa, 0x02, 0x0d, 0x56,
+	0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x41, 0x63, 0x6c, 0xca, 0x02, 0x0d, 0x56,
+	0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x41, 0x63, 0x6c, 0xe2, 0x02, 0x19, 0x56,
+	0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x41, 0x63, 0x6c, 0x5c, 0x47, 0x50, 0x42,
+	0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0e, 0x56, 0x76, 0x74, 0x78, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x3a, 0x3a, 0x41, 0x63, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -942,15 +942,15 @@ var file_vvtxchain_acl_genesis_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_vvtxchain_acl_genesis_proto_goTypes = []interface{}{
 	(*GenesisState)(nil), // 0: vvtxchain.acl.GenesisState
 	(*Params)(nil),       // 1: vvtxchain.acl.Params
-	(*SuperAdmin)(nil),   // 2: vvtxchain.acl.SuperAdmin
+	(*AclAuthority)(nil), // 2: vvtxchain.acl.AclAuthority
 	(*AclAdmin)(nil),     // 3: vvtxchain.acl.AclAdmin
-	(*AclAuthority)(nil), // 4: vvtxchain.acl.AclAuthority
+	(*SuperAdmin)(nil),   // 4: vvtxchain.acl.SuperAdmin
 }
 var file_vvtxchain_acl_genesis_proto_depIdxs = []int32{
 	1, // 0: vvtxchain.acl.GenesisState.params:type_name -> vvtxchain.acl.Params
-	2, // 1: vvtxchain.acl.GenesisState.superAdmin:type_name -> vvtxchain.acl.SuperAdmin
-	3, // 2: vvtxchain.acl.GenesisState.aclAdminList:type_name -> vvtxchain.acl.AclAdmin
-	4, // 3: vvtxchain.acl.GenesisState.aclAuthorityList:type_name -> vvtxchain.acl.AclAuthority
+	2, // 1: vvtxchain.acl.GenesisState.acl_authorities:type_name -> vvtxchain.acl.AclAuthority
+	3, // 2: vvtxchain.acl.GenesisState.acl_admins:type_name -> vvtxchain.acl.AclAdmin
+	4, // 3: vvtxchain.acl.GenesisState.super_admin:type_name -> vvtxchain.acl.SuperAdmin
 	4, // [4:4] is the sub-list for method output_type
 	4, // [4:4] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name

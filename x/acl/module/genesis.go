@@ -9,18 +9,24 @@ import (
 
 // InitGenesis initializes the module's state from a provided genesis state.
 func InitGenesis(ctx sdk.Context, k keeper.Keeper, genState types.GenesisState) {
+	err := genState.Validate()
+	if err != nil {
+		panic(err)
+	}
+
+	// Set all the aclAuthority
+	for _, elem := range genState.AclAuthorities {
+		k.SetAclAuthority(ctx, elem)
+	}
+	// Set all the aclAdmin
+	for _, elem := range genState.AclAdmins {
+		k.SetAclAdmin(ctx, elem)
+	}
 	// Set if defined
 	if genState.SuperAdmin != nil {
 		k.SetSuperAdmin(ctx, *genState.SuperAdmin)
 	}
-	// Set all the aclAdmin
-	for _, elem := range genState.AclAdminList {
-		k.SetAclAdmin(ctx, elem)
-	}
-	// Set all the aclAuthority
-	for _, elem := range genState.AclAuthorityList {
-		k.SetAclAuthority(ctx, elem)
-	}
+
 	// this line is used by starport scaffolding # genesis/module/init
 	if err := k.SetParams(ctx, genState.Params); err != nil {
 		panic(err)
@@ -37,8 +43,8 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	if found {
 		genesis.SuperAdmin = &superAdmin
 	}
-	genesis.AclAdminList = k.GetAllAclAdmin(ctx)
-	genesis.AclAuthorityList = k.GetAllAclAuthority(ctx)
+	genesis.AclAdmins = k.GetAllAclAdmin(ctx)
+	genesis.AclAuthorities = k.GetAllAclAuthority(ctx)
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

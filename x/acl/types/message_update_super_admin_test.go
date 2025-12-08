@@ -15,15 +15,25 @@ func TestMsgUpdateSuperAdmin_ValidateBasic(t *testing.T) {
 		err  error
 	}{
 		{
-			name: "invalid address",
+			name: "invalid creator address",
 			msg: MsgUpdateSuperAdmin{
 				Creator: "invalid_address",
 			},
 			err: sdkerrors.ErrInvalidAddress,
-		}, {
-			name: "valid address",
+		},
+		{
+			name: "invalid new super admin address",
 			msg: MsgUpdateSuperAdmin{
-				Creator: sample.AccAddress(),
+				Creator:       sample.AccAddress(),
+				NewSuperAdmin: "invalid_address",
+			},
+			err: sdkerrors.ErrInvalidAddress,
+		},
+		{
+			name: "all good",
+			msg: MsgUpdateSuperAdmin{
+				Creator:       sample.AccAddress(),
+				NewSuperAdmin: sample.AccAddress(),
 			},
 		},
 	}

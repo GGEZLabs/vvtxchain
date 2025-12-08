@@ -9,21 +9,49 @@ import (
 )
 
 func TestMsgAddAdmin_ValidateBasic(t *testing.T) {
+	duplicateAdmin := sample.AccAddress()
+
 	tests := []struct {
 		name string
 		msg  MsgAddAdmin
 		err  error
 	}{
 		{
-			name: "invalid address",
+			name: "invalid creator address",
 			msg: MsgAddAdmin{
 				Creator: "invalid_address",
 			},
 			err: sdkerrors.ErrInvalidAddress,
-		}, {
-			name: "valid address",
+		},
+		{
+			name: "zero admins",
 			msg: MsgAddAdmin{
 				Creator: sample.AccAddress(),
+				Admins:  []string{},
+			},
+			err: sdkerrors.ErrInvalidRequest,
+		},
+		{
+			name: "invalid admin address",
+			msg: MsgAddAdmin{
+				Creator: sample.AccAddress(),
+				Admins:  []string{"invalid_address", sample.AccAddress()},
+			},
+			err: sdkerrors.ErrInvalidAddress,
+		},
+		{
+			name: "duplicate admin address",
+			msg: MsgAddAdmin{
+				Creator: sample.AccAddress(),
+				Admins:  []string{duplicateAdmin, duplicateAdmin},
+			},
+			err: sdkerrors.ErrInvalidRequest,
+		},
+		{
+			name: "all good",
+			msg: MsgAddAdmin{
+				Creator: sample.AccAddress(),
+				Admins:  []string{sample.AccAddress(), sample.AccAddress()},
 			},
 		},
 	}

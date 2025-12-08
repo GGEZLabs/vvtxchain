@@ -39,6 +39,40 @@ func TestAclAdminGet(t *testing.T) {
 		)
 	}
 }
+
+func TestSetAclAdmins(t *testing.T) {
+	keeper, ctx := keepertest.AclKeeper(t)
+	items := make([]types.AclAdmin, 10)
+	keeper.SetAclAdmins(ctx, items)
+	for _, item := range items {
+		rst, found := keeper.GetAclAdmin(ctx,
+			item.Address,
+		)
+		require.True(t, found)
+		require.Equal(t,
+			nullify.Fill(&item),
+			nullify.Fill(&rst),
+		)
+	}
+}
+
+func TestRemoveAclAdmins(t *testing.T) {
+	keeper, ctx := keepertest.AclKeeper(t)
+	items := createNAclAdmin(keeper, ctx, 10)
+	var addresses []string
+
+	for _, item := range items {
+		addresses = append(addresses, item.Address)
+	}
+
+	keeper.RemoveAclAdmins(ctx, addresses)
+
+	for i := range addresses {
+		_, found := keeper.GetAclAdmin(ctx, addresses[i])
+		require.False(t, found)
+	}
+}
+
 func TestAclAdminRemove(t *testing.T) {
 	keeper, ctx := keepertest.AclKeeper(t)
 	items := createNAclAdmin(keeper, ctx, 10)

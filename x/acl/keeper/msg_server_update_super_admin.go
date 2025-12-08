@@ -10,8 +10,17 @@ import (
 func (k msgServer) UpdateSuperAdmin(goCtx context.Context, msg *types.MsgUpdateSuperAdmin) (*types.MsgUpdateSuperAdminResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// TODO: Handling the message
-	_ = ctx
+	if !k.IsSuperAdmin(ctx, msg.Creator) {
+		return nil, types.ErrUnauthorized
+	}
 
+	k.SetSuperAdmin(ctx, types.SuperAdmin{Address: msg.NewSuperAdmin})
+
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(
+			types.EventTypeInit,
+			sdk.NewAttribute(types.AttributeKeySuperAdmin, msg.NewSuperAdmin),
+		),
+	)
 	return &types.MsgUpdateSuperAdminResponse{}, nil
 }

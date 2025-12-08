@@ -15,15 +15,25 @@ func TestMsgInit_ValidateBasic(t *testing.T) {
 		err  error
 	}{
 		{
-			name: "invalid address",
+			name: "invalid creator address",
 			msg: MsgInit{
 				Creator: "invalid_address",
 			},
 			err: sdkerrors.ErrInvalidAddress,
-		}, {
-			name: "valid address",
+		},
+		{
+			name: "invalid super admin address",
 			msg: MsgInit{
-				Creator: sample.AccAddress(),
+				Creator:    sample.AccAddress(),
+				SuperAdmin: "invalid_address",
+			},
+			err: sdkerrors.ErrInvalidAddress,
+		},
+		{
+			name: "all good",
+			msg: MsgInit{
+				Creator:    sample.AccAddress(),
+				SuperAdmin: sample.AccAddress(),
 			},
 		},
 	}

@@ -15,33 +15,33 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				{
 					RpcMethod: "Params",
 					Use:       "params",
-					Short:     "Shows the parameters of the module",
+					Short:     "Query the parameters of the module",
 				},
 				{
 					RpcMethod: "SuperAdmin",
-					Use:       "show-super-admin",
-					Short:     "show super_admin",
+					Use:       "super-admin",
+					Short:     "Query a super-admin",
 				},
 				{
 					RpcMethod: "AclAdminAll",
-					Use:       "list-acl-admin",
-					Short:     "List all acl_admin",
+					Use:       "admins",
+					Short:     "Query all admins",
 				},
 				{
 					RpcMethod:      "AclAdmin",
-					Use:            "show-acl-admin [id]",
-					Short:          "Shows a acl_admin",
+					Use:            "admin [address]",
+					Short:          "Query an admin by address",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "address"}},
 				},
 				{
 					RpcMethod: "AclAuthorityAll",
-					Use:       "list-acl-authority",
-					Short:     "List all acl_authority",
+					Use:       "acl-authorities",
+					Short:     "Query all acl-authorities",
 				},
 				{
 					RpcMethod:      "AclAuthority",
-					Use:            "show-acl-authority [id]",
-					Short:          "Shows a acl_authority",
+					Use:            "acl-authority [address]",
+					Short:          "Query an acl-authority by address",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "address"}},
 				},
 				// this line is used by ignite scaffolding # autocli/query
@@ -58,44 +58,92 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				{
 					RpcMethod:      "Init",
 					Use:            "init [super-admin]",
-					Short:          "Send a init tx",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "superAdmin"}},
+					Short:          "Initializes the super-admin. Can only be called once.",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "super_admin"}},
 				},
 				{
 					RpcMethod:      "AddAdmin",
 					Use:            "add-admin [admins]",
-					Short:          "Send a add_admin tx",
+					Short:          "Add one or more admin. Only a super admin can perform this action.",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "admins"}},
 				},
 				{
 					RpcMethod:      "DeleteAdmin",
 					Use:            "delete-admin [admins]",
-					Short:          "Send a delete_admin tx",
+					Short:          "Delete one or more admin. Only a super admin can perform this action.",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "admins"}},
 				},
 				{
 					RpcMethod:      "AddAuthority",
 					Use:            "add-authority [auth-address] [name] [access-definitions]",
-					Short:          "Send a add_authority tx",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "authAddress"}, {ProtoField: "name"}, {ProtoField: "accessDefinitions"}},
+					Short:          "Add a new authority with specific access definition. Must have authority to do so.",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "auth_address"}, {ProtoField: "name"}, {ProtoField: "access_definitions"}},
 				},
 				{
 					RpcMethod:      "DeleteAuthority",
 					Use:            "delete-authority [auth-address]",
-					Short:          "Send a delete_authority tx",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "authAddress"}},
+					Short:          "Delete an existing authority. Must have authority to do so.",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "auth_address"}},
 				},
 				{
 					RpcMethod:      "UpdateAuthority",
-					Use:            "update-authority [auth-address] [new-name] [overwrite-access-definitions] [add-access-definitions] [update-access-definition] [delete-access-definitions] [clear-all-access-definitions]",
-					Short:          "Send a update_authority tx",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "authAddress"}, {ProtoField: "newName"}, {ProtoField: "overwriteAccessDefinitions"}, {ProtoField: "addAccessDefinitions"}, {ProtoField: "updateAccessDefinition"}, {ProtoField: "deleteAccessDefinitions"}, {ProtoField: "clearAllAccessDefinitions"}},
+					Use:            "update-authority [auth-address]",
+					Short:          "Modify the name or access definition of an existing authority. Must have authority to do so.",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "auth_address"}, {ProtoField: "new_name"}, {ProtoField: "overwrite_access_definitions"}, {ProtoField: "add_access_definitions"}, {ProtoField: "update_access_definition"}, {ProtoField: "delete_access_definitions"}, {ProtoField: "clear_all_access_definitions"}},
+					FlagOptions: map[string]*autocliv1.FlagOptions{
+						"new_name": {
+							Name:         "new-name",
+							Usage:        "Set a new name for the authority.",
+							DefaultValue: "",
+						},
+						"overwrite_access_definitions": {
+							Name:         "overwrite-access-definitions",
+							Usage:        "Overwrite the entire access definition list with this JSON string. Ignores other access definition flags.",
+							DefaultValue: "",
+						},
+						"add_access_definitions": {
+							Name:         "add-access-definitions",
+							Usage:        "Add one or more new access definition.",
+							DefaultValue: "",
+						},
+						"update_access_definition": {
+							Name:         "update-access-definition",
+							Usage:        "Update access definition values for an existing module. (matched by module name)",
+							DefaultValue: "",
+						},
+						"delete_access_definitions": {
+							Name:         "delete-access-definitions",
+							Usage:        "Delete one or more specific access definition (by module name).",
+							DefaultValue: "",
+						},
+						"clear_all_access_definitions": {
+							Name:         "clear-all-access-definitions",
+							Usage:        "Clear all access definition. Default is false.",
+							DefaultValue: "false",
+						},
+					},
+					Example: `Overwrite the entire access definition list with this JSON string. Ignores other access definition flags:
+ggezchaind tx acl update-authority ggezauthaddress... --add-access-definitions '[{"module":"module1","is_maker":true,"is_checker":false}]' --from ggezaddress...
+
+Add one or more new access definition:
+ggezchaind tx acl update-authority ggezauthaddress... --add-access-definitions '[{"module":"module2","is_maker":true,"is_checker":true}]' --from ggezaddress...
+
+Update access definition values for an existing module (by module name):
+ggezchaind tx acl update-authority ggezauthaddress... --update-access-definition '{"module":"module2","is_maker":false,"is_checker":true}' --from ggezaddress...
+
+Delete one or more specific access definition (by module name):
+ggezchaind tx acl update-authority ggezauthaddress... --delete-access-definitions 'module2,module1' --from ggezaddress...
+
+Clear all access definition. (Default is false)
+ggezchaind tx acl update-authority ggezauthaddress... --clear-all-access-definitions --from ggezaddress...
+
+`,
 				},
 				{
 					RpcMethod:      "UpdateSuperAdmin",
 					Use:            "update-super-admin [new-super-admin]",
-					Short:          "Send a update_super_admin tx",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "newSuperAdmin"}},
+					Short:          "Update super admin. Only a super admin can perform this action.",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "new_super_admin"}},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},

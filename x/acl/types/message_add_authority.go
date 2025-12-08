@@ -22,5 +22,19 @@ func (msg *MsgAddAuthority) ValidateBasic() error {
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
 	}
+
+	_, err = sdk.AccAddressFromBech32(msg.AuthAddress)
+	if err != nil {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid auth-address (%s)", err)
+	}
+
+	if msg.Name == "" {
+		return ErrEmptyName
+	}
+
+	if err = validateJSONFormat(msg.AccessDefinitions, "access-definitions"); err != nil {
+		return err
+	}
+
 	return nil
 }

@@ -82,7 +82,7 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	)
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgInit,
-		aclsimulation.SimulateMsgInit(am.accountKeeper, am.bankKeeper, am.keeper),
+		aclsimulation.SimulateMsgInit(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig),
 	))
 
 	var weightMsgAddAdmin int
@@ -93,7 +93,7 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	)
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgAddAdmin,
-		aclsimulation.SimulateMsgAddAdmin(am.accountKeeper, am.bankKeeper, am.keeper),
+		aclsimulation.SimulateMsgAddAdmin(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig),
 	))
 
 	var weightMsgDeleteAdmin int
@@ -104,7 +104,7 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	)
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgDeleteAdmin,
-		aclsimulation.SimulateMsgDeleteAdmin(am.accountKeeper, am.bankKeeper, am.keeper),
+		aclsimulation.SimulateMsgDeleteAdmin(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig),
 	))
 
 	var weightMsgAddAuthority int
@@ -115,7 +115,7 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	)
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgAddAuthority,
-		aclsimulation.SimulateMsgAddAuthority(am.accountKeeper, am.bankKeeper, am.keeper),
+		aclsimulation.SimulateMsgAddAuthority(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig),
 	))
 
 	var weightMsgDeleteAuthority int
@@ -126,7 +126,7 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	)
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgDeleteAuthority,
-		aclsimulation.SimulateMsgDeleteAuthority(am.accountKeeper, am.bankKeeper, am.keeper),
+		aclsimulation.SimulateMsgDeleteAuthority(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig),
 	))
 
 	var weightMsgUpdateAuthority int
@@ -137,7 +137,7 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	)
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgUpdateAuthority,
-		aclsimulation.SimulateMsgUpdateAuthority(am.accountKeeper, am.bankKeeper, am.keeper),
+		aclsimulation.SimulateMsgUpdateAuthority(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig),
 	))
 
 	var weightMsgUpdateSuperAdmin int
@@ -148,7 +148,7 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	)
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgUpdateSuperAdmin,
-		aclsimulation.SimulateMsgUpdateSuperAdmin(am.accountKeeper, am.bankKeeper, am.keeper),
+		aclsimulation.SimulateMsgUpdateSuperAdmin(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig),
 	))
 
 	// this line is used by starport scaffolding # simapp/module/operation
@@ -163,7 +163,7 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			opWeightMsgInit,
 			defaultWeightMsgInit,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				aclsimulation.SimulateMsgInit(am.accountKeeper, am.bankKeeper, am.keeper)
+				aclsimulation.SimulateMsgInit(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig)
 				return nil
 			},
 		),
@@ -171,7 +171,7 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			opWeightMsgAddAdmin,
 			defaultWeightMsgAddAdmin,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				aclsimulation.SimulateMsgAddAdmin(am.accountKeeper, am.bankKeeper, am.keeper)
+				aclsimulation.SimulateMsgAddAdmin(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig)
 				return nil
 			},
 		),
@@ -179,7 +179,7 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			opWeightMsgDeleteAdmin,
 			defaultWeightMsgDeleteAdmin,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				aclsimulation.SimulateMsgDeleteAdmin(am.accountKeeper, am.bankKeeper, am.keeper)
+				aclsimulation.SimulateMsgDeleteAdmin(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig)
 				return nil
 			},
 		),
@@ -187,7 +187,7 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			opWeightMsgAddAuthority,
 			defaultWeightMsgAddAuthority,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				aclsimulation.SimulateMsgAddAuthority(am.accountKeeper, am.bankKeeper, am.keeper)
+				aclsimulation.SimulateMsgAddAuthority(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig)
 				return nil
 			},
 		),
@@ -195,7 +195,7 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			opWeightMsgDeleteAuthority,
 			defaultWeightMsgDeleteAuthority,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				aclsimulation.SimulateMsgDeleteAuthority(am.accountKeeper, am.bankKeeper, am.keeper)
+				aclsimulation.SimulateMsgDeleteAuthority(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig)
 				return nil
 			},
 		),
@@ -203,7 +203,7 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			opWeightMsgUpdateAuthority,
 			defaultWeightMsgUpdateAuthority,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				aclsimulation.SimulateMsgUpdateAuthority(am.accountKeeper, am.bankKeeper, am.keeper)
+				aclsimulation.SimulateMsgUpdateAuthority(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig)
 				return nil
 			},
 		),
@@ -211,7 +211,7 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			opWeightMsgUpdateSuperAdmin,
 			defaultWeightMsgUpdateSuperAdmin,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				aclsimulation.SimulateMsgUpdateSuperAdmin(am.accountKeeper, am.bankKeeper, am.keeper)
+				aclsimulation.SimulateMsgUpdateSuperAdmin(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig)
 				return nil
 			},
 		),

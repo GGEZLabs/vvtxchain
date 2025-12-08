@@ -8,30 +8,42 @@ import (
 	acl "github.com/GGEZLabs/vvtxchain/x/acl/module"
 	"github.com/GGEZLabs/vvtxchain/x/acl/types"
 	"github.com/stretchr/testify/require"
+	"github.com/GGEZLabs/vvtxchain/testutil/sample"
+
 )
 
 func TestGenesis(t *testing.T) {
 	genesisState := types.GenesisState{
 		Params: types.DefaultParams(),
 
+		AclAuthorities: []types.AclAuthority{
+			{
+				Address: sample.AccAddress(),
+				Name:    "Alice",
+				AccessDefinitions: []*types.AccessDefinition{
+					{Module: "module1", IsMaker: true, IsChecker: false},
+					{Module: "module2", IsMaker: true, IsChecker: true},
+				},
+			},
+			{
+				Address: sample.AccAddress(),
+				Name:    "Bob",
+				AccessDefinitions: []*types.AccessDefinition{
+					{Module: "module1", IsMaker: true, IsChecker: false},
+					{Module: "module2", IsMaker: true, IsChecker: true},
+				},
+			},
+		},
+		AclAdmins: []types.AclAdmin{
+			{
+				Address: sample.AccAddress(),
+			},
+			{
+				Address: sample.AccAddress(),
+			},
+		},
 		SuperAdmin: &types.SuperAdmin{
-			Address: "41",
-		},
-		AclAdminList: []types.AclAdmin{
-			{
-				Address: "0",
-			},
-			{
-				Address: "1",
-			},
-		},
-		AclAuthorityList: []types.AclAuthority{
-			{
-				Address: "0",
-			},
-			{
-				Address: "1",
-			},
+			Address: sample.AccAddress(),
 		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}
@@ -44,8 +56,8 @@ func TestGenesis(t *testing.T) {
 	nullify.Fill(&genesisState)
 	nullify.Fill(got)
 
+	require.ElementsMatch(t, genesisState.AclAuthorities, got.AclAuthorities)
+	require.ElementsMatch(t, genesisState.AclAdmins, got.AclAdmins)
 	require.Equal(t, genesisState.SuperAdmin, got.SuperAdmin)
-	require.ElementsMatch(t, genesisState.AclAdminList, got.AclAdminList)
-	require.ElementsMatch(t, genesisState.AclAuthorityList, got.AclAuthorityList)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

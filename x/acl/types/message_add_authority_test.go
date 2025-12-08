@@ -15,15 +15,46 @@ func TestMsgAddAuthority_ValidateBasic(t *testing.T) {
 		err  error
 	}{
 		{
-			name: "invalid address",
+			name: "invalid creator address",
 			msg: MsgAddAuthority{
 				Creator: "invalid_address",
 			},
 			err: sdkerrors.ErrInvalidAddress,
-		}, {
-			name: "valid address",
+		},
+		{
+			name: "invalid auth address",
 			msg: MsgAddAuthority{
-				Creator: sample.AccAddress(),
+				Creator:     sample.AccAddress(),
+				AuthAddress: "invalid_address",
+			},
+			err: sdkerrors.ErrInvalidAddress,
+		},
+		{
+			name: "empty name",
+			msg: MsgAddAuthority{
+				Creator:     sample.AccAddress(),
+				AuthAddress: sample.AccAddress(),
+				Name:        "",
+			},
+			err: ErrEmptyName,
+		},
+		{
+			name: "invalid access definitions",
+			msg: MsgAddAuthority{
+				Creator:           sample.AccAddress(),
+				AuthAddress:       sample.AccAddress(),
+				Name:              "Alice",
+				AccessDefinitions: `{"module":"module1","is_maker":true "is_checker":true}`,
+			},
+			err: sdkerrors.ErrInvalidRequest,
+		},
+		{
+			name: "all good",
+			msg: MsgAddAuthority{
+				Creator:           sample.AccAddress(),
+				AuthAddress:       sample.AccAddress(),
+				Name:              "Alice",
+				AccessDefinitions: `[{"module":"module1","is_maker":true, "is_checker":true}]`,
 			},
 		},
 	}

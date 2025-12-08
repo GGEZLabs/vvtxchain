@@ -20,5 +20,19 @@ func (msg *MsgAddAdmin) ValidateBasic() error {
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
 	}
+
+	if len(msg.Admins) == 0 {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidRequest, "at least one address should be provided")
+	}
+
+	err = validateAddresses(msg.Admins)
+	if err != nil {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid address %s", err)
+	}
+
+	if hasDuplicateAddresses(msg.Admins) {
+		return errorsmod.Wrapf(sdkerrors.ErrInvalidRequest, "duplicate address")
+	}
+
 	return nil
 }

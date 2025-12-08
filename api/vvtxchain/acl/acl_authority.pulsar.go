@@ -3,21 +3,71 @@ package acl
 
 import (
 	fmt "fmt"
-	io "io"
-	reflect "reflect"
-	sync "sync"
-
 	runtime "github.com/cosmos/cosmos-proto/runtime"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	io "io"
+	reflect "reflect"
+	sync "sync"
 )
 
+var _ protoreflect.List = (*_AclAuthority_3_list)(nil)
+
+type _AclAuthority_3_list struct {
+	list *[]*AccessDefinition
+}
+
+func (x *_AclAuthority_3_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_AclAuthority_3_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_AclAuthority_3_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*AccessDefinition)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_AclAuthority_3_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*AccessDefinition)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_AclAuthority_3_list) AppendMutable() protoreflect.Value {
+	v := new(AccessDefinition)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_AclAuthority_3_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_AclAuthority_3_list) NewElement() protoreflect.Value {
+	v := new(AccessDefinition)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_AclAuthority_3_list) IsValid() bool {
+	return x.list != nil
+}
+
 var (
-	md_AclAuthority                   protoreflect.MessageDescriptor
-	fd_AclAuthority_address           protoreflect.FieldDescriptor
-	fd_AclAuthority_name              protoreflect.FieldDescriptor
-	fd_AclAuthority_accessDefinitions protoreflect.FieldDescriptor
+	md_AclAuthority                    protoreflect.MessageDescriptor
+	fd_AclAuthority_address            protoreflect.FieldDescriptor
+	fd_AclAuthority_name               protoreflect.FieldDescriptor
+	fd_AclAuthority_access_definitions protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -25,7 +75,7 @@ func init() {
 	md_AclAuthority = File_vvtxchain_acl_acl_authority_proto.Messages().ByName("AclAuthority")
 	fd_AclAuthority_address = md_AclAuthority.Fields().ByName("address")
 	fd_AclAuthority_name = md_AclAuthority.Fields().ByName("name")
-	fd_AclAuthority_accessDefinitions = md_AclAuthority.Fields().ByName("accessDefinitions")
+	fd_AclAuthority_access_definitions = md_AclAuthority.Fields().ByName("access_definitions")
 }
 
 var _ protoreflect.Message = (*fastReflection_AclAuthority)(nil)
@@ -105,9 +155,9 @@ func (x *fastReflection_AclAuthority) Range(f func(protoreflect.FieldDescriptor,
 			return
 		}
 	}
-	if x.AccessDefinitions != "" {
-		value := protoreflect.ValueOfString(x.AccessDefinitions)
-		if !f(fd_AclAuthority_accessDefinitions, value) {
+	if len(x.AccessDefinitions) != 0 {
+		value := protoreflect.ValueOfList(&_AclAuthority_3_list{list: &x.AccessDefinitions})
+		if !f(fd_AclAuthority_access_definitions, value) {
 			return
 		}
 	}
@@ -130,8 +180,8 @@ func (x *fastReflection_AclAuthority) Has(fd protoreflect.FieldDescriptor) bool 
 		return x.Address != ""
 	case "vvtxchain.acl.AclAuthority.name":
 		return x.Name != ""
-	case "vvtxchain.acl.AclAuthority.accessDefinitions":
-		return x.AccessDefinitions != ""
+	case "vvtxchain.acl.AclAuthority.access_definitions":
+		return len(x.AccessDefinitions) != 0
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.AclAuthority"))
@@ -152,8 +202,8 @@ func (x *fastReflection_AclAuthority) Clear(fd protoreflect.FieldDescriptor) {
 		x.Address = ""
 	case "vvtxchain.acl.AclAuthority.name":
 		x.Name = ""
-	case "vvtxchain.acl.AclAuthority.accessDefinitions":
-		x.AccessDefinitions = ""
+	case "vvtxchain.acl.AclAuthority.access_definitions":
+		x.AccessDefinitions = nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.AclAuthority"))
@@ -176,9 +226,12 @@ func (x *fastReflection_AclAuthority) Get(descriptor protoreflect.FieldDescripto
 	case "vvtxchain.acl.AclAuthority.name":
 		value := x.Name
 		return protoreflect.ValueOfString(value)
-	case "vvtxchain.acl.AclAuthority.accessDefinitions":
-		value := x.AccessDefinitions
-		return protoreflect.ValueOfString(value)
+	case "vvtxchain.acl.AclAuthority.access_definitions":
+		if len(x.AccessDefinitions) == 0 {
+			return protoreflect.ValueOfList(&_AclAuthority_3_list{})
+		}
+		listValue := &_AclAuthority_3_list{list: &x.AccessDefinitions}
+		return protoreflect.ValueOfList(listValue)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.AclAuthority"))
@@ -203,8 +256,10 @@ func (x *fastReflection_AclAuthority) Set(fd protoreflect.FieldDescriptor, value
 		x.Address = value.Interface().(string)
 	case "vvtxchain.acl.AclAuthority.name":
 		x.Name = value.Interface().(string)
-	case "vvtxchain.acl.AclAuthority.accessDefinitions":
-		x.AccessDefinitions = value.Interface().(string)
+	case "vvtxchain.acl.AclAuthority.access_definitions":
+		lv := value.List()
+		clv := lv.(*_AclAuthority_3_list)
+		x.AccessDefinitions = *clv.list
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.AclAuthority"))
@@ -225,12 +280,16 @@ func (x *fastReflection_AclAuthority) Set(fd protoreflect.FieldDescriptor, value
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_AclAuthority) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "vvtxchain.acl.AclAuthority.access_definitions":
+		if x.AccessDefinitions == nil {
+			x.AccessDefinitions = []*AccessDefinition{}
+		}
+		value := &_AclAuthority_3_list{list: &x.AccessDefinitions}
+		return protoreflect.ValueOfList(value)
 	case "vvtxchain.acl.AclAuthority.address":
 		panic(fmt.Errorf("field address of message vvtxchain.acl.AclAuthority is not mutable"))
 	case "vvtxchain.acl.AclAuthority.name":
 		panic(fmt.Errorf("field name of message vvtxchain.acl.AclAuthority is not mutable"))
-	case "vvtxchain.acl.AclAuthority.accessDefinitions":
-		panic(fmt.Errorf("field accessDefinitions of message vvtxchain.acl.AclAuthority is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.AclAuthority"))
@@ -248,8 +307,9 @@ func (x *fastReflection_AclAuthority) NewField(fd protoreflect.FieldDescriptor) 
 		return protoreflect.ValueOfString("")
 	case "vvtxchain.acl.AclAuthority.name":
 		return protoreflect.ValueOfString("")
-	case "vvtxchain.acl.AclAuthority.accessDefinitions":
-		return protoreflect.ValueOfString("")
+	case "vvtxchain.acl.AclAuthority.access_definitions":
+		list := []*AccessDefinition{}
+		return protoreflect.ValueOfList(&_AclAuthority_3_list{list: &list})
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.AclAuthority"))
@@ -327,9 +387,11 @@ func (x *fastReflection_AclAuthority) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.AccessDefinitions)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
+		if len(x.AccessDefinitions) > 0 {
+			for _, e := range x.AccessDefinitions {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -361,11 +423,20 @@ func (x *fastReflection_AclAuthority) ProtoMethods() *protoiface.Methods {
 			copy(dAtA[i:], x.unknownFields)
 		}
 		if len(x.AccessDefinitions) > 0 {
-			i -= len(x.AccessDefinitions)
-			copy(dAtA[i:], x.AccessDefinitions)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.AccessDefinitions)))
-			i--
-			dAtA[i] = 0x1a
+			for iNdEx := len(x.AccessDefinitions) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.AccessDefinitions[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0x1a
+			}
 		}
 		if len(x.Name) > 0 {
 			i -= len(x.Name)
@@ -498,7 +569,7 @@ func (x *fastReflection_AclAuthority) ProtoMethods() *protoiface.Methods {
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AccessDefinitions", wireType)
 				}
-				var stringLen uint64
+				var msglen int
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -508,23 +579,25 @@ func (x *fastReflection_AclAuthority) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
+					msglen |= int(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
+				if msglen < 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
 				}
-				postIndex := iNdEx + intStringLen
+				postIndex := iNdEx + msglen
 				if postIndex < 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
 				}
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.AccessDefinitions = string(dAtA[iNdEx:postIndex])
+				x.AccessDefinitions = append(x.AccessDefinitions, &AccessDefinition{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.AccessDefinitions[len(x.AccessDefinitions)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
 				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
@@ -579,9 +652,9 @@ type AclAuthority struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Address           string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
-	Name              string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	AccessDefinitions string `protobuf:"bytes,3,opt,name=accessDefinitions,proto3" json:"accessDefinitions,omitempty"`
+	Address           string              `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
+	Name              string              `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	AccessDefinitions []*AccessDefinition `protobuf:"bytes,3,rep,name=access_definitions,json=accessDefinitions,proto3" json:"access_definitions,omitempty"`
 }
 
 func (x *AclAuthority) Reset() {
@@ -618,11 +691,11 @@ func (x *AclAuthority) GetName() string {
 	return ""
 }
 
-func (x *AclAuthority) GetAccessDefinitions() string {
+func (x *AclAuthority) GetAccessDefinitions() []*AccessDefinition {
 	if x != nil {
 		return x.AccessDefinitions
 	}
-	return ""
+	return nil
 }
 
 var File_vvtxchain_acl_acl_authority_proto protoreflect.FileDescriptor
@@ -631,25 +704,29 @@ var file_vvtxchain_acl_acl_authority_proto_rawDesc = []byte{
 	0x0a, 0x21, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f,
 	0x61, 0x63, 0x6c, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x2e, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x12, 0x0d, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61,
-	0x63, 0x6c, 0x22, 0x6a, 0x0a, 0x0c, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69,
-	0x74, 0x79, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x12, 0x0a, 0x04,
-	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65,
-	0x12, 0x2c, 0x0a, 0x11, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69,
-	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x11, 0x61, 0x63, 0x63,
-	0x65, 0x73, 0x73, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x42, 0xac,
-	0x01, 0x0a, 0x11, 0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e,
-	0x2e, 0x61, 0x63, 0x6c, 0x42, 0x11, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69,
-	0x74, 0x79, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x2f, 0x67, 0x69, 0x74, 0x68, 0x75,
-	0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x47, 0x47, 0x45, 0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f, 0x76,
-	0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x76, 0x74,
-	0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0xa2, 0x02, 0x03, 0x56, 0x41, 0x58,
-	0xaa, 0x02, 0x0d, 0x56, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x41, 0x63, 0x6c,
-	0xca, 0x02, 0x0d, 0x56, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x41, 0x63, 0x6c,
-	0xe2, 0x02, 0x19, 0x56, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x41, 0x63, 0x6c,
-	0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0e, 0x56,
-	0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x3a, 0x3a, 0x41, 0x63, 0x6c, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x63, 0x6c, 0x1a, 0x25, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63,
+	0x6c, 0x2f, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74,
+	0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x8c, 0x01, 0x0a, 0x0c, 0x41, 0x63,
+	0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64,
+	0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64,
+	0x72, 0x65, 0x73, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x4e, 0x0a, 0x12, 0x61, 0x63, 0x63, 0x65,
+	0x73, 0x73, 0x5f, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x03,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e,
+	0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x44, 0x65, 0x66, 0x69, 0x6e,
+	0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x11, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x44, 0x65, 0x66,
+	0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x42, 0xac, 0x01, 0x0a, 0x11, 0x63, 0x6f, 0x6d,
+	0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x42, 0x11,
+	0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x50, 0x72, 0x6f, 0x74,
+	0x6f, 0x50, 0x01, 0x5a, 0x2f, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
+	0x47, 0x47, 0x45, 0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61,
+	0x69, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e,
+	0x2f, 0x61, 0x63, 0x6c, 0xa2, 0x02, 0x03, 0x56, 0x41, 0x58, 0xaa, 0x02, 0x0d, 0x56, 0x76, 0x74,
+	0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x41, 0x63, 0x6c, 0xca, 0x02, 0x0d, 0x56, 0x76, 0x74,
+	0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x41, 0x63, 0x6c, 0xe2, 0x02, 0x19, 0x56, 0x76, 0x74,
+	0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x41, 0x63, 0x6c, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65,
+	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0e, 0x56, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61,
+	0x69, 0x6e, 0x3a, 0x3a, 0x41, 0x63, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -666,14 +743,16 @@ func file_vvtxchain_acl_acl_authority_proto_rawDescGZIP() []byte {
 
 var file_vvtxchain_acl_acl_authority_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_vvtxchain_acl_acl_authority_proto_goTypes = []interface{}{
-	(*AclAuthority)(nil), // 0: vvtxchain.acl.AclAuthority
+	(*AclAuthority)(nil),     // 0: vvtxchain.acl.AclAuthority
+	(*AccessDefinition)(nil), // 1: vvtxchain.acl.AccessDefinition
 }
 var file_vvtxchain_acl_acl_authority_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: vvtxchain.acl.AclAuthority.access_definitions:type_name -> vvtxchain.acl.AccessDefinition
+	1, // [1:1] is the sub-list for method output_type
+	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_vvtxchain_acl_acl_authority_proto_init() }
@@ -681,6 +760,7 @@ func file_vvtxchain_acl_acl_authority_proto_init() {
 	if File_vvtxchain_acl_acl_authority_proto != nil {
 		return
 	}
+	file_vvtxchain_acl_access_definition_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_vvtxchain_acl_acl_authority_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AclAuthority); i {
