@@ -22,18 +22,6 @@ var (
 )
 
 const (
-	opWeightMsgInit = "op_weight_msg_init"
-	// TODO: Determine the simulation weight value
-	defaultWeightMsgInit int = 100
-
-	opWeightMsgAddAdmin = "op_weight_msg_add_admin"
-	// TODO: Determine the simulation weight value
-	defaultWeightMsgAddAdmin int = 100
-
-	opWeightMsgDeleteAdmin = "op_weight_msg_delete_admin"
-	// TODO: Determine the simulation weight value
-	defaultWeightMsgDeleteAdmin int = 100
-
 	opWeightMsgAddAuthority = "op_weight_msg_add_authority"
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgAddAuthority int = 100
@@ -45,6 +33,18 @@ const (
 	opWeightMsgUpdateAuthority = "op_weight_msg_update_authority"
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgUpdateAuthority int = 100
+
+	opWeightMsgInit = "op_weight_msg_init_acl_admin"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgInit int = 100
+
+	opWeightMsgAddAdmin = "op_weight_msg_add_acl_admin"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgAddAdmin int = 100
+
+	opWeightMsgDeleteAdmin = "op_weight_msg_delete_acl_admin"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgDeleteAdmin int = 100
 
 	opWeightMsgUpdateSuperAdmin = "op_weight_msg_update_super_admin"
 	// TODO: Determine the simulation weight value
@@ -72,39 +72,6 @@ func (am AppModule) RegisterStoreDecoder(_ simtypes.StoreDecoderRegistry) {}
 // WeightedOperations returns the all the gov module operations with their respective weights.
 func (am AppModule) WeightedOperations(simState module.SimulationState) []simtypes.WeightedOperation {
 	operations := make([]simtypes.WeightedOperation, 0)
-
-	var weightMsgInit int
-	simState.AppParams.GetOrGenerate(opWeightMsgInit, &weightMsgInit, nil,
-		func(_ *rand.Rand) {
-			weightMsgInit = defaultWeightMsgInit
-		},
-	)
-	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgInit,
-		aclsimulation.SimulateMsgInit(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig),
-	))
-
-	var weightMsgAddAdmin int
-	simState.AppParams.GetOrGenerate(opWeightMsgAddAdmin, &weightMsgAddAdmin, nil,
-		func(_ *rand.Rand) {
-			weightMsgAddAdmin = defaultWeightMsgAddAdmin
-		},
-	)
-	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgAddAdmin,
-		aclsimulation.SimulateMsgAddAdmin(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig),
-	))
-
-	var weightMsgDeleteAdmin int
-	simState.AppParams.GetOrGenerate(opWeightMsgDeleteAdmin, &weightMsgDeleteAdmin, nil,
-		func(_ *rand.Rand) {
-			weightMsgDeleteAdmin = defaultWeightMsgDeleteAdmin
-		},
-	)
-	operations = append(operations, simulation.NewWeightedOperation(
-		weightMsgDeleteAdmin,
-		aclsimulation.SimulateMsgDeleteAdmin(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig),
-	))
 
 	var weightMsgAddAuthority int
 	simState.AppParams.GetOrGenerate(opWeightMsgAddAuthority, &weightMsgAddAuthority, nil,
@@ -139,6 +106,39 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		aclsimulation.SimulateMsgUpdateAuthority(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig),
 	))
 
+	var weightMsgInit int
+	simState.AppParams.GetOrGenerate(opWeightMsgInit, &weightMsgInit, nil,
+		func(_ *rand.Rand) {
+			weightMsgInit = defaultWeightMsgInit
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgInit,
+		aclsimulation.SimulateMsgInit(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig),
+	))
+
+	var weightMsgAddAdmin int
+	simState.AppParams.GetOrGenerate(opWeightMsgAddAdmin, &weightMsgAddAdmin, nil,
+		func(_ *rand.Rand) {
+			weightMsgAddAdmin = defaultWeightMsgAddAdmin
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgAddAdmin,
+		aclsimulation.SimulateMsgAddAdmin(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig),
+	))
+
+	var weightMsgDeleteAdmin int
+	simState.AppParams.GetOrGenerate(opWeightMsgDeleteAdmin, &weightMsgDeleteAdmin, nil,
+		func(_ *rand.Rand) {
+			weightMsgDeleteAdmin = defaultWeightMsgDeleteAdmin
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgDeleteAdmin,
+		aclsimulation.SimulateMsgDeleteAdmin(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig),
+	))
+
 	var weightMsgUpdateSuperAdmin int
 	simState.AppParams.GetOrGenerate(opWeightMsgUpdateSuperAdmin, &weightMsgUpdateSuperAdmin, nil,
 		func(_ *rand.Rand) {
@@ -158,30 +158,6 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 // ProposalMsgs returns msgs used for governance proposals for simulations.
 func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.WeightedProposalMsg {
 	return []simtypes.WeightedProposalMsg{
-		simulation.NewWeightedProposalMsg(
-			opWeightMsgInit,
-			defaultWeightMsgInit,
-			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				aclsimulation.SimulateMsgInit(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig)
-				return nil
-			},
-		),
-		simulation.NewWeightedProposalMsg(
-			opWeightMsgAddAdmin,
-			defaultWeightMsgAddAdmin,
-			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				aclsimulation.SimulateMsgAddAdmin(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig)
-				return nil
-			},
-		),
-		simulation.NewWeightedProposalMsg(
-			opWeightMsgDeleteAdmin,
-			defaultWeightMsgDeleteAdmin,
-			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
-				aclsimulation.SimulateMsgDeleteAdmin(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig)
-				return nil
-			},
-		),
 		simulation.NewWeightedProposalMsg(
 			opWeightMsgAddAuthority,
 			defaultWeightMsgAddAuthority,
@@ -203,6 +179,30 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgUpdateAuthority,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				aclsimulation.SimulateMsgUpdateAuthority(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgInit,
+			defaultWeightMsgInit,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				aclsimulation.SimulateMsgInit(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgAddAdmin,
+			defaultWeightMsgAddAdmin,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				aclsimulation.SimulateMsgAddAdmin(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgDeleteAdmin,
+			defaultWeightMsgDeleteAdmin,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				aclsimulation.SimulateMsgDeleteAdmin(am.accountKeeper, am.bankKeeper, am.keeper, simState.TxConfig)
 				return nil
 			},
 		),

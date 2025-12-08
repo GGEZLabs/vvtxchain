@@ -42,7 +42,7 @@ func TestGenesis(t *testing.T) {
 			},
 		},
 		SuperAdmin: &types.SuperAdmin{
-			Address: sample.AccAddress(),
+			Admin: sample.AccAddress(),
 		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}

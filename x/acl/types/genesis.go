@@ -112,8 +112,8 @@ func (gs GenesisState) ValidateSuperAdmin() error {
 		return nil
 	}
 
-	if _, err := sdk.AccAddressFromBech32(gs.SuperAdmin.Address); err != nil {
-		return fmt.Errorf("invalid super admin address %s: %w", gs.SuperAdmin.Address, err)
+	if _, err := sdk.AccAddressFromBech32(gs.SuperAdmin.Admin); err != nil {
+		return fmt.Errorf("invalid super admin address %s: %w", gs.SuperAdmin.Admin, err)
 	}
 
 	return nil

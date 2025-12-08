@@ -32,7 +32,7 @@ func SimulateMsgDeleteAdmin(
 			return simtypes.NoOpMsg(types.ModuleName, "MsgDeleteAdmin", "at least one admin must remain"), nil, nil
 		}
 
-		k.SetSuperAdmin(ctx, types.SuperAdmin{Address: simAccount.Address.String()})
+		k.SetSuperAdmin(ctx, types.SuperAdmin{Admin: simAccount.Address.String()})
 		msg := &types.MsgDeleteAdmin{
 			Creator: simAccount.Address.String(),
 			Admins:  []string{aclAdmins[r.Intn(len(aclAdmins))].Address},

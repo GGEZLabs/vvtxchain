@@ -17,19 +17,9 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:     "Query the parameters of the module",
 				},
 				{
-					RpcMethod: "SuperAdmin",
-					Use:       "super-admin",
-					Short:     "Query a super-admin",
-				},
-				{
-					RpcMethod: "AclAdminAll",
-					Use:       "admins",
-					Short:     "Query all admins",
-				},
-				{
-					RpcMethod:      "AclAdmin",
-					Use:            "admin [address]",
-					Short:          "Query an admin by address",
+					RpcMethod:      "AclAuthority",
+					Use:            "acl-authority [address]",
+					Short:          "Query an acl-authority by address",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "address"}},
 				},
 				{
@@ -38,10 +28,20 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:     "Query all acl-authorities",
 				},
 				{
-					RpcMethod:      "AclAuthority",
-					Use:            "acl-authority [address]",
-					Short:          "Query an acl-authority by address",
+					RpcMethod:      "AclAdmin",
+					Use:            "admin [address]",
+					Short:          "Query an admin by address",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "address"}},
+				},
+				{
+					RpcMethod: "AclAdminAll",
+					Use:       "admins",
+					Short:     "Query all admins",
+				},
+				{
+					RpcMethod: "SuperAdmin",
+					Use:       "super-admin",
+					Short:     "Query a super-admin",
 				},
 				// this line is used by ignite scaffolding # autocli/query
 			},
@@ -53,24 +53,6 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				{
 					RpcMethod: "UpdateParams",
 					Skip:      true, // skipped because authority gated
-				},
-				{
-					RpcMethod:      "Init",
-					Use:            "init [super-admin]",
-					Short:          "Initializes the super-admin. Can only be called once.",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "super_admin"}},
-				},
-				{
-					RpcMethod:      "AddAdmin",
-					Use:            "add-admin [admins]",
-					Short:          "Add one or more admin. Only a super admin can perform this action.",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "admins"}},
-				},
-				{
-					RpcMethod:      "DeleteAdmin",
-					Use:            "delete-admin [admins]",
-					Short:          "Delete one or more admin. Only a super admin can perform this action.",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "admins"}},
 				},
 				{
 					RpcMethod:      "AddAuthority",
@@ -88,7 +70,7 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					RpcMethod:      "UpdateAuthority",
 					Use:            "update-authority [auth-address]",
 					Short:          "Modify the name or access definition of an existing authority. Must have authority to do so.",
-					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "auth_address"}, {ProtoField: "new_name"}, {ProtoField: "overwrite_access_definitions"}, {ProtoField: "add_access_definitions"}, {ProtoField: "update_access_definition"}, {ProtoField: "delete_access_definitions"}, {ProtoField: "clear_all_access_definitions"}},
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "auth_address"}},
 					FlagOptions: map[string]*autocliv1.FlagOptions{
 						"new_name": {
 							Name:         "new-name",
@@ -122,21 +104,39 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 						},
 					},
 					Example: `Overwrite the entire access definition list with this JSON string. Ignores other access definition flags:
-ggezchaind tx acl update-authority ggezauthaddress... --add-access-definitions '[{"module":"module1","is_maker":true,"is_checker":false}]' --from ggezaddress...
+vvtxchaind tx acl update-authority vvtxauthaddress... --add-access-definitions '[{"module":"module1","is_maker":true,"is_checker":false}]' --from vvtxaddress...
 
 Add one or more new access definition:
-ggezchaind tx acl update-authority ggezauthaddress... --add-access-definitions '[{"module":"module2","is_maker":true,"is_checker":true}]' --from ggezaddress...
+vvtxchaind tx acl update-authority vvtxauthaddress... --add-access-definitions '[{"module":"module2","is_maker":true,"is_checker":true}]' --from vvtxaddress...
 
 Update access definition values for an existing module (by module name):
-ggezchaind tx acl update-authority ggezauthaddress... --update-access-definition '{"module":"module2","is_maker":false,"is_checker":true}' --from ggezaddress...
+vvtxchaind tx acl update-authority vvtxauthaddress... --update-access-definition '{"module":"module2","is_maker":false,"is_checker":true}' --from vvtxaddress...
 
 Delete one or more specific access definition (by module name):
-ggezchaind tx acl update-authority ggezauthaddress... --delete-access-definitions 'module2,module1' --from ggezaddress...
+vvtxchaind tx acl update-authority vvtxauthaddress... --delete-access-definitions 'module2,module1' --from vvtxaddress...
 
 Clear all access definition. (Default is false)
-ggezchaind tx acl update-authority ggezauthaddress... --clear-all-access-definitions --from ggezaddress...
+vvtxchaind tx acl update-authority vvtxauthaddress... --clear-all-access-definitions --from vvtxaddress...
 
 `,
+				},
+				{
+					RpcMethod:      "Init",
+					Use:            "init [super-admin]",
+					Short:          "Initializes the super-admin. Can only be called once.",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "super_admin"}},
+				},
+				{
+					RpcMethod:      "AddAdmin",
+					Use:            "add-admin [admins]",
+					Short:          "Add one or more admin. Only a super admin can perform this action.",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "admins"}},
+				},
+				{
+					RpcMethod:      "DeleteAdmin",
+					Use:            "delete-admin [admins]",
+					Short:          "Delete one or more admin. Only a super admin can perform this action.",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "admins"}},
 				},
 				{
 					RpcMethod:      "UpdateSuperAdmin",

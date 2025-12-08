@@ -8,7 +8,7 @@ import (
 func (k Keeper) IsSuperAdmin(ctx context.Context, address string) bool {
 	superAdmin, found := k.GetSuperAdmin(ctx)
 
-	if found && superAdmin.Address == address {
+	if found && superAdmin.Admin == address {
 		return true
 	}
 

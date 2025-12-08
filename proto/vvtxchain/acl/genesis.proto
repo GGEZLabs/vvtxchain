@@ -5,9 +5,9 @@ package vvtxchain.acl;
 import "amino/amino.proto";
 import "gogoproto/gogo.proto";
 import "vvtxchain/acl/params.proto";
-import "vvtxchain/acl/super_admin.proto";
-import "vvtxchain/acl/acl_admin.proto";
 import "vvtxchain/acl/acl_authority.proto";
+import "vvtxchain/acl/acl_admin.proto";
+import "vvtxchain/acl/super_admin.proto";
 
 option go_package = "github.com/GGEZLabs/vvtxchain/x/acl/types";
 

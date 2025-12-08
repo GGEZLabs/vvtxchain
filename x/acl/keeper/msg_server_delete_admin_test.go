@@ -17,7 +17,7 @@ func TestMsgDeleteAdmin(t *testing.T) {
 	alice := sample.AccAddress()
 	bob := sample.AccAddress()
 
-	k.SetSuperAdmin(ctx, types.SuperAdmin{Address: superAdmin})
+	k.SetSuperAdmin(ctx, types.SuperAdmin{Admin: superAdmin})
 	aclAdmins := types.ConvertStringsToAclAdmins([]string{alice, bob})
 	k.SetAclAdmins(ctx, aclAdmins)
 

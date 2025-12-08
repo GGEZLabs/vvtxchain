@@ -30,7 +30,7 @@ func TestIsSuperAdmin(t *testing.T) {
 			name:    "address does not match super admin",
 			address: alice,
 			fun: func() {
-				keeper.SetSuperAdmin(ctx, types.SuperAdmin{Address: admin})
+				keeper.SetSuperAdmin(ctx, types.SuperAdmin{Admin: admin})
 			},
 			expectedOutput: false,
 		},

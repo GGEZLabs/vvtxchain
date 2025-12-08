@@ -37,13 +37,13 @@ func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
 	genesis := types.DefaultGenesis()
 	genesis.Params = k.GetParams(ctx)
 
+	genesis.AclAuthorities = k.GetAllAclAuthority(ctx)
+	genesis.AclAdmins = k.GetAllAclAdmin(ctx)
 	// Get all superAdmin
 	superAdmin, found := k.GetSuperAdmin(ctx)
 	if found {
 		genesis.SuperAdmin = &superAdmin
 	}
-	genesis.AclAdmins = k.GetAllAclAdmin(ctx)
-	genesis.AclAuthorities = k.GetAllAclAuthority(ctx)
 	// this line is used by starport scaffolding # genesis/module/export
 
 	return genesis

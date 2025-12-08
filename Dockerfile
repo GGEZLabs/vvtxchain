@@ -8,7 +8,7 @@ ARG BUILD_TAGS="netgo,ledger,muslc"
 # Builder
 # --------------------------------------------------------
 
-FROM golang:${GO_VERSION}-alpine3.20 AS vvtxchain-builder
+FROM golang:${GO_VERSION}-alpine3.20 AS vvtx-builder
 WORKDIR /src/app/
 RUN apk add --no-cache \
     ca-certificates \
@@ -49,7 +49,7 @@ RUN apk add --no-cache build-base jq
 RUN addgroup -g 1025 nonroot
 RUN adduser -D nonroot -u 1025 -G nonroot
 ARG IMG_TAG
-COPY --from=vvtxchain-builder /src/app/build/vvtxchaind /usr/local/bin/
+COPY --from=vvtx-builder /src/app/build/vvtxchaind /usr/local/bin/
 EXPOSE 26656 26657 1317 9090
 USER nonroot
 

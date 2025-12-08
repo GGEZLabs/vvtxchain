@@ -1711,6 +1711,846 @@ func (x *fastReflection_MsgInitResponse) ProtoMethods() *protoiface.Methods {
 	}
 }
 
+var (
+	md_MsgUpdateSuperAdmin                 protoreflect.MessageDescriptor
+	fd_MsgUpdateSuperAdmin_creator         protoreflect.FieldDescriptor
+	fd_MsgUpdateSuperAdmin_new_super_admin protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_vvtxchain_acl_tx_proto_init()
+	md_MsgUpdateSuperAdmin = File_vvtxchain_acl_tx_proto.Messages().ByName("MsgUpdateSuperAdmin")
+	fd_MsgUpdateSuperAdmin_creator = md_MsgUpdateSuperAdmin.Fields().ByName("creator")
+	fd_MsgUpdateSuperAdmin_new_super_admin = md_MsgUpdateSuperAdmin.Fields().ByName("new_super_admin")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgUpdateSuperAdmin)(nil)
+
+type fastReflection_MsgUpdateSuperAdmin MsgUpdateSuperAdmin
+
+func (x *MsgUpdateSuperAdmin) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgUpdateSuperAdmin)(x)
+}
+
+func (x *MsgUpdateSuperAdmin) slowProtoReflect() protoreflect.Message {
+	mi := &file_vvtxchain_acl_tx_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgUpdateSuperAdmin_messageType fastReflection_MsgUpdateSuperAdmin_messageType
+var _ protoreflect.MessageType = fastReflection_MsgUpdateSuperAdmin_messageType{}
+
+type fastReflection_MsgUpdateSuperAdmin_messageType struct{}
+
+func (x fastReflection_MsgUpdateSuperAdmin_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgUpdateSuperAdmin)(nil)
+}
+func (x fastReflection_MsgUpdateSuperAdmin_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgUpdateSuperAdmin)
+}
+func (x fastReflection_MsgUpdateSuperAdmin_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgUpdateSuperAdmin
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgUpdateSuperAdmin) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgUpdateSuperAdmin
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgUpdateSuperAdmin) Type() protoreflect.MessageType {
+	return _fastReflection_MsgUpdateSuperAdmin_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgUpdateSuperAdmin) New() protoreflect.Message {
+	return new(fastReflection_MsgUpdateSuperAdmin)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgUpdateSuperAdmin) Interface() protoreflect.ProtoMessage {
+	return (*MsgUpdateSuperAdmin)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgUpdateSuperAdmin) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Creator != "" {
+		value := protoreflect.ValueOfString(x.Creator)
+		if !f(fd_MsgUpdateSuperAdmin_creator, value) {
+			return
+		}
+	}
+	if x.NewSuperAdmin != "" {
+		value := protoreflect.ValueOfString(x.NewSuperAdmin)
+		if !f(fd_MsgUpdateSuperAdmin_new_super_admin, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgUpdateSuperAdmin) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "vvtxchain.acl.MsgUpdateSuperAdmin.creator":
+		return x.Creator != ""
+	case "vvtxchain.acl.MsgUpdateSuperAdmin.new_super_admin":
+		return x.NewSuperAdmin != ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdmin"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdmin does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateSuperAdmin) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "vvtxchain.acl.MsgUpdateSuperAdmin.creator":
+		x.Creator = ""
+	case "vvtxchain.acl.MsgUpdateSuperAdmin.new_super_admin":
+		x.NewSuperAdmin = ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdmin"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdmin does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgUpdateSuperAdmin) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "vvtxchain.acl.MsgUpdateSuperAdmin.creator":
+		value := x.Creator
+		return protoreflect.ValueOfString(value)
+	case "vvtxchain.acl.MsgUpdateSuperAdmin.new_super_admin":
+		value := x.NewSuperAdmin
+		return protoreflect.ValueOfString(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdmin"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdmin does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateSuperAdmin) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "vvtxchain.acl.MsgUpdateSuperAdmin.creator":
+		x.Creator = value.Interface().(string)
+	case "vvtxchain.acl.MsgUpdateSuperAdmin.new_super_admin":
+		x.NewSuperAdmin = value.Interface().(string)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdmin"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdmin does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateSuperAdmin) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "vvtxchain.acl.MsgUpdateSuperAdmin.creator":
+		panic(fmt.Errorf("field creator of message vvtxchain.acl.MsgUpdateSuperAdmin is not mutable"))
+	case "vvtxchain.acl.MsgUpdateSuperAdmin.new_super_admin":
+		panic(fmt.Errorf("field new_super_admin of message vvtxchain.acl.MsgUpdateSuperAdmin is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdmin"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdmin does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgUpdateSuperAdmin) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "vvtxchain.acl.MsgUpdateSuperAdmin.creator":
+		return protoreflect.ValueOfString("")
+	case "vvtxchain.acl.MsgUpdateSuperAdmin.new_super_admin":
+		return protoreflect.ValueOfString("")
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdmin"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdmin does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgUpdateSuperAdmin) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.MsgUpdateSuperAdmin", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgUpdateSuperAdmin) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateSuperAdmin) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgUpdateSuperAdmin) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgUpdateSuperAdmin) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgUpdateSuperAdmin)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.Creator)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.NewSuperAdmin)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgUpdateSuperAdmin)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.NewSuperAdmin) > 0 {
+			i -= len(x.NewSuperAdmin)
+			copy(dAtA[i:], x.NewSuperAdmin)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.NewSuperAdmin)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if len(x.Creator) > 0 {
+			i -= len(x.Creator)
+			copy(dAtA[i:], x.Creator)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creator)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgUpdateSuperAdmin)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgUpdateSuperAdmin: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgUpdateSuperAdmin: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Creator = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field NewSuperAdmin", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.NewSuperAdmin = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_MsgUpdateSuperAdminResponse protoreflect.MessageDescriptor
+)
+
+func init() {
+	file_vvtxchain_acl_tx_proto_init()
+	md_MsgUpdateSuperAdminResponse = File_vvtxchain_acl_tx_proto.Messages().ByName("MsgUpdateSuperAdminResponse")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgUpdateSuperAdminResponse)(nil)
+
+type fastReflection_MsgUpdateSuperAdminResponse MsgUpdateSuperAdminResponse
+
+func (x *MsgUpdateSuperAdminResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgUpdateSuperAdminResponse)(x)
+}
+
+func (x *MsgUpdateSuperAdminResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_vvtxchain_acl_tx_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgUpdateSuperAdminResponse_messageType fastReflection_MsgUpdateSuperAdminResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgUpdateSuperAdminResponse_messageType{}
+
+type fastReflection_MsgUpdateSuperAdminResponse_messageType struct{}
+
+func (x fastReflection_MsgUpdateSuperAdminResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgUpdateSuperAdminResponse)(nil)
+}
+func (x fastReflection_MsgUpdateSuperAdminResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgUpdateSuperAdminResponse)
+}
+func (x fastReflection_MsgUpdateSuperAdminResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgUpdateSuperAdminResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgUpdateSuperAdminResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgUpdateSuperAdminResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgUpdateSuperAdminResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgUpdateSuperAdminResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdminResponse"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdminResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdminResponse"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdminResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdminResponse"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdminResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdminResponse"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdminResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdminResponse"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdminResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdminResponse"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdminResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.MsgUpdateSuperAdminResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgUpdateSuperAdminResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgUpdateSuperAdminResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgUpdateSuperAdminResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgUpdateSuperAdminResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgUpdateSuperAdminResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgUpdateSuperAdminResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
 var _ protoreflect.List = (*_MsgAddAdmin_2_list)(nil)
 
 type _MsgAddAdmin_2_list struct {
@@ -1779,7 +2619,7 @@ func (x *MsgAddAdmin) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgAddAdmin) slowProtoReflect() protoreflect.Message {
-	mi := &file_vvtxchain_acl_tx_proto_msgTypes[4]
+	mi := &file_vvtxchain_acl_tx_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2273,7 +3113,7 @@ func (x *MsgAddAdminResponse) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgAddAdminResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_vvtxchain_acl_tx_proto_msgTypes[5]
+	mi := &file_vvtxchain_acl_tx_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2679,7 +3519,7 @@ func (x *MsgDeleteAdmin) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgDeleteAdmin) slowProtoReflect() protoreflect.Message {
-	mi := &file_vvtxchain_acl_tx_proto_msgTypes[6]
+	mi := &file_vvtxchain_acl_tx_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3173,7 +4013,7 @@ func (x *MsgDeleteAdminResponse) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgDeleteAdminResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_vvtxchain_acl_tx_proto_msgTypes[7]
+	mi := &file_vvtxchain_acl_tx_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3537,7 +4377,7 @@ func (x *MsgAddAuthority) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgAddAuthority) slowProtoReflect() protoreflect.Message {
-	mi := &file_vvtxchain_acl_tx_proto_msgTypes[8]
+	mi := &file_vvtxchain_acl_tx_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4141,7 +4981,7 @@ func (x *MsgAddAuthorityResponse) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgAddAuthorityResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_vvtxchain_acl_tx_proto_msgTypes[9]
+	mi := &file_vvtxchain_acl_tx_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4442,846 +5282,6 @@ func (x *fastReflection_MsgAddAuthorityResponse) ProtoMethods() *protoiface.Meth
 			}
 			if fieldNum <= 0 {
 				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgAddAuthorityResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-			}
-			switch fieldNum {
-			default:
-				iNdEx = preIndex
-				skippy, err := runtime.Skip(dAtA[iNdEx:])
-				if err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				if (skippy < 0) || (iNdEx+skippy) < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if (iNdEx + skippy) > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if !options.DiscardUnknown {
-					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
-				}
-				iNdEx += skippy
-			}
-		}
-
-		if iNdEx > l {
-			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-		}
-		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
-	}
-	return &protoiface.Methods{
-		NoUnkeyedLiterals: struct{}{},
-		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
-		Size:              size,
-		Marshal:           marshal,
-		Unmarshal:         unmarshal,
-		Merge:             nil,
-		CheckInitialized:  nil,
-	}
-}
-
-var (
-	md_MsgDeleteAuthority              protoreflect.MessageDescriptor
-	fd_MsgDeleteAuthority_creator      protoreflect.FieldDescriptor
-	fd_MsgDeleteAuthority_auth_address protoreflect.FieldDescriptor
-)
-
-func init() {
-	file_vvtxchain_acl_tx_proto_init()
-	md_MsgDeleteAuthority = File_vvtxchain_acl_tx_proto.Messages().ByName("MsgDeleteAuthority")
-	fd_MsgDeleteAuthority_creator = md_MsgDeleteAuthority.Fields().ByName("creator")
-	fd_MsgDeleteAuthority_auth_address = md_MsgDeleteAuthority.Fields().ByName("auth_address")
-}
-
-var _ protoreflect.Message = (*fastReflection_MsgDeleteAuthority)(nil)
-
-type fastReflection_MsgDeleteAuthority MsgDeleteAuthority
-
-func (x *MsgDeleteAuthority) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_MsgDeleteAuthority)(x)
-}
-
-func (x *MsgDeleteAuthority) slowProtoReflect() protoreflect.Message {
-	mi := &file_vvtxchain_acl_tx_proto_msgTypes[10]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-var _fastReflection_MsgDeleteAuthority_messageType fastReflection_MsgDeleteAuthority_messageType
-var _ protoreflect.MessageType = fastReflection_MsgDeleteAuthority_messageType{}
-
-type fastReflection_MsgDeleteAuthority_messageType struct{}
-
-func (x fastReflection_MsgDeleteAuthority_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_MsgDeleteAuthority)(nil)
-}
-func (x fastReflection_MsgDeleteAuthority_messageType) New() protoreflect.Message {
-	return new(fastReflection_MsgDeleteAuthority)
-}
-func (x fastReflection_MsgDeleteAuthority_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgDeleteAuthority
-}
-
-// Descriptor returns message descriptor, which contains only the protobuf
-// type information for the message.
-func (x *fastReflection_MsgDeleteAuthority) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgDeleteAuthority
-}
-
-// Type returns the message type, which encapsulates both Go and protobuf
-// type information. If the Go type information is not needed,
-// it is recommended that the message descriptor be used instead.
-func (x *fastReflection_MsgDeleteAuthority) Type() protoreflect.MessageType {
-	return _fastReflection_MsgDeleteAuthority_messageType
-}
-
-// New returns a newly allocated and mutable empty message.
-func (x *fastReflection_MsgDeleteAuthority) New() protoreflect.Message {
-	return new(fastReflection_MsgDeleteAuthority)
-}
-
-// Interface unwraps the message reflection interface and
-// returns the underlying ProtoMessage interface.
-func (x *fastReflection_MsgDeleteAuthority) Interface() protoreflect.ProtoMessage {
-	return (*MsgDeleteAuthority)(x)
-}
-
-// Range iterates over every populated field in an undefined order,
-// calling f for each field descriptor and value encountered.
-// Range returns immediately if f returns false.
-// While iterating, mutating operations may only be performed
-// on the current field descriptor.
-func (x *fastReflection_MsgDeleteAuthority) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Creator != "" {
-		value := protoreflect.ValueOfString(x.Creator)
-		if !f(fd_MsgDeleteAuthority_creator, value) {
-			return
-		}
-	}
-	if x.AuthAddress != "" {
-		value := protoreflect.ValueOfString(x.AuthAddress)
-		if !f(fd_MsgDeleteAuthority_auth_address, value) {
-			return
-		}
-	}
-}
-
-// Has reports whether a field is populated.
-//
-// Some fields have the property of nullability where it is possible to
-// distinguish between the default value of a field and whether the field
-// was explicitly populated with the default value. Singular message fields,
-// member fields of a oneof, and proto2 scalar fields are nullable. Such
-// fields are populated only if explicitly set.
-//
-// In other cases (aside from the nullable cases above),
-// a proto3 scalar field is populated if it contains a non-zero value, and
-// a repeated field is populated if it is non-empty.
-func (x *fastReflection_MsgDeleteAuthority) Has(fd protoreflect.FieldDescriptor) bool {
-	switch fd.FullName() {
-	case "vvtxchain.acl.MsgDeleteAuthority.creator":
-		return x.Creator != ""
-	case "vvtxchain.acl.MsgDeleteAuthority.auth_address":
-		return x.AuthAddress != ""
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthority"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthority does not contain field %s", fd.FullName()))
-	}
-}
-
-// Clear clears the field such that a subsequent Has call reports false.
-//
-// Clearing an extension field clears both the extension type and value
-// associated with the given field number.
-//
-// Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteAuthority) Clear(fd protoreflect.FieldDescriptor) {
-	switch fd.FullName() {
-	case "vvtxchain.acl.MsgDeleteAuthority.creator":
-		x.Creator = ""
-	case "vvtxchain.acl.MsgDeleteAuthority.auth_address":
-		x.AuthAddress = ""
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthority"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthority does not contain field %s", fd.FullName()))
-	}
-}
-
-// Get retrieves the value for a field.
-//
-// For unpopulated scalars, it returns the default value, where
-// the default value of a bytes scalar is guaranteed to be a copy.
-// For unpopulated composite types, it returns an empty, read-only view
-// of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_MsgDeleteAuthority) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
-	switch descriptor.FullName() {
-	case "vvtxchain.acl.MsgDeleteAuthority.creator":
-		value := x.Creator
-		return protoreflect.ValueOfString(value)
-	case "vvtxchain.acl.MsgDeleteAuthority.auth_address":
-		value := x.AuthAddress
-		return protoreflect.ValueOfString(value)
-	default:
-		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthority"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthority does not contain field %s", descriptor.FullName()))
-	}
-}
-
-// Set stores the value for a field.
-//
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType.
-// When setting a composite type, it is unspecified whether the stored value
-// aliases the source's memory in any way. If the composite value is an
-// empty, read-only value, then it panics.
-//
-// Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteAuthority) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
-	switch fd.FullName() {
-	case "vvtxchain.acl.MsgDeleteAuthority.creator":
-		x.Creator = value.Interface().(string)
-	case "vvtxchain.acl.MsgDeleteAuthority.auth_address":
-		x.AuthAddress = value.Interface().(string)
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthority"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthority does not contain field %s", fd.FullName()))
-	}
-}
-
-// Mutable returns a mutable reference to a composite type.
-//
-// If the field is unpopulated, it may allocate a composite value.
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType
-// if not already stored.
-// It panics if the field does not contain a composite type.
-//
-// Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteAuthority) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	case "vvtxchain.acl.MsgDeleteAuthority.creator":
-		panic(fmt.Errorf("field creator of message vvtxchain.acl.MsgDeleteAuthority is not mutable"))
-	case "vvtxchain.acl.MsgDeleteAuthority.auth_address":
-		panic(fmt.Errorf("field auth_address of message vvtxchain.acl.MsgDeleteAuthority is not mutable"))
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthority"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthority does not contain field %s", fd.FullName()))
-	}
-}
-
-// NewField returns a new value that is assignable to the field
-// for the given descriptor. For scalars, this returns the default value.
-// For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_MsgDeleteAuthority) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	case "vvtxchain.acl.MsgDeleteAuthority.creator":
-		return protoreflect.ValueOfString("")
-	case "vvtxchain.acl.MsgDeleteAuthority.auth_address":
-		return protoreflect.ValueOfString("")
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthority"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthority does not contain field %s", fd.FullName()))
-	}
-}
-
-// WhichOneof reports which field within the oneof is populated,
-// returning nil if none are populated.
-// It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_MsgDeleteAuthority) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
-	switch d.FullName() {
-	default:
-		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.MsgDeleteAuthority", d.FullName()))
-	}
-	panic("unreachable")
-}
-
-// GetUnknown retrieves the entire list of unknown fields.
-// The caller may only mutate the contents of the RawFields
-// if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_MsgDeleteAuthority) GetUnknown() protoreflect.RawFields {
-	return x.unknownFields
-}
-
-// SetUnknown stores an entire list of unknown fields.
-// The raw fields must be syntactically valid according to the wire format.
-// An implementation may panic if this is not the case.
-// Once stored, the caller must not mutate the content of the RawFields.
-// An empty RawFields may be passed to clear the fields.
-//
-// SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteAuthority) SetUnknown(fields protoreflect.RawFields) {
-	x.unknownFields = fields
-}
-
-// IsValid reports whether the message is valid.
-//
-// An invalid message is an empty, read-only value.
-//
-// An invalid message often corresponds to a nil pointer of the concrete
-// message type, but the details are implementation dependent.
-// Validity is not part of the protobuf data model, and may not
-// be preserved in marshaling or other operations.
-func (x *fastReflection_MsgDeleteAuthority) IsValid() bool {
-	return x != nil
-}
-
-// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
-// This method may return nil.
-//
-// The returned methods type is identical to
-// "google.golang.org/protobuf/runtime/protoiface".Methods.
-// Consult the protoiface package documentation for details.
-func (x *fastReflection_MsgDeleteAuthority) ProtoMethods() *protoiface.Methods {
-	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*MsgDeleteAuthority)
-		if x == nil {
-			return protoiface.SizeOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Size:              0,
-			}
-		}
-		options := runtime.SizeInputToOptions(input)
-		_ = options
-		var n int
-		var l int
-		_ = l
-		l = len(x.Creator)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		l = len(x.AuthAddress)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		if x.unknownFields != nil {
-			n += len(x.unknownFields)
-		}
-		return protoiface.SizeOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Size:              n,
-		}
-	}
-
-	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*MsgDeleteAuthority)
-		if x == nil {
-			return protoiface.MarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Buf:               input.Buf,
-			}, nil
-		}
-		options := runtime.MarshalInputToOptions(input)
-		_ = options
-		size := options.Size(x)
-		dAtA := make([]byte, size)
-		i := len(dAtA)
-		_ = i
-		var l int
-		_ = l
-		if x.unknownFields != nil {
-			i -= len(x.unknownFields)
-			copy(dAtA[i:], x.unknownFields)
-		}
-		if len(x.AuthAddress) > 0 {
-			i -= len(x.AuthAddress)
-			copy(dAtA[i:], x.AuthAddress)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.AuthAddress)))
-			i--
-			dAtA[i] = 0x12
-		}
-		if len(x.Creator) > 0 {
-			i -= len(x.Creator)
-			copy(dAtA[i:], x.Creator)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creator)))
-			i--
-			dAtA[i] = 0xa
-		}
-		if input.Buf != nil {
-			input.Buf = append(input.Buf, dAtA...)
-		} else {
-			input.Buf = dAtA
-		}
-		return protoiface.MarshalOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Buf:               input.Buf,
-		}, nil
-	}
-	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*MsgDeleteAuthority)
-		if x == nil {
-			return protoiface.UnmarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Flags:             input.Flags,
-			}, nil
-		}
-		options := runtime.UnmarshalInputToOptions(input)
-		_ = options
-		dAtA := input.Buf
-		l := len(dAtA)
-		iNdEx := 0
-		for iNdEx < l {
-			preIndex := iNdEx
-			var wire uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-				}
-				if iNdEx >= l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				wire |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			fieldNum := int32(wire >> 3)
-			wireType := int(wire & 0x7)
-			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteAuthority: wiretype end group for non-group")
-			}
-			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteAuthority: illegal tag %d (wire type %d)", fieldNum, wire)
-			}
-			switch fieldNum {
-			case 1:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
-				}
-				var stringLen uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.Creator = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
-			case 2:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AuthAddress", wireType)
-				}
-				var stringLen uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.AuthAddress = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
-			default:
-				iNdEx = preIndex
-				skippy, err := runtime.Skip(dAtA[iNdEx:])
-				if err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				if (skippy < 0) || (iNdEx+skippy) < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if (iNdEx + skippy) > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if !options.DiscardUnknown {
-					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
-				}
-				iNdEx += skippy
-			}
-		}
-
-		if iNdEx > l {
-			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-		}
-		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
-	}
-	return &protoiface.Methods{
-		NoUnkeyedLiterals: struct{}{},
-		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
-		Size:              size,
-		Marshal:           marshal,
-		Unmarshal:         unmarshal,
-		Merge:             nil,
-		CheckInitialized:  nil,
-	}
-}
-
-var (
-	md_MsgDeleteAuthorityResponse protoreflect.MessageDescriptor
-)
-
-func init() {
-	file_vvtxchain_acl_tx_proto_init()
-	md_MsgDeleteAuthorityResponse = File_vvtxchain_acl_tx_proto.Messages().ByName("MsgDeleteAuthorityResponse")
-}
-
-var _ protoreflect.Message = (*fastReflection_MsgDeleteAuthorityResponse)(nil)
-
-type fastReflection_MsgDeleteAuthorityResponse MsgDeleteAuthorityResponse
-
-func (x *MsgDeleteAuthorityResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_MsgDeleteAuthorityResponse)(x)
-}
-
-func (x *MsgDeleteAuthorityResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_vvtxchain_acl_tx_proto_msgTypes[11]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-var _fastReflection_MsgDeleteAuthorityResponse_messageType fastReflection_MsgDeleteAuthorityResponse_messageType
-var _ protoreflect.MessageType = fastReflection_MsgDeleteAuthorityResponse_messageType{}
-
-type fastReflection_MsgDeleteAuthorityResponse_messageType struct{}
-
-func (x fastReflection_MsgDeleteAuthorityResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_MsgDeleteAuthorityResponse)(nil)
-}
-func (x fastReflection_MsgDeleteAuthorityResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_MsgDeleteAuthorityResponse)
-}
-func (x fastReflection_MsgDeleteAuthorityResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgDeleteAuthorityResponse
-}
-
-// Descriptor returns message descriptor, which contains only the protobuf
-// type information for the message.
-func (x *fastReflection_MsgDeleteAuthorityResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgDeleteAuthorityResponse
-}
-
-// Type returns the message type, which encapsulates both Go and protobuf
-// type information. If the Go type information is not needed,
-// it is recommended that the message descriptor be used instead.
-func (x *fastReflection_MsgDeleteAuthorityResponse) Type() protoreflect.MessageType {
-	return _fastReflection_MsgDeleteAuthorityResponse_messageType
-}
-
-// New returns a newly allocated and mutable empty message.
-func (x *fastReflection_MsgDeleteAuthorityResponse) New() protoreflect.Message {
-	return new(fastReflection_MsgDeleteAuthorityResponse)
-}
-
-// Interface unwraps the message reflection interface and
-// returns the underlying ProtoMessage interface.
-func (x *fastReflection_MsgDeleteAuthorityResponse) Interface() protoreflect.ProtoMessage {
-	return (*MsgDeleteAuthorityResponse)(x)
-}
-
-// Range iterates over every populated field in an undefined order,
-// calling f for each field descriptor and value encountered.
-// Range returns immediately if f returns false.
-// While iterating, mutating operations may only be performed
-// on the current field descriptor.
-func (x *fastReflection_MsgDeleteAuthorityResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-}
-
-// Has reports whether a field is populated.
-//
-// Some fields have the property of nullability where it is possible to
-// distinguish between the default value of a field and whether the field
-// was explicitly populated with the default value. Singular message fields,
-// member fields of a oneof, and proto2 scalar fields are nullable. Such
-// fields are populated only if explicitly set.
-//
-// In other cases (aside from the nullable cases above),
-// a proto3 scalar field is populated if it contains a non-zero value, and
-// a repeated field is populated if it is non-empty.
-func (x *fastReflection_MsgDeleteAuthorityResponse) Has(fd protoreflect.FieldDescriptor) bool {
-	switch fd.FullName() {
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthorityResponse"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthorityResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// Clear clears the field such that a subsequent Has call reports false.
-//
-// Clearing an extension field clears both the extension type and value
-// associated with the given field number.
-//
-// Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteAuthorityResponse) Clear(fd protoreflect.FieldDescriptor) {
-	switch fd.FullName() {
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthorityResponse"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthorityResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// Get retrieves the value for a field.
-//
-// For unpopulated scalars, it returns the default value, where
-// the default value of a bytes scalar is guaranteed to be a copy.
-// For unpopulated composite types, it returns an empty, read-only view
-// of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_MsgDeleteAuthorityResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
-	switch descriptor.FullName() {
-	default:
-		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthorityResponse"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthorityResponse does not contain field %s", descriptor.FullName()))
-	}
-}
-
-// Set stores the value for a field.
-//
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType.
-// When setting a composite type, it is unspecified whether the stored value
-// aliases the source's memory in any way. If the composite value is an
-// empty, read-only value, then it panics.
-//
-// Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteAuthorityResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
-	switch fd.FullName() {
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthorityResponse"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthorityResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// Mutable returns a mutable reference to a composite type.
-//
-// If the field is unpopulated, it may allocate a composite value.
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType
-// if not already stored.
-// It panics if the field does not contain a composite type.
-//
-// Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteAuthorityResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthorityResponse"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthorityResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// NewField returns a new value that is assignable to the field
-// for the given descriptor. For scalars, this returns the default value.
-// For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_MsgDeleteAuthorityResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthorityResponse"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthorityResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// WhichOneof reports which field within the oneof is populated,
-// returning nil if none are populated.
-// It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_MsgDeleteAuthorityResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
-	switch d.FullName() {
-	default:
-		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.MsgDeleteAuthorityResponse", d.FullName()))
-	}
-	panic("unreachable")
-}
-
-// GetUnknown retrieves the entire list of unknown fields.
-// The caller may only mutate the contents of the RawFields
-// if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_MsgDeleteAuthorityResponse) GetUnknown() protoreflect.RawFields {
-	return x.unknownFields
-}
-
-// SetUnknown stores an entire list of unknown fields.
-// The raw fields must be syntactically valid according to the wire format.
-// An implementation may panic if this is not the case.
-// Once stored, the caller must not mutate the content of the RawFields.
-// An empty RawFields may be passed to clear the fields.
-//
-// SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgDeleteAuthorityResponse) SetUnknown(fields protoreflect.RawFields) {
-	x.unknownFields = fields
-}
-
-// IsValid reports whether the message is valid.
-//
-// An invalid message is an empty, read-only value.
-//
-// An invalid message often corresponds to a nil pointer of the concrete
-// message type, but the details are implementation dependent.
-// Validity is not part of the protobuf data model, and may not
-// be preserved in marshaling or other operations.
-func (x *fastReflection_MsgDeleteAuthorityResponse) IsValid() bool {
-	return x != nil
-}
-
-// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
-// This method may return nil.
-//
-// The returned methods type is identical to
-// "google.golang.org/protobuf/runtime/protoiface".Methods.
-// Consult the protoiface package documentation for details.
-func (x *fastReflection_MsgDeleteAuthorityResponse) ProtoMethods() *protoiface.Methods {
-	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*MsgDeleteAuthorityResponse)
-		if x == nil {
-			return protoiface.SizeOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Size:              0,
-			}
-		}
-		options := runtime.SizeInputToOptions(input)
-		_ = options
-		var n int
-		var l int
-		_ = l
-		if x.unknownFields != nil {
-			n += len(x.unknownFields)
-		}
-		return protoiface.SizeOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Size:              n,
-		}
-	}
-
-	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*MsgDeleteAuthorityResponse)
-		if x == nil {
-			return protoiface.MarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Buf:               input.Buf,
-			}, nil
-		}
-		options := runtime.MarshalInputToOptions(input)
-		_ = options
-		size := options.Size(x)
-		dAtA := make([]byte, size)
-		i := len(dAtA)
-		_ = i
-		var l int
-		_ = l
-		if x.unknownFields != nil {
-			i -= len(x.unknownFields)
-			copy(dAtA[i:], x.unknownFields)
-		}
-		if input.Buf != nil {
-			input.Buf = append(input.Buf, dAtA...)
-		} else {
-			input.Buf = dAtA
-		}
-		return protoiface.MarshalOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Buf:               input.Buf,
-		}, nil
-	}
-	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*MsgDeleteAuthorityResponse)
-		if x == nil {
-			return protoiface.UnmarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Flags:             input.Flags,
-			}, nil
-		}
-		options := runtime.UnmarshalInputToOptions(input)
-		_ = options
-		dAtA := input.Buf
-		l := len(dAtA)
-		iNdEx := 0
-		for iNdEx < l {
-			preIndex := iNdEx
-			var wire uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-				}
-				if iNdEx >= l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				wire |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			fieldNum := int32(wire >> 3)
-			wireType := int(wire & 0x7)
-			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteAuthorityResponse: wiretype end group for non-group")
-			}
-			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteAuthorityResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			default:
@@ -6594,27 +6594,27 @@ func (x *fastReflection_MsgUpdateAuthorityResponse) ProtoMethods() *protoiface.M
 }
 
 var (
-	md_MsgUpdateSuperAdmin                 protoreflect.MessageDescriptor
-	fd_MsgUpdateSuperAdmin_creator         protoreflect.FieldDescriptor
-	fd_MsgUpdateSuperAdmin_new_super_admin protoreflect.FieldDescriptor
+	md_MsgDeleteAuthority              protoreflect.MessageDescriptor
+	fd_MsgDeleteAuthority_creator      protoreflect.FieldDescriptor
+	fd_MsgDeleteAuthority_auth_address protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_vvtxchain_acl_tx_proto_init()
-	md_MsgUpdateSuperAdmin = File_vvtxchain_acl_tx_proto.Messages().ByName("MsgUpdateSuperAdmin")
-	fd_MsgUpdateSuperAdmin_creator = md_MsgUpdateSuperAdmin.Fields().ByName("creator")
-	fd_MsgUpdateSuperAdmin_new_super_admin = md_MsgUpdateSuperAdmin.Fields().ByName("new_super_admin")
+	md_MsgDeleteAuthority = File_vvtxchain_acl_tx_proto.Messages().ByName("MsgDeleteAuthority")
+	fd_MsgDeleteAuthority_creator = md_MsgDeleteAuthority.Fields().ByName("creator")
+	fd_MsgDeleteAuthority_auth_address = md_MsgDeleteAuthority.Fields().ByName("auth_address")
 }
 
-var _ protoreflect.Message = (*fastReflection_MsgUpdateSuperAdmin)(nil)
+var _ protoreflect.Message = (*fastReflection_MsgDeleteAuthority)(nil)
 
-type fastReflection_MsgUpdateSuperAdmin MsgUpdateSuperAdmin
+type fastReflection_MsgDeleteAuthority MsgDeleteAuthority
 
-func (x *MsgUpdateSuperAdmin) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_MsgUpdateSuperAdmin)(x)
+func (x *MsgDeleteAuthority) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgDeleteAuthority)(x)
 }
 
-func (x *MsgUpdateSuperAdmin) slowProtoReflect() protoreflect.Message {
+func (x *MsgDeleteAuthority) slowProtoReflect() protoreflect.Message {
 	mi := &file_vvtxchain_acl_tx_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -6626,43 +6626,43 @@ func (x *MsgUpdateSuperAdmin) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_MsgUpdateSuperAdmin_messageType fastReflection_MsgUpdateSuperAdmin_messageType
-var _ protoreflect.MessageType = fastReflection_MsgUpdateSuperAdmin_messageType{}
+var _fastReflection_MsgDeleteAuthority_messageType fastReflection_MsgDeleteAuthority_messageType
+var _ protoreflect.MessageType = fastReflection_MsgDeleteAuthority_messageType{}
 
-type fastReflection_MsgUpdateSuperAdmin_messageType struct{}
+type fastReflection_MsgDeleteAuthority_messageType struct{}
 
-func (x fastReflection_MsgUpdateSuperAdmin_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_MsgUpdateSuperAdmin)(nil)
+func (x fastReflection_MsgDeleteAuthority_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgDeleteAuthority)(nil)
 }
-func (x fastReflection_MsgUpdateSuperAdmin_messageType) New() protoreflect.Message {
-	return new(fastReflection_MsgUpdateSuperAdmin)
+func (x fastReflection_MsgDeleteAuthority_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgDeleteAuthority)
 }
-func (x fastReflection_MsgUpdateSuperAdmin_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgUpdateSuperAdmin
+func (x fastReflection_MsgDeleteAuthority_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgDeleteAuthority
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_MsgUpdateSuperAdmin) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgUpdateSuperAdmin
+func (x *fastReflection_MsgDeleteAuthority) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgDeleteAuthority
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_MsgUpdateSuperAdmin) Type() protoreflect.MessageType {
-	return _fastReflection_MsgUpdateSuperAdmin_messageType
+func (x *fastReflection_MsgDeleteAuthority) Type() protoreflect.MessageType {
+	return _fastReflection_MsgDeleteAuthority_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_MsgUpdateSuperAdmin) New() protoreflect.Message {
-	return new(fastReflection_MsgUpdateSuperAdmin)
+func (x *fastReflection_MsgDeleteAuthority) New() protoreflect.Message {
+	return new(fastReflection_MsgDeleteAuthority)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_MsgUpdateSuperAdmin) Interface() protoreflect.ProtoMessage {
-	return (*MsgUpdateSuperAdmin)(x)
+func (x *fastReflection_MsgDeleteAuthority) Interface() protoreflect.ProtoMessage {
+	return (*MsgDeleteAuthority)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -6670,16 +6670,16 @@ func (x *fastReflection_MsgUpdateSuperAdmin) Interface() protoreflect.ProtoMessa
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_MsgUpdateSuperAdmin) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_MsgDeleteAuthority) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 	if x.Creator != "" {
 		value := protoreflect.ValueOfString(x.Creator)
-		if !f(fd_MsgUpdateSuperAdmin_creator, value) {
+		if !f(fd_MsgDeleteAuthority_creator, value) {
 			return
 		}
 	}
-	if x.NewSuperAdmin != "" {
-		value := protoreflect.ValueOfString(x.NewSuperAdmin)
-		if !f(fd_MsgUpdateSuperAdmin_new_super_admin, value) {
+	if x.AuthAddress != "" {
+		value := protoreflect.ValueOfString(x.AuthAddress)
+		if !f(fd_MsgDeleteAuthority_auth_address, value) {
 			return
 		}
 	}
@@ -6696,17 +6696,17 @@ func (x *fastReflection_MsgUpdateSuperAdmin) Range(f func(protoreflect.FieldDesc
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_MsgUpdateSuperAdmin) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_MsgDeleteAuthority) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "vvtxchain.acl.MsgUpdateSuperAdmin.creator":
+	case "vvtxchain.acl.MsgDeleteAuthority.creator":
 		return x.Creator != ""
-	case "vvtxchain.acl.MsgUpdateSuperAdmin.new_super_admin":
-		return x.NewSuperAdmin != ""
+	case "vvtxchain.acl.MsgDeleteAuthority.auth_address":
+		return x.AuthAddress != ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdmin"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthority"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdmin does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthority does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -6716,17 +6716,17 @@ func (x *fastReflection_MsgUpdateSuperAdmin) Has(fd protoreflect.FieldDescriptor
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgUpdateSuperAdmin) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_MsgDeleteAuthority) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "vvtxchain.acl.MsgUpdateSuperAdmin.creator":
+	case "vvtxchain.acl.MsgDeleteAuthority.creator":
 		x.Creator = ""
-	case "vvtxchain.acl.MsgUpdateSuperAdmin.new_super_admin":
-		x.NewSuperAdmin = ""
+	case "vvtxchain.acl.MsgDeleteAuthority.auth_address":
+		x.AuthAddress = ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdmin"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthority"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdmin does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthority does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -6736,19 +6736,19 @@ func (x *fastReflection_MsgUpdateSuperAdmin) Clear(fd protoreflect.FieldDescript
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_MsgUpdateSuperAdmin) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgDeleteAuthority) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "vvtxchain.acl.MsgUpdateSuperAdmin.creator":
+	case "vvtxchain.acl.MsgDeleteAuthority.creator":
 		value := x.Creator
 		return protoreflect.ValueOfString(value)
-	case "vvtxchain.acl.MsgUpdateSuperAdmin.new_super_admin":
-		value := x.NewSuperAdmin
+	case "vvtxchain.acl.MsgDeleteAuthority.auth_address":
+		value := x.AuthAddress
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdmin"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthority"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdmin does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthority does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -6762,17 +6762,17 @@ func (x *fastReflection_MsgUpdateSuperAdmin) Get(descriptor protoreflect.FieldDe
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgUpdateSuperAdmin) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_MsgDeleteAuthority) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "vvtxchain.acl.MsgUpdateSuperAdmin.creator":
+	case "vvtxchain.acl.MsgDeleteAuthority.creator":
 		x.Creator = value.Interface().(string)
-	case "vvtxchain.acl.MsgUpdateSuperAdmin.new_super_admin":
-		x.NewSuperAdmin = value.Interface().(string)
+	case "vvtxchain.acl.MsgDeleteAuthority.auth_address":
+		x.AuthAddress = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdmin"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthority"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdmin does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthority does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -6786,44 +6786,44 @@ func (x *fastReflection_MsgUpdateSuperAdmin) Set(fd protoreflect.FieldDescriptor
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgUpdateSuperAdmin) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgDeleteAuthority) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "vvtxchain.acl.MsgUpdateSuperAdmin.creator":
-		panic(fmt.Errorf("field creator of message vvtxchain.acl.MsgUpdateSuperAdmin is not mutable"))
-	case "vvtxchain.acl.MsgUpdateSuperAdmin.new_super_admin":
-		panic(fmt.Errorf("field new_super_admin of message vvtxchain.acl.MsgUpdateSuperAdmin is not mutable"))
+	case "vvtxchain.acl.MsgDeleteAuthority.creator":
+		panic(fmt.Errorf("field creator of message vvtxchain.acl.MsgDeleteAuthority is not mutable"))
+	case "vvtxchain.acl.MsgDeleteAuthority.auth_address":
+		panic(fmt.Errorf("field auth_address of message vvtxchain.acl.MsgDeleteAuthority is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdmin"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthority"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdmin does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthority does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_MsgUpdateSuperAdmin) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgDeleteAuthority) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "vvtxchain.acl.MsgUpdateSuperAdmin.creator":
+	case "vvtxchain.acl.MsgDeleteAuthority.creator":
 		return protoreflect.ValueOfString("")
-	case "vvtxchain.acl.MsgUpdateSuperAdmin.new_super_admin":
+	case "vvtxchain.acl.MsgDeleteAuthority.auth_address":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdmin"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthority"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdmin does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthority does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_MsgUpdateSuperAdmin) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_MsgDeleteAuthority) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.MsgUpdateSuperAdmin", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.MsgDeleteAuthority", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -6831,7 +6831,7 @@ func (x *fastReflection_MsgUpdateSuperAdmin) WhichOneof(d protoreflect.OneofDesc
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_MsgUpdateSuperAdmin) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_MsgDeleteAuthority) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -6842,7 +6842,7 @@ func (x *fastReflection_MsgUpdateSuperAdmin) GetUnknown() protoreflect.RawFields
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgUpdateSuperAdmin) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_MsgDeleteAuthority) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -6854,7 +6854,7 @@ func (x *fastReflection_MsgUpdateSuperAdmin) SetUnknown(fields protoreflect.RawF
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_MsgUpdateSuperAdmin) IsValid() bool {
+func (x *fastReflection_MsgDeleteAuthority) IsValid() bool {
 	return x != nil
 }
 
@@ -6864,9 +6864,9 @@ func (x *fastReflection_MsgUpdateSuperAdmin) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_MsgUpdateSuperAdmin) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_MsgDeleteAuthority) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*MsgUpdateSuperAdmin)
+		x := input.Message.Interface().(*MsgDeleteAuthority)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -6882,7 +6882,7 @@ func (x *fastReflection_MsgUpdateSuperAdmin) ProtoMethods() *protoiface.Methods 
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.NewSuperAdmin)
+		l = len(x.AuthAddress)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -6896,7 +6896,7 @@ func (x *fastReflection_MsgUpdateSuperAdmin) ProtoMethods() *protoiface.Methods 
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*MsgUpdateSuperAdmin)
+		x := input.Message.Interface().(*MsgDeleteAuthority)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -6915,10 +6915,10 @@ func (x *fastReflection_MsgUpdateSuperAdmin) ProtoMethods() *protoiface.Methods 
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.NewSuperAdmin) > 0 {
-			i -= len(x.NewSuperAdmin)
-			copy(dAtA[i:], x.NewSuperAdmin)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.NewSuperAdmin)))
+		if len(x.AuthAddress) > 0 {
+			i -= len(x.AuthAddress)
+			copy(dAtA[i:], x.AuthAddress)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.AuthAddress)))
 			i--
 			dAtA[i] = 0x12
 		}
@@ -6940,7 +6940,7 @@ func (x *fastReflection_MsgUpdateSuperAdmin) ProtoMethods() *protoiface.Methods 
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*MsgUpdateSuperAdmin)
+		x := input.Message.Interface().(*MsgDeleteAuthority)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -6972,10 +6972,10 @@ func (x *fastReflection_MsgUpdateSuperAdmin) ProtoMethods() *protoiface.Methods 
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgUpdateSuperAdmin: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteAuthority: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgUpdateSuperAdmin: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteAuthority: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
@@ -7012,7 +7012,7 @@ func (x *fastReflection_MsgUpdateSuperAdmin) ProtoMethods() *protoiface.Methods 
 				iNdEx = postIndex
 			case 2:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field NewSuperAdmin", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AuthAddress", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -7040,7 +7040,7 @@ func (x *fastReflection_MsgUpdateSuperAdmin) ProtoMethods() *protoiface.Methods 
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.NewSuperAdmin = string(dAtA[iNdEx:postIndex])
+				x.AuthAddress = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
@@ -7078,23 +7078,23 @@ func (x *fastReflection_MsgUpdateSuperAdmin) ProtoMethods() *protoiface.Methods 
 }
 
 var (
-	md_MsgUpdateSuperAdminResponse protoreflect.MessageDescriptor
+	md_MsgDeleteAuthorityResponse protoreflect.MessageDescriptor
 )
 
 func init() {
 	file_vvtxchain_acl_tx_proto_init()
-	md_MsgUpdateSuperAdminResponse = File_vvtxchain_acl_tx_proto.Messages().ByName("MsgUpdateSuperAdminResponse")
+	md_MsgDeleteAuthorityResponse = File_vvtxchain_acl_tx_proto.Messages().ByName("MsgDeleteAuthorityResponse")
 }
 
-var _ protoreflect.Message = (*fastReflection_MsgUpdateSuperAdminResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_MsgDeleteAuthorityResponse)(nil)
 
-type fastReflection_MsgUpdateSuperAdminResponse MsgUpdateSuperAdminResponse
+type fastReflection_MsgDeleteAuthorityResponse MsgDeleteAuthorityResponse
 
-func (x *MsgUpdateSuperAdminResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_MsgUpdateSuperAdminResponse)(x)
+func (x *MsgDeleteAuthorityResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgDeleteAuthorityResponse)(x)
 }
 
-func (x *MsgUpdateSuperAdminResponse) slowProtoReflect() protoreflect.Message {
+func (x *MsgDeleteAuthorityResponse) slowProtoReflect() protoreflect.Message {
 	mi := &file_vvtxchain_acl_tx_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -7106,43 +7106,43 @@ func (x *MsgUpdateSuperAdminResponse) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_MsgUpdateSuperAdminResponse_messageType fastReflection_MsgUpdateSuperAdminResponse_messageType
-var _ protoreflect.MessageType = fastReflection_MsgUpdateSuperAdminResponse_messageType{}
+var _fastReflection_MsgDeleteAuthorityResponse_messageType fastReflection_MsgDeleteAuthorityResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgDeleteAuthorityResponse_messageType{}
 
-type fastReflection_MsgUpdateSuperAdminResponse_messageType struct{}
+type fastReflection_MsgDeleteAuthorityResponse_messageType struct{}
 
-func (x fastReflection_MsgUpdateSuperAdminResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_MsgUpdateSuperAdminResponse)(nil)
+func (x fastReflection_MsgDeleteAuthorityResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgDeleteAuthorityResponse)(nil)
 }
-func (x fastReflection_MsgUpdateSuperAdminResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_MsgUpdateSuperAdminResponse)
+func (x fastReflection_MsgDeleteAuthorityResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgDeleteAuthorityResponse)
 }
-func (x fastReflection_MsgUpdateSuperAdminResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgUpdateSuperAdminResponse
+func (x fastReflection_MsgDeleteAuthorityResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgDeleteAuthorityResponse
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_MsgUpdateSuperAdminResponse
+func (x *fastReflection_MsgDeleteAuthorityResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgDeleteAuthorityResponse
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) Type() protoreflect.MessageType {
-	return _fastReflection_MsgUpdateSuperAdminResponse_messageType
+func (x *fastReflection_MsgDeleteAuthorityResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgDeleteAuthorityResponse_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) New() protoreflect.Message {
-	return new(fastReflection_MsgUpdateSuperAdminResponse)
+func (x *fastReflection_MsgDeleteAuthorityResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgDeleteAuthorityResponse)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) Interface() protoreflect.ProtoMessage {
-	return (*MsgUpdateSuperAdminResponse)(x)
+func (x *fastReflection_MsgDeleteAuthorityResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgDeleteAuthorityResponse)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -7150,7 +7150,7 @@ func (x *fastReflection_MsgUpdateSuperAdminResponse) Interface() protoreflect.Pr
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_MsgDeleteAuthorityResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 }
 
 // Has reports whether a field is populated.
@@ -7164,13 +7164,13 @@ func (x *fastReflection_MsgUpdateSuperAdminResponse) Range(f func(protoreflect.F
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_MsgDeleteAuthorityResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdminResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthorityResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdminResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthorityResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -7180,13 +7180,13 @@ func (x *fastReflection_MsgUpdateSuperAdminResponse) Has(fd protoreflect.FieldDe
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_MsgDeleteAuthorityResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdminResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthorityResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdminResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthorityResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -7196,13 +7196,13 @@ func (x *fastReflection_MsgUpdateSuperAdminResponse) Clear(fd protoreflect.Field
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgDeleteAuthorityResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdminResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthorityResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdminResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthorityResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -7216,13 +7216,13 @@ func (x *fastReflection_MsgUpdateSuperAdminResponse) Get(descriptor protoreflect
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_MsgDeleteAuthorityResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdminResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthorityResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdminResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthorityResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -7236,36 +7236,36 @@ func (x *fastReflection_MsgUpdateSuperAdminResponse) Set(fd protoreflect.FieldDe
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgDeleteAuthorityResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdminResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthorityResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdminResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthorityResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_MsgDeleteAuthorityResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgUpdateSuperAdminResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.MsgDeleteAuthorityResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.MsgUpdateSuperAdminResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.MsgDeleteAuthorityResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_MsgDeleteAuthorityResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.MsgUpdateSuperAdminResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.MsgDeleteAuthorityResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -7273,7 +7273,7 @@ func (x *fastReflection_MsgUpdateSuperAdminResponse) WhichOneof(d protoreflect.O
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_MsgDeleteAuthorityResponse) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -7284,7 +7284,7 @@ func (x *fastReflection_MsgUpdateSuperAdminResponse) GetUnknown() protoreflect.R
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_MsgDeleteAuthorityResponse) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -7296,7 +7296,7 @@ func (x *fastReflection_MsgUpdateSuperAdminResponse) SetUnknown(fields protorefl
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) IsValid() bool {
+func (x *fastReflection_MsgDeleteAuthorityResponse) IsValid() bool {
 	return x != nil
 }
 
@@ -7306,9 +7306,9 @@ func (x *fastReflection_MsgUpdateSuperAdminResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_MsgUpdateSuperAdminResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_MsgDeleteAuthorityResponse) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*MsgUpdateSuperAdminResponse)
+		x := input.Message.Interface().(*MsgDeleteAuthorityResponse)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -7330,7 +7330,7 @@ func (x *fastReflection_MsgUpdateSuperAdminResponse) ProtoMethods() *protoiface.
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*MsgUpdateSuperAdminResponse)
+		x := input.Message.Interface().(*MsgDeleteAuthorityResponse)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -7360,7 +7360,7 @@ func (x *fastReflection_MsgUpdateSuperAdminResponse) ProtoMethods() *protoiface.
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*MsgUpdateSuperAdminResponse)
+		x := input.Message.Interface().(*MsgDeleteAuthorityResponse)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -7392,10 +7392,10 @@ func (x *fastReflection_MsgUpdateSuperAdminResponse) ProtoMethods() *protoiface.
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgUpdateSuperAdminResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteAuthorityResponse: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgUpdateSuperAdminResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgDeleteAuthorityResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			default:
@@ -7589,6 +7589,75 @@ func (*MsgInitResponse) Descriptor() ([]byte, []int) {
 	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{3}
 }
 
+type MsgUpdateSuperAdmin struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Creator       string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	NewSuperAdmin string `protobuf:"bytes,2,opt,name=new_super_admin,json=newSuperAdmin,proto3" json:"new_super_admin,omitempty"`
+}
+
+func (x *MsgUpdateSuperAdmin) Reset() {
+	*x = MsgUpdateSuperAdmin{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vvtxchain_acl_tx_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgUpdateSuperAdmin) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgUpdateSuperAdmin) ProtoMessage() {}
+
+// Deprecated: Use MsgUpdateSuperAdmin.ProtoReflect.Descriptor instead.
+func (*MsgUpdateSuperAdmin) Descriptor() ([]byte, []int) {
+	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *MsgUpdateSuperAdmin) GetCreator() string {
+	if x != nil {
+		return x.Creator
+	}
+	return ""
+}
+
+func (x *MsgUpdateSuperAdmin) GetNewSuperAdmin() string {
+	if x != nil {
+		return x.NewSuperAdmin
+	}
+	return ""
+}
+
+type MsgUpdateSuperAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *MsgUpdateSuperAdminResponse) Reset() {
+	*x = MsgUpdateSuperAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vvtxchain_acl_tx_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgUpdateSuperAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgUpdateSuperAdminResponse) ProtoMessage() {}
+
+// Deprecated: Use MsgUpdateSuperAdminResponse.ProtoReflect.Descriptor instead.
+func (*MsgUpdateSuperAdminResponse) Descriptor() ([]byte, []int) {
+	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{5}
+}
+
 type MsgAddAdmin struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -7601,7 +7670,7 @@ type MsgAddAdmin struct {
 func (x *MsgAddAdmin) Reset() {
 	*x = MsgAddAdmin{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_tx_proto_msgTypes[4]
+		mi := &file_vvtxchain_acl_tx_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7615,7 +7684,7 @@ func (*MsgAddAdmin) ProtoMessage() {}
 
 // Deprecated: Use MsgAddAdmin.ProtoReflect.Descriptor instead.
 func (*MsgAddAdmin) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{4}
+	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *MsgAddAdmin) GetCreator() string {
@@ -7641,7 +7710,7 @@ type MsgAddAdminResponse struct {
 func (x *MsgAddAdminResponse) Reset() {
 	*x = MsgAddAdminResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_tx_proto_msgTypes[5]
+		mi := &file_vvtxchain_acl_tx_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7655,7 +7724,7 @@ func (*MsgAddAdminResponse) ProtoMessage() {}
 
 // Deprecated: Use MsgAddAdminResponse.ProtoReflect.Descriptor instead.
 func (*MsgAddAdminResponse) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{5}
+	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{7}
 }
 
 type MsgDeleteAdmin struct {
@@ -7670,7 +7739,7 @@ type MsgDeleteAdmin struct {
 func (x *MsgDeleteAdmin) Reset() {
 	*x = MsgDeleteAdmin{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_tx_proto_msgTypes[6]
+		mi := &file_vvtxchain_acl_tx_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7684,7 +7753,7 @@ func (*MsgDeleteAdmin) ProtoMessage() {}
 
 // Deprecated: Use MsgDeleteAdmin.ProtoReflect.Descriptor instead.
 func (*MsgDeleteAdmin) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{6}
+	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *MsgDeleteAdmin) GetCreator() string {
@@ -7710,7 +7779,7 @@ type MsgDeleteAdminResponse struct {
 func (x *MsgDeleteAdminResponse) Reset() {
 	*x = MsgDeleteAdminResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_tx_proto_msgTypes[7]
+		mi := &file_vvtxchain_acl_tx_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7724,7 +7793,7 @@ func (*MsgDeleteAdminResponse) ProtoMessage() {}
 
 // Deprecated: Use MsgDeleteAdminResponse.ProtoReflect.Descriptor instead.
 func (*MsgDeleteAdminResponse) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{7}
+	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{9}
 }
 
 type MsgAddAuthority struct {
@@ -7741,7 +7810,7 @@ type MsgAddAuthority struct {
 func (x *MsgAddAuthority) Reset() {
 	*x = MsgAddAuthority{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_tx_proto_msgTypes[8]
+		mi := &file_vvtxchain_acl_tx_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7755,7 +7824,7 @@ func (*MsgAddAuthority) ProtoMessage() {}
 
 // Deprecated: Use MsgAddAuthority.ProtoReflect.Descriptor instead.
 func (*MsgAddAuthority) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{8}
+	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *MsgAddAuthority) GetCreator() string {
@@ -7795,7 +7864,7 @@ type MsgAddAuthorityResponse struct {
 func (x *MsgAddAuthorityResponse) Reset() {
 	*x = MsgAddAuthorityResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_tx_proto_msgTypes[9]
+		mi := &file_vvtxchain_acl_tx_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -7809,75 +7878,6 @@ func (*MsgAddAuthorityResponse) ProtoMessage() {}
 
 // Deprecated: Use MsgAddAuthorityResponse.ProtoReflect.Descriptor instead.
 func (*MsgAddAuthorityResponse) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{9}
-}
-
-type MsgDeleteAuthority struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Creator     string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	AuthAddress string `protobuf:"bytes,2,opt,name=auth_address,json=authAddress,proto3" json:"auth_address,omitempty"`
-}
-
-func (x *MsgDeleteAuthority) Reset() {
-	*x = MsgDeleteAuthority{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_tx_proto_msgTypes[10]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *MsgDeleteAuthority) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MsgDeleteAuthority) ProtoMessage() {}
-
-// Deprecated: Use MsgDeleteAuthority.ProtoReflect.Descriptor instead.
-func (*MsgDeleteAuthority) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *MsgDeleteAuthority) GetCreator() string {
-	if x != nil {
-		return x.Creator
-	}
-	return ""
-}
-
-func (x *MsgDeleteAuthority) GetAuthAddress() string {
-	if x != nil {
-		return x.AuthAddress
-	}
-	return ""
-}
-
-type MsgDeleteAuthorityResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *MsgDeleteAuthorityResponse) Reset() {
-	*x = MsgDeleteAuthorityResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_tx_proto_msgTypes[11]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *MsgDeleteAuthorityResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MsgDeleteAuthorityResponse) ProtoMessage() {}
-
-// Deprecated: Use MsgDeleteAuthorityResponse.ProtoReflect.Descriptor instead.
-func (*MsgDeleteAuthorityResponse) Descriptor() ([]byte, []int) {
 	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{11}
 }
 
@@ -7998,17 +7998,17 @@ func (*MsgUpdateAuthorityResponse) Descriptor() ([]byte, []int) {
 	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{13}
 }
 
-type MsgUpdateSuperAdmin struct {
+type MsgDeleteAuthority struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Creator       string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	NewSuperAdmin string `protobuf:"bytes,2,opt,name=new_super_admin,json=newSuperAdmin,proto3" json:"new_super_admin,omitempty"`
+	Creator     string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	AuthAddress string `protobuf:"bytes,2,opt,name=auth_address,json=authAddress,proto3" json:"auth_address,omitempty"`
 }
 
-func (x *MsgUpdateSuperAdmin) Reset() {
-	*x = MsgUpdateSuperAdmin{}
+func (x *MsgDeleteAuthority) Reset() {
+	*x = MsgDeleteAuthority{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vvtxchain_acl_tx_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -8016,39 +8016,39 @@ func (x *MsgUpdateSuperAdmin) Reset() {
 	}
 }
 
-func (x *MsgUpdateSuperAdmin) String() string {
+func (x *MsgDeleteAuthority) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MsgUpdateSuperAdmin) ProtoMessage() {}
+func (*MsgDeleteAuthority) ProtoMessage() {}
 
-// Deprecated: Use MsgUpdateSuperAdmin.ProtoReflect.Descriptor instead.
-func (*MsgUpdateSuperAdmin) Descriptor() ([]byte, []int) {
+// Deprecated: Use MsgDeleteAuthority.ProtoReflect.Descriptor instead.
+func (*MsgDeleteAuthority) Descriptor() ([]byte, []int) {
 	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *MsgUpdateSuperAdmin) GetCreator() string {
+func (x *MsgDeleteAuthority) GetCreator() string {
 	if x != nil {
 		return x.Creator
 	}
 	return ""
 }
 
-func (x *MsgUpdateSuperAdmin) GetNewSuperAdmin() string {
+func (x *MsgDeleteAuthority) GetAuthAddress() string {
 	if x != nil {
-		return x.NewSuperAdmin
+		return x.AuthAddress
 	}
 	return ""
 }
 
-type MsgUpdateSuperAdminResponse struct {
+type MsgDeleteAuthorityResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 }
 
-func (x *MsgUpdateSuperAdminResponse) Reset() {
-	*x = MsgUpdateSuperAdminResponse{}
+func (x *MsgDeleteAuthorityResponse) Reset() {
+	*x = MsgDeleteAuthorityResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_vvtxchain_acl_tx_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -8056,40 +8056,40 @@ func (x *MsgUpdateSuperAdminResponse) Reset() {
 	}
 }
 
-func (x *MsgUpdateSuperAdminResponse) String() string {
+func (x *MsgDeleteAuthorityResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MsgUpdateSuperAdminResponse) ProtoMessage() {}
+func (*MsgDeleteAuthorityResponse) ProtoMessage() {}
 
-// Deprecated: Use MsgUpdateSuperAdminResponse.ProtoReflect.Descriptor instead.
-func (*MsgUpdateSuperAdminResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use MsgDeleteAuthorityResponse.ProtoReflect.Descriptor instead.
+func (*MsgDeleteAuthorityResponse) Descriptor() ([]byte, []int) {
 	return file_vvtxchain_acl_tx_proto_rawDescGZIP(), []int{15}
 }
 
 var File_vvtxchain_acl_tx_proto protoreflect.FileDescriptor
 
 var file_vvtxchain_acl_tx_proto_rawDesc = []byte{
-	0x0a, 0x16, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f,
-	0x74, 0x78, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0d, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68,
+	0x0a, 0x16, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f,
+	0x74, 0x78, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0d, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68,
 	0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x1a, 0x11, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2f, 0x61,
 	0x6d, 0x69, 0x6e, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x17, 0x63, 0x6f, 0x73, 0x6d,
 	0x6f, 0x73, 0x2f, 0x6d, 0x73, 0x67, 0x2f, 0x76, 0x31, 0x2f, 0x6d, 0x73, 0x67, 0x2e, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x1a, 0x19, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5f, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14,
 	0x67, 0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1a, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f,
+	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1a, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f,
 	0x61, 0x63, 0x6c, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x22, 0xb7, 0x01, 0x0a, 0x0f, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61,
 	0x72, 0x61, 0x6d, 0x73, 0x12, 0x36, 0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74,
 	0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73,
 	0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e,
 	0x67, 0x52, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x38, 0x0a, 0x06,
-	0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x76,
-	0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x50, 0x61, 0x72,
+	0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x67,
+	0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x50, 0x61, 0x72,
 	0x61, 0x6d, 0x73, 0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06,
 	0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x3a, 0x32, 0x82, 0xe7, 0xb0, 0x2a, 0x09, 0x61, 0x75, 0x74,
-	0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x8a, 0xe7, 0xb0, 0x2a, 0x1f, 0x76, 0x76, 0x74, 0x78, 0x63,
+	0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x8a, 0xe7, 0xb0, 0x2a, 0x1f, 0x67, 0x67, 0x65, 0x7a, 0x63,
 	0x68, 0x61, 0x69, 0x6e, 0x2f, 0x78, 0x2f, 0x61, 0x63, 0x6c, 0x2f, 0x4d, 0x73, 0x67, 0x55, 0x70,
 	0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x22, 0x19, 0x0a, 0x17, 0x4d, 0x73,
 	0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73,
@@ -8099,31 +8099,68 @@ var file_vvtxchain_acl_tx_proto_rawDesc = []byte{
 	0x70, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
 	0x0a, 0x73, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x3a, 0x0c, 0x82, 0xe7, 0xb0,
 	0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x11, 0x0a, 0x0f, 0x4d, 0x73, 0x67,
-	0x49, 0x6e, 0x69, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x4d, 0x0a, 0x0b,
-	0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x18, 0x0a, 0x07, 0x63,
-	0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72,
-	0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x73, 0x18,
-	0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x06, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x73, 0x3a, 0x0c, 0x82,
-	0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x15, 0x0a, 0x13, 0x4d,
-	0x73, 0x67, 0x41, 0x64, 0x64, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x50, 0x0a, 0x0e, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x41,
-	0x64, 0x6d, 0x69, 0x6e, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x16,
-	0x0a, 0x06, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x06,
-	0x61, 0x64, 0x6d, 0x69, 0x6e, 0x73, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65,
-	0x61, 0x74, 0x6f, 0x72, 0x22, 0x18, 0x0a, 0x16, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74,
-	0x65, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x9f,
-	0x01, 0x0a, 0x0f, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69,
-	0x74, 0x79, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x21, 0x0a, 0x0c,
-	0x61, 0x75, 0x74, 0x68, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x0b, 0x61, 0x75, 0x74, 0x68, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12,
-	0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e,
-	0x61, 0x6d, 0x65, 0x12, 0x2d, 0x0a, 0x12, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x64, 0x65,
-	0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x11, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f,
-	0x6e, 0x73, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72,
-	0x22, 0x19, 0x0a, 0x17, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72,
+	0x49, 0x6e, 0x69, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x65, 0x0a, 0x13,
+	0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64,
+	0x6d, 0x69, 0x6e, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x26, 0x0a,
+	0x0f, 0x6e, 0x65, 0x77, 0x5f, 0x73, 0x75, 0x70, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x6e, 0x65, 0x77, 0x53, 0x75, 0x70, 0x65, 0x72,
+	0x41, 0x64, 0x6d, 0x69, 0x6e, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61,
+	0x74, 0x6f, 0x72, 0x22, 0x1d, 0x0a, 0x1b, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
+	0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x4d, 0x0a, 0x0b, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x41, 0x64, 0x6d, 0x69,
+	0x6e, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x61,
+	0x64, 0x6d, 0x69, 0x6e, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x06, 0x61, 0x64, 0x6d,
+	0x69, 0x6e, 0x73, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f,
+	0x72, 0x22, 0x15, 0x0a, 0x13, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x41, 0x64, 0x6d, 0x69, 0x6e,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x50, 0x0a, 0x0e, 0x4d, 0x73, 0x67, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72,
+	0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65,
+	0x61, 0x74, 0x6f, 0x72, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x73, 0x18, 0x02,
+	0x20, 0x03, 0x28, 0x09, 0x52, 0x06, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x73, 0x3a, 0x0c, 0x82, 0xe7,
+	0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x18, 0x0a, 0x16, 0x4d, 0x73,
+	0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x9f, 0x01, 0x0a, 0x0f, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x41,
+	0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61,
+	0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74,
+	0x6f, 0x72, 0x12, 0x21, 0x0a, 0x0c, 0x61, 0x75, 0x74, 0x68, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65,
+	0x73, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x61, 0x75, 0x74, 0x68, 0x41, 0x64,
+	0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x2d, 0x0a, 0x12, 0x61, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x5f, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18,
+	0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x11, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x44, 0x65, 0x66,
+	0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63,
+	0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x19, 0x0a, 0x17, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64,
+	0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0xa9, 0x03, 0x0a, 0x12, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41,
+	0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61,
+	0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74,
+	0x6f, 0x72, 0x12, 0x21, 0x0a, 0x0c, 0x61, 0x75, 0x74, 0x68, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65,
+	0x73, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x61, 0x75, 0x74, 0x68, 0x41, 0x64,
+	0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x19, 0x0a, 0x08, 0x6e, 0x65, 0x77, 0x5f, 0x6e, 0x61, 0x6d,
+	0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6e, 0x65, 0x77, 0x4e, 0x61, 0x6d, 0x65,
+	0x12, 0x40, 0x0a, 0x1c, 0x6f, 0x76, 0x65, 0x72, 0x77, 0x72, 0x69, 0x74, 0x65, 0x5f, 0x61, 0x63,
+	0x63, 0x65, 0x73, 0x73, 0x5f, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x1a, 0x6f, 0x76, 0x65, 0x72, 0x77, 0x72, 0x69, 0x74,
+	0x65, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f,
+	0x6e, 0x73, 0x12, 0x34, 0x0a, 0x16, 0x61, 0x64, 0x64, 0x5f, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73,
+	0x5f, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x05, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x14, 0x61, 0x64, 0x64, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x44, 0x65, 0x66,
+	0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x38, 0x0a, 0x18, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x5f, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x69,
+	0x74, 0x69, 0x6f, 0x6e, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x16, 0x75, 0x70, 0x64, 0x61,
+	0x74, 0x65, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69,
+	0x6f, 0x6e, 0x12, 0x3a, 0x0a, 0x19, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x5f, 0x61, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x5f, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18,
+	0x07, 0x20, 0x03, 0x28, 0x09, 0x52, 0x17, 0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x41, 0x63, 0x63,
+	0x65, 0x73, 0x73, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x3f,
+	0x0a, 0x1c, 0x63, 0x6c, 0x65, 0x61, 0x72, 0x5f, 0x61, 0x6c, 0x6c, 0x5f, 0x61, 0x63, 0x63, 0x65,
+	0x73, 0x73, 0x5f, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x08,
+	0x20, 0x01, 0x28, 0x08, 0x52, 0x19, 0x63, 0x6c, 0x65, 0x61, 0x72, 0x41, 0x6c, 0x6c, 0x41, 0x63,
+	0x63, 0x65, 0x73, 0x73, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x3a,
+	0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x1c, 0x0a,
+	0x1a, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72,
 	0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x5f, 0x0a, 0x12, 0x4d,
 	0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74,
 	0x79, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01,
@@ -8132,98 +8169,61 @@ var file_vvtxchain_acl_tx_proto_rawDesc = []byte{
 	0x09, 0x52, 0x0b, 0x61, 0x75, 0x74, 0x68, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x3a, 0x0c,
 	0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x1c, 0x0a, 0x1a,
 	0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69,
-	0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xa9, 0x03, 0x0a, 0x12, 0x4d,
-	0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74,
-	0x79, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x21, 0x0a, 0x0c, 0x61,
-	0x75, 0x74, 0x68, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x0b, 0x61, 0x75, 0x74, 0x68, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x19,
-	0x0a, 0x08, 0x6e, 0x65, 0x77, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x07, 0x6e, 0x65, 0x77, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x40, 0x0a, 0x1c, 0x6f, 0x76, 0x65,
-	0x72, 0x77, 0x72, 0x69, 0x74, 0x65, 0x5f, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x64, 0x65,
-	0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x1a, 0x6f, 0x76, 0x65, 0x72, 0x77, 0x72, 0x69, 0x74, 0x65, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73,
-	0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x34, 0x0a, 0x16, 0x61,
-	0x64, 0x64, 0x5f, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x69,
-	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x14, 0x61, 0x64, 0x64,
-	0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e,
-	0x73, 0x12, 0x38, 0x0a, 0x18, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x5f, 0x61, 0x63, 0x63, 0x65,
-	0x73, 0x73, 0x5f, 0x64, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x06, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x16, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x63, 0x63, 0x65, 0x73,
-	0x73, 0x44, 0x65, 0x66, 0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x3a, 0x0a, 0x19, 0x64,
-	0x65, 0x6c, 0x65, 0x74, 0x65, 0x5f, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x64, 0x65, 0x66,
-	0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x07, 0x20, 0x03, 0x28, 0x09, 0x52, 0x17,
-	0x64, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x44, 0x65, 0x66, 0x69,
-	0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x3f, 0x0a, 0x1c, 0x63, 0x6c, 0x65, 0x61, 0x72,
-	0x5f, 0x61, 0x6c, 0x6c, 0x5f, 0x61, 0x63, 0x63, 0x65, 0x73, 0x73, 0x5f, 0x64, 0x65, 0x66, 0x69,
-	0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x08, 0x20, 0x01, 0x28, 0x08, 0x52, 0x19, 0x63,
-	0x6c, 0x65, 0x61, 0x72, 0x41, 0x6c, 0x6c, 0x41, 0x63, 0x63, 0x65, 0x73, 0x73, 0x44, 0x65, 0x66,
-	0x69, 0x6e, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63,
-	0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x1c, 0x0a, 0x1a, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x65, 0x0a, 0x13, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x18, 0x0a, 0x07, 0x63,
-	0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72,
-	0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x26, 0x0a, 0x0f, 0x6e, 0x65, 0x77, 0x5f, 0x73, 0x75, 0x70,
-	0x65, 0x72, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d,
-	0x6e, 0x65, 0x77, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x3a, 0x0c, 0x82,
-	0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x1d, 0x0a, 0x1b, 0x4d,
-	0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d,
-	0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xc3, 0x05, 0x0a, 0x03, 0x4d,
+	0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xc3, 0x05, 0x0a, 0x03, 0x4d,
 	0x73, 0x67, 0x12, 0x56, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61,
-	0x6d, 0x73, 0x12, 0x1e, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61,
+	0x6d, 0x73, 0x12, 0x1e, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61,
 	0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61,
-	0x6d, 0x73, 0x1a, 0x26, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61,
+	0x6d, 0x73, 0x1a, 0x26, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61,
 	0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61,
 	0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3e, 0x0a, 0x04, 0x49, 0x6e,
-	0x69, 0x74, 0x12, 0x16, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61,
-	0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x49, 0x6e, 0x69, 0x74, 0x1a, 0x1e, 0x2e, 0x76, 0x76, 0x74,
-	0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x49, 0x6e,
-	0x69, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4a, 0x0a, 0x08, 0x41, 0x64,
-	0x64, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x1a, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61,
+	0x69, 0x74, 0x12, 0x16, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61,
+	0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x49, 0x6e, 0x69, 0x74, 0x1a, 0x1e, 0x2e, 0x67, 0x67, 0x65,
+	0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x49, 0x6e,
+	0x69, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x62, 0x0a, 0x10, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x22,
+	0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d,
+	0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d,
+	0x69, 0x6e, 0x1a, 0x2a, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61,
+	0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x70, 0x65,
+	0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4a,
+	0x0a, 0x08, 0x41, 0x64, 0x64, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x1a, 0x2e, 0x67, 0x67, 0x65,
+	0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x64,
+	0x64, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x1a, 0x22, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61,
 	0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x41, 0x64, 0x6d,
-	0x69, 0x6e, 0x1a, 0x22, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61,
-	0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x0b, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
-	0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x1d, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69,
-	0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x41,
-	0x64, 0x6d, 0x69, 0x6e, 0x1a, 0x25, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e,
-	0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x41, 0x64,
-	0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x0c, 0x41,
-	0x64, 0x64, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x1e, 0x2e, 0x76, 0x76,
-	0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x41,
-	0x64, 0x64, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x1a, 0x26, 0x2e, 0x76, 0x76,
-	0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x41,
-	0x64, 0x64, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x5f, 0x0a, 0x0f, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x41, 0x75, 0x74,
-	0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x21, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61,
-	0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
-	0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x1a, 0x29, 0x2e, 0x76, 0x76, 0x74, 0x78,
+	0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x0b, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x1d, 0x2e, 0x67, 0x67, 0x65, 0x7a,
 	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c,
-	0x65, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5f, 0x0a, 0x0f, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x75,
-	0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x21, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68,
-	0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x1a, 0x29, 0x2e, 0x76, 0x76, 0x74,
-	0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70,
-	0x64, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x62, 0x0a, 0x10, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53,
-	0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x22, 0x2e, 0x76, 0x76, 0x74, 0x78,
-	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x1a, 0x2a, 0x2e,
-	0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73,
-	0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69,
-	0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01,
-	0x42, 0xa2, 0x01, 0x0a, 0x11, 0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61,
+	0x65, 0x74, 0x65, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x1a, 0x25, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x56, 0x0a, 0x0c, 0x41, 0x64, 0x64, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12,
+	0x1e, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e,
+	0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x1a,
+	0x26, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e,
+	0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5f, 0x0a, 0x0f, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x65, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x21, 0x2e, 0x67, 0x67, 0x65,
+	0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x1a, 0x29, 0x2e,
+	0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73,
+	0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5f, 0x0a, 0x0f, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x21, 0x2e, 0x67, 0x67,
+	0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d, 0x73, 0x67, 0x44,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x1a, 0x29,
+	0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x4d,
+	0x73, 0x67, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74,
+	0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01,
+	0x42, 0xa2, 0x01, 0x0a, 0x11, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61,
 	0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50,
 	0x01, 0x5a, 0x2f, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x47, 0x47,
-	0x45, 0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e,
-	0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61,
-	0x63, 0x6c, 0xa2, 0x02, 0x03, 0x56, 0x41, 0x58, 0xaa, 0x02, 0x0d, 0x56, 0x76, 0x74, 0x78, 0x63,
-	0x68, 0x61, 0x69, 0x6e, 0x2e, 0x41, 0x63, 0x6c, 0xca, 0x02, 0x0d, 0x56, 0x76, 0x74, 0x78, 0x63,
-	0x68, 0x61, 0x69, 0x6e, 0x5c, 0x41, 0x63, 0x6c, 0xe2, 0x02, 0x19, 0x56, 0x76, 0x74, 0x78, 0x63,
+	0x45, 0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e,
+	0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61,
+	0x63, 0x6c, 0xa2, 0x02, 0x03, 0x47, 0x41, 0x58, 0xaa, 0x02, 0x0d, 0x47, 0x67, 0x65, 0x7a, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x2e, 0x41, 0x63, 0x6c, 0xca, 0x02, 0x0d, 0x47, 0x67, 0x65, 0x7a, 0x63,
+	0x68, 0x61, 0x69, 0x6e, 0x5c, 0x41, 0x63, 0x6c, 0xe2, 0x02, 0x19, 0x47, 0x67, 0x65, 0x7a, 0x63,
 	0x68, 0x61, 0x69, 0x6e, 0x5c, 0x41, 0x63, 0x6c, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61,
-	0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0e, 0x56, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e,
+	0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0e, 0x47, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e,
 	0x3a, 0x3a, 0x41, 0x63, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
@@ -8245,38 +8245,38 @@ var file_vvtxchain_acl_tx_proto_goTypes = []interface{}{
 	(*MsgUpdateParamsResponse)(nil),     // 1: vvtxchain.acl.MsgUpdateParamsResponse
 	(*MsgInit)(nil),                     // 2: vvtxchain.acl.MsgInit
 	(*MsgInitResponse)(nil),             // 3: vvtxchain.acl.MsgInitResponse
-	(*MsgAddAdmin)(nil),                 // 4: vvtxchain.acl.MsgAddAdmin
-	(*MsgAddAdminResponse)(nil),         // 5: vvtxchain.acl.MsgAddAdminResponse
-	(*MsgDeleteAdmin)(nil),              // 6: vvtxchain.acl.MsgDeleteAdmin
-	(*MsgDeleteAdminResponse)(nil),      // 7: vvtxchain.acl.MsgDeleteAdminResponse
-	(*MsgAddAuthority)(nil),             // 8: vvtxchain.acl.MsgAddAuthority
-	(*MsgAddAuthorityResponse)(nil),     // 9: vvtxchain.acl.MsgAddAuthorityResponse
-	(*MsgDeleteAuthority)(nil),          // 10: vvtxchain.acl.MsgDeleteAuthority
-	(*MsgDeleteAuthorityResponse)(nil),  // 11: vvtxchain.acl.MsgDeleteAuthorityResponse
+	(*MsgUpdateSuperAdmin)(nil),         // 4: vvtxchain.acl.MsgUpdateSuperAdmin
+	(*MsgUpdateSuperAdminResponse)(nil), // 5: vvtxchain.acl.MsgUpdateSuperAdminResponse
+	(*MsgAddAdmin)(nil),                 // 6: vvtxchain.acl.MsgAddAdmin
+	(*MsgAddAdminResponse)(nil),         // 7: vvtxchain.acl.MsgAddAdminResponse
+	(*MsgDeleteAdmin)(nil),              // 8: vvtxchain.acl.MsgDeleteAdmin
+	(*MsgDeleteAdminResponse)(nil),      // 9: vvtxchain.acl.MsgDeleteAdminResponse
+	(*MsgAddAuthority)(nil),             // 10: vvtxchain.acl.MsgAddAuthority
+	(*MsgAddAuthorityResponse)(nil),     // 11: vvtxchain.acl.MsgAddAuthorityResponse
 	(*MsgUpdateAuthority)(nil),          // 12: vvtxchain.acl.MsgUpdateAuthority
 	(*MsgUpdateAuthorityResponse)(nil),  // 13: vvtxchain.acl.MsgUpdateAuthorityResponse
-	(*MsgUpdateSuperAdmin)(nil),         // 14: vvtxchain.acl.MsgUpdateSuperAdmin
-	(*MsgUpdateSuperAdminResponse)(nil), // 15: vvtxchain.acl.MsgUpdateSuperAdminResponse
+	(*MsgDeleteAuthority)(nil),          // 14: vvtxchain.acl.MsgDeleteAuthority
+	(*MsgDeleteAuthorityResponse)(nil),  // 15: vvtxchain.acl.MsgDeleteAuthorityResponse
 	(*Params)(nil),                      // 16: vvtxchain.acl.Params
 }
 var file_vvtxchain_acl_tx_proto_depIdxs = []int32{
 	16, // 0: vvtxchain.acl.MsgUpdateParams.params:type_name -> vvtxchain.acl.Params
 	0,  // 1: vvtxchain.acl.Msg.UpdateParams:input_type -> vvtxchain.acl.MsgUpdateParams
 	2,  // 2: vvtxchain.acl.Msg.Init:input_type -> vvtxchain.acl.MsgInit
-	4,  // 3: vvtxchain.acl.Msg.AddAdmin:input_type -> vvtxchain.acl.MsgAddAdmin
-	6,  // 4: vvtxchain.acl.Msg.DeleteAdmin:input_type -> vvtxchain.acl.MsgDeleteAdmin
-	8,  // 5: vvtxchain.acl.Msg.AddAuthority:input_type -> vvtxchain.acl.MsgAddAuthority
-	10, // 6: vvtxchain.acl.Msg.DeleteAuthority:input_type -> vvtxchain.acl.MsgDeleteAuthority
+	4,  // 3: vvtxchain.acl.Msg.UpdateSuperAdmin:input_type -> vvtxchain.acl.MsgUpdateSuperAdmin
+	6,  // 4: vvtxchain.acl.Msg.AddAdmin:input_type -> vvtxchain.acl.MsgAddAdmin
+	8,  // 5: vvtxchain.acl.Msg.DeleteAdmin:input_type -> vvtxchain.acl.MsgDeleteAdmin
+	10, // 6: vvtxchain.acl.Msg.AddAuthority:input_type -> vvtxchain.acl.MsgAddAuthority
 	12, // 7: vvtxchain.acl.Msg.UpdateAuthority:input_type -> vvtxchain.acl.MsgUpdateAuthority
-	14, // 8: vvtxchain.acl.Msg.UpdateSuperAdmin:input_type -> vvtxchain.acl.MsgUpdateSuperAdmin
+	14, // 8: vvtxchain.acl.Msg.DeleteAuthority:input_type -> vvtxchain.acl.MsgDeleteAuthority
 	1,  // 9: vvtxchain.acl.Msg.UpdateParams:output_type -> vvtxchain.acl.MsgUpdateParamsResponse
 	3,  // 10: vvtxchain.acl.Msg.Init:output_type -> vvtxchain.acl.MsgInitResponse
-	5,  // 11: vvtxchain.acl.Msg.AddAdmin:output_type -> vvtxchain.acl.MsgAddAdminResponse
-	7,  // 12: vvtxchain.acl.Msg.DeleteAdmin:output_type -> vvtxchain.acl.MsgDeleteAdminResponse
-	9,  // 13: vvtxchain.acl.Msg.AddAuthority:output_type -> vvtxchain.acl.MsgAddAuthorityResponse
-	11, // 14: vvtxchain.acl.Msg.DeleteAuthority:output_type -> vvtxchain.acl.MsgDeleteAuthorityResponse
+	5,  // 11: vvtxchain.acl.Msg.UpdateSuperAdmin:output_type -> vvtxchain.acl.MsgUpdateSuperAdminResponse
+	7,  // 12: vvtxchain.acl.Msg.AddAdmin:output_type -> vvtxchain.acl.MsgAddAdminResponse
+	9,  // 13: vvtxchain.acl.Msg.DeleteAdmin:output_type -> vvtxchain.acl.MsgDeleteAdminResponse
+	11, // 14: vvtxchain.acl.Msg.AddAuthority:output_type -> vvtxchain.acl.MsgAddAuthorityResponse
 	13, // 15: vvtxchain.acl.Msg.UpdateAuthority:output_type -> vvtxchain.acl.MsgUpdateAuthorityResponse
-	15, // 16: vvtxchain.acl.Msg.UpdateSuperAdmin:output_type -> vvtxchain.acl.MsgUpdateSuperAdminResponse
+	15, // 16: vvtxchain.acl.Msg.DeleteAuthority:output_type -> vvtxchain.acl.MsgDeleteAuthorityResponse
 	9,  // [9:17] is the sub-list for method output_type
 	1,  // [1:9] is the sub-list for method input_type
 	1,  // [1:1] is the sub-list for extension type_name
@@ -8340,7 +8340,7 @@ func file_vvtxchain_acl_tx_proto_init() {
 			}
 		}
 		file_vvtxchain_acl_tx_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgAddAdmin); i {
+			switch v := v.(*MsgUpdateSuperAdmin); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -8352,7 +8352,7 @@ func file_vvtxchain_acl_tx_proto_init() {
 			}
 		}
 		file_vvtxchain_acl_tx_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgAddAdminResponse); i {
+			switch v := v.(*MsgUpdateSuperAdminResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -8364,7 +8364,7 @@ func file_vvtxchain_acl_tx_proto_init() {
 			}
 		}
 		file_vvtxchain_acl_tx_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgDeleteAdmin); i {
+			switch v := v.(*MsgAddAdmin); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -8376,7 +8376,7 @@ func file_vvtxchain_acl_tx_proto_init() {
 			}
 		}
 		file_vvtxchain_acl_tx_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgDeleteAdminResponse); i {
+			switch v := v.(*MsgAddAdminResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -8388,7 +8388,7 @@ func file_vvtxchain_acl_tx_proto_init() {
 			}
 		}
 		file_vvtxchain_acl_tx_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgAddAuthority); i {
+			switch v := v.(*MsgDeleteAdmin); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -8400,7 +8400,7 @@ func file_vvtxchain_acl_tx_proto_init() {
 			}
 		}
 		file_vvtxchain_acl_tx_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgAddAuthorityResponse); i {
+			switch v := v.(*MsgDeleteAdminResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -8412,7 +8412,7 @@ func file_vvtxchain_acl_tx_proto_init() {
 			}
 		}
 		file_vvtxchain_acl_tx_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgDeleteAuthority); i {
+			switch v := v.(*MsgAddAuthority); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -8424,7 +8424,7 @@ func file_vvtxchain_acl_tx_proto_init() {
 			}
 		}
 		file_vvtxchain_acl_tx_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgDeleteAuthorityResponse); i {
+			switch v := v.(*MsgAddAuthorityResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -8460,7 +8460,7 @@ func file_vvtxchain_acl_tx_proto_init() {
 			}
 		}
 		file_vvtxchain_acl_tx_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgUpdateSuperAdmin); i {
+			switch v := v.(*MsgDeleteAuthority); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -8472,7 +8472,7 @@ func file_vvtxchain_acl_tx_proto_init() {
 			}
 		}
 		file_vvtxchain_acl_tx_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgUpdateSuperAdminResponse); i {
+			switch v := v.(*MsgDeleteAuthorityResponse); i {
 			case 0:
 				return &v.state
 			case 1:

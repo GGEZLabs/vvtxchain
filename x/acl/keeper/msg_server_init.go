@@ -16,7 +16,7 @@ func (k msgServer) Init(goCtx context.Context, msg *types.MsgInit) (*types.MsgIn
 	}
 
 	// Set super admin
-	k.SetSuperAdmin(ctx, types.SuperAdmin{Address: msg.SuperAdmin})
+	k.SetSuperAdmin(ctx, types.SuperAdmin{Admin: msg.SuperAdmin})
 
 	ctx.EventManager().EmitEvent(
 		sdk.NewEvent(

@@ -7,9 +7,9 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "vvtxchain/acl/params.proto";
-import "vvtxchain/acl/super_admin.proto";
-import "vvtxchain/acl/acl_admin.proto";
 import "vvtxchain/acl/acl_authority.proto";
+import "vvtxchain/acl/acl_admin.proto";
+import "vvtxchain/acl/super_admin.proto";
 
 option go_package = "github.com/GGEZLabs/vvtxchain/x/acl/types";
 
@@ -22,9 +22,13 @@ service Query {
   
   }
   
-  // Queries a SuperAdmin by index.
-  rpc SuperAdmin (QueryGetSuperAdminRequest) returns (QueryGetSuperAdminResponse) {
-    option (google.api.http).get = "/GGEZLabs/vvtxchain/acl/super_admin";
+  // Queries a list of AclAuthority items.
+  rpc AclAuthority    (QueryGetAclAuthorityRequest) returns (QueryGetAclAuthorityResponse) {
+    option (google.api.http).get = "/GGEZLabs/vvtxchain/acl/acl_authority/{address}";
+  
+  }
+  rpc AclAuthorityAll (QueryAllAclAuthorityRequest) returns (QueryAllAclAuthorityResponse) {
+    option (google.api.http).get = "/GGEZLabs/vvtxchain/acl/acl_authority";
   
   }
   
@@ -38,13 +42,9 @@ service Query {
   
   }
   
-  // Queries a list of AclAuthority items.
-  rpc AclAuthority    (QueryGetAclAuthorityRequest) returns (QueryGetAclAuthorityResponse) {
-    option (google.api.http).get = "/GGEZLabs/vvtxchain/acl/acl_authority/{address}";
-  
-  }
-  rpc AclAuthorityAll (QueryAllAclAuthorityRequest) returns (QueryAllAclAuthorityResponse) {
-    option (google.api.http).get = "/GGEZLabs/vvtxchain/acl/acl_authority";
+  // Queries a SuperAdmin by index.
+  rpc SuperAdmin (QueryGetSuperAdminRequest) returns (QueryGetSuperAdminResponse) {
+    option (google.api.http).get = "/GGEZLabs/vvtxchain/acl/super_admin";
   
   }
 }
@@ -56,29 +56,6 @@ message QueryParamsResponse {
   
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
-}
-
-message QueryGetSuperAdminRequest {}
-
-message QueryGetSuperAdminResponse {
-  SuperAdmin Super_admin = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryGetAclAdminRequest {
-  string address = 1;
-}
-
-message QueryGetAclAdminResponse {
-  AclAdmin acl_admin = 1 [(gogoproto.nullable) = false];
-}
-
-message QueryAllAclAdminRequest {
-  cosmos.base.query.v1beta1.PageRequest pagination = 1;
-}
-
-message QueryAllAclAdminResponse {
-  repeated AclAdmin                               acl_admin   = 1 [(gogoproto.nullable) = false];
-           cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
 message QueryGetAclAuthorityRequest {
@@ -95,6 +72,29 @@ message QueryAllAclAuthorityRequest {
 
 message QueryAllAclAuthorityResponse {
   repeated AclAuthority                           acl_authority = 1 [(gogoproto.nullable) = false];
-           cosmos.base.query.v1beta1.PageResponse pagination   = 2;
+           cosmos.base.query.v1beta1.PageResponse pagination    = 2;
+}
+
+message QueryGetAclAdminRequest {
+  string address = 1;
+}
+
+message QueryGetAclAdminResponse {
+  AclAdmin acl_admin = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllAclAdminRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllAclAdminResponse {
+  repeated AclAdmin                               acl_admin  = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetSuperAdminRequest {}
+
+message QueryGetSuperAdminResponse {
+  SuperAdmin super_admin = 1 [(gogoproto.nullable) = false];
 }
 

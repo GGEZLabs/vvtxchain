@@ -14,7 +14,7 @@ func (k msgServer) UpdateSuperAdmin(goCtx context.Context, msg *types.MsgUpdateS
 		return nil, types.ErrUnauthorized
 	}
 
-	k.SetSuperAdmin(ctx, types.SuperAdmin{Address: msg.NewSuperAdmin})
+	k.SetSuperAdmin(ctx, types.SuperAdmin{Admin: msg.NewSuperAdmin})
 
 	ctx.EventManager().EmitEvent(
 		sdk.NewEvent(

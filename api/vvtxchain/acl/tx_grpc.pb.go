@@ -21,12 +21,12 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	Msg_UpdateParams_FullMethodName     = "/vvtxchain.acl.Msg/UpdateParams"
 	Msg_Init_FullMethodName             = "/vvtxchain.acl.Msg/Init"
+	Msg_UpdateSuperAdmin_FullMethodName = "/vvtxchain.acl.Msg/UpdateSuperAdmin"
 	Msg_AddAdmin_FullMethodName         = "/vvtxchain.acl.Msg/AddAdmin"
 	Msg_DeleteAdmin_FullMethodName      = "/vvtxchain.acl.Msg/DeleteAdmin"
 	Msg_AddAuthority_FullMethodName     = "/vvtxchain.acl.Msg/AddAuthority"
-	Msg_DeleteAuthority_FullMethodName  = "/vvtxchain.acl.Msg/DeleteAuthority"
 	Msg_UpdateAuthority_FullMethodName  = "/vvtxchain.acl.Msg/UpdateAuthority"
-	Msg_UpdateSuperAdmin_FullMethodName = "/vvtxchain.acl.Msg/UpdateSuperAdmin"
+	Msg_DeleteAuthority_FullMethodName  = "/vvtxchain.acl.Msg/DeleteAuthority"
 )
 
 // MsgClient is the client API for Msg service.
@@ -37,12 +37,12 @@ type MsgClient interface {
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
 	Init(ctx context.Context, in *MsgInit, opts ...grpc.CallOption) (*MsgInitResponse, error)
+	UpdateSuperAdmin(ctx context.Context, in *MsgUpdateSuperAdmin, opts ...grpc.CallOption) (*MsgUpdateSuperAdminResponse, error)
 	AddAdmin(ctx context.Context, in *MsgAddAdmin, opts ...grpc.CallOption) (*MsgAddAdminResponse, error)
 	DeleteAdmin(ctx context.Context, in *MsgDeleteAdmin, opts ...grpc.CallOption) (*MsgDeleteAdminResponse, error)
 	AddAuthority(ctx context.Context, in *MsgAddAuthority, opts ...grpc.CallOption) (*MsgAddAuthorityResponse, error)
-	DeleteAuthority(ctx context.Context, in *MsgDeleteAuthority, opts ...grpc.CallOption) (*MsgDeleteAuthorityResponse, error)
 	UpdateAuthority(ctx context.Context, in *MsgUpdateAuthority, opts ...grpc.CallOption) (*MsgUpdateAuthorityResponse, error)
-	UpdateSuperAdmin(ctx context.Context, in *MsgUpdateSuperAdmin, opts ...grpc.CallOption) (*MsgUpdateSuperAdminResponse, error)
+	DeleteAuthority(ctx context.Context, in *MsgDeleteAuthority, opts ...grpc.CallOption) (*MsgDeleteAuthorityResponse, error)
 }
 
 type msgClient struct {
@@ -65,6 +65,15 @@ func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts 
 func (c *msgClient) Init(ctx context.Context, in *MsgInit, opts ...grpc.CallOption) (*MsgInitResponse, error) {
 	out := new(MsgInitResponse)
 	err := c.cc.Invoke(ctx, Msg_Init_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *msgClient) UpdateSuperAdmin(ctx context.Context, in *MsgUpdateSuperAdmin, opts ...grpc.CallOption) (*MsgUpdateSuperAdminResponse, error) {
+	out := new(MsgUpdateSuperAdminResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateSuperAdmin_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -98,15 +107,6 @@ func (c *msgClient) AddAuthority(ctx context.Context, in *MsgAddAuthority, opts 
 	return out, nil
 }
 
-func (c *msgClient) DeleteAuthority(ctx context.Context, in *MsgDeleteAuthority, opts ...grpc.CallOption) (*MsgDeleteAuthorityResponse, error) {
-	out := new(MsgDeleteAuthorityResponse)
-	err := c.cc.Invoke(ctx, Msg_DeleteAuthority_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *msgClient) UpdateAuthority(ctx context.Context, in *MsgUpdateAuthority, opts ...grpc.CallOption) (*MsgUpdateAuthorityResponse, error) {
 	out := new(MsgUpdateAuthorityResponse)
 	err := c.cc.Invoke(ctx, Msg_UpdateAuthority_FullMethodName, in, out, opts...)
@@ -116,9 +116,9 @@ func (c *msgClient) UpdateAuthority(ctx context.Context, in *MsgUpdateAuthority,
 	return out, nil
 }
 
-func (c *msgClient) UpdateSuperAdmin(ctx context.Context, in *MsgUpdateSuperAdmin, opts ...grpc.CallOption) (*MsgUpdateSuperAdminResponse, error) {
-	out := new(MsgUpdateSuperAdminResponse)
-	err := c.cc.Invoke(ctx, Msg_UpdateSuperAdmin_FullMethodName, in, out, opts...)
+func (c *msgClient) DeleteAuthority(ctx context.Context, in *MsgDeleteAuthority, opts ...grpc.CallOption) (*MsgDeleteAuthorityResponse, error) {
+	out := new(MsgDeleteAuthorityResponse)
+	err := c.cc.Invoke(ctx, Msg_DeleteAuthority_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -133,12 +133,12 @@ type MsgServer interface {
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
 	Init(context.Context, *MsgInit) (*MsgInitResponse, error)
+	UpdateSuperAdmin(context.Context, *MsgUpdateSuperAdmin) (*MsgUpdateSuperAdminResponse, error)
 	AddAdmin(context.Context, *MsgAddAdmin) (*MsgAddAdminResponse, error)
 	DeleteAdmin(context.Context, *MsgDeleteAdmin) (*MsgDeleteAdminResponse, error)
 	AddAuthority(context.Context, *MsgAddAuthority) (*MsgAddAuthorityResponse, error)
-	DeleteAuthority(context.Context, *MsgDeleteAuthority) (*MsgDeleteAuthorityResponse, error)
 	UpdateAuthority(context.Context, *MsgUpdateAuthority) (*MsgUpdateAuthorityResponse, error)
-	UpdateSuperAdmin(context.Context, *MsgUpdateSuperAdmin) (*MsgUpdateSuperAdminResponse, error)
+	DeleteAuthority(context.Context, *MsgDeleteAuthority) (*MsgDeleteAuthorityResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -152,6 +152,9 @@ func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*
 func (UnimplementedMsgServer) Init(context.Context, *MsgInit) (*MsgInitResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Init not implemented")
 }
+func (UnimplementedMsgServer) UpdateSuperAdmin(context.Context, *MsgUpdateSuperAdmin) (*MsgUpdateSuperAdminResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSuperAdmin not implemented")
+}
 func (UnimplementedMsgServer) AddAdmin(context.Context, *MsgAddAdmin) (*MsgAddAdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddAdmin not implemented")
 }
@@ -161,14 +164,11 @@ func (UnimplementedMsgServer) DeleteAdmin(context.Context, *MsgDeleteAdmin) (*Ms
 func (UnimplementedMsgServer) AddAuthority(context.Context, *MsgAddAuthority) (*MsgAddAuthorityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddAuthority not implemented")
 }
-func (UnimplementedMsgServer) DeleteAuthority(context.Context, *MsgDeleteAuthority) (*MsgDeleteAuthorityResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteAuthority not implemented")
-}
 func (UnimplementedMsgServer) UpdateAuthority(context.Context, *MsgUpdateAuthority) (*MsgUpdateAuthorityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAuthority not implemented")
 }
-func (UnimplementedMsgServer) UpdateSuperAdmin(context.Context, *MsgUpdateSuperAdmin) (*MsgUpdateSuperAdminResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateSuperAdmin not implemented")
+func (UnimplementedMsgServer) DeleteAuthority(context.Context, *MsgDeleteAuthority) (*MsgDeleteAuthorityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteAuthority not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -215,6 +215,24 @@ func _Msg_Init_Handler(srv interface{}, ctx context.Context, dec func(interface{
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MsgServer).Init(ctx, req.(*MsgInit))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Msg_UpdateSuperAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateSuperAdmin)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateSuperAdmin(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateSuperAdmin_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateSuperAdmin(ctx, req.(*MsgUpdateSuperAdmin))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -273,24 +291,6 @@ func _Msg_AddAuthority_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_DeleteAuthority_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgDeleteAuthority)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MsgServer).DeleteAuthority(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Msg_DeleteAuthority_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).DeleteAuthority(ctx, req.(*MsgDeleteAuthority))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Msg_UpdateAuthority_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgUpdateAuthority)
 	if err := dec(in); err != nil {
@@ -309,20 +309,20 @@ func _Msg_UpdateAuthority_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_UpdateSuperAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MsgUpdateSuperAdmin)
+func _Msg_DeleteAuthority_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgDeleteAuthority)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MsgServer).UpdateSuperAdmin(ctx, in)
+		return srv.(MsgServer).DeleteAuthority(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Msg_UpdateSuperAdmin_FullMethodName,
+		FullMethod: Msg_DeleteAuthority_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MsgServer).UpdateSuperAdmin(ctx, req.(*MsgUpdateSuperAdmin))
+		return srv.(MsgServer).DeleteAuthority(ctx, req.(*MsgDeleteAuthority))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -343,6 +343,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Msg_Init_Handler,
 		},
 		{
+			MethodName: "UpdateSuperAdmin",
+			Handler:    _Msg_UpdateSuperAdmin_Handler,
+		},
+		{
 			MethodName: "AddAdmin",
 			Handler:    _Msg_AddAdmin_Handler,
 		},
@@ -355,16 +359,12 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Msg_AddAuthority_Handler,
 		},
 		{
-			MethodName: "DeleteAuthority",
-			Handler:    _Msg_DeleteAuthority_Handler,
-		},
-		{
 			MethodName: "UpdateAuthority",
 			Handler:    _Msg_UpdateAuthority_Handler,
 		},
 		{
-			MethodName: "UpdateSuperAdmin",
-			Handler:    _Msg_UpdateSuperAdmin_Handler,
+			MethodName: "DeleteAuthority",
+			Handler:    _Msg_DeleteAuthority_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

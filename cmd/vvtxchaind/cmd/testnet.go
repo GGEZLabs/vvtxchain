@@ -29,9 +29,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const (
-	valVotingPower int64 = 900000000000000
-)
+const valVotingPower int64 = 900000000000000
 
 var flagAccountsToFund = "accounts-to-fund"
 
@@ -186,7 +184,7 @@ func initAppForTestnet(app *app.App, args valArgs) *app.App {
 	for _, accountStr := range args.accountsToFund {
 		handleErr(app.BankKeeper.MintCoins(ctx, minttypes.ModuleName, defaultCoins))
 
-		account, err := app.AccountKeeper.AddressCodec().StringToBytes(accountStr)
+		account, err := app.AuthKeeper.AddressCodec().StringToBytes(accountStr)
 		handleErr(err)
 
 		handleErr(app.BankKeeper.SendCoinsFromModuleToAccount(ctx, minttypes.ModuleName, account, defaultCoins))

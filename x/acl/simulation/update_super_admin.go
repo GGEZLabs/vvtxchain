@@ -23,7 +23,7 @@ func SimulateMsgUpdateSuperAdmin(
 		simAccount, _ := simtypes.RandomAcc(r, accs)
 		newSuperAdmin, _ := simtypes.RandomAcc(r, accs)
 
-		k.SetSuperAdmin(ctx, types.SuperAdmin{Address: simAccount.Address.String()})
+		k.SetSuperAdmin(ctx, types.SuperAdmin{Admin: simAccount.Address.String()})
 
 		msg := &types.MsgUpdateSuperAdmin{
 			Creator:       simAccount.Address.String(),

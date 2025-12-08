@@ -8,15 +8,6 @@ import (
 
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgInit{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgAddAdmin{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
-		&MsgDeleteAdmin{},
-	)
-	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgAddAuthority{},
 	)
 	registry.RegisterImplementations((*sdk.Msg)(nil),
@@ -24,6 +15,15 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	)
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgUpdateAuthority{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgInit{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgAddAdmin{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgDeleteAdmin{},
 	)
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgUpdateSuperAdmin{},

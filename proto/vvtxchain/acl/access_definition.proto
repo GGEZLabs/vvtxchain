@@ -4,8 +4,7 @@ package vvtxchain.acl;
 option go_package = "github.com/GGEZLabs/vvtxchain/x/acl/types";
 
 message AccessDefinition {
-  
-  string module = 1; 
-  bool is_maker = 2; 
-  bool is_checker = 3; 
+  string module     = 1;
+  bool   is_maker   = 2;
+  bool   is_checker = 3;
 }

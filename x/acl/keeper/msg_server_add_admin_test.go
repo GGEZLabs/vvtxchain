@@ -16,7 +16,7 @@ func TestMsgAddAdmin(t *testing.T) {
 	superAdmin := sample.AccAddress()
 	duplicateAdmin := sample.AccAddress()
 
-	k.SetSuperAdmin(ctx, types.SuperAdmin{Address: superAdmin})
+	k.SetSuperAdmin(ctx, types.SuperAdmin{Admin: superAdmin})
 	k.SetAclAdmin(ctx, types.AclAdmin{Address: duplicateAdmin})
 
 	testCases := []struct {

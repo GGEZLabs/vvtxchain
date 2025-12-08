@@ -14,7 +14,7 @@ import (
 
 func createTestSuperAdmin(keeper keeper.Keeper, ctx context.Context) types.SuperAdmin {
 	item := types.SuperAdmin{
-		Address: sample.AccAddress(),
+		Admin: sample.AccAddress(),
 	}
 	keeper.SetSuperAdmin(ctx, item)
 	return item

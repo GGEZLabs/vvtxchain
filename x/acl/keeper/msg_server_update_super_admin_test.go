@@ -37,7 +37,7 @@ func TestMsgUpdateSuperAdmin(t *testing.T) {
 				NewSuperAdmin: sample.AccAddress(),
 			},
 			fun: func() {
-				k.SetSuperAdmin(ctx, types.SuperAdmin{Address: superAdmin})
+				k.SetSuperAdmin(ctx, types.SuperAdmin{Admin: superAdmin})
 			},
 			expErr:    true,
 			expErrMsg: "unauthorized account",

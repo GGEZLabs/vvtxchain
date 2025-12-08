@@ -11,5 +11,4 @@ message Params {
   option (amino.name) = "vvtxchain/x/acl/Params";
   option (gogoproto.equal) = true;
 
-  
-}
+  }

@@ -23,7 +23,7 @@ func TestMsgUpdateAuthority(t *testing.T) {
 			{Module: "module2", IsMaker: true, IsChecker: false},
 		},
 	}
-	k.SetSuperAdmin(ctx, types.SuperAdmin{Address: superAdmin})
+	k.SetSuperAdmin(ctx, types.SuperAdmin{Admin: superAdmin})
 	k.SetAclAuthority(ctx, aclAuthority)
 	k.SetAclAdmin(ctx, types.AclAdmin{Address: admin})
 	wctx := sdk.UnwrapSDKContext(ctx)

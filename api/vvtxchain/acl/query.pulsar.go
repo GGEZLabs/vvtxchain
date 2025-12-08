@@ -808,23 +808,25 @@ func (x *fastReflection_QueryParamsResponse) ProtoMethods() *protoiface.Methods 
 }
 
 var (
-	md_QueryGetSuperAdminRequest protoreflect.MessageDescriptor
+	md_QueryGetAclAuthorityRequest         protoreflect.MessageDescriptor
+	fd_QueryGetAclAuthorityRequest_address protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_vvtxchain_acl_query_proto_init()
-	md_QueryGetSuperAdminRequest = File_vvtxchain_acl_query_proto.Messages().ByName("QueryGetSuperAdminRequest")
+	md_QueryGetAclAuthorityRequest = File_vvtxchain_acl_query_proto.Messages().ByName("QueryGetAclAuthorityRequest")
+	fd_QueryGetAclAuthorityRequest_address = md_QueryGetAclAuthorityRequest.Fields().ByName("address")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryGetSuperAdminRequest)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryGetAclAuthorityRequest)(nil)
 
-type fastReflection_QueryGetSuperAdminRequest QueryGetSuperAdminRequest
+type fastReflection_QueryGetAclAuthorityRequest QueryGetAclAuthorityRequest
 
-func (x *QueryGetSuperAdminRequest) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryGetSuperAdminRequest)(x)
+func (x *QueryGetAclAuthorityRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryGetAclAuthorityRequest)(x)
 }
 
-func (x *QueryGetSuperAdminRequest) slowProtoReflect() protoreflect.Message {
+func (x *QueryGetAclAuthorityRequest) slowProtoReflect() protoreflect.Message {
 	mi := &file_vvtxchain_acl_query_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -836,43 +838,43 @@ func (x *QueryGetSuperAdminRequest) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryGetSuperAdminRequest_messageType fastReflection_QueryGetSuperAdminRequest_messageType
-var _ protoreflect.MessageType = fastReflection_QueryGetSuperAdminRequest_messageType{}
+var _fastReflection_QueryGetAclAuthorityRequest_messageType fastReflection_QueryGetAclAuthorityRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QueryGetAclAuthorityRequest_messageType{}
 
-type fastReflection_QueryGetSuperAdminRequest_messageType struct{}
+type fastReflection_QueryGetAclAuthorityRequest_messageType struct{}
 
-func (x fastReflection_QueryGetSuperAdminRequest_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryGetSuperAdminRequest)(nil)
+func (x fastReflection_QueryGetAclAuthorityRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryGetAclAuthorityRequest)(nil)
 }
-func (x fastReflection_QueryGetSuperAdminRequest_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryGetSuperAdminRequest)
+func (x fastReflection_QueryGetAclAuthorityRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryGetAclAuthorityRequest)
 }
-func (x fastReflection_QueryGetSuperAdminRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetSuperAdminRequest
+func (x fastReflection_QueryGetAclAuthorityRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetAclAuthorityRequest
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryGetSuperAdminRequest) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetSuperAdminRequest
+func (x *fastReflection_QueryGetAclAuthorityRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetAclAuthorityRequest
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryGetSuperAdminRequest) Type() protoreflect.MessageType {
-	return _fastReflection_QueryGetSuperAdminRequest_messageType
+func (x *fastReflection_QueryGetAclAuthorityRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QueryGetAclAuthorityRequest_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryGetSuperAdminRequest) New() protoreflect.Message {
-	return new(fastReflection_QueryGetSuperAdminRequest)
+func (x *fastReflection_QueryGetAclAuthorityRequest) New() protoreflect.Message {
+	return new(fastReflection_QueryGetAclAuthorityRequest)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryGetSuperAdminRequest) Interface() protoreflect.ProtoMessage {
-	return (*QueryGetSuperAdminRequest)(x)
+func (x *fastReflection_QueryGetAclAuthorityRequest) Interface() protoreflect.ProtoMessage {
+	return (*QueryGetAclAuthorityRequest)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -880,7 +882,13 @@ func (x *fastReflection_QueryGetSuperAdminRequest) Interface() protoreflect.Prot
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryGetSuperAdminRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+func (x *fastReflection_QueryGetAclAuthorityRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Address != "" {
+		value := protoreflect.ValueOfString(x.Address)
+		if !f(fd_QueryGetAclAuthorityRequest_address, value) {
+			return
+		}
+	}
 }
 
 // Has reports whether a field is populated.
@@ -894,13 +902,15 @@ func (x *fastReflection_QueryGetSuperAdminRequest) Range(f func(protoreflect.Fie
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryGetSuperAdminRequest) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryGetAclAuthorityRequest) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
+	case "vvtxchain.acl.QueryGetAclAuthorityRequest.address":
+		return x.Address != ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityRequest"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -910,13 +920,15 @@ func (x *fastReflection_QueryGetSuperAdminRequest) Has(fd protoreflect.FieldDesc
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetSuperAdminRequest) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryGetAclAuthorityRequest) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
+	case "vvtxchain.acl.QueryGetAclAuthorityRequest.address":
+		x.Address = ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityRequest"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -926,13 +938,16 @@ func (x *fastReflection_QueryGetSuperAdminRequest) Clear(fd protoreflect.FieldDe
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryGetSuperAdminRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetAclAuthorityRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
+	case "vvtxchain.acl.QueryGetAclAuthorityRequest.address":
+		value := x.Address
+		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityRequest"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminRequest does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityRequest does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -946,13 +961,15 @@ func (x *fastReflection_QueryGetSuperAdminRequest) Get(descriptor protoreflect.F
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetSuperAdminRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryGetAclAuthorityRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
+	case "vvtxchain.acl.QueryGetAclAuthorityRequest.address":
+		x.Address = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityRequest"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -966,36 +983,40 @@ func (x *fastReflection_QueryGetSuperAdminRequest) Set(fd protoreflect.FieldDesc
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetSuperAdminRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetAclAuthorityRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "vvtxchain.acl.QueryGetAclAuthorityRequest.address":
+		panic(fmt.Errorf("field address of message vvtxchain.acl.QueryGetAclAuthorityRequest is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityRequest"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryGetSuperAdminRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetAclAuthorityRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "vvtxchain.acl.QueryGetAclAuthorityRequest.address":
+		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityRequest"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryGetSuperAdminRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryGetAclAuthorityRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.QueryGetSuperAdminRequest", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.QueryGetAclAuthorityRequest", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1003,7 +1024,7 @@ func (x *fastReflection_QueryGetSuperAdminRequest) WhichOneof(d protoreflect.One
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryGetSuperAdminRequest) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryGetAclAuthorityRequest) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1014,7 +1035,7 @@ func (x *fastReflection_QueryGetSuperAdminRequest) GetUnknown() protoreflect.Raw
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetSuperAdminRequest) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryGetAclAuthorityRequest) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1026,7 +1047,7 @@ func (x *fastReflection_QueryGetSuperAdminRequest) SetUnknown(fields protoreflec
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryGetSuperAdminRequest) IsValid() bool {
+func (x *fastReflection_QueryGetAclAuthorityRequest) IsValid() bool {
 	return x != nil
 }
 
@@ -1036,9 +1057,9 @@ func (x *fastReflection_QueryGetSuperAdminRequest) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryGetSuperAdminRequest) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryGetAclAuthorityRequest) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryGetSuperAdminRequest)
+		x := input.Message.Interface().(*QueryGetAclAuthorityRequest)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1050,6 +1071,10 @@ func (x *fastReflection_QueryGetSuperAdminRequest) ProtoMethods() *protoiface.Me
 		var n int
 		var l int
 		_ = l
+		l = len(x.Address)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -1060,7 +1085,7 @@ func (x *fastReflection_QueryGetSuperAdminRequest) ProtoMethods() *protoiface.Me
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetSuperAdminRequest)
+		x := input.Message.Interface().(*QueryGetAclAuthorityRequest)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1079,6 +1104,13 @@ func (x *fastReflection_QueryGetSuperAdminRequest) ProtoMethods() *protoiface.Me
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
+		if len(x.Address) > 0 {
+			i -= len(x.Address)
+			copy(dAtA[i:], x.Address)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Address)))
+			i--
+			dAtA[i] = 0xa
+		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
 		} else {
@@ -1090,7 +1122,7 @@ func (x *fastReflection_QueryGetSuperAdminRequest) ProtoMethods() *protoiface.Me
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetSuperAdminRequest)
+		x := input.Message.Interface().(*QueryGetAclAuthorityRequest)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1122,12 +1154,44 @@ func (x *fastReflection_QueryGetSuperAdminRequest) ProtoMethods() *protoiface.Me
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetSuperAdminRequest: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAclAuthorityRequest: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetSuperAdminRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAclAuthorityRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Address = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -1164,25 +1228,25 @@ func (x *fastReflection_QueryGetSuperAdminRequest) ProtoMethods() *protoiface.Me
 }
 
 var (
-	md_QueryGetSuperAdminResponse             protoreflect.MessageDescriptor
-	fd_QueryGetSuperAdminResponse_Super_admin protoreflect.FieldDescriptor
+	md_QueryGetAclAuthorityResponse               protoreflect.MessageDescriptor
+	fd_QueryGetAclAuthorityResponse_acl_authority protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_vvtxchain_acl_query_proto_init()
-	md_QueryGetSuperAdminResponse = File_vvtxchain_acl_query_proto.Messages().ByName("QueryGetSuperAdminResponse")
-	fd_QueryGetSuperAdminResponse_Super_admin = md_QueryGetSuperAdminResponse.Fields().ByName("Super_admin")
+	md_QueryGetAclAuthorityResponse = File_vvtxchain_acl_query_proto.Messages().ByName("QueryGetAclAuthorityResponse")
+	fd_QueryGetAclAuthorityResponse_acl_authority = md_QueryGetAclAuthorityResponse.Fields().ByName("acl_authority")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryGetSuperAdminResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryGetAclAuthorityResponse)(nil)
 
-type fastReflection_QueryGetSuperAdminResponse QueryGetSuperAdminResponse
+type fastReflection_QueryGetAclAuthorityResponse QueryGetAclAuthorityResponse
 
-func (x *QueryGetSuperAdminResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryGetSuperAdminResponse)(x)
+func (x *QueryGetAclAuthorityResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryGetAclAuthorityResponse)(x)
 }
 
-func (x *QueryGetSuperAdminResponse) slowProtoReflect() protoreflect.Message {
+func (x *QueryGetAclAuthorityResponse) slowProtoReflect() protoreflect.Message {
 	mi := &file_vvtxchain_acl_query_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1194,43 +1258,43 @@ func (x *QueryGetSuperAdminResponse) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryGetSuperAdminResponse_messageType fastReflection_QueryGetSuperAdminResponse_messageType
-var _ protoreflect.MessageType = fastReflection_QueryGetSuperAdminResponse_messageType{}
+var _fastReflection_QueryGetAclAuthorityResponse_messageType fastReflection_QueryGetAclAuthorityResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QueryGetAclAuthorityResponse_messageType{}
 
-type fastReflection_QueryGetSuperAdminResponse_messageType struct{}
+type fastReflection_QueryGetAclAuthorityResponse_messageType struct{}
 
-func (x fastReflection_QueryGetSuperAdminResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryGetSuperAdminResponse)(nil)
+func (x fastReflection_QueryGetAclAuthorityResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryGetAclAuthorityResponse)(nil)
 }
-func (x fastReflection_QueryGetSuperAdminResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryGetSuperAdminResponse)
+func (x fastReflection_QueryGetAclAuthorityResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryGetAclAuthorityResponse)
 }
-func (x fastReflection_QueryGetSuperAdminResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetSuperAdminResponse
+func (x fastReflection_QueryGetAclAuthorityResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetAclAuthorityResponse
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryGetSuperAdminResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetSuperAdminResponse
+func (x *fastReflection_QueryGetAclAuthorityResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetAclAuthorityResponse
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryGetSuperAdminResponse) Type() protoreflect.MessageType {
-	return _fastReflection_QueryGetSuperAdminResponse_messageType
+func (x *fastReflection_QueryGetAclAuthorityResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QueryGetAclAuthorityResponse_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryGetSuperAdminResponse) New() protoreflect.Message {
-	return new(fastReflection_QueryGetSuperAdminResponse)
+func (x *fastReflection_QueryGetAclAuthorityResponse) New() protoreflect.Message {
+	return new(fastReflection_QueryGetAclAuthorityResponse)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryGetSuperAdminResponse) Interface() protoreflect.ProtoMessage {
-	return (*QueryGetSuperAdminResponse)(x)
+func (x *fastReflection_QueryGetAclAuthorityResponse) Interface() protoreflect.ProtoMessage {
+	return (*QueryGetAclAuthorityResponse)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -1238,10 +1302,10 @@ func (x *fastReflection_QueryGetSuperAdminResponse) Interface() protoreflect.Pro
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryGetSuperAdminResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.SuperAdmin != nil {
-		value := protoreflect.ValueOfMessage(x.SuperAdmin.ProtoReflect())
-		if !f(fd_QueryGetSuperAdminResponse_Super_admin, value) {
+func (x *fastReflection_QueryGetAclAuthorityResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.AclAuthority != nil {
+		value := protoreflect.ValueOfMessage(x.AclAuthority.ProtoReflect())
+		if !f(fd_QueryGetAclAuthorityResponse_acl_authority, value) {
 			return
 		}
 	}
@@ -1258,15 +1322,15 @@ func (x *fastReflection_QueryGetSuperAdminResponse) Range(f func(protoreflect.Fi
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryGetSuperAdminResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryGetAclAuthorityResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "vvtxchain.acl.QueryGetSuperAdminResponse.Super_admin":
-		return x.SuperAdmin != nil
+	case "vvtxchain.acl.QueryGetAclAuthorityResponse.acl_authority":
+		return x.AclAuthority != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1276,15 +1340,15 @@ func (x *fastReflection_QueryGetSuperAdminResponse) Has(fd protoreflect.FieldDes
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetSuperAdminResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryGetAclAuthorityResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "vvtxchain.acl.QueryGetSuperAdminResponse.Super_admin":
-		x.SuperAdmin = nil
+	case "vvtxchain.acl.QueryGetAclAuthorityResponse.acl_authority":
+		x.AclAuthority = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1294,16 +1358,16 @@ func (x *fastReflection_QueryGetSuperAdminResponse) Clear(fd protoreflect.FieldD
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryGetSuperAdminResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetAclAuthorityResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "vvtxchain.acl.QueryGetSuperAdminResponse.Super_admin":
-		value := x.SuperAdmin
+	case "vvtxchain.acl.QueryGetAclAuthorityResponse.acl_authority":
+		value := x.AclAuthority
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1317,15 +1381,15 @@ func (x *fastReflection_QueryGetSuperAdminResponse) Get(descriptor protoreflect.
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetSuperAdminResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryGetAclAuthorityResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "vvtxchain.acl.QueryGetSuperAdminResponse.Super_admin":
-		x.SuperAdmin = value.Message().Interface().(*SuperAdmin)
+	case "vvtxchain.acl.QueryGetAclAuthorityResponse.acl_authority":
+		x.AclAuthority = value.Message().Interface().(*AclAuthority)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1339,44 +1403,44 @@ func (x *fastReflection_QueryGetSuperAdminResponse) Set(fd protoreflect.FieldDes
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetSuperAdminResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetAclAuthorityResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "vvtxchain.acl.QueryGetSuperAdminResponse.Super_admin":
-		if x.SuperAdmin == nil {
-			x.SuperAdmin = new(SuperAdmin)
+	case "vvtxchain.acl.QueryGetAclAuthorityResponse.acl_authority":
+		if x.AclAuthority == nil {
+			x.AclAuthority = new(AclAuthority)
 		}
-		return protoreflect.ValueOfMessage(x.SuperAdmin.ProtoReflect())
+		return protoreflect.ValueOfMessage(x.AclAuthority.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryGetSuperAdminResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetAclAuthorityResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "vvtxchain.acl.QueryGetSuperAdminResponse.Super_admin":
-		m := new(SuperAdmin)
+	case "vvtxchain.acl.QueryGetAclAuthorityResponse.acl_authority":
+		m := new(AclAuthority)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryGetSuperAdminResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryGetAclAuthorityResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.QueryGetSuperAdminResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.QueryGetAclAuthorityResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1384,7 +1448,7 @@ func (x *fastReflection_QueryGetSuperAdminResponse) WhichOneof(d protoreflect.On
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryGetSuperAdminResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryGetAclAuthorityResponse) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -1395,7 +1459,7 @@ func (x *fastReflection_QueryGetSuperAdminResponse) GetUnknown() protoreflect.Ra
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetSuperAdminResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryGetAclAuthorityResponse) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -1407,7 +1471,7 @@ func (x *fastReflection_QueryGetSuperAdminResponse) SetUnknown(fields protorefle
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryGetSuperAdminResponse) IsValid() bool {
+func (x *fastReflection_QueryGetAclAuthorityResponse) IsValid() bool {
 	return x != nil
 }
 
@@ -1417,9 +1481,9 @@ func (x *fastReflection_QueryGetSuperAdminResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryGetSuperAdminResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryGetAclAuthorityResponse) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryGetSuperAdminResponse)
+		x := input.Message.Interface().(*QueryGetAclAuthorityResponse)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1431,8 +1495,8 @@ func (x *fastReflection_QueryGetSuperAdminResponse) ProtoMethods() *protoiface.M
 		var n int
 		var l int
 		_ = l
-		if x.SuperAdmin != nil {
-			l = options.Size(x.SuperAdmin)
+		if x.AclAuthority != nil {
+			l = options.Size(x.AclAuthority)
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
 		if x.unknownFields != nil {
@@ -1445,7 +1509,7 @@ func (x *fastReflection_QueryGetSuperAdminResponse) ProtoMethods() *protoiface.M
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetSuperAdminResponse)
+		x := input.Message.Interface().(*QueryGetAclAuthorityResponse)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1464,8 +1528,8 @@ func (x *fastReflection_QueryGetSuperAdminResponse) ProtoMethods() *protoiface.M
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.SuperAdmin != nil {
-			encoded, err := options.Marshal(x.SuperAdmin)
+		if x.AclAuthority != nil {
+			encoded, err := options.Marshal(x.AclAuthority)
 			if err != nil {
 				return protoiface.MarshalOutput{
 					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1489,7 +1553,7 @@ func (x *fastReflection_QueryGetSuperAdminResponse) ProtoMethods() *protoiface.M
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetSuperAdminResponse)
+		x := input.Message.Interface().(*QueryGetAclAuthorityResponse)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -1521,15 +1585,15 @@ func (x *fastReflection_QueryGetSuperAdminResponse) ProtoMethods() *protoiface.M
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetSuperAdminResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAclAuthorityResponse: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetSuperAdminResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAclAuthorityResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field SuperAdmin", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AclAuthority", wireType)
 				}
 				var msglen int
 				for shift := uint(0); ; shift += 7 {
@@ -1556,10 +1620,1018 @@ func (x *fastReflection_QueryGetSuperAdminResponse) ProtoMethods() *protoiface.M
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				if x.SuperAdmin == nil {
-					x.SuperAdmin = &SuperAdmin{}
+				if x.AclAuthority == nil {
+					x.AclAuthority = &AclAuthority{}
 				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.SuperAdmin); err != nil {
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.AclAuthority); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_QueryAllAclAuthorityRequest            protoreflect.MessageDescriptor
+	fd_QueryAllAclAuthorityRequest_pagination protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_vvtxchain_acl_query_proto_init()
+	md_QueryAllAclAuthorityRequest = File_vvtxchain_acl_query_proto.Messages().ByName("QueryAllAclAuthorityRequest")
+	fd_QueryAllAclAuthorityRequest_pagination = md_QueryAllAclAuthorityRequest.Fields().ByName("pagination")
+}
+
+var _ protoreflect.Message = (*fastReflection_QueryAllAclAuthorityRequest)(nil)
+
+type fastReflection_QueryAllAclAuthorityRequest QueryAllAclAuthorityRequest
+
+func (x *QueryAllAclAuthorityRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryAllAclAuthorityRequest)(x)
+}
+
+func (x *QueryAllAclAuthorityRequest) slowProtoReflect() protoreflect.Message {
+	mi := &file_vvtxchain_acl_query_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_QueryAllAclAuthorityRequest_messageType fastReflection_QueryAllAclAuthorityRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QueryAllAclAuthorityRequest_messageType{}
+
+type fastReflection_QueryAllAclAuthorityRequest_messageType struct{}
+
+func (x fastReflection_QueryAllAclAuthorityRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryAllAclAuthorityRequest)(nil)
+}
+func (x fastReflection_QueryAllAclAuthorityRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryAllAclAuthorityRequest)
+}
+func (x fastReflection_QueryAllAclAuthorityRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryAllAclAuthorityRequest
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_QueryAllAclAuthorityRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryAllAclAuthorityRequest
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_QueryAllAclAuthorityRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QueryAllAclAuthorityRequest_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_QueryAllAclAuthorityRequest) New() protoreflect.Message {
+	return new(fastReflection_QueryAllAclAuthorityRequest)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_QueryAllAclAuthorityRequest) Interface() protoreflect.ProtoMessage {
+	return (*QueryAllAclAuthorityRequest)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_QueryAllAclAuthorityRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Pagination != nil {
+		value := protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
+		if !f(fd_QueryAllAclAuthorityRequest_pagination, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_QueryAllAclAuthorityRequest) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "vvtxchain.acl.QueryAllAclAuthorityRequest.pagination":
+		return x.Pagination != nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityRequest"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryAllAclAuthorityRequest) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "vvtxchain.acl.QueryAllAclAuthorityRequest.pagination":
+		x.Pagination = nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityRequest"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_QueryAllAclAuthorityRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "vvtxchain.acl.QueryAllAclAuthorityRequest.pagination":
+		value := x.Pagination
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityRequest"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityRequest does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryAllAclAuthorityRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "vvtxchain.acl.QueryAllAclAuthorityRequest.pagination":
+		x.Pagination = value.Message().Interface().(*v1beta1.PageRequest)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityRequest"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryAllAclAuthorityRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "vvtxchain.acl.QueryAllAclAuthorityRequest.pagination":
+		if x.Pagination == nil {
+			x.Pagination = new(v1beta1.PageRequest)
+		}
+		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityRequest"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_QueryAllAclAuthorityRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "vvtxchain.acl.QueryAllAclAuthorityRequest.pagination":
+		m := new(v1beta1.PageRequest)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityRequest"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_QueryAllAclAuthorityRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.QueryAllAclAuthorityRequest", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_QueryAllAclAuthorityRequest) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryAllAclAuthorityRequest) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_QueryAllAclAuthorityRequest) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_QueryAllAclAuthorityRequest) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*QueryAllAclAuthorityRequest)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.Pagination != nil {
+			l = options.Size(x.Pagination)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*QueryAllAclAuthorityRequest)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.Pagination != nil {
+			encoded, err := options.Marshal(x.Pagination)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*QueryAllAclAuthorityRequest)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllAclAuthorityRequest: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllAclAuthorityRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.Pagination == nil {
+					x.Pagination = &v1beta1.PageRequest{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Pagination); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var _ protoreflect.List = (*_QueryAllAclAuthorityResponse_1_list)(nil)
+
+type _QueryAllAclAuthorityResponse_1_list struct {
+	list *[]*AclAuthority
+}
+
+func (x *_QueryAllAclAuthorityResponse_1_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_QueryAllAclAuthorityResponse_1_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
+}
+
+func (x *_QueryAllAclAuthorityResponse_1_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*AclAuthority)
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_QueryAllAclAuthorityResponse_1_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.Message()
+	concreteValue := valueUnwrapped.Interface().(*AclAuthority)
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_QueryAllAclAuthorityResponse_1_list) AppendMutable() protoreflect.Value {
+	v := new(AclAuthority)
+	*x.list = append(*x.list, v)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_QueryAllAclAuthorityResponse_1_list) Truncate(n int) {
+	for i := n; i < len(*x.list); i++ {
+		(*x.list)[i] = nil
+	}
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_QueryAllAclAuthorityResponse_1_list) NewElement() protoreflect.Value {
+	v := new(AclAuthority)
+	return protoreflect.ValueOfMessage(v.ProtoReflect())
+}
+
+func (x *_QueryAllAclAuthorityResponse_1_list) IsValid() bool {
+	return x.list != nil
+}
+
+var (
+	md_QueryAllAclAuthorityResponse               protoreflect.MessageDescriptor
+	fd_QueryAllAclAuthorityResponse_acl_authority protoreflect.FieldDescriptor
+	fd_QueryAllAclAuthorityResponse_pagination    protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_vvtxchain_acl_query_proto_init()
+	md_QueryAllAclAuthorityResponse = File_vvtxchain_acl_query_proto.Messages().ByName("QueryAllAclAuthorityResponse")
+	fd_QueryAllAclAuthorityResponse_acl_authority = md_QueryAllAclAuthorityResponse.Fields().ByName("acl_authority")
+	fd_QueryAllAclAuthorityResponse_pagination = md_QueryAllAclAuthorityResponse.Fields().ByName("pagination")
+}
+
+var _ protoreflect.Message = (*fastReflection_QueryAllAclAuthorityResponse)(nil)
+
+type fastReflection_QueryAllAclAuthorityResponse QueryAllAclAuthorityResponse
+
+func (x *QueryAllAclAuthorityResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryAllAclAuthorityResponse)(x)
+}
+
+func (x *QueryAllAclAuthorityResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_vvtxchain_acl_query_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_QueryAllAclAuthorityResponse_messageType fastReflection_QueryAllAclAuthorityResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QueryAllAclAuthorityResponse_messageType{}
+
+type fastReflection_QueryAllAclAuthorityResponse_messageType struct{}
+
+func (x fastReflection_QueryAllAclAuthorityResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryAllAclAuthorityResponse)(nil)
+}
+func (x fastReflection_QueryAllAclAuthorityResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryAllAclAuthorityResponse)
+}
+func (x fastReflection_QueryAllAclAuthorityResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryAllAclAuthorityResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_QueryAllAclAuthorityResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryAllAclAuthorityResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_QueryAllAclAuthorityResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QueryAllAclAuthorityResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_QueryAllAclAuthorityResponse) New() protoreflect.Message {
+	return new(fastReflection_QueryAllAclAuthorityResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_QueryAllAclAuthorityResponse) Interface() protoreflect.ProtoMessage {
+	return (*QueryAllAclAuthorityResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_QueryAllAclAuthorityResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if len(x.AclAuthority) != 0 {
+		value := protoreflect.ValueOfList(&_QueryAllAclAuthorityResponse_1_list{list: &x.AclAuthority})
+		if !f(fd_QueryAllAclAuthorityResponse_acl_authority, value) {
+			return
+		}
+	}
+	if x.Pagination != nil {
+		value := protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
+		if !f(fd_QueryAllAclAuthorityResponse_pagination, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_QueryAllAclAuthorityResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "vvtxchain.acl.QueryAllAclAuthorityResponse.acl_authority":
+		return len(x.AclAuthority) != 0
+	case "vvtxchain.acl.QueryAllAclAuthorityResponse.pagination":
+		return x.Pagination != nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityResponse"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryAllAclAuthorityResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "vvtxchain.acl.QueryAllAclAuthorityResponse.acl_authority":
+		x.AclAuthority = nil
+	case "vvtxchain.acl.QueryAllAclAuthorityResponse.pagination":
+		x.Pagination = nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityResponse"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_QueryAllAclAuthorityResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "vvtxchain.acl.QueryAllAclAuthorityResponse.acl_authority":
+		if len(x.AclAuthority) == 0 {
+			return protoreflect.ValueOfList(&_QueryAllAclAuthorityResponse_1_list{})
+		}
+		listValue := &_QueryAllAclAuthorityResponse_1_list{list: &x.AclAuthority}
+		return protoreflect.ValueOfList(listValue)
+	case "vvtxchain.acl.QueryAllAclAuthorityResponse.pagination":
+		value := x.Pagination
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityResponse"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryAllAclAuthorityResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "vvtxchain.acl.QueryAllAclAuthorityResponse.acl_authority":
+		lv := value.List()
+		clv := lv.(*_QueryAllAclAuthorityResponse_1_list)
+		x.AclAuthority = *clv.list
+	case "vvtxchain.acl.QueryAllAclAuthorityResponse.pagination":
+		x.Pagination = value.Message().Interface().(*v1beta1.PageResponse)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityResponse"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryAllAclAuthorityResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "vvtxchain.acl.QueryAllAclAuthorityResponse.acl_authority":
+		if x.AclAuthority == nil {
+			x.AclAuthority = []*AclAuthority{}
+		}
+		value := &_QueryAllAclAuthorityResponse_1_list{list: &x.AclAuthority}
+		return protoreflect.ValueOfList(value)
+	case "vvtxchain.acl.QueryAllAclAuthorityResponse.pagination":
+		if x.Pagination == nil {
+			x.Pagination = new(v1beta1.PageResponse)
+		}
+		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityResponse"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_QueryAllAclAuthorityResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "vvtxchain.acl.QueryAllAclAuthorityResponse.acl_authority":
+		list := []*AclAuthority{}
+		return protoreflect.ValueOfList(&_QueryAllAclAuthorityResponse_1_list{list: &list})
+	case "vvtxchain.acl.QueryAllAclAuthorityResponse.pagination":
+		m := new(v1beta1.PageResponse)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityResponse"))
+		}
+		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_QueryAllAclAuthorityResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.QueryAllAclAuthorityResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_QueryAllAclAuthorityResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryAllAclAuthorityResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_QueryAllAclAuthorityResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_QueryAllAclAuthorityResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*QueryAllAclAuthorityResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if len(x.AclAuthority) > 0 {
+			for _, e := range x.AclAuthority {
+				l = options.Size(e)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
+		}
+		if x.Pagination != nil {
+			l = options.Size(x.Pagination)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*QueryAllAclAuthorityResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.Pagination != nil {
+			encoded, err := options.Marshal(x.Pagination)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if len(x.AclAuthority) > 0 {
+			for iNdEx := len(x.AclAuthority) - 1; iNdEx >= 0; iNdEx-- {
+				encoded, err := options.Marshal(x.AclAuthority[iNdEx])
+				if err != nil {
+					return protoiface.MarshalOutput{
+						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+						Buf:               input.Buf,
+					}, err
+				}
+				i -= len(encoded)
+				copy(dAtA[i:], encoded)
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+				i--
+				dAtA[i] = 0xa
+			}
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*QueryAllAclAuthorityResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllAclAuthorityResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllAclAuthorityResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AclAuthority", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.AclAuthority = append(x.AclAuthority, &AclAuthority{})
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.AclAuthority[len(x.AclAuthority)-1]); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.Pagination == nil {
+					x.Pagination = &v1beta1.PageResponse{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Pagination); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
@@ -1618,7 +2690,7 @@ func (x *QueryGetAclAdminRequest) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryGetAclAdminRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_vvtxchain_acl_query_proto_msgTypes[4]
+	mi := &file_vvtxchain_acl_query_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2038,7 +3110,7 @@ func (x *QueryGetAclAdminResponse) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryGetAclAdminResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_vvtxchain_acl_query_proto_msgTypes[5]
+	mi := &file_vvtxchain_acl_query_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2473,7 +3545,7 @@ func (x *QueryAllAclAdminRequest) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryAllAclAdminRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_vvtxchain_acl_query_proto_msgTypes[6]
+	mi := &file_vvtxchain_acl_query_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2961,7 +4033,7 @@ func (x *QueryAllAclAdminResponse) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryAllAclAdminResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_vvtxchain_acl_query_proto_msgTypes[7]
+	mi := &file_vvtxchain_acl_query_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3462,880 +4534,23 @@ func (x *fastReflection_QueryAllAclAdminResponse) ProtoMethods() *protoiface.Met
 }
 
 var (
-	md_QueryGetAclAuthorityRequest         protoreflect.MessageDescriptor
-	fd_QueryGetAclAuthorityRequest_address protoreflect.FieldDescriptor
+	md_QueryGetSuperAdminRequest protoreflect.MessageDescriptor
 )
 
 func init() {
 	file_vvtxchain_acl_query_proto_init()
-	md_QueryGetAclAuthorityRequest = File_vvtxchain_acl_query_proto.Messages().ByName("QueryGetAclAuthorityRequest")
-	fd_QueryGetAclAuthorityRequest_address = md_QueryGetAclAuthorityRequest.Fields().ByName("address")
+	md_QueryGetSuperAdminRequest = File_vvtxchain_acl_query_proto.Messages().ByName("QueryGetSuperAdminRequest")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryGetAclAuthorityRequest)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryGetSuperAdminRequest)(nil)
 
-type fastReflection_QueryGetAclAuthorityRequest QueryGetAclAuthorityRequest
+type fastReflection_QueryGetSuperAdminRequest QueryGetSuperAdminRequest
 
-func (x *QueryGetAclAuthorityRequest) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryGetAclAuthorityRequest)(x)
+func (x *QueryGetSuperAdminRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryGetSuperAdminRequest)(x)
 }
 
-func (x *QueryGetAclAuthorityRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_vvtxchain_acl_query_proto_msgTypes[8]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-var _fastReflection_QueryGetAclAuthorityRequest_messageType fastReflection_QueryGetAclAuthorityRequest_messageType
-var _ protoreflect.MessageType = fastReflection_QueryGetAclAuthorityRequest_messageType{}
-
-type fastReflection_QueryGetAclAuthorityRequest_messageType struct{}
-
-func (x fastReflection_QueryGetAclAuthorityRequest_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryGetAclAuthorityRequest)(nil)
-}
-func (x fastReflection_QueryGetAclAuthorityRequest_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryGetAclAuthorityRequest)
-}
-func (x fastReflection_QueryGetAclAuthorityRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetAclAuthorityRequest
-}
-
-// Descriptor returns message descriptor, which contains only the protobuf
-// type information for the message.
-func (x *fastReflection_QueryGetAclAuthorityRequest) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetAclAuthorityRequest
-}
-
-// Type returns the message type, which encapsulates both Go and protobuf
-// type information. If the Go type information is not needed,
-// it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryGetAclAuthorityRequest) Type() protoreflect.MessageType {
-	return _fastReflection_QueryGetAclAuthorityRequest_messageType
-}
-
-// New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryGetAclAuthorityRequest) New() protoreflect.Message {
-	return new(fastReflection_QueryGetAclAuthorityRequest)
-}
-
-// Interface unwraps the message reflection interface and
-// returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryGetAclAuthorityRequest) Interface() protoreflect.ProtoMessage {
-	return (*QueryGetAclAuthorityRequest)(x)
-}
-
-// Range iterates over every populated field in an undefined order,
-// calling f for each field descriptor and value encountered.
-// Range returns immediately if f returns false.
-// While iterating, mutating operations may only be performed
-// on the current field descriptor.
-func (x *fastReflection_QueryGetAclAuthorityRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Address != "" {
-		value := protoreflect.ValueOfString(x.Address)
-		if !f(fd_QueryGetAclAuthorityRequest_address, value) {
-			return
-		}
-	}
-}
-
-// Has reports whether a field is populated.
-//
-// Some fields have the property of nullability where it is possible to
-// distinguish between the default value of a field and whether the field
-// was explicitly populated with the default value. Singular message fields,
-// member fields of a oneof, and proto2 scalar fields are nullable. Such
-// fields are populated only if explicitly set.
-//
-// In other cases (aside from the nullable cases above),
-// a proto3 scalar field is populated if it contains a non-zero value, and
-// a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryGetAclAuthorityRequest) Has(fd protoreflect.FieldDescriptor) bool {
-	switch fd.FullName() {
-	case "vvtxchain.acl.QueryGetAclAuthorityRequest.address":
-		return x.Address != ""
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityRequest"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityRequest does not contain field %s", fd.FullName()))
-	}
-}
-
-// Clear clears the field such that a subsequent Has call reports false.
-//
-// Clearing an extension field clears both the extension type and value
-// associated with the given field number.
-//
-// Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetAclAuthorityRequest) Clear(fd protoreflect.FieldDescriptor) {
-	switch fd.FullName() {
-	case "vvtxchain.acl.QueryGetAclAuthorityRequest.address":
-		x.Address = ""
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityRequest"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityRequest does not contain field %s", fd.FullName()))
-	}
-}
-
-// Get retrieves the value for a field.
-//
-// For unpopulated scalars, it returns the default value, where
-// the default value of a bytes scalar is guaranteed to be a copy.
-// For unpopulated composite types, it returns an empty, read-only view
-// of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryGetAclAuthorityRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
-	switch descriptor.FullName() {
-	case "vvtxchain.acl.QueryGetAclAuthorityRequest.address":
-		value := x.Address
-		return protoreflect.ValueOfString(value)
-	default:
-		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityRequest"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityRequest does not contain field %s", descriptor.FullName()))
-	}
-}
-
-// Set stores the value for a field.
-//
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType.
-// When setting a composite type, it is unspecified whether the stored value
-// aliases the source's memory in any way. If the composite value is an
-// empty, read-only value, then it panics.
-//
-// Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetAclAuthorityRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
-	switch fd.FullName() {
-	case "vvtxchain.acl.QueryGetAclAuthorityRequest.address":
-		x.Address = value.Interface().(string)
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityRequest"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityRequest does not contain field %s", fd.FullName()))
-	}
-}
-
-// Mutable returns a mutable reference to a composite type.
-//
-// If the field is unpopulated, it may allocate a composite value.
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType
-// if not already stored.
-// It panics if the field does not contain a composite type.
-//
-// Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetAclAuthorityRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	case "vvtxchain.acl.QueryGetAclAuthorityRequest.address":
-		panic(fmt.Errorf("field address of message vvtxchain.acl.QueryGetAclAuthorityRequest is not mutable"))
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityRequest"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityRequest does not contain field %s", fd.FullName()))
-	}
-}
-
-// NewField returns a new value that is assignable to the field
-// for the given descriptor. For scalars, this returns the default value.
-// For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryGetAclAuthorityRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	case "vvtxchain.acl.QueryGetAclAuthorityRequest.address":
-		return protoreflect.ValueOfString("")
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityRequest"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityRequest does not contain field %s", fd.FullName()))
-	}
-}
-
-// WhichOneof reports which field within the oneof is populated,
-// returning nil if none are populated.
-// It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryGetAclAuthorityRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
-	switch d.FullName() {
-	default:
-		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.QueryGetAclAuthorityRequest", d.FullName()))
-	}
-	panic("unreachable")
-}
-
-// GetUnknown retrieves the entire list of unknown fields.
-// The caller may only mutate the contents of the RawFields
-// if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryGetAclAuthorityRequest) GetUnknown() protoreflect.RawFields {
-	return x.unknownFields
-}
-
-// SetUnknown stores an entire list of unknown fields.
-// The raw fields must be syntactically valid according to the wire format.
-// An implementation may panic if this is not the case.
-// Once stored, the caller must not mutate the content of the RawFields.
-// An empty RawFields may be passed to clear the fields.
-//
-// SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetAclAuthorityRequest) SetUnknown(fields protoreflect.RawFields) {
-	x.unknownFields = fields
-}
-
-// IsValid reports whether the message is valid.
-//
-// An invalid message is an empty, read-only value.
-//
-// An invalid message often corresponds to a nil pointer of the concrete
-// message type, but the details are implementation dependent.
-// Validity is not part of the protobuf data model, and may not
-// be preserved in marshaling or other operations.
-func (x *fastReflection_QueryGetAclAuthorityRequest) IsValid() bool {
-	return x != nil
-}
-
-// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
-// This method may return nil.
-//
-// The returned methods type is identical to
-// "google.golang.org/protobuf/runtime/protoiface".Methods.
-// Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryGetAclAuthorityRequest) ProtoMethods() *protoiface.Methods {
-	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryGetAclAuthorityRequest)
-		if x == nil {
-			return protoiface.SizeOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Size:              0,
-			}
-		}
-		options := runtime.SizeInputToOptions(input)
-		_ = options
-		var n int
-		var l int
-		_ = l
-		l = len(x.Address)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		if x.unknownFields != nil {
-			n += len(x.unknownFields)
-		}
-		return protoiface.SizeOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Size:              n,
-		}
-	}
-
-	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetAclAuthorityRequest)
-		if x == nil {
-			return protoiface.MarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Buf:               input.Buf,
-			}, nil
-		}
-		options := runtime.MarshalInputToOptions(input)
-		_ = options
-		size := options.Size(x)
-		dAtA := make([]byte, size)
-		i := len(dAtA)
-		_ = i
-		var l int
-		_ = l
-		if x.unknownFields != nil {
-			i -= len(x.unknownFields)
-			copy(dAtA[i:], x.unknownFields)
-		}
-		if len(x.Address) > 0 {
-			i -= len(x.Address)
-			copy(dAtA[i:], x.Address)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Address)))
-			i--
-			dAtA[i] = 0xa
-		}
-		if input.Buf != nil {
-			input.Buf = append(input.Buf, dAtA...)
-		} else {
-			input.Buf = dAtA
-		}
-		return protoiface.MarshalOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Buf:               input.Buf,
-		}, nil
-	}
-	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetAclAuthorityRequest)
-		if x == nil {
-			return protoiface.UnmarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Flags:             input.Flags,
-			}, nil
-		}
-		options := runtime.UnmarshalInputToOptions(input)
-		_ = options
-		dAtA := input.Buf
-		l := len(dAtA)
-		iNdEx := 0
-		for iNdEx < l {
-			preIndex := iNdEx
-			var wire uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-				}
-				if iNdEx >= l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				wire |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			fieldNum := int32(wire >> 3)
-			wireType := int(wire & 0x7)
-			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAclAuthorityRequest: wiretype end group for non-group")
-			}
-			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAclAuthorityRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-			}
-			switch fieldNum {
-			case 1:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
-				}
-				var stringLen uint64
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.Address = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
-			default:
-				iNdEx = preIndex
-				skippy, err := runtime.Skip(dAtA[iNdEx:])
-				if err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				if (skippy < 0) || (iNdEx+skippy) < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if (iNdEx + skippy) > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if !options.DiscardUnknown {
-					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
-				}
-				iNdEx += skippy
-			}
-		}
-
-		if iNdEx > l {
-			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-		}
-		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
-	}
-	return &protoiface.Methods{
-		NoUnkeyedLiterals: struct{}{},
-		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
-		Size:              size,
-		Marshal:           marshal,
-		Unmarshal:         unmarshal,
-		Merge:             nil,
-		CheckInitialized:  nil,
-	}
-}
-
-var (
-	md_QueryGetAclAuthorityResponse               protoreflect.MessageDescriptor
-	fd_QueryGetAclAuthorityResponse_acl_authority protoreflect.FieldDescriptor
-)
-
-func init() {
-	file_vvtxchain_acl_query_proto_init()
-	md_QueryGetAclAuthorityResponse = File_vvtxchain_acl_query_proto.Messages().ByName("QueryGetAclAuthorityResponse")
-	fd_QueryGetAclAuthorityResponse_acl_authority = md_QueryGetAclAuthorityResponse.Fields().ByName("acl_authority")
-}
-
-var _ protoreflect.Message = (*fastReflection_QueryGetAclAuthorityResponse)(nil)
-
-type fastReflection_QueryGetAclAuthorityResponse QueryGetAclAuthorityResponse
-
-func (x *QueryGetAclAuthorityResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryGetAclAuthorityResponse)(x)
-}
-
-func (x *QueryGetAclAuthorityResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_vvtxchain_acl_query_proto_msgTypes[9]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-var _fastReflection_QueryGetAclAuthorityResponse_messageType fastReflection_QueryGetAclAuthorityResponse_messageType
-var _ protoreflect.MessageType = fastReflection_QueryGetAclAuthorityResponse_messageType{}
-
-type fastReflection_QueryGetAclAuthorityResponse_messageType struct{}
-
-func (x fastReflection_QueryGetAclAuthorityResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryGetAclAuthorityResponse)(nil)
-}
-func (x fastReflection_QueryGetAclAuthorityResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryGetAclAuthorityResponse)
-}
-func (x fastReflection_QueryGetAclAuthorityResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetAclAuthorityResponse
-}
-
-// Descriptor returns message descriptor, which contains only the protobuf
-// type information for the message.
-func (x *fastReflection_QueryGetAclAuthorityResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryGetAclAuthorityResponse
-}
-
-// Type returns the message type, which encapsulates both Go and protobuf
-// type information. If the Go type information is not needed,
-// it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryGetAclAuthorityResponse) Type() protoreflect.MessageType {
-	return _fastReflection_QueryGetAclAuthorityResponse_messageType
-}
-
-// New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryGetAclAuthorityResponse) New() protoreflect.Message {
-	return new(fastReflection_QueryGetAclAuthorityResponse)
-}
-
-// Interface unwraps the message reflection interface and
-// returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryGetAclAuthorityResponse) Interface() protoreflect.ProtoMessage {
-	return (*QueryGetAclAuthorityResponse)(x)
-}
-
-// Range iterates over every populated field in an undefined order,
-// calling f for each field descriptor and value encountered.
-// Range returns immediately if f returns false.
-// While iterating, mutating operations may only be performed
-// on the current field descriptor.
-func (x *fastReflection_QueryGetAclAuthorityResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.AclAuthority != nil {
-		value := protoreflect.ValueOfMessage(x.AclAuthority.ProtoReflect())
-		if !f(fd_QueryGetAclAuthorityResponse_acl_authority, value) {
-			return
-		}
-	}
-}
-
-// Has reports whether a field is populated.
-//
-// Some fields have the property of nullability where it is possible to
-// distinguish between the default value of a field and whether the field
-// was explicitly populated with the default value. Singular message fields,
-// member fields of a oneof, and proto2 scalar fields are nullable. Such
-// fields are populated only if explicitly set.
-//
-// In other cases (aside from the nullable cases above),
-// a proto3 scalar field is populated if it contains a non-zero value, and
-// a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryGetAclAuthorityResponse) Has(fd protoreflect.FieldDescriptor) bool {
-	switch fd.FullName() {
-	case "vvtxchain.acl.QueryGetAclAuthorityResponse.acl_authority":
-		return x.AclAuthority != nil
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityResponse"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// Clear clears the field such that a subsequent Has call reports false.
-//
-// Clearing an extension field clears both the extension type and value
-// associated with the given field number.
-//
-// Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetAclAuthorityResponse) Clear(fd protoreflect.FieldDescriptor) {
-	switch fd.FullName() {
-	case "vvtxchain.acl.QueryGetAclAuthorityResponse.acl_authority":
-		x.AclAuthority = nil
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityResponse"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// Get retrieves the value for a field.
-//
-// For unpopulated scalars, it returns the default value, where
-// the default value of a bytes scalar is guaranteed to be a copy.
-// For unpopulated composite types, it returns an empty, read-only view
-// of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryGetAclAuthorityResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
-	switch descriptor.FullName() {
-	case "vvtxchain.acl.QueryGetAclAuthorityResponse.acl_authority":
-		value := x.AclAuthority
-		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	default:
-		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityResponse"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityResponse does not contain field %s", descriptor.FullName()))
-	}
-}
-
-// Set stores the value for a field.
-//
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType.
-// When setting a composite type, it is unspecified whether the stored value
-// aliases the source's memory in any way. If the composite value is an
-// empty, read-only value, then it panics.
-//
-// Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetAclAuthorityResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
-	switch fd.FullName() {
-	case "vvtxchain.acl.QueryGetAclAuthorityResponse.acl_authority":
-		x.AclAuthority = value.Message().Interface().(*AclAuthority)
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityResponse"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// Mutable returns a mutable reference to a composite type.
-//
-// If the field is unpopulated, it may allocate a composite value.
-// For a field belonging to a oneof, it implicitly clears any other field
-// that may be currently set within the same oneof.
-// For extension fields, it implicitly stores the provided ExtensionType
-// if not already stored.
-// It panics if the field does not contain a composite type.
-//
-// Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetAclAuthorityResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	case "vvtxchain.acl.QueryGetAclAuthorityResponse.acl_authority":
-		if x.AclAuthority == nil {
-			x.AclAuthority = new(AclAuthority)
-		}
-		return protoreflect.ValueOfMessage(x.AclAuthority.ProtoReflect())
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityResponse"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// NewField returns a new value that is assignable to the field
-// for the given descriptor. For scalars, this returns the default value.
-// For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryGetAclAuthorityResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
-	switch fd.FullName() {
-	case "vvtxchain.acl.QueryGetAclAuthorityResponse.acl_authority":
-		m := new(AclAuthority)
-		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	default:
-		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetAclAuthorityResponse"))
-		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryGetAclAuthorityResponse does not contain field %s", fd.FullName()))
-	}
-}
-
-// WhichOneof reports which field within the oneof is populated,
-// returning nil if none are populated.
-// It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryGetAclAuthorityResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
-	switch d.FullName() {
-	default:
-		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.QueryGetAclAuthorityResponse", d.FullName()))
-	}
-	panic("unreachable")
-}
-
-// GetUnknown retrieves the entire list of unknown fields.
-// The caller may only mutate the contents of the RawFields
-// if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryGetAclAuthorityResponse) GetUnknown() protoreflect.RawFields {
-	return x.unknownFields
-}
-
-// SetUnknown stores an entire list of unknown fields.
-// The raw fields must be syntactically valid according to the wire format.
-// An implementation may panic if this is not the case.
-// Once stored, the caller must not mutate the content of the RawFields.
-// An empty RawFields may be passed to clear the fields.
-//
-// SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryGetAclAuthorityResponse) SetUnknown(fields protoreflect.RawFields) {
-	x.unknownFields = fields
-}
-
-// IsValid reports whether the message is valid.
-//
-// An invalid message is an empty, read-only value.
-//
-// An invalid message often corresponds to a nil pointer of the concrete
-// message type, but the details are implementation dependent.
-// Validity is not part of the protobuf data model, and may not
-// be preserved in marshaling or other operations.
-func (x *fastReflection_QueryGetAclAuthorityResponse) IsValid() bool {
-	return x != nil
-}
-
-// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
-// This method may return nil.
-//
-// The returned methods type is identical to
-// "google.golang.org/protobuf/runtime/protoiface".Methods.
-// Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryGetAclAuthorityResponse) ProtoMethods() *protoiface.Methods {
-	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryGetAclAuthorityResponse)
-		if x == nil {
-			return protoiface.SizeOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Size:              0,
-			}
-		}
-		options := runtime.SizeInputToOptions(input)
-		_ = options
-		var n int
-		var l int
-		_ = l
-		if x.AclAuthority != nil {
-			l = options.Size(x.AclAuthority)
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
-		if x.unknownFields != nil {
-			n += len(x.unknownFields)
-		}
-		return protoiface.SizeOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Size:              n,
-		}
-	}
-
-	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetAclAuthorityResponse)
-		if x == nil {
-			return protoiface.MarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Buf:               input.Buf,
-			}, nil
-		}
-		options := runtime.MarshalInputToOptions(input)
-		_ = options
-		size := options.Size(x)
-		dAtA := make([]byte, size)
-		i := len(dAtA)
-		_ = i
-		var l int
-		_ = l
-		if x.unknownFields != nil {
-			i -= len(x.unknownFields)
-			copy(dAtA[i:], x.unknownFields)
-		}
-		if x.AclAuthority != nil {
-			encoded, err := options.Marshal(x.AclAuthority)
-			if err != nil {
-				return protoiface.MarshalOutput{
-					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-					Buf:               input.Buf,
-				}, err
-			}
-			i -= len(encoded)
-			copy(dAtA[i:], encoded)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-			i--
-			dAtA[i] = 0xa
-		}
-		if input.Buf != nil {
-			input.Buf = append(input.Buf, dAtA...)
-		} else {
-			input.Buf = dAtA
-		}
-		return protoiface.MarshalOutput{
-			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-			Buf:               input.Buf,
-		}, nil
-	}
-	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryGetAclAuthorityResponse)
-		if x == nil {
-			return protoiface.UnmarshalOutput{
-				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-				Flags:             input.Flags,
-			}, nil
-		}
-		options := runtime.UnmarshalInputToOptions(input)
-		_ = options
-		dAtA := input.Buf
-		l := len(dAtA)
-		iNdEx := 0
-		for iNdEx < l {
-			preIndex := iNdEx
-			var wire uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-				}
-				if iNdEx >= l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				wire |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			fieldNum := int32(wire >> 3)
-			wireType := int(wire & 0x7)
-			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAclAuthorityResponse: wiretype end group for non-group")
-			}
-			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetAclAuthorityResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-			}
-			switch fieldNum {
-			case 1:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AclAuthority", wireType)
-				}
-				var msglen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					msglen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if x.AclAuthority == nil {
-					x.AclAuthority = &AclAuthority{}
-				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.AclAuthority); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				iNdEx = postIndex
-			default:
-				iNdEx = preIndex
-				skippy, err := runtime.Skip(dAtA[iNdEx:])
-				if err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				if (skippy < 0) || (iNdEx+skippy) < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if (iNdEx + skippy) > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if !options.DiscardUnknown {
-					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
-				}
-				iNdEx += skippy
-			}
-		}
-
-		if iNdEx > l {
-			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-		}
-		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
-	}
-	return &protoiface.Methods{
-		NoUnkeyedLiterals: struct{}{},
-		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
-		Size:              size,
-		Marshal:           marshal,
-		Unmarshal:         unmarshal,
-		Merge:             nil,
-		CheckInitialized:  nil,
-	}
-}
-
-var (
-	md_QueryAllAclAuthorityRequest            protoreflect.MessageDescriptor
-	fd_QueryAllAclAuthorityRequest_pagination protoreflect.FieldDescriptor
-)
-
-func init() {
-	file_vvtxchain_acl_query_proto_init()
-	md_QueryAllAclAuthorityRequest = File_vvtxchain_acl_query_proto.Messages().ByName("QueryAllAclAuthorityRequest")
-	fd_QueryAllAclAuthorityRequest_pagination = md_QueryAllAclAuthorityRequest.Fields().ByName("pagination")
-}
-
-var _ protoreflect.Message = (*fastReflection_QueryAllAclAuthorityRequest)(nil)
-
-type fastReflection_QueryAllAclAuthorityRequest QueryAllAclAuthorityRequest
-
-func (x *QueryAllAclAuthorityRequest) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryAllAclAuthorityRequest)(x)
-}
-
-func (x *QueryAllAclAuthorityRequest) slowProtoReflect() protoreflect.Message {
+func (x *QueryGetSuperAdminRequest) slowProtoReflect() protoreflect.Message {
 	mi := &file_vvtxchain_acl_query_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4347,43 +4562,43 @@ func (x *QueryAllAclAuthorityRequest) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryAllAclAuthorityRequest_messageType fastReflection_QueryAllAclAuthorityRequest_messageType
-var _ protoreflect.MessageType = fastReflection_QueryAllAclAuthorityRequest_messageType{}
+var _fastReflection_QueryGetSuperAdminRequest_messageType fastReflection_QueryGetSuperAdminRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QueryGetSuperAdminRequest_messageType{}
 
-type fastReflection_QueryAllAclAuthorityRequest_messageType struct{}
+type fastReflection_QueryGetSuperAdminRequest_messageType struct{}
 
-func (x fastReflection_QueryAllAclAuthorityRequest_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryAllAclAuthorityRequest)(nil)
+func (x fastReflection_QueryGetSuperAdminRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryGetSuperAdminRequest)(nil)
 }
-func (x fastReflection_QueryAllAclAuthorityRequest_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryAllAclAuthorityRequest)
+func (x fastReflection_QueryGetSuperAdminRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryGetSuperAdminRequest)
 }
-func (x fastReflection_QueryAllAclAuthorityRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllAclAuthorityRequest
+func (x fastReflection_QueryGetSuperAdminRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetSuperAdminRequest
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryAllAclAuthorityRequest) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllAclAuthorityRequest
+func (x *fastReflection_QueryGetSuperAdminRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetSuperAdminRequest
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryAllAclAuthorityRequest) Type() protoreflect.MessageType {
-	return _fastReflection_QueryAllAclAuthorityRequest_messageType
+func (x *fastReflection_QueryGetSuperAdminRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QueryGetSuperAdminRequest_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryAllAclAuthorityRequest) New() protoreflect.Message {
-	return new(fastReflection_QueryAllAclAuthorityRequest)
+func (x *fastReflection_QueryGetSuperAdminRequest) New() protoreflect.Message {
+	return new(fastReflection_QueryGetSuperAdminRequest)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryAllAclAuthorityRequest) Interface() protoreflect.ProtoMessage {
-	return (*QueryAllAclAuthorityRequest)(x)
+func (x *fastReflection_QueryGetSuperAdminRequest) Interface() protoreflect.ProtoMessage {
+	return (*QueryGetSuperAdminRequest)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -4391,13 +4606,7 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) Interface() protoreflect.Pr
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryAllAclAuthorityRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Pagination != nil {
-		value := protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
-		if !f(fd_QueryAllAclAuthorityRequest_pagination, value) {
-			return
-		}
-	}
+func (x *fastReflection_QueryGetSuperAdminRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
 }
 
 // Has reports whether a field is populated.
@@ -4411,15 +4620,13 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) Range(f func(protoreflect.F
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryAllAclAuthorityRequest) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryGetSuperAdminRequest) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "vvtxchain.acl.QueryAllAclAuthorityRequest.pagination":
-		return x.Pagination != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminRequest"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -4429,15 +4636,13 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) Has(fd protoreflect.FieldDe
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllAclAuthorityRequest) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryGetSuperAdminRequest) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "vvtxchain.acl.QueryAllAclAuthorityRequest.pagination":
-		x.Pagination = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminRequest"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -4447,16 +4652,13 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) Clear(fd protoreflect.Field
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryAllAclAuthorityRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetSuperAdminRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "vvtxchain.acl.QueryAllAclAuthorityRequest.pagination":
-		value := x.Pagination
-		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminRequest"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityRequest does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminRequest does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -4470,15 +4672,13 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) Get(descriptor protoreflect
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllAclAuthorityRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryGetSuperAdminRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "vvtxchain.acl.QueryAllAclAuthorityRequest.pagination":
-		x.Pagination = value.Message().Interface().(*v1beta1.PageRequest)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminRequest"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -4492,44 +4692,36 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) Set(fd protoreflect.FieldDe
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllAclAuthorityRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetSuperAdminRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "vvtxchain.acl.QueryAllAclAuthorityRequest.pagination":
-		if x.Pagination == nil {
-			x.Pagination = new(v1beta1.PageRequest)
-		}
-		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminRequest"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryAllAclAuthorityRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetSuperAdminRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "vvtxchain.acl.QueryAllAclAuthorityRequest.pagination":
-		m := new(v1beta1.PageRequest)
-		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminRequest"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminRequest does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryAllAclAuthorityRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryGetSuperAdminRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.QueryAllAclAuthorityRequest", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.QueryGetSuperAdminRequest", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -4537,7 +4729,7 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) WhichOneof(d protoreflect.O
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryAllAclAuthorityRequest) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryGetSuperAdminRequest) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -4548,7 +4740,7 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) GetUnknown() protoreflect.R
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllAclAuthorityRequest) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryGetSuperAdminRequest) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -4560,7 +4752,7 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) SetUnknown(fields protorefl
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryAllAclAuthorityRequest) IsValid() bool {
+func (x *fastReflection_QueryGetSuperAdminRequest) IsValid() bool {
 	return x != nil
 }
 
@@ -4570,9 +4762,9 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryAllAclAuthorityRequest) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryGetSuperAdminRequest) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryAllAclAuthorityRequest)
+		x := input.Message.Interface().(*QueryGetSuperAdminRequest)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -4584,10 +4776,6 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) ProtoMethods() *protoiface.
 		var n int
 		var l int
 		_ = l
-		if x.Pagination != nil {
-			l = options.Size(x.Pagination)
-			n += 1 + l + runtime.Sov(uint64(l))
-		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
 		}
@@ -4598,7 +4786,7 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) ProtoMethods() *protoiface.
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllAclAuthorityRequest)
+		x := input.Message.Interface().(*QueryGetSuperAdminRequest)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -4617,20 +4805,6 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) ProtoMethods() *protoiface.
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.Pagination != nil {
-			encoded, err := options.Marshal(x.Pagination)
-			if err != nil {
-				return protoiface.MarshalOutput{
-					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-					Buf:               input.Buf,
-				}, err
-			}
-			i -= len(encoded)
-			copy(dAtA[i:], encoded)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-			i--
-			dAtA[i] = 0xa
-		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
 		} else {
@@ -4642,7 +4816,7 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) ProtoMethods() *protoiface.
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllAclAuthorityRequest)
+		x := input.Message.Interface().(*QueryGetSuperAdminRequest)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -4674,48 +4848,12 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) ProtoMethods() *protoiface.
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllAclAuthorityRequest: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetSuperAdminRequest: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllAclAuthorityRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetSuperAdminRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
-			case 1:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
-				}
-				var msglen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					msglen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if x.Pagination == nil {
-					x.Pagination = &v1beta1.PageRequest{}
-				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Pagination); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
-				}
-				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -4751,79 +4889,26 @@ func (x *fastReflection_QueryAllAclAuthorityRequest) ProtoMethods() *protoiface.
 	}
 }
 
-var _ protoreflect.List = (*_QueryAllAclAuthorityResponse_1_list)(nil)
-
-type _QueryAllAclAuthorityResponse_1_list struct {
-	list *[]*AclAuthority
-}
-
-func (x *_QueryAllAclAuthorityResponse_1_list) Len() int {
-	if x.list == nil {
-		return 0
-	}
-	return len(*x.list)
-}
-
-func (x *_QueryAllAclAuthorityResponse_1_list) Get(i int) protoreflect.Value {
-	return protoreflect.ValueOfMessage((*x.list)[i].ProtoReflect())
-}
-
-func (x *_QueryAllAclAuthorityResponse_1_list) Set(i int, value protoreflect.Value) {
-	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*AclAuthority)
-	(*x.list)[i] = concreteValue
-}
-
-func (x *_QueryAllAclAuthorityResponse_1_list) Append(value protoreflect.Value) {
-	valueUnwrapped := value.Message()
-	concreteValue := valueUnwrapped.Interface().(*AclAuthority)
-	*x.list = append(*x.list, concreteValue)
-}
-
-func (x *_QueryAllAclAuthorityResponse_1_list) AppendMutable() protoreflect.Value {
-	v := new(AclAuthority)
-	*x.list = append(*x.list, v)
-	return protoreflect.ValueOfMessage(v.ProtoReflect())
-}
-
-func (x *_QueryAllAclAuthorityResponse_1_list) Truncate(n int) {
-	for i := n; i < len(*x.list); i++ {
-		(*x.list)[i] = nil
-	}
-	*x.list = (*x.list)[:n]
-}
-
-func (x *_QueryAllAclAuthorityResponse_1_list) NewElement() protoreflect.Value {
-	v := new(AclAuthority)
-	return protoreflect.ValueOfMessage(v.ProtoReflect())
-}
-
-func (x *_QueryAllAclAuthorityResponse_1_list) IsValid() bool {
-	return x.list != nil
-}
-
 var (
-	md_QueryAllAclAuthorityResponse               protoreflect.MessageDescriptor
-	fd_QueryAllAclAuthorityResponse_acl_authority protoreflect.FieldDescriptor
-	fd_QueryAllAclAuthorityResponse_pagination    protoreflect.FieldDescriptor
+	md_QueryGetSuperAdminResponse             protoreflect.MessageDescriptor
+	fd_QueryGetSuperAdminResponse_super_admin protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_vvtxchain_acl_query_proto_init()
-	md_QueryAllAclAuthorityResponse = File_vvtxchain_acl_query_proto.Messages().ByName("QueryAllAclAuthorityResponse")
-	fd_QueryAllAclAuthorityResponse_acl_authority = md_QueryAllAclAuthorityResponse.Fields().ByName("acl_authority")
-	fd_QueryAllAclAuthorityResponse_pagination = md_QueryAllAclAuthorityResponse.Fields().ByName("pagination")
+	md_QueryGetSuperAdminResponse = File_vvtxchain_acl_query_proto.Messages().ByName("QueryGetSuperAdminResponse")
+	fd_QueryGetSuperAdminResponse_super_admin = md_QueryGetSuperAdminResponse.Fields().ByName("super_admin")
 }
 
-var _ protoreflect.Message = (*fastReflection_QueryAllAclAuthorityResponse)(nil)
+var _ protoreflect.Message = (*fastReflection_QueryGetSuperAdminResponse)(nil)
 
-type fastReflection_QueryAllAclAuthorityResponse QueryAllAclAuthorityResponse
+type fastReflection_QueryGetSuperAdminResponse QueryGetSuperAdminResponse
 
-func (x *QueryAllAclAuthorityResponse) ProtoReflect() protoreflect.Message {
-	return (*fastReflection_QueryAllAclAuthorityResponse)(x)
+func (x *QueryGetSuperAdminResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryGetSuperAdminResponse)(x)
 }
 
-func (x *QueryAllAclAuthorityResponse) slowProtoReflect() protoreflect.Message {
+func (x *QueryGetSuperAdminResponse) slowProtoReflect() protoreflect.Message {
 	mi := &file_vvtxchain_acl_query_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -4835,43 +4920,43 @@ func (x *QueryAllAclAuthorityResponse) slowProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-var _fastReflection_QueryAllAclAuthorityResponse_messageType fastReflection_QueryAllAclAuthorityResponse_messageType
-var _ protoreflect.MessageType = fastReflection_QueryAllAclAuthorityResponse_messageType{}
+var _fastReflection_QueryGetSuperAdminResponse_messageType fastReflection_QueryGetSuperAdminResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QueryGetSuperAdminResponse_messageType{}
 
-type fastReflection_QueryAllAclAuthorityResponse_messageType struct{}
+type fastReflection_QueryGetSuperAdminResponse_messageType struct{}
 
-func (x fastReflection_QueryAllAclAuthorityResponse_messageType) Zero() protoreflect.Message {
-	return (*fastReflection_QueryAllAclAuthorityResponse)(nil)
+func (x fastReflection_QueryGetSuperAdminResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryGetSuperAdminResponse)(nil)
 }
-func (x fastReflection_QueryAllAclAuthorityResponse_messageType) New() protoreflect.Message {
-	return new(fastReflection_QueryAllAclAuthorityResponse)
+func (x fastReflection_QueryGetSuperAdminResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryGetSuperAdminResponse)
 }
-func (x fastReflection_QueryAllAclAuthorityResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllAclAuthorityResponse
+func (x fastReflection_QueryGetSuperAdminResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetSuperAdminResponse
 }
 
 // Descriptor returns message descriptor, which contains only the protobuf
 // type information for the message.
-func (x *fastReflection_QueryAllAclAuthorityResponse) Descriptor() protoreflect.MessageDescriptor {
-	return md_QueryAllAclAuthorityResponse
+func (x *fastReflection_QueryGetSuperAdminResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetSuperAdminResponse
 }
 
 // Type returns the message type, which encapsulates both Go and protobuf
 // type information. If the Go type information is not needed,
 // it is recommended that the message descriptor be used instead.
-func (x *fastReflection_QueryAllAclAuthorityResponse) Type() protoreflect.MessageType {
-	return _fastReflection_QueryAllAclAuthorityResponse_messageType
+func (x *fastReflection_QueryGetSuperAdminResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QueryGetSuperAdminResponse_messageType
 }
 
 // New returns a newly allocated and mutable empty message.
-func (x *fastReflection_QueryAllAclAuthorityResponse) New() protoreflect.Message {
-	return new(fastReflection_QueryAllAclAuthorityResponse)
+func (x *fastReflection_QueryGetSuperAdminResponse) New() protoreflect.Message {
+	return new(fastReflection_QueryGetSuperAdminResponse)
 }
 
 // Interface unwraps the message reflection interface and
 // returns the underlying ProtoMessage interface.
-func (x *fastReflection_QueryAllAclAuthorityResponse) Interface() protoreflect.ProtoMessage {
-	return (*QueryAllAclAuthorityResponse)(x)
+func (x *fastReflection_QueryGetSuperAdminResponse) Interface() protoreflect.ProtoMessage {
+	return (*QueryGetSuperAdminResponse)(x)
 }
 
 // Range iterates over every populated field in an undefined order,
@@ -4879,16 +4964,10 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) Interface() protoreflect.P
 // Range returns immediately if f returns false.
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
-func (x *fastReflection_QueryAllAclAuthorityResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if len(x.AclAuthority) != 0 {
-		value := protoreflect.ValueOfList(&_QueryAllAclAuthorityResponse_1_list{list: &x.AclAuthority})
-		if !f(fd_QueryAllAclAuthorityResponse_acl_authority, value) {
-			return
-		}
-	}
-	if x.Pagination != nil {
-		value := protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
-		if !f(fd_QueryAllAclAuthorityResponse_pagination, value) {
+func (x *fastReflection_QueryGetSuperAdminResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.SuperAdmin != nil {
+		value := protoreflect.ValueOfMessage(x.SuperAdmin.ProtoReflect())
+		if !f(fd_QueryGetSuperAdminResponse_super_admin, value) {
 			return
 		}
 	}
@@ -4905,17 +4984,15 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) Range(f func(protoreflect.
 // In other cases (aside from the nullable cases above),
 // a proto3 scalar field is populated if it contains a non-zero value, and
 // a repeated field is populated if it is non-empty.
-func (x *fastReflection_QueryAllAclAuthorityResponse) Has(fd protoreflect.FieldDescriptor) bool {
+func (x *fastReflection_QueryGetSuperAdminResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "vvtxchain.acl.QueryAllAclAuthorityResponse.acl_authority":
-		return len(x.AclAuthority) != 0
-	case "vvtxchain.acl.QueryAllAclAuthorityResponse.pagination":
-		return x.Pagination != nil
+	case "vvtxchain.acl.QueryGetSuperAdminResponse.super_admin":
+		return x.SuperAdmin != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -4925,17 +5002,15 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) Has(fd protoreflect.FieldD
 // associated with the given field number.
 //
 // Clear is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllAclAuthorityResponse) Clear(fd protoreflect.FieldDescriptor) {
+func (x *fastReflection_QueryGetSuperAdminResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "vvtxchain.acl.QueryAllAclAuthorityResponse.acl_authority":
-		x.AclAuthority = nil
-	case "vvtxchain.acl.QueryAllAclAuthorityResponse.pagination":
-		x.Pagination = nil
+	case "vvtxchain.acl.QueryGetSuperAdminResponse.super_admin":
+		x.SuperAdmin = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -4945,22 +5020,16 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) Clear(fd protoreflect.Fiel
 // the default value of a bytes scalar is guaranteed to be a copy.
 // For unpopulated composite types, it returns an empty, read-only view
 // of the value; to obtain a mutable reference, use Mutable.
-func (x *fastReflection_QueryAllAclAuthorityResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetSuperAdminResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "vvtxchain.acl.QueryAllAclAuthorityResponse.acl_authority":
-		if len(x.AclAuthority) == 0 {
-			return protoreflect.ValueOfList(&_QueryAllAclAuthorityResponse_1_list{})
-		}
-		listValue := &_QueryAllAclAuthorityResponse_1_list{list: &x.AclAuthority}
-		return protoreflect.ValueOfList(listValue)
-	case "vvtxchain.acl.QueryAllAclAuthorityResponse.pagination":
-		value := x.Pagination
+	case "vvtxchain.acl.QueryGetSuperAdminResponse.super_admin":
+		value := x.SuperAdmin
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -4974,19 +5043,15 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) Get(descriptor protoreflec
 // empty, read-only value, then it panics.
 //
 // Set is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllAclAuthorityResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+func (x *fastReflection_QueryGetSuperAdminResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "vvtxchain.acl.QueryAllAclAuthorityResponse.acl_authority":
-		lv := value.List()
-		clv := lv.(*_QueryAllAclAuthorityResponse_1_list)
-		x.AclAuthority = *clv.list
-	case "vvtxchain.acl.QueryAllAclAuthorityResponse.pagination":
-		x.Pagination = value.Message().Interface().(*v1beta1.PageResponse)
+	case "vvtxchain.acl.QueryGetSuperAdminResponse.super_admin":
+		x.SuperAdmin = value.Message().Interface().(*SuperAdmin)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -5000,53 +5065,44 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) Set(fd protoreflect.FieldD
 // It panics if the field does not contain a composite type.
 //
 // Mutable is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllAclAuthorityResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetSuperAdminResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "vvtxchain.acl.QueryAllAclAuthorityResponse.acl_authority":
-		if x.AclAuthority == nil {
-			x.AclAuthority = []*AclAuthority{}
+	case "vvtxchain.acl.QueryGetSuperAdminResponse.super_admin":
+		if x.SuperAdmin == nil {
+			x.SuperAdmin = new(SuperAdmin)
 		}
-		value := &_QueryAllAclAuthorityResponse_1_list{list: &x.AclAuthority}
-		return protoreflect.ValueOfList(value)
-	case "vvtxchain.acl.QueryAllAclAuthorityResponse.pagination":
-		if x.Pagination == nil {
-			x.Pagination = new(v1beta1.PageResponse)
-		}
-		return protoreflect.ValueOfMessage(x.Pagination.ProtoReflect())
+		return protoreflect.ValueOfMessage(x.SuperAdmin.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // NewField returns a new value that is assignable to the field
 // for the given descriptor. For scalars, this returns the default value.
 // For lists, maps, and messages, this returns a new, empty, mutable value.
-func (x *fastReflection_QueryAllAclAuthorityResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+func (x *fastReflection_QueryGetSuperAdminResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "vvtxchain.acl.QueryAllAclAuthorityResponse.acl_authority":
-		list := []*AclAuthority{}
-		return protoreflect.ValueOfList(&_QueryAllAclAuthorityResponse_1_list{list: &list})
-	case "vvtxchain.acl.QueryAllAclAuthorityResponse.pagination":
-		m := new(v1beta1.PageResponse)
+	case "vvtxchain.acl.QueryGetSuperAdminResponse.super_admin":
+		m := new(SuperAdmin)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryAllAclAuthorityResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: vvtxchain.acl.QueryGetSuperAdminResponse"))
 		}
-		panic(fmt.Errorf("message vvtxchain.acl.QueryAllAclAuthorityResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message vvtxchain.acl.QueryGetSuperAdminResponse does not contain field %s", fd.FullName()))
 	}
 }
 
 // WhichOneof reports which field within the oneof is populated,
 // returning nil if none are populated.
 // It panics if the oneof descriptor does not belong to this message.
-func (x *fastReflection_QueryAllAclAuthorityResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+func (x *fastReflection_QueryGetSuperAdminResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.QueryAllAclAuthorityResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in vvtxchain.acl.QueryGetSuperAdminResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -5054,7 +5110,7 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) WhichOneof(d protoreflect.
 // GetUnknown retrieves the entire list of unknown fields.
 // The caller may only mutate the contents of the RawFields
 // if the mutated bytes are stored back into the message with SetUnknown.
-func (x *fastReflection_QueryAllAclAuthorityResponse) GetUnknown() protoreflect.RawFields {
+func (x *fastReflection_QueryGetSuperAdminResponse) GetUnknown() protoreflect.RawFields {
 	return x.unknownFields
 }
 
@@ -5065,7 +5121,7 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) GetUnknown() protoreflect.
 // An empty RawFields may be passed to clear the fields.
 //
 // SetUnknown is a mutating operation and unsafe for concurrent use.
-func (x *fastReflection_QueryAllAclAuthorityResponse) SetUnknown(fields protoreflect.RawFields) {
+func (x *fastReflection_QueryGetSuperAdminResponse) SetUnknown(fields protoreflect.RawFields) {
 	x.unknownFields = fields
 }
 
@@ -5077,7 +5133,7 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) SetUnknown(fields protoref
 // message type, but the details are implementation dependent.
 // Validity is not part of the protobuf data model, and may not
 // be preserved in marshaling or other operations.
-func (x *fastReflection_QueryAllAclAuthorityResponse) IsValid() bool {
+func (x *fastReflection_QueryGetSuperAdminResponse) IsValid() bool {
 	return x != nil
 }
 
@@ -5087,9 +5143,9 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) IsValid() bool {
 // The returned methods type is identical to
 // "google.golang.org/protobuf/runtime/protoiface".Methods.
 // Consult the protoiface package documentation for details.
-func (x *fastReflection_QueryAllAclAuthorityResponse) ProtoMethods() *protoiface.Methods {
+func (x *fastReflection_QueryGetSuperAdminResponse) ProtoMethods() *protoiface.Methods {
 	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
-		x := input.Message.Interface().(*QueryAllAclAuthorityResponse)
+		x := input.Message.Interface().(*QueryGetSuperAdminResponse)
 		if x == nil {
 			return protoiface.SizeOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -5101,14 +5157,8 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) ProtoMethods() *protoiface
 		var n int
 		var l int
 		_ = l
-		if len(x.AclAuthority) > 0 {
-			for _, e := range x.AclAuthority {
-				l = options.Size(e)
-				n += 1 + l + runtime.Sov(uint64(l))
-			}
-		}
-		if x.Pagination != nil {
-			l = options.Size(x.Pagination)
+		if x.SuperAdmin != nil {
+			l = options.Size(x.SuperAdmin)
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
 		if x.unknownFields != nil {
@@ -5121,7 +5171,7 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) ProtoMethods() *protoiface
 	}
 
 	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllAclAuthorityResponse)
+		x := input.Message.Interface().(*QueryGetSuperAdminResponse)
 		if x == nil {
 			return protoiface.MarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -5140,8 +5190,8 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) ProtoMethods() *protoiface
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if x.Pagination != nil {
-			encoded, err := options.Marshal(x.Pagination)
+		if x.SuperAdmin != nil {
+			encoded, err := options.Marshal(x.SuperAdmin)
 			if err != nil {
 				return protoiface.MarshalOutput{
 					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -5152,23 +5202,7 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) ProtoMethods() *protoiface
 			copy(dAtA[i:], encoded)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
 			i--
-			dAtA[i] = 0x12
-		}
-		if len(x.AclAuthority) > 0 {
-			for iNdEx := len(x.AclAuthority) - 1; iNdEx >= 0; iNdEx-- {
-				encoded, err := options.Marshal(x.AclAuthority[iNdEx])
-				if err != nil {
-					return protoiface.MarshalOutput{
-						NoUnkeyedLiterals: input.NoUnkeyedLiterals,
-						Buf:               input.Buf,
-					}, err
-				}
-				i -= len(encoded)
-				copy(dAtA[i:], encoded)
-				i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
-				i--
-				dAtA[i] = 0xa
-			}
+			dAtA[i] = 0xa
 		}
 		if input.Buf != nil {
 			input.Buf = append(input.Buf, dAtA...)
@@ -5181,7 +5215,7 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) ProtoMethods() *protoiface
 		}, nil
 	}
 	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
-		x := input.Message.Interface().(*QueryAllAclAuthorityResponse)
+		x := input.Message.Interface().(*QueryGetSuperAdminResponse)
 		if x == nil {
 			return protoiface.UnmarshalOutput{
 				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
@@ -5213,15 +5247,15 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) ProtoMethods() *protoiface
 			fieldNum := int32(wire >> 3)
 			wireType := int(wire & 0x7)
 			if wireType == 4 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllAclAuthorityResponse: wiretype end group for non-group")
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetSuperAdminResponse: wiretype end group for non-group")
 			}
 			if fieldNum <= 0 {
-				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryAllAclAuthorityResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetSuperAdminResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 			}
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field AclAuthority", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field SuperAdmin", wireType)
 				}
 				var msglen int
 				for shift := uint(0); ; shift += 7 {
@@ -5248,44 +5282,10 @@ func (x *fastReflection_QueryAllAclAuthorityResponse) ProtoMethods() *protoiface
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.AclAuthority = append(x.AclAuthority, &AclAuthority{})
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.AclAuthority[len(x.AclAuthority)-1]); err != nil {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				if x.SuperAdmin == nil {
+					x.SuperAdmin = &SuperAdmin{}
 				}
-				iNdEx = postIndex
-			case 2:
-				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
-				}
-				var msglen int
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
-					}
-					if iNdEx >= l {
-						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					msglen |= int(b&0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				if msglen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + msglen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				if x.Pagination == nil {
-					x.Pagination = &v1beta1.PageResponse{}
-				}
-				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Pagination); err != nil {
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.SuperAdmin); err != nil {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
@@ -5401,215 +5401,6 @@ func (x *QueryParamsResponse) GetParams() *Params {
 	return nil
 }
 
-type QueryGetSuperAdminRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *QueryGetSuperAdminRequest) Reset() {
-	*x = QueryGetSuperAdminRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_query_proto_msgTypes[2]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *QueryGetSuperAdminRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryGetSuperAdminRequest) ProtoMessage() {}
-
-// Deprecated: Use QueryGetSuperAdminRequest.ProtoReflect.Descriptor instead.
-func (*QueryGetSuperAdminRequest) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{2}
-}
-
-type QueryGetSuperAdminResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	SuperAdmin *SuperAdmin `protobuf:"bytes,1,opt,name=Super_admin,json=SuperAdmin,proto3" json:"Super_admin,omitempty"`
-}
-
-func (x *QueryGetSuperAdminResponse) Reset() {
-	*x = QueryGetSuperAdminResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_query_proto_msgTypes[3]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *QueryGetSuperAdminResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryGetSuperAdminResponse) ProtoMessage() {}
-
-// Deprecated: Use QueryGetSuperAdminResponse.ProtoReflect.Descriptor instead.
-func (*QueryGetSuperAdminResponse) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *QueryGetSuperAdminResponse) GetSuperAdmin() *SuperAdmin {
-	if x != nil {
-		return x.SuperAdmin
-	}
-	return nil
-}
-
-type QueryGetAclAdminRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Address string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
-}
-
-func (x *QueryGetAclAdminRequest) Reset() {
-	*x = QueryGetAclAdminRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_query_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *QueryGetAclAdminRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryGetAclAdminRequest) ProtoMessage() {}
-
-// Deprecated: Use QueryGetAclAdminRequest.ProtoReflect.Descriptor instead.
-func (*QueryGetAclAdminRequest) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *QueryGetAclAdminRequest) GetAddress() string {
-	if x != nil {
-		return x.Address
-	}
-	return ""
-}
-
-type QueryGetAclAdminResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	AclAdmin *AclAdmin `protobuf:"bytes,1,opt,name=acl_admin,json=aclAdmin,proto3" json:"acl_admin,omitempty"`
-}
-
-func (x *QueryGetAclAdminResponse) Reset() {
-	*x = QueryGetAclAdminResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_query_proto_msgTypes[5]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *QueryGetAclAdminResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryGetAclAdminResponse) ProtoMessage() {}
-
-// Deprecated: Use QueryGetAclAdminResponse.ProtoReflect.Descriptor instead.
-func (*QueryGetAclAdminResponse) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *QueryGetAclAdminResponse) GetAclAdmin() *AclAdmin {
-	if x != nil {
-		return x.AclAdmin
-	}
-	return nil
-}
-
-type QueryAllAclAdminRequest struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Pagination *v1beta1.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
-}
-
-func (x *QueryAllAclAdminRequest) Reset() {
-	*x = QueryAllAclAdminRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_query_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *QueryAllAclAdminRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryAllAclAdminRequest) ProtoMessage() {}
-
-// Deprecated: Use QueryAllAclAdminRequest.ProtoReflect.Descriptor instead.
-func (*QueryAllAclAdminRequest) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *QueryAllAclAdminRequest) GetPagination() *v1beta1.PageRequest {
-	if x != nil {
-		return x.Pagination
-	}
-	return nil
-}
-
-type QueryAllAclAdminResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	AclAdmin   []*AclAdmin           `protobuf:"bytes,1,rep,name=acl_admin,json=aclAdmin,proto3" json:"acl_admin,omitempty"`
-	Pagination *v1beta1.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
-}
-
-func (x *QueryAllAclAdminResponse) Reset() {
-	*x = QueryAllAclAdminResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_query_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *QueryAllAclAdminResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryAllAclAdminResponse) ProtoMessage() {}
-
-// Deprecated: Use QueryAllAclAdminResponse.ProtoReflect.Descriptor instead.
-func (*QueryAllAclAdminResponse) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *QueryAllAclAdminResponse) GetAclAdmin() []*AclAdmin {
-	if x != nil {
-		return x.AclAdmin
-	}
-	return nil
-}
-
-func (x *QueryAllAclAdminResponse) GetPagination() *v1beta1.PageResponse {
-	if x != nil {
-		return x.Pagination
-	}
-	return nil
-}
-
 type QueryGetAclAuthorityRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -5621,7 +5412,7 @@ type QueryGetAclAuthorityRequest struct {
 func (x *QueryGetAclAuthorityRequest) Reset() {
 	*x = QueryGetAclAuthorityRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_query_proto_msgTypes[8]
+		mi := &file_vvtxchain_acl_query_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5635,7 +5426,7 @@ func (*QueryGetAclAuthorityRequest) ProtoMessage() {}
 
 // Deprecated: Use QueryGetAclAuthorityRequest.ProtoReflect.Descriptor instead.
 func (*QueryGetAclAuthorityRequest) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{8}
+	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *QueryGetAclAuthorityRequest) GetAddress() string {
@@ -5656,7 +5447,7 @@ type QueryGetAclAuthorityResponse struct {
 func (x *QueryGetAclAuthorityResponse) Reset() {
 	*x = QueryGetAclAuthorityResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_query_proto_msgTypes[9]
+		mi := &file_vvtxchain_acl_query_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5670,7 +5461,7 @@ func (*QueryGetAclAuthorityResponse) ProtoMessage() {}
 
 // Deprecated: Use QueryGetAclAuthorityResponse.ProtoReflect.Descriptor instead.
 func (*QueryGetAclAuthorityResponse) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{9}
+	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *QueryGetAclAuthorityResponse) GetAclAuthority() *AclAuthority {
@@ -5691,7 +5482,7 @@ type QueryAllAclAuthorityRequest struct {
 func (x *QueryAllAclAuthorityRequest) Reset() {
 	*x = QueryAllAclAuthorityRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_query_proto_msgTypes[10]
+		mi := &file_vvtxchain_acl_query_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5705,7 +5496,7 @@ func (*QueryAllAclAuthorityRequest) ProtoMessage() {}
 
 // Deprecated: Use QueryAllAclAuthorityRequest.ProtoReflect.Descriptor instead.
 func (*QueryAllAclAuthorityRequest) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{10}
+	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *QueryAllAclAuthorityRequest) GetPagination() *v1beta1.PageRequest {
@@ -5727,7 +5518,7 @@ type QueryAllAclAuthorityResponse struct {
 func (x *QueryAllAclAuthorityResponse) Reset() {
 	*x = QueryAllAclAuthorityResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_vvtxchain_acl_query_proto_msgTypes[11]
+		mi := &file_vvtxchain_acl_query_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -5741,7 +5532,7 @@ func (*QueryAllAclAuthorityResponse) ProtoMessage() {}
 
 // Deprecated: Use QueryAllAclAuthorityResponse.ProtoReflect.Descriptor instead.
 func (*QueryAllAclAuthorityResponse) Descriptor() ([]byte, []int) {
-	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{11}
+	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *QueryAllAclAuthorityResponse) GetAclAuthority() []*AclAuthority {
@@ -5758,159 +5549,368 @@ func (x *QueryAllAclAuthorityResponse) GetPagination() *v1beta1.PageResponse {
 	return nil
 }
 
+type QueryGetAclAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Address string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
+}
+
+func (x *QueryGetAclAdminRequest) Reset() {
+	*x = QueryGetAclAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vvtxchain_acl_query_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryGetAclAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryGetAclAdminRequest) ProtoMessage() {}
+
+// Deprecated: Use QueryGetAclAdminRequest.ProtoReflect.Descriptor instead.
+func (*QueryGetAclAdminRequest) Descriptor() ([]byte, []int) {
+	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *QueryGetAclAdminRequest) GetAddress() string {
+	if x != nil {
+		return x.Address
+	}
+	return ""
+}
+
+type QueryGetAclAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AclAdmin *AclAdmin `protobuf:"bytes,1,opt,name=acl_admin,json=aclAdmin,proto3" json:"acl_admin,omitempty"`
+}
+
+func (x *QueryGetAclAdminResponse) Reset() {
+	*x = QueryGetAclAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vvtxchain_acl_query_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryGetAclAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryGetAclAdminResponse) ProtoMessage() {}
+
+// Deprecated: Use QueryGetAclAdminResponse.ProtoReflect.Descriptor instead.
+func (*QueryGetAclAdminResponse) Descriptor() ([]byte, []int) {
+	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *QueryGetAclAdminResponse) GetAclAdmin() *AclAdmin {
+	if x != nil {
+		return x.AclAdmin
+	}
+	return nil
+}
+
+type QueryAllAclAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Pagination *v1beta1.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (x *QueryAllAclAdminRequest) Reset() {
+	*x = QueryAllAclAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vvtxchain_acl_query_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryAllAclAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryAllAclAdminRequest) ProtoMessage() {}
+
+// Deprecated: Use QueryAllAclAdminRequest.ProtoReflect.Descriptor instead.
+func (*QueryAllAclAdminRequest) Descriptor() ([]byte, []int) {
+	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *QueryAllAclAdminRequest) GetPagination() *v1beta1.PageRequest {
+	if x != nil {
+		return x.Pagination
+	}
+	return nil
+}
+
+type QueryAllAclAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AclAdmin   []*AclAdmin           `protobuf:"bytes,1,rep,name=acl_admin,json=aclAdmin,proto3" json:"acl_admin,omitempty"`
+	Pagination *v1beta1.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (x *QueryAllAclAdminResponse) Reset() {
+	*x = QueryAllAclAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vvtxchain_acl_query_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryAllAclAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryAllAclAdminResponse) ProtoMessage() {}
+
+// Deprecated: Use QueryAllAclAdminResponse.ProtoReflect.Descriptor instead.
+func (*QueryAllAclAdminResponse) Descriptor() ([]byte, []int) {
+	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *QueryAllAclAdminResponse) GetAclAdmin() []*AclAdmin {
+	if x != nil {
+		return x.AclAdmin
+	}
+	return nil
+}
+
+func (x *QueryAllAclAdminResponse) GetPagination() *v1beta1.PageResponse {
+	if x != nil {
+		return x.Pagination
+	}
+	return nil
+}
+
+type QueryGetSuperAdminRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *QueryGetSuperAdminRequest) Reset() {
+	*x = QueryGetSuperAdminRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vvtxchain_acl_query_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryGetSuperAdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryGetSuperAdminRequest) ProtoMessage() {}
+
+// Deprecated: Use QueryGetSuperAdminRequest.ProtoReflect.Descriptor instead.
+func (*QueryGetSuperAdminRequest) Descriptor() ([]byte, []int) {
+	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{10}
+}
+
+type QueryGetSuperAdminResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SuperAdmin *SuperAdmin `protobuf:"bytes,1,opt,name=super_admin,json=superAdmin,proto3" json:"super_admin,omitempty"`
+}
+
+func (x *QueryGetSuperAdminResponse) Reset() {
+	*x = QueryGetSuperAdminResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_vvtxchain_acl_query_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryGetSuperAdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryGetSuperAdminResponse) ProtoMessage() {}
+
+// Deprecated: Use QueryGetSuperAdminResponse.ProtoReflect.Descriptor instead.
+func (*QueryGetSuperAdminResponse) Descriptor() ([]byte, []int) {
+	return file_vvtxchain_acl_query_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *QueryGetSuperAdminResponse) GetSuperAdmin() *SuperAdmin {
+	if x != nil {
+		return x.SuperAdmin
+	}
+	return nil
+}
+
 var File_vvtxchain_acl_query_proto protoreflect.FileDescriptor
 
 var file_vvtxchain_acl_query_proto_rawDesc = []byte{
-	0x0a, 0x19, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f,
-	0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0d, 0x76, 0x76, 0x74,
-	0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x1a, 0x11, 0x61, 0x6d, 0x69, 0x6e,
+	0x0a, 0x19, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f,
+	0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0d, 0x67, 0x67, 0x65,
+	0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x1a, 0x11, 0x61, 0x6d, 0x69, 0x6e,
 	0x6f, 0x2f, 0x61, 0x6d, 0x69, 0x6e, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x14, 0x67,
 	0x6f, 0x67, 0x6f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x6f, 0x67, 0x6f, 0x2e, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x1a, 0x1c, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x61, 0x70, 0x69, 0x2f,
 	0x61, 0x6e, 0x6e, 0x6f, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x1a, 0x2a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x62, 0x61, 0x73, 0x65, 0x2f, 0x71,
 	0x75, 0x65, 0x72, 0x79, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2f, 0x70, 0x61, 0x67,
-	0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1a, 0x76,
-	0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f, 0x70, 0x61, 0x72,
-	0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x76, 0x76, 0x74, 0x78, 0x63,
-	0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f, 0x73, 0x75, 0x70, 0x65, 0x72, 0x5f, 0x61,
-	0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1d, 0x76, 0x76, 0x74, 0x78,
-	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f, 0x61, 0x63, 0x6c, 0x5f, 0x61, 0x64,
-	0x6d, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x21, 0x76, 0x76, 0x74, 0x78, 0x63,
+	0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1a, 0x67,
+	0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f, 0x70, 0x61, 0x72,
+	0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x21, 0x67, 0x67, 0x65, 0x7a, 0x63,
 	0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f, 0x61, 0x63, 0x6c, 0x5f, 0x61, 0x75, 0x74,
-	0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x14, 0x0a, 0x12,
+	0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1d, 0x67, 0x67,
+	0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f, 0x61, 0x63, 0x6c, 0x5f,
+	0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x67, 0x67, 0x65,
+	0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f, 0x73, 0x75, 0x70, 0x65, 0x72,
+	0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x14, 0x0a, 0x12,
 	0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
 	0x73, 0x74, 0x22, 0x4f, 0x0a, 0x13, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d,
 	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x38, 0x0a, 0x06, 0x70, 0x61, 0x72,
-	0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x76, 0x76, 0x74, 0x78,
+	0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x67, 0x67, 0x65, 0x7a,
 	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
 	0x42, 0x09, 0xc8, 0xde, 0x1f, 0x00, 0xa8, 0xe7, 0xb0, 0x2a, 0x01, 0x52, 0x06, 0x70, 0x61, 0x72,
-	0x61, 0x6d, 0x73, 0x22, 0x1b, 0x0a, 0x19, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53,
-	0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x22, 0x5e, 0x0a, 0x1a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x75, 0x70, 0x65,
-	0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x40,
-	0x0a, 0x0b, 0x53, 0x75, 0x70, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e,
-	0x61, 0x63, 0x6c, 0x2e, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x42, 0x04,
-	0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0a, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e,
-	0x22, 0x33, 0x0a, 0x17, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x63, 0x6c, 0x41,
-	0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x61,
-	0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x64,
-	0x64, 0x72, 0x65, 0x73, 0x73, 0x22, 0x56, 0x0a, 0x18, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65,
-	0x74, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x3a, 0x0a, 0x09, 0x61, 0x63, 0x6c, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e,
-	0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x42, 0x04, 0xc8,
-	0xde, 0x1f, 0x00, 0x52, 0x08, 0x61, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x22, 0x61, 0x0a,
-	0x17, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69,
-	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69,
-	0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x63,
-	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79,
-	0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x22, 0x9f, 0x01, 0x0a, 0x18, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x41, 0x63, 0x6c,
-	0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3a, 0x0a,
-	0x09, 0x61, 0x63, 0x6c, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
-	0x32, 0x17, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c,
-	0x2e, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52,
-	0x08, 0x61, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67,
-	0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e,
-	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72,
-	0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x22, 0x37, 0x0a, 0x1b, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x63,
-	0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x22, 0x66, 0x0a, 0x1c, 0x51,
-	0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72,
-	0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x46, 0x0a, 0x0d, 0x61,
-	0x63, 0x6c, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61,
-	0x63, 0x6c, 0x2e, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x42,
-	0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0c, 0x61, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72,
-	0x69, 0x74, 0x79, 0x22, 0x65, 0x0a, 0x1b, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x41,
+	0x61, 0x6d, 0x73, 0x22, 0x37, 0x0a, 0x1b, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41,
 	0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e,
-	0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74,
-	0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x0a,
-	0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0xaf, 0x01, 0x0a, 0x1c, 0x51,
-	0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72,
-	0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x46, 0x0a, 0x0d, 0x61,
-	0x63, 0x6c, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x03,
-	0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61,
-	0x63, 0x6c, 0x2e, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x42,
-	0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0c, 0x61, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72,
-	0x69, 0x74, 0x79, 0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x22, 0x66, 0x0a, 0x1c,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f,
+	0x72, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x46, 0x0a, 0x0d,
+	0x61, 0x63, 0x6c, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e,
+	0x61, 0x63, 0x6c, 0x2e, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79,
+	0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0c, 0x61, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f,
+	0x72, 0x69, 0x74, 0x79, 0x22, 0x65, 0x0a, 0x1b, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c,
+	0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
 	0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62, 0x65,
-	0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x32, 0xef, 0x06, 0x0a,
+	0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52,
+	0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0xaf, 0x01, 0x0a, 0x1c,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f,
+	0x72, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x46, 0x0a, 0x0d,
+	0x61, 0x63, 0x6c, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e,
+	0x61, 0x63, 0x6c, 0x2e, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79,
+	0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x0c, 0x61, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f,
+	0x72, 0x69, 0x74, 0x79, 0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
+	0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31, 0x62,
+	0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x33, 0x0a,
+	0x17, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69,
+	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72,
+	0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65,
+	0x73, 0x73, 0x22, 0x56, 0x0a, 0x18, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x63,
+	0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3a,
+	0x0a, 0x09, 0x61, 0x63, 0x6c, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x17, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63,
+	0x6c, 0x2e, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00,
+	0x52, 0x08, 0x61, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x22, 0x61, 0x0a, 0x17, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d,
+	0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76, 0x31,
+	0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x9f, 0x01,
+	0x0a, 0x18, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d,
+	0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3a, 0x0a, 0x09, 0x61, 0x63,
+	0x6c, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x17, 0x2e,
+	0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x41, 0x63,
+	0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00, 0x52, 0x08, 0x61, 0x63,
+	0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x47, 0x0a, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x27, 0x2e, 0x63, 0x6f, 0x73,
+	0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x76,
+	0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x50, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x69, 0x6e, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22,
+	0x1b, 0x0a, 0x19, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x75, 0x70, 0x65, 0x72,
+	0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x5e, 0x0a, 0x1a,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d,
+	0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x40, 0x0a, 0x0b, 0x73, 0x75,
+	0x70, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x19, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e,
+	0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x42, 0x04, 0xc8, 0xde, 0x1f, 0x00,
+	0x52, 0x0a, 0x73, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x32, 0xef, 0x06, 0x0a,
 	0x05, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x77, 0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
-	0x12, 0x21, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c,
+	0x12, 0x21, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c,
 	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e,
+	0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e,
 	0x61, 0x63, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52,
 	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x26, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x20, 0x12,
-	0x1e, 0x2f, 0x47, 0x47, 0x45, 0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f, 0x76, 0x76, 0x74, 0x78, 0x63,
+	0x1e, 0x2f, 0x47, 0x47, 0x45, 0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f, 0x67, 0x67, 0x65, 0x7a, 0x63,
 	0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12,
-	0x8e, 0x01, 0x0a, 0x0a, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x28,
-	0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x51,
-	0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69,
-	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63,
-	0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65,
-	0x74, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x22, 0x2b, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x25, 0x12, 0x23, 0x2f, 0x47, 0x47,
-	0x45, 0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e,
-	0x2f, 0x61, 0x63, 0x6c, 0x2f, 0x73, 0x75, 0x70, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e,
-	0x12, 0x90, 0x01, 0x0a, 0x08, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x26, 0x2e,
-	0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x51, 0x75,
-	0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69,
-	0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x63,
-	0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x33,
-	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2d, 0x12, 0x2b, 0x2f, 0x47, 0x47, 0x45, 0x5a, 0x4c, 0x61, 0x62,
-	0x73, 0x2f, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f,
-	0x61, 0x63, 0x6c, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2f, 0x7b, 0x61, 0x64, 0x64, 0x72, 0x65,
-	0x73, 0x73, 0x7d, 0x12, 0x89, 0x01, 0x0a, 0x0b, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e,
-	0x41, 0x6c, 0x6c, 0x12, 0x26, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e,
-	0x61, 0x63, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x41, 0x63, 0x6c, 0x41,
-	0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x76, 0x76,
-	0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x41, 0x6c, 0x6c, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x29, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x23, 0x12, 0x21, 0x2f, 0x47,
-	0x47, 0x45, 0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69,
-	0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f, 0x61, 0x63, 0x6c, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x12,
 	0xa0, 0x01, 0x0a, 0x0c, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79,
-	0x12, 0x2a, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c,
+	0x12, 0x2a, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c,
 	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68,
-	0x6f, 0x72, 0x69, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x76,
-	0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x51, 0x75, 0x65,
+	0x6f, 0x72, 0x69, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x67,
+	0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x51, 0x75, 0x65,
 	0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74,
 	0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x37, 0x82, 0xd3, 0xe4, 0x93, 0x02,
-	0x31, 0x12, 0x2f, 0x2f, 0x47, 0x47, 0x45, 0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f, 0x76, 0x76, 0x74,
-	0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f, 0x61, 0x63, 0x6c, 0x5f, 0x61,
+	0x31, 0x12, 0x2f, 0x2f, 0x47, 0x47, 0x45, 0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f, 0x67, 0x67, 0x65,
+	0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f, 0x61, 0x63, 0x6c, 0x5f, 0x61,
 	0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x2f, 0x7b, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73,
 	0x73, 0x7d, 0x12, 0x99, 0x01, 0x0a, 0x0f, 0x41, 0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72,
-	0x69, 0x74, 0x79, 0x41, 0x6c, 0x6c, 0x12, 0x2a, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61,
+	0x69, 0x74, 0x79, 0x41, 0x6c, 0x6c, 0x12, 0x2a, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61,
 	0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x41,
 	0x63, 0x6c, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61,
+	0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61,
 	0x63, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x41, 0x63, 0x6c, 0x41, 0x75,
 	0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
 	0x2d, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x27, 0x12, 0x25, 0x2f, 0x47, 0x47, 0x45, 0x5a, 0x4c, 0x61,
-	0x62, 0x73, 0x2f, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c,
-	0x2f, 0x61, 0x63, 0x6c, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x42, 0xa5,
-	0x01, 0x0a, 0x11, 0x63, 0x6f, 0x6d, 0x2e, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e,
+	0x62, 0x73, 0x2f, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c,
+	0x2f, 0x61, 0x63, 0x6c, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x90,
+	0x01, 0x0a, 0x08, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x26, 0x2e, 0x67, 0x67,
+	0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72,
+	0x79, 0x47, 0x65, 0x74, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e,
+	0x61, 0x63, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x63, 0x6c, 0x41,
+	0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x33, 0x82, 0xd3,
+	0xe4, 0x93, 0x02, 0x2d, 0x12, 0x2b, 0x2f, 0x47, 0x47, 0x45, 0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f,
+	0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61, 0x63, 0x6c, 0x2f, 0x61, 0x63,
+	0x6c, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x2f, 0x7b, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
+	0x7d, 0x12, 0x89, 0x01, 0x0a, 0x0b, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x41, 0x6c,
+	0x6c, 0x12, 0x26, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63,
+	0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41, 0x6c, 0x6c, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d,
+	0x69, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x67, 0x67, 0x65, 0x7a,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x41,
+	0x6c, 0x6c, 0x41, 0x63, 0x6c, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x29, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x23, 0x12, 0x21, 0x2f, 0x47, 0x47, 0x45,
+	0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f,
+	0x61, 0x63, 0x6c, 0x2f, 0x61, 0x63, 0x6c, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x8e, 0x01,
+	0x0a, 0x0a, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x12, 0x28, 0x2e, 0x67,
+	0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x51, 0x75, 0x65,
+	0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x29, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61,
+	0x69, 0x6e, 0x2e, 0x61, 0x63, 0x6c, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53,
+	0x75, 0x70, 0x65, 0x72, 0x41, 0x64, 0x6d, 0x69, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x2b, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x25, 0x12, 0x23, 0x2f, 0x47, 0x47, 0x45, 0x5a,
+	0x4c, 0x61, 0x62, 0x73, 0x2f, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f, 0x61,
+	0x63, 0x6c, 0x2f, 0x73, 0x75, 0x70, 0x65, 0x72, 0x5f, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x42, 0xa5,
+	0x01, 0x0a, 0x11, 0x63, 0x6f, 0x6d, 0x2e, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e,
 	0x2e, 0x61, 0x63, 0x6c, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x72, 0x6f, 0x74, 0x6f,
 	0x50, 0x01, 0x5a, 0x2f, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x47,
-	0x47, 0x45, 0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69,
-	0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f,
-	0x61, 0x63, 0x6c, 0xa2, 0x02, 0x03, 0x56, 0x41, 0x58, 0xaa, 0x02, 0x0d, 0x56, 0x76, 0x74, 0x78,
-	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x41, 0x63, 0x6c, 0xca, 0x02, 0x0d, 0x56, 0x76, 0x74, 0x78,
-	0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x41, 0x63, 0x6c, 0xe2, 0x02, 0x19, 0x56, 0x76, 0x74, 0x78,
+	0x47, 0x45, 0x5a, 0x4c, 0x61, 0x62, 0x73, 0x2f, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69,
+	0x6e, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69, 0x6e, 0x2f,
+	0x61, 0x63, 0x6c, 0xa2, 0x02, 0x03, 0x47, 0x41, 0x58, 0xaa, 0x02, 0x0d, 0x47, 0x67, 0x65, 0x7a,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x2e, 0x41, 0x63, 0x6c, 0xca, 0x02, 0x0d, 0x47, 0x67, 0x65, 0x7a,
+	0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x41, 0x63, 0x6c, 0xe2, 0x02, 0x19, 0x47, 0x67, 0x65, 0x7a,
 	0x63, 0x68, 0x61, 0x69, 0x6e, 0x5c, 0x41, 0x63, 0x6c, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74,
-	0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0e, 0x56, 0x76, 0x74, 0x78, 0x63, 0x68, 0x61, 0x69,
+	0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0e, 0x47, 0x67, 0x65, 0x7a, 0x63, 0x68, 0x61, 0x69,
 	0x6e, 0x3a, 0x3a, 0x41, 0x63, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
@@ -5930,46 +5930,46 @@ var file_vvtxchain_acl_query_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_vvtxchain_acl_query_proto_goTypes = []interface{}{
 	(*QueryParamsRequest)(nil),           // 0: vvtxchain.acl.QueryParamsRequest
 	(*QueryParamsResponse)(nil),          // 1: vvtxchain.acl.QueryParamsResponse
-	(*QueryGetSuperAdminRequest)(nil),    // 2: vvtxchain.acl.QueryGetSuperAdminRequest
-	(*QueryGetSuperAdminResponse)(nil),   // 3: vvtxchain.acl.QueryGetSuperAdminResponse
-	(*QueryGetAclAdminRequest)(nil),      // 4: vvtxchain.acl.QueryGetAclAdminRequest
-	(*QueryGetAclAdminResponse)(nil),     // 5: vvtxchain.acl.QueryGetAclAdminResponse
-	(*QueryAllAclAdminRequest)(nil),      // 6: vvtxchain.acl.QueryAllAclAdminRequest
-	(*QueryAllAclAdminResponse)(nil),     // 7: vvtxchain.acl.QueryAllAclAdminResponse
-	(*QueryGetAclAuthorityRequest)(nil),  // 8: vvtxchain.acl.QueryGetAclAuthorityRequest
-	(*QueryGetAclAuthorityResponse)(nil), // 9: vvtxchain.acl.QueryGetAclAuthorityResponse
-	(*QueryAllAclAuthorityRequest)(nil),  // 10: vvtxchain.acl.QueryAllAclAuthorityRequest
-	(*QueryAllAclAuthorityResponse)(nil), // 11: vvtxchain.acl.QueryAllAclAuthorityResponse
+	(*QueryGetAclAuthorityRequest)(nil),  // 2: vvtxchain.acl.QueryGetAclAuthorityRequest
+	(*QueryGetAclAuthorityResponse)(nil), // 3: vvtxchain.acl.QueryGetAclAuthorityResponse
+	(*QueryAllAclAuthorityRequest)(nil),  // 4: vvtxchain.acl.QueryAllAclAuthorityRequest
+	(*QueryAllAclAuthorityResponse)(nil), // 5: vvtxchain.acl.QueryAllAclAuthorityResponse
+	(*QueryGetAclAdminRequest)(nil),      // 6: vvtxchain.acl.QueryGetAclAdminRequest
+	(*QueryGetAclAdminResponse)(nil),     // 7: vvtxchain.acl.QueryGetAclAdminResponse
+	(*QueryAllAclAdminRequest)(nil),      // 8: vvtxchain.acl.QueryAllAclAdminRequest
+	(*QueryAllAclAdminResponse)(nil),     // 9: vvtxchain.acl.QueryAllAclAdminResponse
+	(*QueryGetSuperAdminRequest)(nil),    // 10: vvtxchain.acl.QueryGetSuperAdminRequest
+	(*QueryGetSuperAdminResponse)(nil),   // 11: vvtxchain.acl.QueryGetSuperAdminResponse
 	(*Params)(nil),                       // 12: vvtxchain.acl.Params
-	(*SuperAdmin)(nil),                   // 13: vvtxchain.acl.SuperAdmin
-	(*AclAdmin)(nil),                     // 14: vvtxchain.acl.AclAdmin
-	(*v1beta1.PageRequest)(nil),          // 15: cosmos.base.query.v1beta1.PageRequest
-	(*v1beta1.PageResponse)(nil),         // 16: cosmos.base.query.v1beta1.PageResponse
-	(*AclAuthority)(nil),                 // 17: vvtxchain.acl.AclAuthority
+	(*AclAuthority)(nil),                 // 13: vvtxchain.acl.AclAuthority
+	(*v1beta1.PageRequest)(nil),          // 14: cosmos.base.query.v1beta1.PageRequest
+	(*v1beta1.PageResponse)(nil),         // 15: cosmos.base.query.v1beta1.PageResponse
+	(*AclAdmin)(nil),                     // 16: vvtxchain.acl.AclAdmin
+	(*SuperAdmin)(nil),                   // 17: vvtxchain.acl.SuperAdmin
 }
 var file_vvtxchain_acl_query_proto_depIdxs = []int32{
 	12, // 0: vvtxchain.acl.QueryParamsResponse.params:type_name -> vvtxchain.acl.Params
-	13, // 1: vvtxchain.acl.QueryGetSuperAdminResponse.Super_admin:type_name -> vvtxchain.acl.SuperAdmin
-	14, // 2: vvtxchain.acl.QueryGetAclAdminResponse.acl_admin:type_name -> vvtxchain.acl.AclAdmin
-	15, // 3: vvtxchain.acl.QueryAllAclAdminRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
-	14, // 4: vvtxchain.acl.QueryAllAclAdminResponse.acl_admin:type_name -> vvtxchain.acl.AclAdmin
-	16, // 5: vvtxchain.acl.QueryAllAclAdminResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
-	17, // 6: vvtxchain.acl.QueryGetAclAuthorityResponse.acl_authority:type_name -> vvtxchain.acl.AclAuthority
-	15, // 7: vvtxchain.acl.QueryAllAclAuthorityRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
-	17, // 8: vvtxchain.acl.QueryAllAclAuthorityResponse.acl_authority:type_name -> vvtxchain.acl.AclAuthority
-	16, // 9: vvtxchain.acl.QueryAllAclAuthorityResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
+	13, // 1: vvtxchain.acl.QueryGetAclAuthorityResponse.acl_authority:type_name -> vvtxchain.acl.AclAuthority
+	14, // 2: vvtxchain.acl.QueryAllAclAuthorityRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
+	13, // 3: vvtxchain.acl.QueryAllAclAuthorityResponse.acl_authority:type_name -> vvtxchain.acl.AclAuthority
+	15, // 4: vvtxchain.acl.QueryAllAclAuthorityResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
+	16, // 5: vvtxchain.acl.QueryGetAclAdminResponse.acl_admin:type_name -> vvtxchain.acl.AclAdmin
+	14, // 6: vvtxchain.acl.QueryAllAclAdminRequest.pagination:type_name -> cosmos.base.query.v1beta1.PageRequest
+	16, // 7: vvtxchain.acl.QueryAllAclAdminResponse.acl_admin:type_name -> vvtxchain.acl.AclAdmin
+	15, // 8: vvtxchain.acl.QueryAllAclAdminResponse.pagination:type_name -> cosmos.base.query.v1beta1.PageResponse
+	17, // 9: vvtxchain.acl.QueryGetSuperAdminResponse.super_admin:type_name -> vvtxchain.acl.SuperAdmin
 	0,  // 10: vvtxchain.acl.Query.Params:input_type -> vvtxchain.acl.QueryParamsRequest
-	2,  // 11: vvtxchain.acl.Query.SuperAdmin:input_type -> vvtxchain.acl.QueryGetSuperAdminRequest
-	4,  // 12: vvtxchain.acl.Query.AclAdmin:input_type -> vvtxchain.acl.QueryGetAclAdminRequest
-	6,  // 13: vvtxchain.acl.Query.AclAdminAll:input_type -> vvtxchain.acl.QueryAllAclAdminRequest
-	8,  // 14: vvtxchain.acl.Query.AclAuthority:input_type -> vvtxchain.acl.QueryGetAclAuthorityRequest
-	10, // 15: vvtxchain.acl.Query.AclAuthorityAll:input_type -> vvtxchain.acl.QueryAllAclAuthorityRequest
+	2,  // 11: vvtxchain.acl.Query.AclAuthority:input_type -> vvtxchain.acl.QueryGetAclAuthorityRequest
+	4,  // 12: vvtxchain.acl.Query.AclAuthorityAll:input_type -> vvtxchain.acl.QueryAllAclAuthorityRequest
+	6,  // 13: vvtxchain.acl.Query.AclAdmin:input_type -> vvtxchain.acl.QueryGetAclAdminRequest
+	8,  // 14: vvtxchain.acl.Query.AclAdminAll:input_type -> vvtxchain.acl.QueryAllAclAdminRequest
+	10, // 15: vvtxchain.acl.Query.SuperAdmin:input_type -> vvtxchain.acl.QueryGetSuperAdminRequest
 	1,  // 16: vvtxchain.acl.Query.Params:output_type -> vvtxchain.acl.QueryParamsResponse
-	3,  // 17: vvtxchain.acl.Query.SuperAdmin:output_type -> vvtxchain.acl.QueryGetSuperAdminResponse
-	5,  // 18: vvtxchain.acl.Query.AclAdmin:output_type -> vvtxchain.acl.QueryGetAclAdminResponse
-	7,  // 19: vvtxchain.acl.Query.AclAdminAll:output_type -> vvtxchain.acl.QueryAllAclAdminResponse
-	9,  // 20: vvtxchain.acl.Query.AclAuthority:output_type -> vvtxchain.acl.QueryGetAclAuthorityResponse
-	11, // 21: vvtxchain.acl.Query.AclAuthorityAll:output_type -> vvtxchain.acl.QueryAllAclAuthorityResponse
+	3,  // 17: vvtxchain.acl.Query.AclAuthority:output_type -> vvtxchain.acl.QueryGetAclAuthorityResponse
+	5,  // 18: vvtxchain.acl.Query.AclAuthorityAll:output_type -> vvtxchain.acl.QueryAllAclAuthorityResponse
+	7,  // 19: vvtxchain.acl.Query.AclAdmin:output_type -> vvtxchain.acl.QueryGetAclAdminResponse
+	9,  // 20: vvtxchain.acl.Query.AclAdminAll:output_type -> vvtxchain.acl.QueryAllAclAdminResponse
+	11, // 21: vvtxchain.acl.Query.SuperAdmin:output_type -> vvtxchain.acl.QueryGetSuperAdminResponse
 	16, // [16:22] is the sub-list for method output_type
 	10, // [10:16] is the sub-list for method input_type
 	10, // [10:10] is the sub-list for extension type_name
@@ -5983,9 +5983,9 @@ func file_vvtxchain_acl_query_proto_init() {
 		return
 	}
 	file_vvtxchain_acl_params_proto_init()
-	file_vvtxchain_acl_super_admin_proto_init()
-	file_vvtxchain_acl_acl_admin_proto_init()
 	file_vvtxchain_acl_acl_authority_proto_init()
+	file_vvtxchain_acl_acl_admin_proto_init()
+	file_vvtxchain_acl_super_admin_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_vvtxchain_acl_query_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryParamsRequest); i {
@@ -6012,78 +6012,6 @@ func file_vvtxchain_acl_query_proto_init() {
 			}
 		}
 		file_vvtxchain_acl_query_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetSuperAdminRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_vvtxchain_acl_query_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetSuperAdminResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_vvtxchain_acl_query_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetAclAdminRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_vvtxchain_acl_query_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryGetAclAdminResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_vvtxchain_acl_query_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryAllAclAdminRequest); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_vvtxchain_acl_query_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*QueryAllAclAdminResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_vvtxchain_acl_query_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryGetAclAuthorityRequest); i {
 			case 0:
 				return &v.state
@@ -6095,7 +6023,7 @@ func file_vvtxchain_acl_query_proto_init() {
 				return nil
 			}
 		}
-		file_vvtxchain_acl_query_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_vvtxchain_acl_query_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryGetAclAuthorityResponse); i {
 			case 0:
 				return &v.state
@@ -6107,7 +6035,7 @@ func file_vvtxchain_acl_query_proto_init() {
 				return nil
 			}
 		}
-		file_vvtxchain_acl_query_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_vvtxchain_acl_query_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryAllAclAuthorityRequest); i {
 			case 0:
 				return &v.state
@@ -6119,8 +6047,80 @@ func file_vvtxchain_acl_query_proto_init() {
 				return nil
 			}
 		}
-		file_vvtxchain_acl_query_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_vvtxchain_acl_query_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryAllAclAuthorityResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vvtxchain_acl_query_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryGetAclAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vvtxchain_acl_query_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryGetAclAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vvtxchain_acl_query_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryAllAclAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vvtxchain_acl_query_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryAllAclAdminResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vvtxchain_acl_query_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryGetSuperAdminRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_vvtxchain_acl_query_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryGetSuperAdminResponse); i {
 			case 0:
 				return &v.state
 			case 1:
