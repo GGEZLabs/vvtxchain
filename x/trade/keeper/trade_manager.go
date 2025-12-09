@@ -54,7 +54,7 @@ func (k Keeper) MintOrBurnCoins(ctx sdk.Context, storedTrade types.StoredTrade) 
 	coins := sdk.NewCoins(*storedTrade.Amount)
 
 	switch storedTrade.TradeType {
-	case types.TradeTypeBuy:
+	case types.TradeTypeFiatDeposit:
 		// Mint coins to module account
 		if err = k.bankKeeper.MintCoins(ctx, types.ModuleName, coins); err != nil {
 			return types.StatusFailed, err
@@ -71,7 +71,7 @@ func (k Keeper) MintOrBurnCoins(ctx sdk.Context, storedTrade types.StoredTrade) 
 
 		return types.StatusProcessed, nil
 
-	case types.TradeTypeSell:
+	case types.TradeTypeFiatWithdrawal:
 		// Move coins from user to module
 		if err = k.bankKeeper.SendCoinsFromAccountToModule(ctx, receiverAddress, types.ModuleName, coins); err != nil {
 			return types.StatusFailed, err

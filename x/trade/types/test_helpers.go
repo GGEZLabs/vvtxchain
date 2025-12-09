@@ -16,25 +16,25 @@ func GetSampleTradeDataJson(tradeType TradeType) string {
 	shareNetPrice := 500.00
 
 	var quantity *sdk.Coin
-	if tradeType == TradeTypeBuy || tradeType == TradeTypeSell {
+	if tradeType == TradeTypeFiatDeposit || tradeType == TradeTypeFiatWithdrawal {
 		quantity = &sdk.Coin{
 			Denom:  DefaultDenom,
 			Amount: math.NewInt(100000),
 		}
 	}
 
-	switch tradeType {
-	case TradeTypeSplit, TradeTypeReverseSplit:
-		tradeValue = 0
-		tradeNetValue = 0
-		sharePrice = 0
-		shareNetPrice = 0
+	// switch tradeType {
+	// case TradeTypeSplit, TradeTypeReverseSplit:
+	// 	tradeValue = 0
+	// 	tradeNetValue = 0
+	// 	sharePrice = 0
+	// 	shareNetPrice = 0
 
-	case TradeTypeDividends, TradeTypeDividendsDeduction:
-		numberOfShares = 0
-		sharePrice = 0
-		shareNetPrice = 0
-	}
+	// case TradeTypeDividends, TradeTypeDividendsDeduction:
+	// 	numberOfShares = 0
+	// 	sharePrice = 0
+	// 	shareNetPrice = 0
+	// }
 
 	tradeData := TradeData{
 		TradeInfo: &TradeInfo{
@@ -80,25 +80,25 @@ func GetSampleTradeData(tradeType TradeType) TradeData {
 	shareNetPrice := 500.00
 
 	var quantity *sdk.Coin
-	if tradeType == TradeTypeBuy || tradeType == TradeTypeSell {
+	if tradeType == TradeTypeFiatDeposit || tradeType == TradeTypeFiatWithdrawal {
 		quantity = &sdk.Coin{
 			Denom:  DefaultDenom,
 			Amount: math.NewInt(100000),
 		}
 	}
 
-	switch tradeType {
-	case TradeTypeSplit, TradeTypeReverseSplit:
-		tradeValue = 0
-		tradeNetValue = 0
-		sharePrice = 0
-		shareNetPrice = 0
+	// switch tradeType {
+	// case TradeTypeSplit, TradeTypeReverseSplit:
+	// 	tradeValue = 0
+	// 	tradeNetValue = 0
+	// 	sharePrice = 0
+	// 	shareNetPrice = 0
 
-	case TradeTypeDividends, TradeTypeDividendsDeduction:
-		numberOfShares = 0
-		sharePrice = 0
-		shareNetPrice = 0
-	}
+	// case TradeTypeDividends, TradeTypeDividendsDeduction:
+	// 	numberOfShares = 0
+	// 	sharePrice = 0
+	// 	shareNetPrice = 0
+	// }
 
 	tradeData := TradeData{
 		TradeInfo: &TradeInfo{
@@ -167,7 +167,7 @@ func GetSampleCoinMintingPriceJson() string {
 
 func GetBaseStoredTrade() StoredTrade {
 	return StoredTrade{
-		TradeType: TradeTypeBuy,
+		TradeType: TradeTypeFiatDeposit,
 		Amount: &sdk.Coin{
 			Denom:  DefaultDenom,
 			Amount: math.NewInt(100000),
@@ -175,7 +175,7 @@ func GetBaseStoredTrade() StoredTrade {
 		CoinMintingPriceUsd:  "0.001",
 		ReceiverAddress:      testutil.Alice,
 		Maker:                testutil.Alice,
-		TradeData:            GetSampleTradeDataJson(TradeTypeBuy),
+		TradeData:            GetSampleTradeDataJson(TradeTypeFiatDeposit),
 		BankingSystemData:    "{}",
 		ExchangeRateJson:     GetSampleExchangeRateJson(),
 		CoinMintingPriceJson: GetSampleCoinMintingPriceJson(),
@@ -191,7 +191,7 @@ func GetSampleMsgCreateTrade() *MsgCreateTrade {
 	return NewMsgCreateTrade(
 		testutil.Alice,
 		testutil.Alice,
-		GetSampleTradeDataJson(TradeTypeBuy),
+		GetSampleTradeDataJson(TradeTypeFiatDeposit),
 		"{}",
 		GetSampleCoinMintingPriceJson(),
 		GetSampleExchangeRateJson(),
@@ -200,7 +200,7 @@ func GetSampleMsgCreateTrade() *MsgCreateTrade {
 
 // GetMsgCreateTradeWithTypeAndAmount get sample create trade message specified with trade type and amount
 func GetMsgCreateTradeWithTypeAndAmount(tradeType TradeType, amount int64) *MsgCreateTrade {
-	tdStr := GetSampleTradeDataJson(TradeTypeBuy)
+	tdStr := GetSampleTradeDataJson(TradeTypeFiatDeposit)
 	var td TradeData
 	if err := json.Unmarshal([]byte(tdStr), &td); err != nil {
 		panic(err)

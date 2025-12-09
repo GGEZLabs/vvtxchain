@@ -11,7 +11,7 @@ import (
 )
 
 func TestGenesisState_Validate(t *testing.T) {
-	td := types.GetSampleTradeDataJson(types.TradeTypeBuy)
+	td := types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit)
 	cmpj := types.GetSampleCoinMintingPriceJson()
 	erj := types.GetSampleExchangeRateJson()
 	tests := []struct {
@@ -34,7 +34,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:           1,
-						TradeType:            types.TradeTypeBuy,
+						TradeType:            types.TradeTypeFiatDeposit,
 						Amount:               &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd:  "0.01",
 						ReceiverAddress:      sample.AccAddress(),
@@ -69,7 +69,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:           1,
-						TradeType:            types.TradeTypeBuy,
+						TradeType:            types.TradeTypeFiatDeposit,
 						Amount:               &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd:  "0.01",
 						ReceiverAddress:      sample.AccAddress(),
@@ -87,7 +87,7 @@ func TestGenesisState_Validate(t *testing.T) {
 					},
 					{
 						TradeIndex:           1,
-						TradeType:            types.TradeTypeBuy,
+						TradeType:            types.TradeTypeFiatDeposit,
 						Amount:               &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd:  "0.01",
 						ReceiverAddress:      sample.AccAddress(),
@@ -168,7 +168,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex: 1,
-						TradeType:  types.TradeTypeBuy,
+						TradeType:  types.TradeTypeFiatDeposit,
 						Amount:     &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(0)},
 					},
 				},
@@ -185,7 +185,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex: 1,
-						TradeType:  types.TradeTypeBuy,
+						TradeType:  types.TradeTypeFiatDeposit,
 						Amount:     &sdk.Coin{Denom: "invalid_denom", Amount: math.NewInt(10)},
 					},
 				},
@@ -202,7 +202,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						Status:              types.StatusPending,
@@ -213,201 +213,201 @@ func TestGenesisState_Validate(t *testing.T) {
 			expErr:    true,
 			expErrMsg: "invalid receiver_address",
 		},
-		{
-			desc: "set amount with trade type split",
-			genState: &types.GenesisState{
-				TradeIndex: types.TradeIndex{
-					NextId: 2,
-				},
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeSplit,
-						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "amount must not be set for trade type: TRADE_TYPE_SPLIT",
-		},
-		{
-			desc: "set receiver address with trade type split",
-			genState: &types.GenesisState{
-				TradeIndex: types.TradeIndex{
-					NextId: 2,
-				},
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeSplit,
-						Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
-						ReceiverAddress:     sample.AccAddress(),
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_SPLIT",
-		},
-		{
-			desc: "set amount with trade type reverse split",
-			genState: &types.GenesisState{
-				TradeIndex: types.TradeIndex{
-					NextId: 2,
-				},
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeReverseSplit,
-						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "amount must not be set for trade type: TRADE_TYPE_REVERSE_SPLIT",
-		},
-		{
-			desc: "set receiver address with trade type reverse split",
-			genState: &types.GenesisState{
-				TradeIndex: types.TradeIndex{
-					NextId: 2,
-				},
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeReverseSplit,
-						Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
-						ReceiverAddress:     sample.AccAddress(),
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_REVERSE_SPLIT",
-		},
-		{
-			desc: "set amount with trade type reinvestment",
-			genState: &types.GenesisState{
-				TradeIndex: types.TradeIndex{
-					NextId: 2,
-				},
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeReinvestment,
-						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "amount must not be set for trade type: TRADE_TYPE_REINVESTMENT",
-		},
-		{
-			desc: "set receiver address with trade type reinvestment",
-			genState: &types.GenesisState{
-				TradeIndex: types.TradeIndex{
-					NextId: 2,
-				},
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeReinvestment,
-						Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
-						ReceiverAddress:     sample.AccAddress(),
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_REINVESTMENT",
-		},
-		{
-			desc: "set amount with trade type dividends",
-			genState: &types.GenesisState{
-				TradeIndex: types.TradeIndex{
-					NextId: 2,
-				},
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeDividends,
-						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "amount must not be set for trade type: TRADE_TYPE_DIVIDENDS",
-		},
-		{
-			desc: "set receiver address with trade type dividends",
-			genState: &types.GenesisState{
-				TradeIndex: types.TradeIndex{
-					NextId: 2,
-				},
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeDividends,
-						Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
-						ReceiverAddress:     sample.AccAddress(),
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_DIVIDENDS",
-		},
-		{
-			desc: "set amount with trade type dividends deduction",
-			genState: &types.GenesisState{
-				TradeIndex: types.TradeIndex{
-					NextId: 2,
-				},
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeDividendsDeduction,
-						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "amount must not be set for trade type: TRADE_TYPE_DIVIDEND_DEDUCTION",
-		},
-		{
-			desc: "set receiver address with trade type dividends deduction",
-			genState: &types.GenesisState{
-				TradeIndex: types.TradeIndex{
-					NextId: 2,
-				},
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeDividendsDeduction,
-						Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
-						ReceiverAddress:     sample.AccAddress(),
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_DIVIDEND_DEDUCTION",
-		},
+		// {
+		// 	desc: "set amount with trade type split",
+		// 	genState: &types.GenesisState{
+		// 		TradeIndex: types.TradeIndex{
+		// 			NextId: 2,
+		// 		},
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeSplit,
+		// 				Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "amount must not be set for trade type: TRADE_TYPE_SPLIT",
+		// },
+		// {
+		// 	desc: "set receiver address with trade type split",
+		// 	genState: &types.GenesisState{
+		// 		TradeIndex: types.TradeIndex{
+		// 			NextId: 2,
+		// 		},
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeSplit,
+		// 				Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
+		// 				ReceiverAddress:     sample.AccAddress(),
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_SPLIT",
+		// },
+		// {
+		// 	desc: "set amount with trade type reverse split",
+		// 	genState: &types.GenesisState{
+		// 		TradeIndex: types.TradeIndex{
+		// 			NextId: 2,
+		// 		},
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeReverseSplit,
+		// 				Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "amount must not be set for trade type: TRADE_TYPE_REVERSE_SPLIT",
+		// },
+		// {
+		// 	desc: "set receiver address with trade type reverse split",
+		// 	genState: &types.GenesisState{
+		// 		TradeIndex: types.TradeIndex{
+		// 			NextId: 2,
+		// 		},
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeReverseSplit,
+		// 				Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
+		// 				ReceiverAddress:     sample.AccAddress(),
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_REVERSE_SPLIT",
+		// },
+		// {
+		// 	desc: "set amount with trade type reinvestment",
+		// 	genState: &types.GenesisState{
+		// 		TradeIndex: types.TradeIndex{
+		// 			NextId: 2,
+		// 		},
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeReinvestment,
+		// 				Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "amount must not be set for trade type: TRADE_TYPE_REINVESTMENT",
+		// },
+		// {
+		// 	desc: "set receiver address with trade type reinvestment",
+		// 	genState: &types.GenesisState{
+		// 		TradeIndex: types.TradeIndex{
+		// 			NextId: 2,
+		// 		},
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeReinvestment,
+		// 				Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
+		// 				ReceiverAddress:     sample.AccAddress(),
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_REINVESTMENT",
+		// },
+		// {
+		// 	desc: "set amount with trade type dividends",
+		// 	genState: &types.GenesisState{
+		// 		TradeIndex: types.TradeIndex{
+		// 			NextId: 2,
+		// 		},
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeDividends,
+		// 				Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "amount must not be set for trade type: TRADE_TYPE_DIVIDENDS",
+		// },
+		// {
+		// 	desc: "set receiver address with trade type dividends",
+		// 	genState: &types.GenesisState{
+		// 		TradeIndex: types.TradeIndex{
+		// 			NextId: 2,
+		// 		},
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeDividends,
+		// 				Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
+		// 				ReceiverAddress:     sample.AccAddress(),
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_DIVIDENDS",
+		// },
+		// {
+		// 	desc: "set amount with trade type dividends deduction",
+		// 	genState: &types.GenesisState{
+		// 		TradeIndex: types.TradeIndex{
+		// 			NextId: 2,
+		// 		},
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeDividendsDeduction,
+		// 				Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "amount must not be set for trade type: TRADE_TYPE_DIVIDEND_DEDUCTION",
+		// },
+		// {
+		// 	desc: "set receiver address with trade type dividends deduction",
+		// 	genState: &types.GenesisState{
+		// 		TradeIndex: types.TradeIndex{
+		// 			NextId: 2,
+		// 		},
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeDividendsDeduction,
+		// 				Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
+		// 				ReceiverAddress:     sample.AccAddress(),
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_DIVIDEND_DEDUCTION",
+		// },
 		{
 			desc: "invalid price",
 			genState: &types.GenesisState{
@@ -417,7 +417,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						ReceiverAddress:     sample.AccAddress(),
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0",
@@ -436,7 +436,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						ReceiverAddress:     sample.AccAddress(),
 						CoinMintingPriceUsd: "0.01",
@@ -456,7 +456,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -477,7 +477,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -499,7 +499,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -521,7 +521,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -544,7 +544,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -568,7 +568,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -593,7 +593,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -619,7 +619,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -646,7 +646,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -674,7 +674,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:           1,
-						TradeType:            types.TradeTypeBuy,
+						TradeType:            types.TradeTypeFiatDeposit,
 						Amount:               &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd:  "0.01",
 						ReceiverAddress:      sample.AccAddress(),
@@ -703,7 +703,7 @@ func TestGenesisState_Validate(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:           1,
-						TradeType:            types.TradeTypeBuy,
+						TradeType:            types.TradeTypeFiatDeposit,
 						Amount:               &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd:  "0.01",
 						ReceiverAddress:      sample.AccAddress(),
@@ -801,7 +801,7 @@ func TestGenesisState_Validate(t *testing.T) {
 }
 
 func TestGenesisState_ValidateStoredTrade(t *testing.T) {
-	td := types.GetSampleTradeDataJson(types.TradeTypeBuy)
+	td := types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit)
 	tests := []struct {
 		desc      string
 		genState  *types.GenesisState
@@ -814,7 +814,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:           1,
-						TradeType:            types.TradeTypeBuy,
+						TradeType:            types.TradeTypeFiatDeposit,
 						Amount:               &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd:  "0.01",
 						ReceiverAddress:      sample.AccAddress(),
@@ -840,7 +840,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:           1,
-						TradeType:            types.TradeTypeBuy,
+						TradeType:            types.TradeTypeFiatDeposit,
 						Amount:               &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd:  "0.01",
 						ReceiverAddress:      sample.AccAddress(),
@@ -858,7 +858,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 					},
 					{
 						TradeIndex:           1,
-						TradeType:            types.TradeTypeBuy,
+						TradeType:            types.TradeTypeFiatDeposit,
 						Amount:               &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd:  "0.01",
 						ReceiverAddress:      sample.AccAddress(),
@@ -909,7 +909,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex: 1,
-						TradeType:  types.TradeTypeBuy,
+						TradeType:  types.TradeTypeFiatDeposit,
 						Amount:     &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(0)},
 					},
 				},
@@ -923,7 +923,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex: 1,
-						TradeType:  types.TradeTypeBuy,
+						TradeType:  types.TradeTypeFiatDeposit,
 						Amount:     &sdk.Coin{Denom: "invalid_denom", Amount: math.NewInt(10)},
 					},
 				},
@@ -937,7 +937,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						Status:              types.StatusPending,
@@ -948,178 +948,178 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 			expErr:    true,
 			expErrMsg: "invalid receiver_address",
 		},
-		{
-			desc: "set amount with trade type split",
-			genState: &types.GenesisState{
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeSplit,
-						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "amount must not be set for trade type: TRADE_TYPE_SPLIT",
-		},
-		{
-			desc: "set receiver address with trade type split",
-			genState: &types.GenesisState{
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeSplit,
-						Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
-						ReceiverAddress:     sample.AccAddress(),
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_SPLIT",
-		},
-		{
-			desc: "set amount with trade type reverse split",
-			genState: &types.GenesisState{
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeReverseSplit,
-						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "amount must not be set for trade type: TRADE_TYPE_REVERSE_SPLIT",
-		},
-		{
-			desc: "set receiver address with trade type reverse split",
-			genState: &types.GenesisState{
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeReverseSplit,
-						Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
-						ReceiverAddress:     sample.AccAddress(),
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_REVERSE_SPLIT",
-		},
-		{
-			desc: "set amount with trade type reinvestment",
-			genState: &types.GenesisState{
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeReinvestment,
-						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "amount must not be set for trade type: TRADE_TYPE_REINVESTMENT",
-		},
-		{
-			desc: "set receiver address with trade type reinvestment",
-			genState: &types.GenesisState{
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeReinvestment,
-						Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
-						ReceiverAddress:     sample.AccAddress(),
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_REINVESTMENT",
-		},
-		{
-			desc: "set amount with trade type dividends",
-			genState: &types.GenesisState{
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeDividends,
-						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "amount must not be set for trade type: TRADE_TYPE_DIVIDENDS",
-		},
-		{
-			desc: "set receiver address with trade type dividends",
-			genState: &types.GenesisState{
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeDividends,
-						Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
-						ReceiverAddress:     sample.AccAddress(),
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_DIVIDENDS",
-		},
-		{
-			desc: "set amount with trade type dividends deduction",
-			genState: &types.GenesisState{
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeDividendsDeduction,
-						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "amount must not be set for trade type: TRADE_TYPE_DIVIDEND_DEDUCTION",
-		},
-		{
-			desc: "set receiver address with trade type dividends deduction",
-			genState: &types.GenesisState{
-				StoredTrades: []types.StoredTrade{
-					{
-						TradeIndex:          1,
-						TradeType:           types.TradeTypeDividendsDeduction,
-						Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
-						ReceiverAddress:     sample.AccAddress(),
-						CoinMintingPriceUsd: "0.01",
-						Status:              types.StatusPending,
-					},
-				},
-			},
-			expErr:    true,
-			expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_DIVIDEND_DEDUCTION",
-		},
+		// {
+		// 	desc: "set amount with trade type split",
+		// 	genState: &types.GenesisState{
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeSplit,
+		// 				Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "amount must not be set for trade type: TRADE_TYPE_SPLIT",
+		// },
+		// {
+		// 	desc: "set receiver address with trade type split",
+		// 	genState: &types.GenesisState{
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeSplit,
+		// 				Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
+		// 				ReceiverAddress:     sample.AccAddress(),
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_SPLIT",
+		// },
+		// {
+		// 	desc: "set amount with trade type reverse split",
+		// 	genState: &types.GenesisState{
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeReverseSplit,
+		// 				Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "amount must not be set for trade type: TRADE_TYPE_REVERSE_SPLIT",
+		// },
+		// {
+		// 	desc: "set receiver address with trade type reverse split",
+		// 	genState: &types.GenesisState{
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeReverseSplit,
+		// 				Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
+		// 				ReceiverAddress:     sample.AccAddress(),
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_REVERSE_SPLIT",
+		// },
+		// {
+		// 	desc: "set amount with trade type reinvestment",
+		// 	genState: &types.GenesisState{
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeReinvestment,
+		// 				Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "amount must not be set for trade type: TRADE_TYPE_REINVESTMENT",
+		// },
+		// {
+		// 	desc: "set receiver address with trade type reinvestment",
+		// 	genState: &types.GenesisState{
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeReinvestment,
+		// 				Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
+		// 				ReceiverAddress:     sample.AccAddress(),
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_REINVESTMENT",
+		// },
+		// {
+		// 	desc: "set amount with trade type dividends",
+		// 	genState: &types.GenesisState{
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeDividends,
+		// 				Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "amount must not be set for trade type: TRADE_TYPE_DIVIDENDS",
+		// },
+		// {
+		// 	desc: "set receiver address with trade type dividends",
+		// 	genState: &types.GenesisState{
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeDividends,
+		// 				Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
+		// 				ReceiverAddress:     sample.AccAddress(),
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_DIVIDENDS",
+		// },
+		// {
+		// 	desc: "set amount with trade type dividends deduction",
+		// 	genState: &types.GenesisState{
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeDividendsDeduction,
+		// 				Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "amount must not be set for trade type: TRADE_TYPE_DIVIDEND_DEDUCTION",
+		// },
+		// {
+		// 	desc: "set receiver address with trade type dividends deduction",
+		// 	genState: &types.GenesisState{
+		// 		StoredTrades: []types.StoredTrade{
+		// 			{
+		// 				TradeIndex:          1,
+		// 				TradeType:           types.TradeTypeDividendsDeduction,
+		// 				Amount:              &sdk.Coin{Denom: "", Amount: math.NewInt(0)},
+		// 				ReceiverAddress:     sample.AccAddress(),
+		// 				CoinMintingPriceUsd: "0.01",
+		// 				Status:              types.StatusPending,
+		// 			},
+		// 		},
+		// 	},
+		// 	expErr:    true,
+		// 	expErrMsg: "receiver_address must not be set for trade type TRADE_TYPE_DIVIDEND_DEDUCTION",
+		// },
 		{
 			desc: "invalid price",
 			genState: &types.GenesisState{
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						ReceiverAddress:     sample.AccAddress(),
 						CoinMintingPriceUsd: "0",
@@ -1135,7 +1135,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						ReceiverAddress:     sample.AccAddress(),
 						CoinMintingPriceUsd: "0.01",
@@ -1152,7 +1152,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -1170,7 +1170,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -1189,7 +1189,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -1208,7 +1208,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -1228,7 +1228,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -1249,7 +1249,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -1271,7 +1271,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -1294,7 +1294,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -1318,7 +1318,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:          1,
-						TradeType:           types.TradeTypeBuy,
+						TradeType:           types.TradeTypeFiatDeposit,
 						Amount:              &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd: "0.01",
 						ReceiverAddress:     sample.AccAddress(),
@@ -1343,7 +1343,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:           1,
-						TradeType:            types.TradeTypeBuy,
+						TradeType:            types.TradeTypeFiatDeposit,
 						Amount:               &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd:  "0.01",
 						ReceiverAddress:      sample.AccAddress(),
@@ -1369,7 +1369,7 @@ func TestGenesisState_ValidateStoredTrade(t *testing.T) {
 				StoredTrades: []types.StoredTrade{
 					{
 						TradeIndex:           1,
-						TradeType:            types.TradeTypeBuy,
+						TradeType:            types.TradeTypeFiatDeposit,
 						Amount:               &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 						CoinMintingPriceUsd:  "0.01",
 						ReceiverAddress:      sample.AccAddress(),

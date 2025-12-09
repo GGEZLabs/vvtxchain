@@ -55,8 +55,8 @@ func SimulateMsgCreateTrade(
 			panic(err)
 		}
 
-		if td.TradeInfo.TradeType != types.TradeTypeBuy &&
-			td.TradeInfo.TradeType != types.TradeTypeSell {
+		if td.TradeInfo.TradeType != types.TradeTypeFiatDeposit &&
+			td.TradeInfo.TradeType != types.TradeTypeFiatWithdrawal {
 			receiverAddress = ""
 		}
 
@@ -92,19 +92,19 @@ func SimulateMsgCreateTrade(
 func randomTradeType(r *rand.Rand) types.TradeType {
 	switch r.Intn(7) {
 	case 0:
-		return types.TradeTypeBuy
+		return types.TradeTypeFiatDeposit
 	case 1:
-		return types.TradeTypeSell
-	case 2:
-		return types.TradeTypeSplit
-	case 3:
-		return types.TradeTypeReverseSplit
-	case 4:
-		return types.TradeTypeReinvestment
-	case 5:
-		return types.TradeTypeDividends
-	case 6:
-		return types.TradeTypeDividendsDeduction
+		return types.TradeTypeFiatWithdrawal
+	// case 2:
+	// 	return types.TradeTypeSplit
+	// case 3:
+	// 	return types.TradeTypeReverseSplit
+	// case 4:
+	// 	return types.TradeTypeReinvestment
+	// case 5:
+	// 	return types.TradeTypeDividends
+	// case 6:
+	// 	return types.TradeTypeDividendsDeduction
 	default:
 		panic("invalid trade type")
 	}

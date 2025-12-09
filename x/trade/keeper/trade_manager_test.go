@@ -96,7 +96,7 @@ func (suite *KeeperTestSuite) TestMintOrBurnCoins() {
 	suite.Run("invalid receiver address", func() {
 		tradeData := types.StoredTrade{
 			ReceiverAddress: "invalid_address",
-			TradeType:       types.TradeTypeSell,
+			TradeType:       types.TradeTypeFiatWithdrawal,
 		}
 
 		status, err := suite.tradeKeeper.MintOrBurnCoins(suite.ctx, tradeData)
@@ -126,7 +126,7 @@ func (suite *KeeperTestSuite) TestMintOrBurnCoins() {
 				Denom:  "unknown_denom",
 				Amount: sdkmath.NewInt(10000000),
 			},
-			TradeType: types.TradeTypeSell,
+			TradeType: types.TradeTypeFiatWithdrawal,
 		}
 
 		receiverAddress, err := sdk.AccAddressFromBech32(testutil.Alice)
@@ -151,7 +151,7 @@ func (suite *KeeperTestSuite) TestMintOrBurnCoins() {
 				Amount: sdkmath.NewInt(math.MaxInt64),
 			},
 			ReceiverAddress: testutil.Alice,
-			TradeType:       types.TradeTypeBuy,
+			TradeType:       types.TradeTypeFiatDeposit,
 		}
 
 		suite.bankKeeper.EXPECT().MintCoins(suite.ctx, types.ModuleName,
@@ -196,7 +196,7 @@ func (suite *KeeperTestSuite) TestMintOrBurnCoins() {
 				Amount: sdkmath.NewInt(math.MaxInt64),
 			},
 			ReceiverAddress: testutil.Alice,
-			TradeType:       types.TradeTypeSell,
+			TradeType:       types.TradeTypeFiatWithdrawal,
 		}
 
 		receiverAddress, err := sdk.AccAddressFromBech32(testutil.Alice)
@@ -241,7 +241,7 @@ func (suite *KeeperTestSuite) TestMintOrBurnCoins() {
 				Amount: sdkmath.NewInt(10000000),
 			},
 			ReceiverAddress: testutil.Alice,
-			TradeType:       types.TradeTypeBuy,
+			TradeType:       types.TradeTypeFiatDeposit,
 		}
 
 		suite.bankKeeper.EXPECT().MintCoins(suite.ctx, types.ModuleName,
@@ -286,7 +286,7 @@ func (suite *KeeperTestSuite) TestMintOrBurnCoins() {
 				Amount: sdkmath.NewInt(100000000000000),
 			},
 			ReceiverAddress: testutil.Alice,
-			TradeType:       types.TradeTypeSell,
+			TradeType:       types.TradeTypeFiatWithdrawal,
 		}
 
 		receiverAddress, err := sdk.AccAddressFromBech32(testutil.Alice)
@@ -313,7 +313,7 @@ func (suite *KeeperTestSuite) TestMintOrBurnCoins() {
 				Amount: sdkmath.NewInt(1000000),
 			},
 			ReceiverAddress: testutil.Alice,
-			TradeType:       types.TradeTypeSell,
+			TradeType:       types.TradeTypeFiatWithdrawal,
 		}
 
 		receiverAddress, err := sdk.AccAddressFromBech32(testutil.Alice)

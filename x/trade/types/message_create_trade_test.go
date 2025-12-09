@@ -9,7 +9,7 @@ import (
 )
 
 func TestMsgCreateTrade_ValidateBasic(t *testing.T) {
-	td := GetSampleTradeDataJson(TradeTypeBuy)
+	td := GetSampleTradeDataJson(TradeTypeFiatDeposit)
 	tests := []struct {
 		name string
 		msg  MsgCreateTrade
@@ -31,7 +31,7 @@ func TestMsgCreateTrade_ValidateBasic(t *testing.T) {
 			msg: MsgCreateTrade{
 				Creator:              sample.AccAddress(),
 				ReceiverAddress:      sample.AccAddress(),
-				TradeData:            GetSampleTradeDataJson(TradeTypeSell),
+				TradeData:            GetSampleTradeDataJson(TradeTypeFiatWithdrawal),
 				BankingSystemData:    "{}",
 				CoinMintingPriceJson: "{}",
 				ExchangeRateJson:     "{}",

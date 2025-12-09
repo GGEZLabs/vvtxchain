@@ -18,7 +18,7 @@ func TestValidateTradeData(t *testing.T) {
 	}{
 		{
 			name:      "valid trade data object",
-			tradeData: types.GetSampleTradeDataJson(types.TradeTypeBuy),
+			tradeData: types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		},
 		{
 			name:      "nil trade info",
@@ -350,7 +350,7 @@ func TestValidateCommonTradeData(t *testing.T) {
 	}{
 		{
 			name:      "valid trade data object",
-			tradeData: types.GetSampleTradeData(types.TradeTypeBuy),
+			tradeData: types.GetSampleTradeData(types.TradeTypeFiatDeposit),
 		},
 		{
 			name: "invalid asset_holder_id",
@@ -391,7 +391,7 @@ func TestValidateCommonTradeData(t *testing.T) {
 				TradeInfo: &types.TradeInfo{
 					AssetHolderId: 1,
 					AssetId:       1,
-					TradeType:     types.TradeTypeBuy,
+					TradeType:     types.TradeTypeFiatDeposit,
 					BaseCurrency:  " ",
 				},
 			},
@@ -404,7 +404,7 @@ func TestValidateCommonTradeData(t *testing.T) {
 				TradeInfo: &types.TradeInfo{
 					AssetHolderId:      1,
 					AssetId:            1,
-					TradeType:          types.TradeTypeBuy,
+					TradeType:          types.TradeTypeFiatDeposit,
 					BaseCurrency:       "USD",
 					SettlementCurrency: "",
 				},
@@ -418,7 +418,7 @@ func TestValidateCommonTradeData(t *testing.T) {
 				TradeInfo: &types.TradeInfo{
 					AssetHolderId:      1,
 					AssetId:            1,
-					TradeType:          types.TradeTypeBuy,
+					TradeType:          types.TradeTypeFiatDeposit,
 					BaseCurrency:       "USD",
 					SettlementCurrency: "USD",
 					Exchange:           "",
@@ -433,7 +433,7 @@ func TestValidateCommonTradeData(t *testing.T) {
 				TradeInfo: &types.TradeInfo{
 					AssetHolderId:      1,
 					AssetId:            1,
-					TradeType:          types.TradeTypeBuy,
+					TradeType:          types.TradeTypeFiatDeposit,
 					BaseCurrency:       "USD",
 					SettlementCurrency: "USD",
 					Exchange:           "US",
@@ -449,7 +449,7 @@ func TestValidateCommonTradeData(t *testing.T) {
 				TradeInfo: &types.TradeInfo{
 					AssetHolderId:      1,
 					AssetId:            1,
-					TradeType:          types.TradeTypeBuy,
+					TradeType:          types.TradeTypeFiatDeposit,
 					BaseCurrency:       "USD",
 					SettlementCurrency: "USD",
 					Exchange:           "US",
@@ -466,7 +466,7 @@ func TestValidateCommonTradeData(t *testing.T) {
 				TradeInfo: &types.TradeInfo{
 					AssetHolderId:       1,
 					AssetId:             1,
-					TradeType:           types.TradeTypeBuy,
+					TradeType:           types.TradeTypeFiatDeposit,
 					BaseCurrency:        "USD",
 					SettlementCurrency:  "USD",
 					Exchange:            "US",
@@ -484,7 +484,7 @@ func TestValidateCommonTradeData(t *testing.T) {
 				TradeInfo: &types.TradeInfo{
 					AssetHolderId:       1,
 					AssetId:             1,
-					TradeType:           types.TradeTypeBuy,
+					TradeType:           types.TradeTypeFiatDeposit,
 					BaseCurrency:        "USD",
 					SettlementCurrency:  "USD",
 					Exchange:            "US",
@@ -503,7 +503,7 @@ func TestValidateCommonTradeData(t *testing.T) {
 				TradeInfo: &types.TradeInfo{
 					AssetHolderId:       1,
 					AssetId:             1,
-					TradeType:           types.TradeTypeBuy,
+					TradeType:           types.TradeTypeFiatDeposit,
 					BaseCurrency:        "USD",
 					SettlementCurrency:  "USD",
 					Exchange:            "US",
@@ -523,7 +523,7 @@ func TestValidateCommonTradeData(t *testing.T) {
 				TradeInfo: &types.TradeInfo{
 					AssetHolderId:       1,
 					AssetId:             1,
-					TradeType:           types.TradeTypeBuy,
+					TradeType:           types.TradeTypeFiatDeposit,
 					BaseCurrency:        "USD",
 					SettlementCurrency:  "USD",
 					Exchange:            "US",
@@ -544,7 +544,7 @@ func TestValidateCommonTradeData(t *testing.T) {
 				TradeInfo: &types.TradeInfo{
 					AssetHolderId:       1,
 					AssetId:             1,
-					TradeType:           types.TradeTypeBuy,
+					TradeType:           types.TradeTypeFiatDeposit,
 					BaseCurrency:        "USD",
 					SettlementCurrency:  "USD",
 					Exchange:            "US",
@@ -566,7 +566,7 @@ func TestValidateCommonTradeData(t *testing.T) {
 				TradeInfo: &types.TradeInfo{
 					AssetHolderId:       1,
 					AssetId:             1,
-					TradeType:           types.TradeTypeBuy,
+					TradeType:           types.TradeTypeFiatDeposit,
 					BaseCurrency:        "USD",
 					SettlementCurrency:  "USD",
 					Exchange:            "US",
@@ -591,7 +591,7 @@ func TestValidateCommonTradeData(t *testing.T) {
 				TradeInfo: &types.TradeInfo{
 					AssetHolderId:       1,
 					AssetId:             1,
-					TradeType:           types.TradeTypeBuy,
+					TradeType:           types.TradeTypeFiatDeposit,
 					BaseCurrency:        "USD",
 					SettlementCurrency:  "USD",
 					Exchange:            "US",
@@ -617,7 +617,7 @@ func TestValidateCommonTradeData(t *testing.T) {
 				TradeInfo: &types.TradeInfo{
 					AssetHolderId:       1,
 					AssetId:             1,
-					TradeType:           types.TradeTypeBuy,
+					TradeType:           types.TradeTypeFiatDeposit,
 					BaseCurrency:        "USD",
 					SettlementCurrency:  "USD",
 					Exchange:            "US",
@@ -661,7 +661,7 @@ func TestValidateBuyOrSell(t *testing.T) {
 	}{
 		{
 			name:      "valid trade data object",
-			tradeInfo: types.GetSampleTradeData(types.TradeTypeSell).TradeInfo,
+			tradeInfo: types.GetSampleTradeData(types.TradeTypeFiatWithdrawal).TradeInfo,
 		},
 		{
 			name: "invalid share_price",
@@ -796,7 +796,7 @@ func TestValidateReinvestment(t *testing.T) {
 	}{
 		{
 			name:      "valid trade data object",
-			tradeInfo: types.GetSampleTradeData(types.TradeTypeReinvestment).TradeInfo,
+			tradeInfo: types.GetSampleTradeData(types.TradeTypeFiatDeposit).TradeInfo,
 		},
 		{
 			name: "invalid share_price",
@@ -856,7 +856,7 @@ func TestValidateReinvestment(t *testing.T) {
 				NumberOfShares: 500,
 				TradeValue:     5000,
 				TradeNetValue:  5000,
-				TradeType:      types.TradeTypeReinvestment,
+				TradeType:      types.TradeTypeFiatDeposit,
 				Quantity: &sdk.Coin{
 					Amount: math.NewInt(1000000),
 					Denom:  types.DefaultDenom,
@@ -915,7 +915,7 @@ func TestValidateDividends(t *testing.T) {
 	}{
 		{
 			name:      "valid trade data object",
-			tradeInfo: types.GetSampleTradeData(types.TradeTypeDividends).TradeInfo,
+			tradeInfo: types.GetSampleTradeData(types.TradeTypeFiatDeposit).TradeInfo,
 		},
 		{
 			name: "invalid share_price",
@@ -975,7 +975,7 @@ func TestValidateDividends(t *testing.T) {
 				NumberOfShares: 0,
 				TradeValue:     5000,
 				TradeNetValue:  5000,
-				TradeType:      types.TradeTypeDividends,
+				TradeType:      types.TradeTypeFiatDeposit,
 				Quantity: &sdk.Coin{
 					Amount: math.NewInt(1000000),
 					Denom:  types.DefaultDenom,
@@ -1034,7 +1034,7 @@ func TestValidateSplit(t *testing.T) {
 	}{
 		{
 			name:      "valid trade data object",
-			tradeInfo: types.GetSampleTradeData(types.TradeTypeSplit).TradeInfo,
+			tradeInfo: types.GetSampleTradeData(types.TradeTypeFiatDeposit).TradeInfo,
 		},
 		{
 			name: "invalid share_price",
@@ -1094,7 +1094,7 @@ func TestValidateSplit(t *testing.T) {
 				NumberOfShares: 500,
 				TradeValue:     0,
 				TradeNetValue:  0,
-				TradeType:      types.TradeTypeSplit,
+				TradeType:      types.TradeTypeFiatDeposit,
 				Quantity: &sdk.Coin{
 					Amount: math.NewInt(1000000),
 					Denom:  types.DefaultDenom,

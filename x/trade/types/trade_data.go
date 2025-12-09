@@ -20,14 +20,14 @@ func ValidateTradeData(tradeData string) (TradeData, error) {
 	}
 
 	switch td.TradeInfo.TradeType {
-	case TradeTypeBuy, TradeTypeSell:
+	case TradeTypeFiatDeposit, TradeTypeFiatWithdrawal:
 		return td, ValidateBuyOrSell(td.TradeInfo)
-	case TradeTypeReinvestment:
-		return td, ValidateReinvestment(td.TradeInfo)
-	case TradeTypeDividends, TradeTypeDividendsDeduction:
-		return td, ValidateDividends(td.TradeInfo)
-	case TradeTypeSplit, TradeTypeReverseSplit:
-		return td, ValidateSplit(td.TradeInfo)
+	// case TradeTypeReinvestment:
+	// 	return td, ValidateReinvestment(td.TradeInfo)
+	// case TradeTypeDividends, TradeTypeDividendsDeduction:
+	// 	return td, ValidateDividends(td.TradeInfo)
+	// case TradeTypeSplit, TradeTypeReverseSplit:
+	// 	return td, ValidateSplit(td.TradeInfo)
 	default:
 		return td, ErrInvalidTradeInfo.Wrapf("invalid trade_type, %s", td.TradeInfo.TradeType.String())
 	}

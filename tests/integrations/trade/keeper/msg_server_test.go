@@ -92,7 +92,7 @@ func TestCanceledTradeAfterCreateTrade(t *testing.T) {
 	_, err := msgServer.CreateTrade(f.ctx, types.NewMsgCreateTrade(
 		testutil.Alice,
 		testutil.Alice,
-		types.GetSampleTradeDataJson(types.TradeTypeBuy),
+		types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		"{}",
 		types.GetSampleCoinMintingPriceJson(),
 		types.GetSampleExchangeRateJson(),
@@ -103,7 +103,7 @@ func TestCanceledTradeAfterCreateTrade(t *testing.T) {
 	_, err = msgServer.CreateTrade(f.ctx, types.NewMsgCreateTrade(
 		testutil.Alice,
 		testutil.Alice,
-		types.GetSampleTradeDataJson(types.TradeTypeBuy),
+		types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		"{}",
 		types.GetSampleCoinMintingPriceJson(),
 		types.GetSampleExchangeRateJson(),
@@ -114,7 +114,7 @@ func TestCanceledTradeAfterCreateTrade(t *testing.T) {
 	_, err = msgServer.CreateTrade(f.ctx, types.NewMsgCreateTrade(
 		testutil.Alice,
 		testutil.Alice,
-		types.GetSampleTradeDataJson(types.TradeTypeBuy),
+		types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		"{}",
 		types.GetSampleCoinMintingPriceJson(),
 		types.GetSampleExchangeRateJson(),
@@ -147,7 +147,7 @@ func TestCanceledTradeAfterCreateTrade(t *testing.T) {
 	_, err = msgServer.CreateTrade(f.ctx, types.NewMsgCreateTrade(
 		testutil.Alice,
 		testutil.Alice,
-		types.GetSampleTradeDataJson(types.TradeTypeBuy),
+		types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		"{}",
 		types.GetSampleCoinMintingPriceJson(),
 		types.GetSampleExchangeRateJson(),
@@ -179,7 +179,7 @@ func TestProcessTrade(t *testing.T) {
 	_, err := msgServer.CreateTrade(f.ctx, types.NewMsgCreateTrade(
 		testutil.Alice,
 		testutil.Alice,
-		types.GetSampleTradeDataJson(types.TradeTypeBuy),
+		types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		"{}",
 		types.GetSampleCoinMintingPriceJson(),
 		types.GetSampleExchangeRateJson(),
@@ -190,7 +190,7 @@ func TestProcessTrade(t *testing.T) {
 	_, err = msgServer.CreateTrade(f.ctx, types.NewMsgCreateTrade(
 		testutil.Alice,
 		testutil.Alice,
-		types.GetSampleTradeDataJson(types.TradeTypeBuy),
+		types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		"{}",
 		types.GetSampleCoinMintingPriceJson(),
 		types.GetSampleExchangeRateJson(),
@@ -200,7 +200,7 @@ func TestProcessTrade(t *testing.T) {
 	_, err = msgServer.CreateTrade(f.ctx, types.NewMsgCreateTrade(
 		testutil.Alice,
 		testutil.Alice,
-		types.GetSampleTradeDataJson(types.TradeTypeBuy),
+		types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		"{}",
 		types.GetSampleCoinMintingPriceJson(),
 		types.GetSampleExchangeRateJson(),
@@ -280,7 +280,7 @@ func TestSupplyAndBalancesAfterProcessTrade(t *testing.T) {
 	setAclAuthority(f.ctx, f.aclKeeper)
 
 	// Trade 1
-	_, err := msgServer.CreateTrade(f.ctx, types.GetMsgCreateTradeWithTypeAndAmount(types.TradeTypeBuy, 500000000))
+	_, err := msgServer.CreateTrade(f.ctx, types.GetMsgCreateTradeWithTypeAndAmount(types.TradeTypeFiatDeposit, 500000000))
 	assert.NilError(t, err)
 
 	_, err = msgServer.ProcessTrade(f.ctx, &types.MsgProcessTrade{
@@ -304,7 +304,7 @@ func TestSupplyAndBalancesAfterProcessTrade(t *testing.T) {
 	assert.Assert(t, balance.Amount.Int64() == 500000000)
 
 	// Trade 2
-	_, err = msgServer.CreateTrade(f.ctx, types.GetMsgCreateTradeWithTypeAndAmount(types.TradeTypeSell, 700000000))
+	_, err = msgServer.CreateTrade(f.ctx, types.GetMsgCreateTradeWithTypeAndAmount(types.TradeTypeFiatWithdrawal, 700000000))
 
 	assert.NilError(t, err)
 
@@ -329,7 +329,7 @@ func TestSupplyAndBalancesAfterProcessTrade(t *testing.T) {
 	assert.Assert(t, balance.Amount.Int64() == 500000000)
 
 	// Trade 3
-	_, err = msgServer.CreateTrade(f.ctx, types.GetMsgCreateTradeWithTypeAndAmount(types.TradeTypeSell, 700000000))
+	_, err = msgServer.CreateTrade(f.ctx, types.GetMsgCreateTradeWithTypeAndAmount(types.TradeTypeFiatWithdrawal, 700000000))
 	assert.NilError(t, err)
 
 	_, err = msgServer.ProcessTrade(f.ctx, &types.MsgProcessTrade{
@@ -353,7 +353,7 @@ func TestSupplyAndBalancesAfterProcessTrade(t *testing.T) {
 	assert.Assert(t, balance.Amount.Int64() == 500000000)
 
 	// Trade 4
-	_, err = msgServer.CreateTrade(f.ctx, types.GetMsgCreateTradeWithTypeAndAmount(types.TradeTypeSell, 100000000))
+	_, err = msgServer.CreateTrade(f.ctx, types.GetMsgCreateTradeWithTypeAndAmount(types.TradeTypeFiatWithdrawal, 100000000))
 	assert.NilError(t, err)
 
 	_, err = msgServer.ProcessTrade(f.ctx, &types.MsgProcessTrade{
@@ -376,30 +376,30 @@ func TestSupplyAndBalancesAfterProcessTrade(t *testing.T) {
 	balance = f.bankKeeper.GetBalance(f.ctx, receiverAddress, types.DefaultDenom)
 	assert.Assert(t, balance.Amount.Int64() == 400000000)
 
-	// Trade 5
-	_, err = msgServer.CreateTrade(f.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		ReceiverAddress:      "",
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeSplit),
-		BankingSystemData:    "{}",
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-	})
-	assert.NilError(t, err)
+	// // Trade 5
+	// _, err = msgServer.CreateTrade(f.ctx, &types.MsgCreateTrade{
+	// 	Creator:              testutil.Alice,
+	// 	ReceiverAddress:      "",
+	// 	TradeData:            types.GetSampleTradeDataJson(types.TradeTypeSplit),
+	// 	BankingSystemData:    "{}",
+	// 	CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+	// 	ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+	// })
+	// assert.NilError(t, err)
 
-	_, err = msgServer.ProcessTrade(f.ctx, &types.MsgProcessTrade{
-		Creator:     testutil.Bob,
-		ProcessType: types.ProcessTypeConfirm,
-		TradeIndex:  5,
-	})
-	assert.NilError(t, err)
+	// _, err = msgServer.ProcessTrade(f.ctx, &types.MsgProcessTrade{
+	// 	Creator:     testutil.Bob,
+	// 	ProcessType: types.ProcessTypeConfirm,
+	// 	TradeIndex:  5,
+	// })
+	// assert.NilError(t, err)
 
-	trade, found = f.tradeKeeper.GetStoredTrade(f.ctx, 5)
-	assert.Assert(t, found == true)
-	assert.Assert(t, trade.Status == types.StatusProcessed)
+	// trade, found = f.tradeKeeper.GetStoredTrade(f.ctx, 5)
+	// assert.Assert(t, found == true)
+	// assert.Assert(t, trade.Status == types.StatusProcessed)
 
-	supply = f.bankKeeper.GetSupply(f.ctx, types.DefaultDenom)
+	// supply = f.bankKeeper.GetSupply(f.ctx, types.DefaultDenom)
 
-	// Supply should not be changed
-	assert.Assert(t, supply.Amount.Int64() == 400000000)
+	// // Supply should not be changed
+	// assert.Assert(t, supply.Amount.Int64() == 400000000)
 }

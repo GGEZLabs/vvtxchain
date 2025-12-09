@@ -85,7 +85,7 @@ func (suite *KeeperTestSuite) TestCreateTradeWithInvalidMakerPermission() {
 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
 		Creator:              testutil.Bob,
 		ReceiverAddress:      testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeBuy),
+		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		BankingSystemData:    "{}",
 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
@@ -101,7 +101,7 @@ func (suite *KeeperTestSuite) TestCreateTradeAuthorityAddressNotExist() {
 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
 		Creator:              testutil.Eve,
 		ReceiverAddress:      testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeBuy),
+		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		BankingSystemData:    "{}",
 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
@@ -118,7 +118,7 @@ func (suite *KeeperTestSuite) TestCreateTradeNoPermissionForModule() {
 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
 		Creator:              testutil.Carol, // Does not has permission for trade module
 		ReceiverAddress:      testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeBuy),
+		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		BankingSystemData:    "{}",
 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
@@ -149,7 +149,7 @@ func (suite *KeeperTestSuite) TestCreateTradeWithCoinMintingPriceJson() {
 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
 		Creator:              testutil.Alice,
 		ReceiverAddress:      testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeBuy),
+		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		BankingSystemData:    "{}",
 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
 		CoinMintingPriceJson: types.GetSampleExchangeRateJson(),
@@ -165,7 +165,7 @@ func (suite *KeeperTestSuite) TestCreateTradeWithExchangeRateJson() {
 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
 		Creator:              testutil.Alice,
 		ReceiverAddress:      testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeBuy),
+		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		BankingSystemData:    "{}",
 		ExchangeRateJson:     types.GetSampleCoinMintingPriceJson(),
 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
@@ -211,7 +211,7 @@ func (suite *KeeperTestSuite) TestCreateTradeWithInvalidCreateDate() {
 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
 		Creator:              testutil.Alice,
 		ReceiverAddress:      testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeBuy),
+		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		BankingSystemData:    "{}",
 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
@@ -246,7 +246,7 @@ func (suite *KeeperTestSuite) TestCreateTradeWithCreateDateInFuture() {
 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
 		Creator:              testutil.Alice,
 		ReceiverAddress:      testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeBuy),
+		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		BankingSystemData:    "{}",
 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
@@ -279,7 +279,7 @@ func (suite *KeeperTestSuite) TestCreateTradeWithValidCreateDate() {
 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
 		Creator:              testutil.Alice,
 		ReceiverAddress:      testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeBuy),
+		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit),
 		BankingSystemData:    "{}",
 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
@@ -297,354 +297,354 @@ func (suite *KeeperTestSuite) TestCreateTradeWithValidCreateDate() {
 	suite.Require().Equal(trade.CreateDate, "2024-05-11T08:44:00Z")
 }
 
-func (suite *KeeperTestSuite) TestCreateTradeWithTypeSplit() {
-	suite.setupTest()
-	keeper := suite.tradeKeeper
+// func (suite *KeeperTestSuite) TestCreateTradeWithTypeSplit() {
+// 	suite.setupTest()
+// 	keeper := suite.tradeKeeper
 
-	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeSplit),
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-	})
-	suite.Require().Equal(&types.MsgCreateTradeResponse{
-		TradeIndex: 1,
-		Status:     types.StatusPending,
-	}, createResponse)
-	suite.Require().NoError(err)
+// 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
+// 		Creator:              testutil.Alice,
+// 		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeSplit),
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 	})
+// 	suite.Require().Equal(&types.MsgCreateTradeResponse{
+// 		TradeIndex: 1,
+// 		Status:     types.StatusPending,
+// 	}, createResponse)
+// 	suite.Require().NoError(err)
 
-	trade, found := keeper.GetStoredTrade(suite.ctx, 1)
-	suite.Require().True(found)
-	suite.Require().EqualValues(types.StoredTrade{
-		TradeIndex:           1,
-		TradeType:            types.TradeTypeSplit,
-		CoinMintingPriceUsd:  "0.001",
-		Status:               types.StatusPending,
-		Maker:                testutil.Alice,
-		TxDate:               "0001-01-01T00:00:00Z",
-		CreateDate:           "0001-01-01T00:00:00Z",
-		UpdateDate:           "0001-01-01T00:00:00Z",
-		ProcessDate:          "0001-01-01T00:00:00Z",
-		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":3,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"TechFund","issuer":"CompanyA","number_of_shares":1000,"coin_minting_price_usd":0.001,"segment":"Technology","ticker":"TECH","trade_fee":5},"brokerage":{"name":"XYZBrokerage","type":"Online","country":"USA"}}`,
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-		Result:               types.TradeCreatedSuccessfully,
-		Amount:               nil,
-	}, trade)
-}
+// 	trade, found := keeper.GetStoredTrade(suite.ctx, 1)
+// 	suite.Require().True(found)
+// 	suite.Require().EqualValues(types.StoredTrade{
+// 		TradeIndex:           1,
+// 		TradeType:            types.TradeTypeSplit,
+// 		CoinMintingPriceUsd:  "0.001",
+// 		Status:               types.StatusPending,
+// 		Maker:                testutil.Alice,
+// 		TxDate:               "0001-01-01T00:00:00Z",
+// 		CreateDate:           "0001-01-01T00:00:00Z",
+// 		UpdateDate:           "0001-01-01T00:00:00Z",
+// 		ProcessDate:          "0001-01-01T00:00:00Z",
+// 		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":3,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"TechFund","issuer":"CompanyA","number_of_shares":1000,"coin_minting_price_usd":0.001,"segment":"Technology","ticker":"TECH","trade_fee":5},"brokerage":{"name":"XYZBrokerage","type":"Online","country":"USA"}}`,
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 		Result:               types.TradeCreatedSuccessfully,
+// 		Amount:               nil,
+// 	}, trade)
+// }
 
-func (suite *KeeperTestSuite) TestCreateTradeWithTypeSplitAndReceiverAddress() {
-	suite.setupTest()
+// func (suite *KeeperTestSuite) TestCreateTradeWithTypeSplitAndReceiverAddress() {
+// 	suite.setupTest()
 
-	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		ReceiverAddress:      testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeSplit),
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-	})
+// 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
+// 		Creator:              testutil.Alice,
+// 		ReceiverAddress:      testutil.Alice,
+// 		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeSplit),
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 	})
 
-	suite.Require().Nil(createResponse)
-	suite.Require().Contains(err.Error(), "receiver address must not be set for trade type TRADE_TYPE_SPLIT")
-}
+// 	suite.Require().Nil(createResponse)
+// 	suite.Require().Contains(err.Error(), "receiver address must not be set for trade type TRADE_TYPE_SPLIT")
+// }
 
-func (suite *KeeperTestSuite) TestCreateTradeWithTypeSplitAndQuantity() {
-	suite.setupTest()
-	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		ReceiverAddress:      testutil.Alice,
-		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":3,"trade_value":0,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"Low Carbon Target ETF","issuer":"Blackrock","number_of_shares":10,"coin_minting_price_usd":0.000000000012,"quantity":{"amount":"162075000000000","denom":"ugbpv"},"segment":"Equity: Global Low Carbon","share_price":0,"ticker":"CRBN","trade_fee":0,"share_net_price":0,"trade_net_value":0},"brokerage":{"name":"Interactive Brokers LLC","type":"Brokerage Firm","country":"US"}}`,
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-	})
+// func (suite *KeeperTestSuite) TestCreateTradeWithTypeSplitAndQuantity() {
+// 	suite.setupTest()
+// 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
+// 		Creator:              testutil.Alice,
+// 		ReceiverAddress:      testutil.Alice,
+// 		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":3,"trade_value":0,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"Low Carbon Target ETF","issuer":"Blackrock","number_of_shares":10,"coin_minting_price_usd":0.000000000012,"quantity":{"amount":"162075000000000","denom":"ugbpv"},"segment":"Equity: Global Low Carbon","share_price":0,"ticker":"CRBN","trade_fee":0,"share_net_price":0,"trade_net_value":0},"brokerage":{"name":"Interactive Brokers LLC","type":"Brokerage Firm","country":"US"}}`,
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 	})
 
-	suite.Require().Nil(createResponse)
-	suite.Require().ErrorIs(err, types.ErrInvalidTradeInfo)
-	suite.Require().Contains(err.Error(), "quantity must not be set")
-}
+// 	suite.Require().Nil(createResponse)
+// 	suite.Require().ErrorIs(err, types.ErrInvalidTradeInfo)
+// 	suite.Require().Contains(err.Error(), "quantity must not be set")
+// }
 
-func (suite *KeeperTestSuite) TestCreateTradeWithTypeReverseSplit() {
-	suite.setupTest()
-	keeper := suite.tradeKeeper
+// func (suite *KeeperTestSuite) TestCreateTradeWithTypeReverseSplit() {
+// 	suite.setupTest()
+// 	keeper := suite.tradeKeeper
 
-	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeReverseSplit),
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-	})
+// 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
+// 		Creator:              testutil.Alice,
+// 		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeReverseSplit),
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 	})
 
-	suite.Require().Equal(&types.MsgCreateTradeResponse{
-		TradeIndex: 1,
-		Status:     types.StatusPending,
-	}, createResponse)
-	suite.Require().NoError(err)
+// 	suite.Require().Equal(&types.MsgCreateTradeResponse{
+// 		TradeIndex: 1,
+// 		Status:     types.StatusPending,
+// 	}, createResponse)
+// 	suite.Require().NoError(err)
 
-	trade, found := keeper.GetStoredTrade(suite.ctx, 1)
-	suite.Require().True(found)
-	suite.Require().EqualValues(types.StoredTrade{
-		TradeIndex:           1,
-		TradeType:            types.TradeTypeReverseSplit,
-		CoinMintingPriceUsd:  "0.001",
-		Status:               types.StatusPending,
-		Maker:                testutil.Alice,
-		TxDate:               "0001-01-01T00:00:00Z",
-		CreateDate:           "0001-01-01T00:00:00Z",
-		UpdateDate:           "0001-01-01T00:00:00Z",
-		ProcessDate:          "0001-01-01T00:00:00Z",
-		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":4,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"TechFund","issuer":"CompanyA","number_of_shares":1000,"coin_minting_price_usd":0.001,"segment":"Technology","ticker":"TECH","trade_fee":5},"brokerage":{"name":"XYZBrokerage","type":"Online","country":"USA"}}`,
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-		Result:               types.TradeCreatedSuccessfully,
-		Amount:               nil,
-	}, trade)
-}
+// 	trade, found := keeper.GetStoredTrade(suite.ctx, 1)
+// 	suite.Require().True(found)
+// 	suite.Require().EqualValues(types.StoredTrade{
+// 		TradeIndex:           1,
+// 		TradeType:            types.TradeTypeReverseSplit,
+// 		CoinMintingPriceUsd:  "0.001",
+// 		Status:               types.StatusPending,
+// 		Maker:                testutil.Alice,
+// 		TxDate:               "0001-01-01T00:00:00Z",
+// 		CreateDate:           "0001-01-01T00:00:00Z",
+// 		UpdateDate:           "0001-01-01T00:00:00Z",
+// 		ProcessDate:          "0001-01-01T00:00:00Z",
+// 		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":4,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"TechFund","issuer":"CompanyA","number_of_shares":1000,"coin_minting_price_usd":0.001,"segment":"Technology","ticker":"TECH","trade_fee":5},"brokerage":{"name":"XYZBrokerage","type":"Online","country":"USA"}}`,
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 		Result:               types.TradeCreatedSuccessfully,
+// 		Amount:               nil,
+// 	}, trade)
+// }
 
-func (suite *KeeperTestSuite) TestCreateTradeWithTypeReverseSplitAndReceiverAddress() {
-	suite.setupTest()
+// func (suite *KeeperTestSuite) TestCreateTradeWithTypeReverseSplitAndReceiverAddress() {
+// 	suite.setupTest()
 
-	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		ReceiverAddress:      testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeReverseSplit),
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-	})
+// 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
+// 		Creator:              testutil.Alice,
+// 		ReceiverAddress:      testutil.Alice,
+// 		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeReverseSplit),
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 	})
 
-	suite.Require().Nil(createResponse)
-	suite.Require().Contains(err.Error(), "receiver address must not be set for trade type TRADE_TYPE_REVERSE_SPLIT")
-}
+// 	suite.Require().Nil(createResponse)
+// 	suite.Require().Contains(err.Error(), "receiver address must not be set for trade type TRADE_TYPE_REVERSE_SPLIT")
+// }
 
-func (suite *KeeperTestSuite) TestCreateTradeWithTypeReverseSplitAndQuantity() {
-	suite.setupTest()
-	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		ReceiverAddress:      testutil.Alice,
-		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":4,"trade_value":0,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"Low Carbon Target ETF","issuer":"Blackrock","number_of_shares":10,"coin_minting_price_usd":0.001,"quantity":{"amount":"162075000000000","denom":"ugbpv"},"segment":"Equity: Global Low Carbon","share_price":0,"ticker":"CRBN","trade_fee":0,"share_net_price":0,"trade_net_value":0},"brokerage":{"name":"Interactive Brokers LLC","type":"Brokerage Firm","country":"US"}}`,
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-	})
+// func (suite *KeeperTestSuite) TestCreateTradeWithTypeReverseSplitAndQuantity() {
+// 	suite.setupTest()
+// 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
+// 		Creator:              testutil.Alice,
+// 		ReceiverAddress:      testutil.Alice,
+// 		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":4,"trade_value":0,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"Low Carbon Target ETF","issuer":"Blackrock","number_of_shares":10,"coin_minting_price_usd":0.001,"quantity":{"amount":"162075000000000","denom":"ugbpv"},"segment":"Equity: Global Low Carbon","share_price":0,"ticker":"CRBN","trade_fee":0,"share_net_price":0,"trade_net_value":0},"brokerage":{"name":"Interactive Brokers LLC","type":"Brokerage Firm","country":"US"}}`,
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 	})
 
-	suite.Require().Nil(createResponse)
-	suite.Require().ErrorIs(err, types.ErrInvalidTradeInfo)
-	suite.Require().Contains(err.Error(), "quantity must not be set")
-}
+// 	suite.Require().Nil(createResponse)
+// 	suite.Require().ErrorIs(err, types.ErrInvalidTradeInfo)
+// 	suite.Require().Contains(err.Error(), "quantity must not be set")
+// }
 
-func (suite *KeeperTestSuite) TestCreateTradeWithTypeReinvestment() {
-	suite.setupTest()
-	keeper := suite.tradeKeeper
+// func (suite *KeeperTestSuite) TestCreateTradeWithTypeReinvestment() {
+// 	suite.setupTest()
+// 	keeper := suite.tradeKeeper
 
-	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeReinvestment),
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-	})
+// 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
+// 		Creator:              testutil.Alice,
+// 		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeReinvestment),
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 	})
 
-	suite.Require().Equal(&types.MsgCreateTradeResponse{
-		TradeIndex: 1,
-		Status:     types.StatusPending,
-	}, createResponse)
-	suite.Require().NoError(err)
+// 	suite.Require().Equal(&types.MsgCreateTradeResponse{
+// 		TradeIndex: 1,
+// 		Status:     types.StatusPending,
+// 	}, createResponse)
+// 	suite.Require().NoError(err)
 
-	trade, found := keeper.GetStoredTrade(suite.ctx, 1)
-	suite.Require().True(found)
-	suite.Require().EqualValues(types.StoredTrade{
-		TradeIndex:           1,
-		TradeType:            types.TradeTypeReinvestment,
-		CoinMintingPriceUsd:  "0.001",
-		Status:               types.StatusPending,
-		Maker:                testutil.Alice,
-		TxDate:               "0001-01-01T00:00:00Z",
-		CreateDate:           "0001-01-01T00:00:00Z",
-		UpdateDate:           "0001-01-01T00:00:00Z",
-		ProcessDate:          "0001-01-01T00:00:00Z",
-		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":5,"trade_value":100.5,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"TechFund","issuer":"CompanyA","number_of_shares":1000,"coin_minting_price_usd":0.001,"segment":"Technology","share_price":49.5,"ticker":"TECH","trade_fee":5,"share_net_price":500,"trade_net_value":495},"brokerage":{"name":"XYZBrokerage","type":"Online","country":"USA"}}`,
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-		Result:               types.TradeCreatedSuccessfully,
-		Amount:               nil,
-	}, trade)
-}
+// 	trade, found := keeper.GetStoredTrade(suite.ctx, 1)
+// 	suite.Require().True(found)
+// 	suite.Require().EqualValues(types.StoredTrade{
+// 		TradeIndex:           1,
+// 		TradeType:            types.TradeTypeReinvestment,
+// 		CoinMintingPriceUsd:  "0.001",
+// 		Status:               types.StatusPending,
+// 		Maker:                testutil.Alice,
+// 		TxDate:               "0001-01-01T00:00:00Z",
+// 		CreateDate:           "0001-01-01T00:00:00Z",
+// 		UpdateDate:           "0001-01-01T00:00:00Z",
+// 		ProcessDate:          "0001-01-01T00:00:00Z",
+// 		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":5,"trade_value":100.5,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"TechFund","issuer":"CompanyA","number_of_shares":1000,"coin_minting_price_usd":0.001,"segment":"Technology","share_price":49.5,"ticker":"TECH","trade_fee":5,"share_net_price":500,"trade_net_value":495},"brokerage":{"name":"XYZBrokerage","type":"Online","country":"USA"}}`,
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 		Result:               types.TradeCreatedSuccessfully,
+// 		Amount:               nil,
+// 	}, trade)
+// }
 
-func (suite *KeeperTestSuite) TestCreateTradeWithTypeReinvestmentAndReceiverAddress() {
-	suite.setupTest()
+// func (suite *KeeperTestSuite) TestCreateTradeWithTypeReinvestmentAndReceiverAddress() {
+// 	suite.setupTest()
 
-	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		ReceiverAddress:      testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeReinvestment),
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-	})
+// 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
+// 		Creator:              testutil.Alice,
+// 		ReceiverAddress:      testutil.Alice,
+// 		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeReinvestment),
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 	})
 
-	suite.Require().Nil(createResponse)
-	suite.Require().Contains(err.Error(), "receiver address must not be set for trade type TRADE_TYPE_REINVESTMENT")
-}
+// 	suite.Require().Nil(createResponse)
+// 	suite.Require().Contains(err.Error(), "receiver address must not be set for trade type TRADE_TYPE_REINVESTMENT")
+// }
 
-func (suite *KeeperTestSuite) TestCreateTradeWithTypeReinvestmentAndQuantity() {
-	suite.setupTest()
-	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		ReceiverAddress:      testutil.Alice,
-		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":5,"trade_value":1944.9,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"Low Carbon Target ETF","issuer":"Blackrock","number_of_shares":10,"coin_minting_price_usd":0.001,"quantity":{"amount":"162075000000000","denom":"ugbpv"},"segment":"Equity: Global Low Carbon","share_price":194.49,"ticker":"CRBN","trade_fee":0,"share_net_price":194.49,"trade_net_value":1944.9},"brokerage":{"name":"Interactive Brokers LLC","type":"Brokerage Firm","country":"US"}}`,
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-	})
+// func (suite *KeeperTestSuite) TestCreateTradeWithTypeReinvestmentAndQuantity() {
+// 	suite.setupTest()
+// 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
+// 		Creator:              testutil.Alice,
+// 		ReceiverAddress:      testutil.Alice,
+// 		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":5,"trade_value":1944.9,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"Low Carbon Target ETF","issuer":"Blackrock","number_of_shares":10,"coin_minting_price_usd":0.001,"quantity":{"amount":"162075000000000","denom":"ugbpv"},"segment":"Equity: Global Low Carbon","share_price":194.49,"ticker":"CRBN","trade_fee":0,"share_net_price":194.49,"trade_net_value":1944.9},"brokerage":{"name":"Interactive Brokers LLC","type":"Brokerage Firm","country":"US"}}`,
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 	})
 
-	suite.Require().Nil(createResponse)
-	suite.Require().ErrorIs(err, types.ErrInvalidTradeInfo)
-	suite.Require().Contains(err.Error(), "quantity must not be set")
-}
+// 	suite.Require().Nil(createResponse)
+// 	suite.Require().ErrorIs(err, types.ErrInvalidTradeInfo)
+// 	suite.Require().Contains(err.Error(), "quantity must not be set")
+// }
 
-func (suite *KeeperTestSuite) TestCreateTradeWithTypeDividends() {
-	suite.setupTest()
-	keeper := suite.tradeKeeper
+// func (suite *KeeperTestSuite) TestCreateTradeWithTypeDividends() {
+// 	suite.setupTest()
+// 	keeper := suite.tradeKeeper
 
-	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeDividends),
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-	})
+// 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
+// 		Creator:              testutil.Alice,
+// 		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeDividends),
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 	})
 
-	suite.Require().Equal(&types.MsgCreateTradeResponse{
-		TradeIndex: 1,
-		Status:     types.StatusPending,
-	}, createResponse)
-	suite.Require().NoError(err)
+// 	suite.Require().Equal(&types.MsgCreateTradeResponse{
+// 		TradeIndex: 1,
+// 		Status:     types.StatusPending,
+// 	}, createResponse)
+// 	suite.Require().NoError(err)
 
-	trade, found := keeper.GetStoredTrade(suite.ctx, 1)
-	suite.Require().True(found)
-	suite.Require().EqualValues(types.StoredTrade{
-		TradeIndex:           1,
-		TradeType:            types.TradeTypeDividends,
-		CoinMintingPriceUsd:  "0.001",
-		Status:               types.StatusPending,
-		Maker:                testutil.Alice,
-		TxDate:               "0001-01-01T00:00:00Z",
-		CreateDate:           "0001-01-01T00:00:00Z",
-		UpdateDate:           "0001-01-01T00:00:00Z",
-		ProcessDate:          "0001-01-01T00:00:00Z",
-		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":6,"trade_value":100.5,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"TechFund","issuer":"CompanyA","coin_minting_price_usd":0.001,"segment":"Technology","ticker":"TECH","trade_fee":5,"trade_net_value":495},"brokerage":{"name":"XYZBrokerage","type":"Online","country":"USA"}}`,
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-		Result:               types.TradeCreatedSuccessfully,
-		Amount:               nil,
-	}, trade)
-}
+// 	trade, found := keeper.GetStoredTrade(suite.ctx, 1)
+// 	suite.Require().True(found)
+// 	suite.Require().EqualValues(types.StoredTrade{
+// 		TradeIndex:           1,
+// 		TradeType:            types.TradeTypeDividends,
+// 		CoinMintingPriceUsd:  "0.001",
+// 		Status:               types.StatusPending,
+// 		Maker:                testutil.Alice,
+// 		TxDate:               "0001-01-01T00:00:00Z",
+// 		CreateDate:           "0001-01-01T00:00:00Z",
+// 		UpdateDate:           "0001-01-01T00:00:00Z",
+// 		ProcessDate:          "0001-01-01T00:00:00Z",
+// 		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":6,"trade_value":100.5,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"TechFund","issuer":"CompanyA","coin_minting_price_usd":0.001,"segment":"Technology","ticker":"TECH","trade_fee":5,"trade_net_value":495},"brokerage":{"name":"XYZBrokerage","type":"Online","country":"USA"}}`,
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 		Result:               types.TradeCreatedSuccessfully,
+// 		Amount:               nil,
+// 	}, trade)
+// }
 
-func (suite *KeeperTestSuite) TestCreateTradeWithTypeDividendsAndReceiverAddress() {
-	suite.setupTest()
+// func (suite *KeeperTestSuite) TestCreateTradeWithTypeDividendsAndReceiverAddress() {
+// 	suite.setupTest()
 
-	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		ReceiverAddress:      testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeDividends),
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-	})
+// 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
+// 		Creator:              testutil.Alice,
+// 		ReceiverAddress:      testutil.Alice,
+// 		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeDividends),
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 	})
 
-	suite.Require().Nil(createResponse)
-	suite.Require().Contains(err.Error(), "receiver address must not be set for trade type TRADE_TYPE_DIVIDENDS")
-}
+// 	suite.Require().Nil(createResponse)
+// 	suite.Require().Contains(err.Error(), "receiver address must not be set for trade type TRADE_TYPE_DIVIDENDS")
+// }
 
-func (suite *KeeperTestSuite) TestCreateTradeWithTypeDividendsAndQuantity() {
-	suite.setupTest()
-	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":6,"trade_value":100.5,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"TechFund","issuer":"CompanyA","coin_minting_price_usd":0.001,"quantity":{"amount":"162075000000000","denom":"ugbpv"},"segment":"Technology","ticker":"TECH","trade_fee":5,"trade_net_value":495},"brokerage":{"name":"XYZBrokerage","type":"Online","country":"USA"}}`,
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-	})
+// func (suite *KeeperTestSuite) TestCreateTradeWithTypeDividendsAndQuantity() {
+// 	suite.setupTest()
+// 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
+// 		Creator:              testutil.Alice,
+// 		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":6,"trade_value":100.5,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"TechFund","issuer":"CompanyA","coin_minting_price_usd":0.001,"quantity":{"amount":"162075000000000","denom":"ugbpv"},"segment":"Technology","ticker":"TECH","trade_fee":5,"trade_net_value":495},"brokerage":{"name":"XYZBrokerage","type":"Online","country":"USA"}}`,
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 	})
 
-	suite.Require().Nil(createResponse)
-	suite.Require().ErrorIs(err, types.ErrInvalidTradeInfo)
-	suite.Require().Contains(err.Error(), "quantity must not be set")
-}
+// 	suite.Require().Nil(createResponse)
+// 	suite.Require().ErrorIs(err, types.ErrInvalidTradeInfo)
+// 	suite.Require().Contains(err.Error(), "quantity must not be set")
+// }
 
-func (suite *KeeperTestSuite) TestCreateTradeWithTypeDividendsDeduction() {
-	suite.setupTest()
-	keeper := suite.tradeKeeper
+// func (suite *KeeperTestSuite) TestCreateTradeWithTypeDividendsDeduction() {
+// 	suite.setupTest()
+// 	keeper := suite.tradeKeeper
 
-	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeDividendsDeduction),
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-	})
+// 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
+// 		Creator:              testutil.Alice,
+// 		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeDividendsDeduction),
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 	})
 
-	suite.Require().Equal(&types.MsgCreateTradeResponse{
-		TradeIndex: 1,
-		Status:     types.StatusPending,
-	}, createResponse)
-	suite.Require().NoError(err)
+// 	suite.Require().Equal(&types.MsgCreateTradeResponse{
+// 		TradeIndex: 1,
+// 		Status:     types.StatusPending,
+// 	}, createResponse)
+// 	suite.Require().NoError(err)
 
-	trade, found := keeper.GetStoredTrade(suite.ctx, 1)
-	suite.Require().True(found)
-	suite.Require().EqualValues(types.StoredTrade{
-		TradeIndex:           1,
-		TradeType:            types.TradeTypeDividendsDeduction,
-		CoinMintingPriceUsd:  "0.001",
-		Status:               types.StatusPending,
-		Maker:                testutil.Alice,
-		TxDate:               "0001-01-01T00:00:00Z",
-		CreateDate:           "0001-01-01T00:00:00Z",
-		UpdateDate:           "0001-01-01T00:00:00Z",
-		ProcessDate:          "0001-01-01T00:00:00Z",
-		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":7,"trade_value":100.5,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"TechFund","issuer":"CompanyA","coin_minting_price_usd":0.001,"segment":"Technology","ticker":"TECH","trade_fee":5,"trade_net_value":495},"brokerage":{"name":"XYZBrokerage","type":"Online","country":"USA"}}`,
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-		Result:               types.TradeCreatedSuccessfully,
-		Amount:               nil,
-	}, trade)
-}
+// 	trade, found := keeper.GetStoredTrade(suite.ctx, 1)
+// 	suite.Require().True(found)
+// 	suite.Require().EqualValues(types.StoredTrade{
+// 		TradeIndex:           1,
+// 		TradeType:            types.TradeTypeDividendsDeduction,
+// 		CoinMintingPriceUsd:  "0.001",
+// 		Status:               types.StatusPending,
+// 		Maker:                testutil.Alice,
+// 		TxDate:               "0001-01-01T00:00:00Z",
+// 		CreateDate:           "0001-01-01T00:00:00Z",
+// 		UpdateDate:           "0001-01-01T00:00:00Z",
+// 		ProcessDate:          "0001-01-01T00:00:00Z",
+// 		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":7,"trade_value":100.5,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"TechFund","issuer":"CompanyA","coin_minting_price_usd":0.001,"segment":"Technology","ticker":"TECH","trade_fee":5,"trade_net_value":495},"brokerage":{"name":"XYZBrokerage","type":"Online","country":"USA"}}`,
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 		Result:               types.TradeCreatedSuccessfully,
+// 		Amount:               nil,
+// 	}, trade)
+// }
 
-func (suite *KeeperTestSuite) TestCreateTradeWithTypeDividendsDeductionAndReceiverAddress() {
-	suite.setupTest()
+// func (suite *KeeperTestSuite) TestCreateTradeWithTypeDividendsDeductionAndReceiverAddress() {
+// 	suite.setupTest()
 
-	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		ReceiverAddress:      testutil.Alice,
-		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeDividendsDeduction),
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-	})
+// 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
+// 		Creator:              testutil.Alice,
+// 		ReceiverAddress:      testutil.Alice,
+// 		TradeData:            types.GetSampleTradeDataJson(types.TradeTypeDividendsDeduction),
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 	})
 
-	suite.Require().Nil(createResponse)
-	suite.Require().Contains(err.Error(), "receiver address must not be set for trade type TRADE_TYPE_DIVIDEND_DEDUCTION")
-}
+// 	suite.Require().Nil(createResponse)
+// 	suite.Require().Contains(err.Error(), "receiver address must not be set for trade type TRADE_TYPE_DIVIDEND_DEDUCTION")
+// }
 
-func (suite *KeeperTestSuite) TestCreateTradeWithTypeDividendsDeductionAndQuantity() {
-	suite.setupTest()
-	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
-		Creator:              testutil.Alice,
-		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":7,"trade_value":100.5,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"TechFund","issuer":"CompanyA","coin_minting_price_usd":0.001,"quantity":{"amount":"162075000000000","denom":"ugbpv"},"segment":"Technology","ticker":"TECH","trade_fee":5,"trade_net_value":495},"brokerage":{"name":"XYZBrokerage","type":"Online","country":"USA"}}`,
-		BankingSystemData:    "{}",
-		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-	})
+// func (suite *KeeperTestSuite) TestCreateTradeWithTypeDividendsDeductionAndQuantity() {
+// 	suite.setupTest()
+// 	createResponse, err := suite.msgServer.CreateTrade(suite.ctx, &types.MsgCreateTrade{
+// 		Creator:              testutil.Alice,
+// 		TradeData:            `{"trade_info":{"asset_holder_id":1,"asset_id":1,"trade_type":7,"trade_value":100.5,"base_currency":"USD","settlement_currency":"USD","exchange_rate":1,"exchange":"US","fund_name":"TechFund","issuer":"CompanyA","coin_minting_price_usd":0.001,"quantity":{"amount":"162075000000000","denom":"ugbpv"},"segment":"Technology","ticker":"TECH","trade_fee":5,"trade_net_value":495},"brokerage":{"name":"XYZBrokerage","type":"Online","country":"USA"}}`,
+// 		BankingSystemData:    "{}",
+// 		ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+// 		CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+// 	})
 
-	suite.Require().Nil(createResponse)
-	suite.Require().ErrorIs(err, types.ErrInvalidTradeInfo)
-	suite.Require().Contains(err.Error(), "quantity must not be set")
-}
+// 	suite.Require().Nil(createResponse)
+// 	suite.Require().ErrorIs(err, types.ErrInvalidTradeInfo)
+// 	suite.Require().Contains(err.Error(), "quantity must not be set")
+// }

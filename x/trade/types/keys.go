@@ -44,14 +44,14 @@ const (
 )
 
 const (
-	TradeTypeNil                = TradeType_TRADE_TYPE_UNSPECIFIED
-	TradeTypeBuy                = TradeType_TRADE_TYPE_BUY
-	TradeTypeSell               = TradeType_TRADE_TYPE_SELL
-	TradeTypeSplit              = TradeType_TRADE_TYPE_SPLIT
-	TradeTypeReverseSplit       = TradeType_TRADE_TYPE_REVERSE_SPLIT
-	TradeTypeReinvestment       = TradeType_TRADE_TYPE_REINVESTMENT
-	TradeTypeDividends          = TradeType_TRADE_TYPE_DIVIDENDS
-	TradeTypeDividendsDeduction = TradeType_TRADE_TYPE_DIVIDEND_DEDUCTION
+	TradeTypeNil            = TradeType_TRADE_TYPE_UNSPECIFIED
+	TradeTypeFiatDeposit    = TradeType_TRADE_TYPE_FIAT_DEPOSIT
+	TradeTypeFiatWithdrawal = TradeType_TRADE_TYPE_FIAT_WITHDRAWAL
+	// TradeTypeSplit              = TradeType_TRADE_TYPE_SPLIT
+	// TradeTypeReverseSplit       = TradeType_TRADE_TYPE_REVERSE_SPLIT
+	// TradeTypeReinvestment       = TradeType_TRADE_TYPE_REINVESTMENT
+	// TradeTypeDividends          = TradeType_TRADE_TYPE_DIVIDENDS
+	// TradeTypeDividendsDeduction = TradeType_TRADE_TYPE_DIVIDEND_DEDUCTION
 )
 
 const (

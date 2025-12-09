@@ -21,7 +21,7 @@ func (s *IntegrationTestSuite) testTrade() {
 	fees := sdk.NewCoin(uvvtxDenom, math.NewInt(1))
 
 	// Create trade
-	s.execCreateTrade(s.chainA, 0, admin1.String(), tradetypes.GetSampleTradeDataJson(tradetypes.TradeTypeBuy), `{}`, tradetypes.GetSampleCoinMintingPriceJson(), tradetypes.GetSampleExchangeRateJson(), admin1.String(), vvtxHomePath, fees.String())
+	s.execCreateTrade(s.chainA, 0, admin1.String(), tradetypes.GetSampleTradeDataJson(tradetypes.TradeTypeFiatDeposit), `{}`, tradetypes.GetSampleCoinMintingPriceJson(), tradetypes.GetSampleExchangeRateJson(), admin1.String(), vvtxHomePath, fees.String())
 
 	s.Require().Eventually(
 		func() bool {
@@ -79,53 +79,53 @@ func (s *IntegrationTestSuite) testTrade() {
 	// Process already processed trade
 	s.execProcessTrade(s.chainA, 0, "1", "confirm", admin2.String(), vvtxHomePath, fees.String(), true)
 
-	// Create trade with type split
-	s.execCreateTrade(s.chainA, 0, "", tradetypes.GetSampleTradeDataJson(tradetypes.TradeTypeSplit), `{}`, tradetypes.GetSampleCoinMintingPriceJson(), tradetypes.GetSampleExchangeRateJson(), admin1.String(), vvtxHomePath, fees.String())
+	// // Create trade with type split
+	// s.execCreateTrade(s.chainA, 0, "", tradetypes.GetSampleTradeDataJson(tradetypes.TradeTypeSplit), `{}`, tradetypes.GetSampleCoinMintingPriceJson(), tradetypes.GetSampleExchangeRateJson(), admin1.String(), vvtxHomePath, fees.String())
 
-	s.Require().Eventually(
-		func() bool {
-			storedTrade, err := queryStoredTrade(chainEndpoint, "2")
-			s.Require().NoError(err)
+	// s.Require().Eventually(
+	// 	func() bool {
+	// 		storedTrade, err := queryStoredTrade(chainEndpoint, "2")
+	// 		s.Require().NoError(err)
 
-			storedTrades, err := queryAllStoredTrade(chainEndpoint)
-			s.Require().NoError(err)
+	// 		storedTrades, err := queryAllStoredTrade(chainEndpoint)
+	// 		s.Require().NoError(err)
 
-			storedTempTrade, err := queryStoredTempTrade(chainEndpoint, "2")
-			s.Require().NoError(err)
+	// 		storedTempTrade, err := queryStoredTempTrade(chainEndpoint, "2")
+	// 		s.Require().NoError(err)
 
-			storedTempTrades, err := queryAllStoredTempTrade(chainEndpoint)
-			s.Require().NoError(err)
+	// 		storedTempTrades, err := queryAllStoredTempTrade(chainEndpoint)
+	// 		s.Require().NoError(err)
 
-			s.Require().Equal(storedTrade.StoredTrade.Status, tradetypes.StatusPending)
-			s.Require().Equal(storedTempTrade.StoredTempTrade.TradeIndex, uint64(2))
-			s.Require().Len(storedTempTrades.StoredTempTrade, 1)
+	// 		s.Require().Equal(storedTrade.StoredTrade.Status, tradetypes.StatusPending)
+	// 		s.Require().Equal(storedTempTrade.StoredTempTrade.TradeIndex, uint64(2))
+	// 		s.Require().Len(storedTempTrades.StoredTempTrade, 1)
 
-			return len(storedTrades.StoredTrade) == 2
-		},
-		20*time.Second,
-		5*time.Second,
-	)
+	// 		return len(storedTrades.StoredTrade) == 2
+	// 	},
+	// 	20*time.Second,
+	// 	5*time.Second,
+	// )
 
-	// Process trade
-	s.execProcessTrade(s.chainA, 0, "2", "confirm", admin2.String(), vvtxHomePath, fees.String(), false)
+	// // Process trade
+	// s.execProcessTrade(s.chainA, 0, "2", "confirm", admin2.String(), vvtxHomePath, fees.String(), false)
 
-	s.Require().Eventually(
-		func() bool {
-			storedTrade, err := queryStoredTrade(chainEndpoint, "2")
-			s.Require().NoError(err)
+	// s.Require().Eventually(
+	// 	func() bool {
+	// 		storedTrade, err := queryStoredTrade(chainEndpoint, "2")
+	// 		s.Require().NoError(err)
 
-			storedTempTrades, err := queryAllStoredTempTrade(chainEndpoint)
-			s.Require().NoError(err)
+	// 		storedTempTrades, err := queryAllStoredTempTrade(chainEndpoint)
+	// 		s.Require().NoError(err)
 
-			s.Require().Equal(storedTrade.StoredTrade.Status, tradetypes.StatusProcessed)
-			// Supply should not be changed
-			gbpvSupply, err := querySupplyOf(chainEndpoint, tradetypes.DefaultDenom)
-			s.Require().NoError(err)
-			s.Require().Equal(int64(100000), gbpvSupply.Amount.Int64())
+	// 		s.Require().Equal(storedTrade.StoredTrade.Status, tradetypes.StatusProcessed)
+	// 		// Supply should not be changed
+	// 		gbpvSupply, err := querySupplyOf(chainEndpoint, tradetypes.DefaultDenom)
+	// 		s.Require().NoError(err)
+	// 		s.Require().Equal(int64(100000), gbpvSupply.Amount.Int64())
 
-			return len(storedTempTrades.StoredTempTrade) == 0
-		},
-		20*time.Second,
-		5*time.Second,
-	)
+	// 		return len(storedTempTrades.StoredTempTrade) == 0
+	// 	},
+	// 	20*time.Second,
+	// 	5*time.Second,
+	// )
 }

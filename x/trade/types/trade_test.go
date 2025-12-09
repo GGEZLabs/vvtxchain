@@ -15,39 +15,39 @@ func TestIsTypeValid(t *testing.T) {
 	}{
 		{
 			name:      "trade type buy",
-			tradeType: types.TradeTypeBuy,
+			tradeType: types.TradeTypeFiatDeposit,
 			valid:     true,
 		},
 		{
 			name:      "trade type sell",
-			tradeType: types.TradeTypeSell,
+			tradeType: types.TradeTypeFiatWithdrawal,
 			valid:     true,
 		},
-		{
-			name:      "trade type split",
-			tradeType: types.TradeTypeSplit,
-			valid:     true,
-		},
-		{
-			name:      "trade type reverse split",
-			tradeType: types.TradeTypeReverseSplit,
-			valid:     true,
-		},
-		{
-			name:      "trade type reinvestment",
-			tradeType: types.TradeTypeReinvestment,
-			valid:     true,
-		},
-		{
-			name:      "trade type dividends",
-			tradeType: types.TradeTypeDividends,
-			valid:     true,
-		},
-		{
-			name:      "trade type dividends deduction",
-			tradeType: types.TradeTypeDividendsDeduction,
-			valid:     true,
-		},
+		// {
+		// 	name:      "trade type split",
+		// 	tradeType: types.TradeTypeSplit,
+		// 	valid:     true,
+		// },
+		// {
+		// 	name:      "trade type reverse split",
+		// 	tradeType: types.TradeTypeReverseSplit,
+		// 	valid:     true,
+		// },
+		// {
+		// 	name:      "trade type reinvestment",
+		// 	tradeType: types.TradeTypeReinvestment,
+		// 	valid:     true,
+		// },
+		// {
+		// 	name:      "trade type dividends",
+		// 	tradeType: types.TradeTypeDividends,
+		// 	valid:     true,
+		// },
+		// {
+		// 	name:      "trade type dividends deduction",
+		// 	tradeType: types.TradeTypeDividendsDeduction,
+		// 	valid:     true,
+		// },
 		{
 			name:      "trade type unspecified",
 			tradeType: types.TradeTypeNil,

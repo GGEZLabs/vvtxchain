@@ -50,8 +50,8 @@ func (k msgServer) ProcessTrade(goCtx context.Context, msg *types.MsgProcessTrad
 		finalResult = defaultResult
 
 	case types.ProcessTypeConfirm:
-		if st.TradeType != types.TradeTypeBuy &&
-			st.TradeType != types.TradeTypeSell {
+		if st.TradeType != types.TradeTypeFiatDeposit &&
+			st.TradeType != types.TradeTypeFiatWithdrawal {
 			finalStatus = types.StatusProcessed
 			finalResult = defaultResult
 		} else {

@@ -14,7 +14,7 @@ import (
 )
 
 func TestGenesis(t *testing.T) {
-	td := types.GetSampleTradeDataJson(types.TradeTypeBuy)
+	td := types.GetSampleTradeDataJson(types.TradeTypeFiatDeposit)
 	genesisState := types.GenesisState{
 		Params: types.DefaultParams(),
 		TradeIndex: types.TradeIndex{
@@ -23,7 +23,7 @@ func TestGenesis(t *testing.T) {
 		StoredTrades: []types.StoredTrade{
 			{
 				TradeIndex:           1,
-				TradeType:            types.TradeTypeBuy,
+				TradeType:            types.TradeTypeFiatDeposit,
 				Amount:               &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 				CoinMintingPriceUsd:  "0.01",
 				ReceiverAddress:      sample.AccAddress(),
@@ -41,7 +41,7 @@ func TestGenesis(t *testing.T) {
 			},
 			{
 				TradeIndex:           2,
-				TradeType:            types.TradeTypeSell,
+				TradeType:            types.TradeTypeFiatWithdrawal,
 				Amount:               &sdk.Coin{Denom: types.DefaultDenom, Amount: math.NewInt(100000)},
 				CoinMintingPriceUsd:  "0.01",
 				ReceiverAddress:      sample.AccAddress(),
@@ -57,22 +57,22 @@ func TestGenesis(t *testing.T) {
 				CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
 				ExchangeRateJson:     types.GetSampleExchangeRateJson(),
 			},
-			{
-				TradeIndex:           3,
-				TradeType:            types.TradeTypeReinvestment,
-				CoinMintingPriceUsd:  "0.01",
-				Status:               types.StatusProcessed,
-				Maker:                sample.AccAddress(),
-				Checker:              sample.AccAddress(),
-				CreateDate:           "2023-05-11T08:44:00Z",
-				TxDate:               "2023-05-11T08:44:00Z",
-				UpdateDate:           "2023-05-11T08:44:00Z",
-				ProcessDate:          "2023-05-11T08:44:00Z",
-				TradeData:            td,
-				BankingSystemData:    "{}",
-				CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
-				ExchangeRateJson:     types.GetSampleExchangeRateJson(),
-			},
+			// {
+			// 	TradeIndex:           3,
+			// 	TradeType:            types.TradeTypeReinvestment,
+			// 	CoinMintingPriceUsd:  "0.01",
+			// 	Status:               types.StatusProcessed,
+			// 	Maker:                sample.AccAddress(),
+			// 	Checker:              sample.AccAddress(),
+			// 	CreateDate:           "2023-05-11T08:44:00Z",
+			// 	TxDate:               "2023-05-11T08:44:00Z",
+			// 	UpdateDate:           "2023-05-11T08:44:00Z",
+			// 	ProcessDate:          "2023-05-11T08:44:00Z",
+			// 	TradeData:            td,
+			// 	BankingSystemData:    "{}",
+			// 	CoinMintingPriceJson: types.GetSampleCoinMintingPriceJson(),
+			// 	ExchangeRateJson:     types.GetSampleExchangeRateJson(),
+			// },
 		},
 		StoredTempTrades: []types.StoredTempTrade{
 			{

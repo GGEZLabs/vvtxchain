@@ -3,13 +3,13 @@ package types
 // IsTypeValid check if a trade type is valid
 func (tt TradeType) IsTypeValid() bool {
 	switch tt {
-	case TradeTypeBuy,
-		TradeTypeSell,
-		TradeTypeSplit,
-		TradeTypeReverseSplit,
-		TradeTypeReinvestment,
-		TradeTypeDividends,
-		TradeTypeDividendsDeduction:
+	case TradeTypeFiatDeposit,
+		TradeTypeFiatWithdrawal:
+		// TradeTypeSplit,
+		// TradeTypeReverseSplit,
+		// TradeTypeReinvestment,
+		// TradeTypeDividends,
+		// TradeTypeDividendsDeduction:
 		return true
 	default:
 		return false

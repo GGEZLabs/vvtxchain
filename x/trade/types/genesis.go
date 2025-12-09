@@ -67,8 +67,8 @@ func (gs GenesisState) ValidateStoredTrade() error {
 			return fmt.Errorf("invalid trade_type, trade_index: %d", elem.TradeIndex)
 		}
 
-		if elem.TradeType == TradeTypeBuy ||
-			elem.TradeType == TradeTypeSell {
+		if elem.TradeType == TradeTypeFiatDeposit ||
+			elem.TradeType == TradeTypeFiatWithdrawal {
 			if !elem.Amount.IsValid() {
 				return fmt.Errorf("invalid amount: %s, trade_index: %d", elem.Amount.String(), elem.TradeIndex)
 			}
