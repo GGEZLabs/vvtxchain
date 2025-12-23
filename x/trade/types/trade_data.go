@@ -59,8 +59,8 @@ func ValidateCommonTradeData(td TradeData) error {
 	if strings.TrimSpace(td.TradeInfo.Issuer) == "" {
 		return ErrInvalidTradeInfo.Wrap("issuer must not be empty or whitespace")
 	}
-	if td.TradeInfo.CoinMintingPriceUsd <= 0 {
-		return ErrInvalidTradeInfo.Wrapf("coin_minting_price_usd must be greater than 0, got: %f", td.TradeInfo.CoinMintingPriceUsd)
+	if td.TradeInfo.CoinMintingPrice <= 0 {
+		return ErrInvalidTradeInfo.Wrapf("coin_minting_price must be greater than 0, got: %f", td.TradeInfo.CoinMintingPrice)
 	}
 	if strings.TrimSpace(td.TradeInfo.Segment) == "" {
 		return ErrInvalidTradeInfo.Wrap("segment must not be empty or whitespace")
@@ -114,75 +114,6 @@ func ValidateBuyOrSell(tradeInfo *TradeInfo) error {
 	}
 	if tradeInfo.Quantity.Denom != DefaultDenom {
 		return ErrInvalidTradeInfo.Wrapf("invalid denom expected: %s, got: %s", DefaultDenom, tradeInfo.Quantity.Denom)
-	}
-	return nil
-}
-
-// ValidateReinvestment validates reinvestment trade type
-func ValidateReinvestment(tradeInfo *TradeInfo) error {
-	if tradeInfo.SharePrice <= 0 {
-		return ErrInvalidTradeInfo.Wrapf("share_price must be greater than 0, got: %f", tradeInfo.SharePrice)
-	}
-	if tradeInfo.ShareNetPrice <= 0 {
-		return ErrInvalidTradeInfo.Wrapf("share_net_price must be greater than 0, got: %f", tradeInfo.ShareNetPrice)
-	}
-	if tradeInfo.NumberOfShares <= 0 {
-		return ErrInvalidTradeInfo.Wrapf("number_of_shares must be greater than 0, got: %f", tradeInfo.NumberOfShares)
-	}
-	if tradeInfo.TradeValue <= 0 {
-		return ErrInvalidTradeInfo.Wrapf("trade_value must be greater than 0, got: %f", tradeInfo.TradeValue)
-	}
-	if tradeInfo.TradeNetValue <= 0 {
-		return ErrInvalidTradeInfo.Wrapf("trade_net_value must be greater than 0, got: %f", tradeInfo.TradeNetValue)
-	}
-	if err := ValidateNoQuantity(tradeInfo); err != nil {
-		return err
-	}
-	return nil
-}
-
-// ValidateDividends validates dividends and dividends deduction trade types
-func ValidateDividends(tradeInfo *TradeInfo) error {
-	if tradeInfo.SharePrice != 0 {
-		return ErrInvalidTradeInfo.Wrapf("share_price must be 0, got: %f", tradeInfo.SharePrice)
-	}
-	if tradeInfo.ShareNetPrice != 0 {
-		return ErrInvalidTradeInfo.Wrapf("share_net_price must be 0, got: %f", tradeInfo.ShareNetPrice)
-	}
-	if tradeInfo.NumberOfShares != 0 {
-		return ErrInvalidTradeInfo.Wrapf("number_of_shares must be 0, got: %f", tradeInfo.NumberOfShares)
-	}
-	if tradeInfo.TradeValue <= 0 {
-		return ErrInvalidTradeInfo.Wrapf("trade_value must be greater than 0, got: %f", tradeInfo.TradeValue)
-	}
-	if tradeInfo.TradeNetValue <= 0 {
-		return ErrInvalidTradeInfo.Wrapf("trade_net_value must be greater than 0, got: %f", tradeInfo.TradeNetValue)
-	}
-	if err := ValidateNoQuantity(tradeInfo); err != nil {
-		return err
-	}
-	return nil
-}
-
-// ValidateSplit validates split and reverse split trade types
-func ValidateSplit(tradeInfo *TradeInfo) error {
-	if tradeInfo.SharePrice != 0 {
-		return ErrInvalidTradeInfo.Wrapf("share_price must be 0, got: %f", tradeInfo.SharePrice)
-	}
-	if tradeInfo.ShareNetPrice != 0 {
-		return ErrInvalidTradeInfo.Wrapf("share_net_price must be 0, got: %f", tradeInfo.ShareNetPrice)
-	}
-	if tradeInfo.NumberOfShares <= 0 {
-		return ErrInvalidTradeInfo.Wrapf("number_of_shares must be greater than 0, got: %f", tradeInfo.NumberOfShares)
-	}
-	if tradeInfo.TradeValue != 0 {
-		return ErrInvalidTradeInfo.Wrapf("trade_value must be 0, got: %f", tradeInfo.TradeValue)
-	}
-	if tradeInfo.TradeNetValue != 0 {
-		return ErrInvalidTradeInfo.Wrapf("trade_net_value must be 0, got: %f", tradeInfo.TradeNetValue)
-	}
-	if err := ValidateNoQuantity(tradeInfo); err != nil {
-		return err
 	}
 	return nil
 }

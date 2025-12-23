@@ -86,7 +86,7 @@ func TestValidateExchangeRateJson(t *testing.T) {
 		},
 		{
 			name:             "Invalid json format",
-			exchangeRateJson: `{"from_currency":"USD","to_currency":"EUR","original_amount":1,"converted_amount":0.85,"currency_rate":0.85,"timestamp":"2025-07-08T10:59:59Z"}`,
+			exchangeRateJson: `{"from_currency":"GBP","to_currency":"EUR","original_amount":1,"converted_amount":0.85,"currency_rate":0.85,"timestamp":"2025-07-08T10:59:59Z"}`,
 			expErr:           true,
 			expErrMsg:        "invalid exchange rate json format",
 		},
@@ -98,31 +98,31 @@ func TestValidateExchangeRateJson(t *testing.T) {
 		},
 		{
 			name:             "Invalid to_currency",
-			exchangeRateJson: `[{"from_currency":"USD","to_currency":"","original_amount":1,"converted_amount":0.85,"currency_rate":0.85,"timestamp":"2025-07-08T10:59:59Z"}]`,
+			exchangeRateJson: `[{"from_currency":"GBP","to_currency":"","original_amount":1,"converted_amount":0.85,"currency_rate":0.85,"timestamp":"2025-07-08T10:59:59Z"}]`,
 			expErr:           true,
 			expErrMsg:        "to_currency must not be empty or whitespace at index: 0",
 		},
 		{
 			name:             "Invalid original_amount",
-			exchangeRateJson: `[{"from_currency":"USD","to_currency":"EUR","original_amount":-1,"converted_amount":0.85,"currency_rate":0.85,"timestamp":"2025-07-08T10:59:59Z"}]`,
+			exchangeRateJson: `[{"from_currency":"GBP","to_currency":"EUR","original_amount":-1,"converted_amount":0.85,"currency_rate":0.85,"timestamp":"2025-07-08T10:59:59Z"}]`,
 			expErr:           true,
 			expErrMsg:        "original_amount must be a non-negative number",
 		},
 		{
 			name:             "Invalid converted_amount",
-			exchangeRateJson: `[{"from_currency":"USD","to_currency":"EUR","original_amount":1,"converted_amount":-1,"currency_rate":0.85,"timestamp":"2025-07-08T10:59:59Z"}]`,
+			exchangeRateJson: `[{"from_currency":"GBP","to_currency":"EUR","original_amount":1,"converted_amount":-1,"currency_rate":0.85,"timestamp":"2025-07-08T10:59:59Z"}]`,
 			expErr:           true,
 			expErrMsg:        "converted_amount must be a non-negative number",
 		},
 		{
 			name:             "Invalid currency_rate",
-			exchangeRateJson: `[{"from_currency":"USD","to_currency":"EUR","original_amount":1,"converted_amount":0.85,"currency_rate":0,"timestamp":"2025-07-08T10:59:59Z"}]`,
+			exchangeRateJson: `[{"from_currency":"GBP","to_currency":"EUR","original_amount":1,"converted_amount":0.85,"currency_rate":0,"timestamp":"2025-07-08T10:59:59Z"}]`,
 			expErr:           true,
 			expErrMsg:        "currency_rate must be greater than 0",
 		},
 		{
 			name:             "Invalid timestamp",
-			exchangeRateJson: `[{"from_currency":"USD","to_currency":"EUR","original_amount":1,"converted_amount":0.85,"currency_rate":0.85,"timestamp":"2025-07-0810:59:59Z"}]`,
+			exchangeRateJson: `[{"from_currency":"GBP","to_currency":"EUR","original_amount":1,"converted_amount":0.85,"currency_rate":0.85,"timestamp":"2025-07-0810:59:59Z"}]`,
 			expErr:           true,
 			expErrMsg:        "invalid timestamp format at index: 0",
 		},
@@ -154,7 +154,7 @@ func TestValidateCoinMintingPriceJson(t *testing.T) {
 		},
 		{
 			name:                 "Invalid json format",
-			coinMintingPriceJson: `{"currency_code":"USD","minting_price":1}`,
+			coinMintingPriceJson: `{"currency_code":"GBP","minting_price":1}`,
 			expErr:               true,
 			expErrMsg:            "invalid coin minting price json format",
 		},
@@ -166,7 +166,7 @@ func TestValidateCoinMintingPriceJson(t *testing.T) {
 		},
 		{
 			name:                 "Invalid minting_price",
-			coinMintingPriceJson: `[{"currency_code":"USD","minting_price":0}]`,
+			coinMintingPriceJson: `[{"currency_code":"GBP","minting_price":0}]`,
 			expErr:               true,
 			expErrMsg:            "minting_price must be greater than 0",
 		},

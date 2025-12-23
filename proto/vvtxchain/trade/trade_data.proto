@@ -23,7 +23,7 @@ message TradeInfo {
   string fund_name = 9;
   string issuer = 10;
   double number_of_shares = 11;
-  double coin_minting_price_usd = 12;
+  double coin_minting_price = 12;
   cosmos.base.v1beta1.Coin quantity = 13;
   string segment = 14;
   double share_price = 15;

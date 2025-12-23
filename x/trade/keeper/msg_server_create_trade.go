@@ -67,7 +67,7 @@ func (k msgServer) CreateTrade(goCtx context.Context, msg *types.MsgCreateTrade)
 
 	newIndex := tradeIndex.NextId
 	tradeType := td.TradeInfo.TradeType
-	formattedPrice := types.FormatPrice(td.TradeInfo.CoinMintingPriceUsd)
+	formattedPrice := types.FormatPrice(td.TradeInfo.CoinMintingPrice)
 
 	storedTrade := types.StoredTrade{
 		TradeIndex:           newIndex,
@@ -79,7 +79,7 @@ func (k msgServer) CreateTrade(goCtx context.Context, msg *types.MsgCreateTrade)
 		Amount:               td.TradeInfo.Quantity,
 		TradeData:            msg.TradeData,
 		ReceiverAddress:      msg.ReceiverAddress,
-		CoinMintingPriceUsd:  formattedPrice,
+		CoinMintingPrice:     formattedPrice,
 		Maker:                msg.Creator,
 		ProcessDate:          formattedDateTime,
 		BankingSystemData:    msg.BankingSystemData,

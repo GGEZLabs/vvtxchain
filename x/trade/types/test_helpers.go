@@ -38,25 +38,25 @@ func GetSampleTradeDataJson(tradeType TradeType) string {
 
 	tradeData := TradeData{
 		TradeInfo: &TradeInfo{
-			AssetHolderId:       1,
-			AssetId:             1,
-			TradeType:           tradeType,
-			TradeValue:          tradeValue,
-			BaseCurrency:        "USD",
-			SettlementCurrency:  "USD",
-			ExchangeRate:        1,
-			Exchange:            "US",
-			FundName:            "TechFund",
-			Issuer:              "CompanyA",
-			NumberOfShares:      numberOfShares,
-			CoinMintingPriceUsd: 0.001,
-			Quantity:            quantity,
-			Segment:             "Technology",
-			SharePrice:          sharePrice,
-			Ticker:              "TECH",
-			TradeFee:            5.00,
-			ShareNetPrice:       shareNetPrice,
-			TradeNetValue:       tradeNetValue,
+			AssetHolderId:      1,
+			AssetId:            1,
+			TradeType:          tradeType,
+			TradeValue:         tradeValue,
+			BaseCurrency:       "GBP",
+			SettlementCurrency: "GBP",
+			ExchangeRate:       1,
+			Exchange:           "US",
+			FundName:           "TechFund",
+			Issuer:             "CompanyA",
+			NumberOfShares:     numberOfShares,
+			CoinMintingPrice:   0.001,
+			Quantity:           quantity,
+			Segment:            "Technology",
+			SharePrice:         sharePrice,
+			Ticker:             "TECH",
+			TradeFee:           5.00,
+			ShareNetPrice:      shareNetPrice,
+			TradeNetValue:      tradeNetValue,
 		},
 		Brokerage: &Brokerage{
 			Name:    "XYZBrokerage",
@@ -87,40 +87,27 @@ func GetSampleTradeData(tradeType TradeType) TradeData {
 		}
 	}
 
-	// switch tradeType {
-	// case TradeTypeSplit, TradeTypeReverseSplit:
-	// 	tradeValue = 0
-	// 	tradeNetValue = 0
-	// 	sharePrice = 0
-	// 	shareNetPrice = 0
-
-	// case TradeTypeDividends, TradeTypeDividendsDeduction:
-	// 	numberOfShares = 0
-	// 	sharePrice = 0
-	// 	shareNetPrice = 0
-	// }
-
 	tradeData := TradeData{
 		TradeInfo: &TradeInfo{
-			AssetHolderId:       2,
-			AssetId:             789,
-			TradeType:           tradeType,
-			TradeValue:          tradeValue,
-			BaseCurrency:        "USD",
-			SettlementCurrency:  "USD",
-			ExchangeRate:        1,
-			Exchange:            "NYSE",
-			FundName:            "TechFund",
-			Issuer:              "CompanyA",
-			NumberOfShares:      numberOfShares,
-			CoinMintingPriceUsd: 0.001,
-			Quantity:            quantity,
-			Segment:             "Technology",
-			SharePrice:          sharePrice,
-			Ticker:              "TECH",
-			TradeFee:            5.00,
-			ShareNetPrice:       shareNetPrice,
-			TradeNetValue:       tradeNetValue,
+			AssetHolderId:      2,
+			AssetId:            789,
+			TradeType:          tradeType,
+			TradeValue:         tradeValue,
+			BaseCurrency:       "GBP",
+			SettlementCurrency: "GBP",
+			ExchangeRate:       1,
+			Exchange:           "NYSE",
+			FundName:           "TechFund",
+			Issuer:             "CompanyA",
+			NumberOfShares:     numberOfShares,
+			CoinMintingPrice:   0.001,
+			Quantity:           quantity,
+			Segment:            "Technology",
+			SharePrice:         sharePrice,
+			Ticker:             "TECH",
+			TradeFee:           5.00,
+			ShareNetPrice:      shareNetPrice,
+			TradeNetValue:      tradeNetValue,
 		},
 		Brokerage: &Brokerage{
 			Name:    "XYZBrokerage",
@@ -134,7 +121,7 @@ func GetSampleTradeData(tradeType TradeType) TradeData {
 func GetSampleExchangeRateJson() string {
 	exchangeRate := []ExchangeRateJson{
 		{
-			FromCurrency:    "USD",
+			FromCurrency:    "GBP",
 			ToCurrency:      "EUR",
 			OriginalAmount:  1,
 			ConvertedAmount: 0.85,
@@ -153,7 +140,7 @@ func GetSampleExchangeRateJson() string {
 func GetSampleCoinMintingPriceJson() string {
 	coinMintingPrice := []CoinMintingPriceJson{
 		{
-			CurrencyCode: "USD",
+			CurrencyCode: "GBP",
 			MintingPrice: 0.001,
 		},
 	}
@@ -172,7 +159,7 @@ func GetBaseStoredTrade() StoredTrade {
 			Denom:  DefaultDenom,
 			Amount: math.NewInt(100000),
 		},
-		CoinMintingPriceUsd:  "0.001",
+		CoinMintingPrice:     "0.001",
 		ReceiverAddress:      testutil.Alice,
 		Maker:                testutil.Alice,
 		TradeData:            GetSampleTradeDataJson(TradeTypeFiatDeposit),

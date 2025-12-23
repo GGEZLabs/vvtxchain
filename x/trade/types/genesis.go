@@ -98,11 +98,11 @@ func (gs GenesisState) ValidateStoredTrade() error {
 			}
 		}
 
-		if strings.TrimSpace(elem.CoinMintingPriceUsd) == "" {
+		if strings.TrimSpace(elem.CoinMintingPrice) == "" {
 			return fmt.Errorf("empty trade price not allowed, trade_index: %d", elem.TradeIndex)
 		}
 
-		coinPrice, err := strconv.ParseFloat(elem.CoinMintingPriceUsd, 64)
+		coinPrice, err := strconv.ParseFloat(elem.CoinMintingPrice, 64)
 		if err != nil {
 			return fmt.Errorf("invalid trade price err: %s, trade_index: %d", err, elem.TradeIndex)
 		}

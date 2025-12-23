@@ -90,21 +90,11 @@ func SimulateMsgCreateTrade(
 
 // randomTradeType Pick a random trade type
 func randomTradeType(r *rand.Rand) types.TradeType {
-	switch r.Intn(7) {
+	switch r.Intn(2) {
 	case 0:
 		return types.TradeTypeFiatDeposit
 	case 1:
 		return types.TradeTypeFiatWithdrawal
-	// case 2:
-	// 	return types.TradeTypeSplit
-	// case 3:
-	// 	return types.TradeTypeReverseSplit
-	// case 4:
-	// 	return types.TradeTypeReinvestment
-	// case 5:
-	// 	return types.TradeTypeDividends
-	// case 6:
-	// 	return types.TradeTypeDividendsDeduction
 	default:
 		panic("invalid trade type")
 	}

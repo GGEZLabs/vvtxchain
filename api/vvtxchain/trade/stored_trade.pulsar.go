@@ -18,7 +18,7 @@ var (
 	fd_StoredTrade_trade_index             protoreflect.FieldDescriptor
 	fd_StoredTrade_trade_type              protoreflect.FieldDescriptor
 	fd_StoredTrade_amount                  protoreflect.FieldDescriptor
-	fd_StoredTrade_coin_minting_price_usd  protoreflect.FieldDescriptor
+	fd_StoredTrade_coin_minting_price  protoreflect.FieldDescriptor
 	fd_StoredTrade_receiver_address        protoreflect.FieldDescriptor
 	fd_StoredTrade_status                  protoreflect.FieldDescriptor
 	fd_StoredTrade_maker                   protoreflect.FieldDescriptor
@@ -40,7 +40,7 @@ func init() {
 	fd_StoredTrade_trade_index = md_StoredTrade.Fields().ByName("trade_index")
 	fd_StoredTrade_trade_type = md_StoredTrade.Fields().ByName("trade_type")
 	fd_StoredTrade_amount = md_StoredTrade.Fields().ByName("amount")
-	fd_StoredTrade_coin_minting_price_usd = md_StoredTrade.Fields().ByName("coin_minting_price_usd")
+	fd_StoredTrade_coin_minting_price = md_StoredTrade.Fields().ByName("coin_minting_price")
 	fd_StoredTrade_receiver_address = md_StoredTrade.Fields().ByName("receiver_address")
 	fd_StoredTrade_status = md_StoredTrade.Fields().ByName("status")
 	fd_StoredTrade_maker = md_StoredTrade.Fields().ByName("maker")
@@ -139,9 +139,9 @@ func (x *fastReflection_StoredTrade) Range(f func(protoreflect.FieldDescriptor, 
 			return
 		}
 	}
-	if x.CoinMintingPriceUsd != "" {
-		value := protoreflect.ValueOfString(x.CoinMintingPriceUsd)
-		if !f(fd_StoredTrade_coin_minting_price_usd, value) {
+	if x.CoinMintingPrice != "" {
+		value := protoreflect.ValueOfString(x.CoinMintingPrice)
+		if !f(fd_StoredTrade_coin_minting_price, value) {
 			return
 		}
 	}
@@ -244,8 +244,8 @@ func (x *fastReflection_StoredTrade) Has(fd protoreflect.FieldDescriptor) bool {
 		return x.TradeType != 0
 	case "vvtxchain.trade.StoredTrade.amount":
 		return x.Amount != nil
-	case "vvtxchain.trade.StoredTrade.coin_minting_price_usd":
-		return x.CoinMintingPriceUsd != ""
+	case "vvtxchain.trade.StoredTrade.coin_minting_price":
+		return x.CoinMintingPrice != ""
 	case "vvtxchain.trade.StoredTrade.receiver_address":
 		return x.ReceiverAddress != ""
 	case "vvtxchain.trade.StoredTrade.status":
@@ -294,8 +294,8 @@ func (x *fastReflection_StoredTrade) Clear(fd protoreflect.FieldDescriptor) {
 		x.TradeType = 0
 	case "vvtxchain.trade.StoredTrade.amount":
 		x.Amount = nil
-	case "vvtxchain.trade.StoredTrade.coin_minting_price_usd":
-		x.CoinMintingPriceUsd = ""
+	case "vvtxchain.trade.StoredTrade.coin_minting_price":
+		x.CoinMintingPrice = ""
 	case "vvtxchain.trade.StoredTrade.receiver_address":
 		x.ReceiverAddress = ""
 	case "vvtxchain.trade.StoredTrade.status":
@@ -347,8 +347,8 @@ func (x *fastReflection_StoredTrade) Get(descriptor protoreflect.FieldDescriptor
 	case "vvtxchain.trade.StoredTrade.amount":
 		value := x.Amount
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "vvtxchain.trade.StoredTrade.coin_minting_price_usd":
-		value := x.CoinMintingPriceUsd
+	case "vvtxchain.trade.StoredTrade.coin_minting_price":
+		value := x.CoinMintingPrice
 		return protoreflect.ValueOfString(value)
 	case "vvtxchain.trade.StoredTrade.receiver_address":
 		value := x.ReceiverAddress
@@ -415,8 +415,8 @@ func (x *fastReflection_StoredTrade) Set(fd protoreflect.FieldDescriptor, value 
 		x.TradeType = (TradeType)(value.Enum())
 	case "vvtxchain.trade.StoredTrade.amount":
 		x.Amount = value.Message().Interface().(*v1beta1.Coin)
-	case "vvtxchain.trade.StoredTrade.coin_minting_price_usd":
-		x.CoinMintingPriceUsd = value.Interface().(string)
+	case "vvtxchain.trade.StoredTrade.coin_minting_price":
+		x.CoinMintingPrice = value.Interface().(string)
 	case "vvtxchain.trade.StoredTrade.receiver_address":
 		x.ReceiverAddress = value.Interface().(string)
 	case "vvtxchain.trade.StoredTrade.status":
@@ -472,8 +472,8 @@ func (x *fastReflection_StoredTrade) Mutable(fd protoreflect.FieldDescriptor) pr
 		panic(fmt.Errorf("field trade_index of message vvtxchain.trade.StoredTrade is not mutable"))
 	case "vvtxchain.trade.StoredTrade.trade_type":
 		panic(fmt.Errorf("field trade_type of message vvtxchain.trade.StoredTrade is not mutable"))
-	case "vvtxchain.trade.StoredTrade.coin_minting_price_usd":
-		panic(fmt.Errorf("field coin_minting_price_usd of message vvtxchain.trade.StoredTrade is not mutable"))
+	case "vvtxchain.trade.StoredTrade.coin_minting_price":
+		panic(fmt.Errorf("field coin_minting_price of message vvtxchain.trade.StoredTrade is not mutable"))
 	case "vvtxchain.trade.StoredTrade.receiver_address":
 		panic(fmt.Errorf("field receiver_address of message vvtxchain.trade.StoredTrade is not mutable"))
 	case "vvtxchain.trade.StoredTrade.status":
@@ -520,7 +520,7 @@ func (x *fastReflection_StoredTrade) NewField(fd protoreflect.FieldDescriptor) p
 	case "vvtxchain.trade.StoredTrade.amount":
 		m := new(v1beta1.Coin)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "vvtxchain.trade.StoredTrade.coin_minting_price_usd":
+	case "vvtxchain.trade.StoredTrade.coin_minting_price":
 		return protoreflect.ValueOfString("")
 	case "vvtxchain.trade.StoredTrade.receiver_address":
 		return protoreflect.ValueOfString("")
@@ -627,7 +627,7 @@ func (x *fastReflection_StoredTrade) ProtoMethods() *protoiface.Methods {
 			l = options.Size(x.Amount)
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.CoinMintingPriceUsd)
+		l = len(x.CoinMintingPrice)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -804,10 +804,10 @@ func (x *fastReflection_StoredTrade) ProtoMethods() *protoiface.Methods {
 			i--
 			dAtA[i] = 0x2a
 		}
-		if len(x.CoinMintingPriceUsd) > 0 {
-			i -= len(x.CoinMintingPriceUsd)
-			copy(dAtA[i:], x.CoinMintingPriceUsd)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.CoinMintingPriceUsd)))
+		if len(x.CoinMintingPrice) > 0 {
+			i -= len(x.CoinMintingPrice)
+			copy(dAtA[i:], x.CoinMintingPrice)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.CoinMintingPrice)))
 			i--
 			dAtA[i] = 0x22
 		}
@@ -960,7 +960,7 @@ func (x *fastReflection_StoredTrade) ProtoMethods() *protoiface.Methods {
 				iNdEx = postIndex
 			case 4:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field CoinMintingPriceUsd", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field CoinMintingPrice", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -988,7 +988,7 @@ func (x *fastReflection_StoredTrade) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.CoinMintingPriceUsd = string(dAtA[iNdEx:postIndex])
+				x.CoinMintingPrice = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 5:
 				if wireType != 2 {
@@ -1449,7 +1449,7 @@ type StoredTrade struct {
 	TradeIndex           uint64        `protobuf:"varint,1,opt,name=trade_index,json=tradeIndex,proto3" json:"trade_index,omitempty"`
 	TradeType            TradeType     `protobuf:"varint,2,opt,name=trade_type,json=tradeType,proto3,enum=vvtxchain.trade.TradeType" json:"trade_type,omitempty"`
 	Amount               *v1beta1.Coin `protobuf:"bytes,3,opt,name=amount,proto3" json:"amount,omitempty"`
-	CoinMintingPriceUsd  string        `protobuf:"bytes,4,opt,name=coin_minting_price_usd,json=coinMintingPriceUsd,proto3" json:"coin_minting_price_usd,omitempty"`
+	CoinMintingPrice  string        `protobuf:"bytes,4,opt,name=coin_minting_price,json=coinMintingPrice,proto3" json:"coin_minting_price,omitempty"`
 	ReceiverAddress      string        `protobuf:"bytes,5,opt,name=receiver_address,json=receiverAddress,proto3" json:"receiver_address,omitempty"`
 	Status               TradeStatus   `protobuf:"varint,6,opt,name=status,proto3,enum=vvtxchain.trade.TradeStatus" json:"status,omitempty"`
 	Maker                string        `protobuf:"bytes,7,opt,name=maker,proto3" json:"maker,omitempty"`
@@ -1506,9 +1506,9 @@ func (x *StoredTrade) GetAmount() *v1beta1.Coin {
 	return nil
 }
 
-func (x *StoredTrade) GetCoinMintingPriceUsd() string {
+func (x *StoredTrade) GetCoinMintingPrice() string {
 	if x != nil {
-		return x.CoinMintingPriceUsd
+		return x.CoinMintingPrice
 	}
 	return ""
 }

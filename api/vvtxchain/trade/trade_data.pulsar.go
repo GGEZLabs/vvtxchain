@@ -542,7 +542,7 @@ var (
 	fd_TradeInfo_fund_name              protoreflect.FieldDescriptor
 	fd_TradeInfo_issuer                 protoreflect.FieldDescriptor
 	fd_TradeInfo_number_of_shares       protoreflect.FieldDescriptor
-	fd_TradeInfo_coin_minting_price_usd protoreflect.FieldDescriptor
+	fd_TradeInfo_coin_minting_price protoreflect.FieldDescriptor
 	fd_TradeInfo_quantity               protoreflect.FieldDescriptor
 	fd_TradeInfo_segment                protoreflect.FieldDescriptor
 	fd_TradeInfo_share_price            protoreflect.FieldDescriptor
@@ -566,7 +566,7 @@ func init() {
 	fd_TradeInfo_fund_name = md_TradeInfo.Fields().ByName("fund_name")
 	fd_TradeInfo_issuer = md_TradeInfo.Fields().ByName("issuer")
 	fd_TradeInfo_number_of_shares = md_TradeInfo.Fields().ByName("number_of_shares")
-	fd_TradeInfo_coin_minting_price_usd = md_TradeInfo.Fields().ByName("coin_minting_price_usd")
+	fd_TradeInfo_coin_minting_price = md_TradeInfo.Fields().ByName("coin_minting_price")
 	fd_TradeInfo_quantity = md_TradeInfo.Fields().ByName("quantity")
 	fd_TradeInfo_segment = md_TradeInfo.Fields().ByName("segment")
 	fd_TradeInfo_share_price = md_TradeInfo.Fields().ByName("share_price")
@@ -707,9 +707,9 @@ func (x *fastReflection_TradeInfo) Range(f func(protoreflect.FieldDescriptor, pr
 			return
 		}
 	}
-	if x.CoinMintingPriceUsd != float64(0) || math.Signbit(x.CoinMintingPriceUsd) {
-		value := protoreflect.ValueOfFloat64(x.CoinMintingPriceUsd)
-		if !f(fd_TradeInfo_coin_minting_price_usd, value) {
+	if x.CoinMintingPrice != float64(0) || math.Signbit(x.CoinMintingPrice) {
+		value := protoreflect.ValueOfFloat64(x.CoinMintingPrice)
+		if !f(fd_TradeInfo_coin_minting_price, value) {
 			return
 		}
 	}
@@ -792,8 +792,8 @@ func (x *fastReflection_TradeInfo) Has(fd protoreflect.FieldDescriptor) bool {
 		return x.Issuer != ""
 	case "vvtxchain.trade.TradeInfo.number_of_shares":
 		return x.NumberOfShares != float64(0) || math.Signbit(x.NumberOfShares)
-	case "vvtxchain.trade.TradeInfo.coin_minting_price_usd":
-		return x.CoinMintingPriceUsd != float64(0) || math.Signbit(x.CoinMintingPriceUsd)
+	case "vvtxchain.trade.TradeInfo.coin_minting_price":
+		return x.CoinMintingPrice != float64(0) || math.Signbit(x.CoinMintingPrice)
 	case "vvtxchain.trade.TradeInfo.quantity":
 		return x.Quantity != nil
 	case "vvtxchain.trade.TradeInfo.segment":
@@ -846,8 +846,8 @@ func (x *fastReflection_TradeInfo) Clear(fd protoreflect.FieldDescriptor) {
 		x.Issuer = ""
 	case "vvtxchain.trade.TradeInfo.number_of_shares":
 		x.NumberOfShares = float64(0)
-	case "vvtxchain.trade.TradeInfo.coin_minting_price_usd":
-		x.CoinMintingPriceUsd = float64(0)
+	case "vvtxchain.trade.TradeInfo.coin_minting_price":
+		x.CoinMintingPrice = float64(0)
 	case "vvtxchain.trade.TradeInfo.quantity":
 		x.Quantity = nil
 	case "vvtxchain.trade.TradeInfo.segment":
@@ -911,8 +911,8 @@ func (x *fastReflection_TradeInfo) Get(descriptor protoreflect.FieldDescriptor) 
 	case "vvtxchain.trade.TradeInfo.number_of_shares":
 		value := x.NumberOfShares
 		return protoreflect.ValueOfFloat64(value)
-	case "vvtxchain.trade.TradeInfo.coin_minting_price_usd":
-		value := x.CoinMintingPriceUsd
+	case "vvtxchain.trade.TradeInfo.coin_minting_price":
+		value := x.CoinMintingPrice
 		return protoreflect.ValueOfFloat64(value)
 	case "vvtxchain.trade.TradeInfo.quantity":
 		value := x.Quantity
@@ -977,8 +977,8 @@ func (x *fastReflection_TradeInfo) Set(fd protoreflect.FieldDescriptor, value pr
 		x.Issuer = value.Interface().(string)
 	case "vvtxchain.trade.TradeInfo.number_of_shares":
 		x.NumberOfShares = value.Float()
-	case "vvtxchain.trade.TradeInfo.coin_minting_price_usd":
-		x.CoinMintingPriceUsd = value.Float()
+	case "vvtxchain.trade.TradeInfo.coin_minting_price":
+		x.CoinMintingPrice = value.Float()
 	case "vvtxchain.trade.TradeInfo.quantity":
 		x.Quantity = value.Message().Interface().(*v1beta1.Coin)
 	case "vvtxchain.trade.TradeInfo.segment":
@@ -1040,8 +1040,8 @@ func (x *fastReflection_TradeInfo) Mutable(fd protoreflect.FieldDescriptor) prot
 		panic(fmt.Errorf("field issuer of message vvtxchain.trade.TradeInfo is not mutable"))
 	case "vvtxchain.trade.TradeInfo.number_of_shares":
 		panic(fmt.Errorf("field number_of_shares of message vvtxchain.trade.TradeInfo is not mutable"))
-	case "vvtxchain.trade.TradeInfo.coin_minting_price_usd":
-		panic(fmt.Errorf("field coin_minting_price_usd of message vvtxchain.trade.TradeInfo is not mutable"))
+	case "vvtxchain.trade.TradeInfo.coin_minting_price":
+		panic(fmt.Errorf("field coin_minting_price of message vvtxchain.trade.TradeInfo is not mutable"))
 	case "vvtxchain.trade.TradeInfo.segment":
 		panic(fmt.Errorf("field segment of message vvtxchain.trade.TradeInfo is not mutable"))
 	case "vvtxchain.trade.TradeInfo.share_price":
@@ -1089,7 +1089,7 @@ func (x *fastReflection_TradeInfo) NewField(fd protoreflect.FieldDescriptor) pro
 		return protoreflect.ValueOfString("")
 	case "vvtxchain.trade.TradeInfo.number_of_shares":
 		return protoreflect.ValueOfFloat64(float64(0))
-	case "vvtxchain.trade.TradeInfo.coin_minting_price_usd":
+	case "vvtxchain.trade.TradeInfo.coin_minting_price":
 		return protoreflect.ValueOfFloat64(float64(0))
 	case "vvtxchain.trade.TradeInfo.quantity":
 		m := new(v1beta1.Coin)
@@ -1213,7 +1213,7 @@ func (x *fastReflection_TradeInfo) ProtoMethods() *protoiface.Methods {
 		if x.NumberOfShares != 0 || math.Signbit(x.NumberOfShares) {
 			n += 9
 		}
-		if x.CoinMintingPriceUsd != 0 || math.Signbit(x.CoinMintingPriceUsd) {
+		if x.CoinMintingPrice != 0 || math.Signbit(x.CoinMintingPrice) {
 			n += 9
 		}
 		if x.Quantity != nil {
@@ -1329,9 +1329,9 @@ func (x *fastReflection_TradeInfo) ProtoMethods() *protoiface.Methods {
 			i--
 			dAtA[i] = 0x6a
 		}
-		if x.CoinMintingPriceUsd != 0 || math.Signbit(x.CoinMintingPriceUsd) {
+		if x.CoinMintingPrice != 0 || math.Signbit(x.CoinMintingPrice) {
 			i -= 8
-			binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(x.CoinMintingPriceUsd))))
+			binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(x.CoinMintingPrice))))
 			i--
 			dAtA[i] = 0x61
 		}
@@ -1704,7 +1704,7 @@ func (x *fastReflection_TradeInfo) ProtoMethods() *protoiface.Methods {
 				x.NumberOfShares = float64(math.Float64frombits(v))
 			case 12:
 				if wireType != 1 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field CoinMintingPriceUsd", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field CoinMintingPrice", wireType)
 				}
 				var v uint64
 				if (iNdEx + 8) > l {
@@ -1712,7 +1712,7 @@ func (x *fastReflection_TradeInfo) ProtoMethods() *protoiface.Methods {
 				}
 				v = uint64(binary.LittleEndian.Uint64(dAtA[iNdEx:]))
 				iNdEx += 8
-				x.CoinMintingPriceUsd = float64(math.Float64frombits(v))
+				x.CoinMintingPrice = float64(math.Float64frombits(v))
 			case 13:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Quantity", wireType)
@@ -2512,7 +2512,7 @@ type TradeInfo struct {
 	FundName            string        `protobuf:"bytes,9,opt,name=fund_name,json=fundName,proto3" json:"fund_name,omitempty"`
 	Issuer              string        `protobuf:"bytes,10,opt,name=issuer,proto3" json:"issuer,omitempty"`
 	NumberOfShares      float64       `protobuf:"fixed64,11,opt,name=number_of_shares,json=numberOfShares,proto3" json:"number_of_shares,omitempty"`
-	CoinMintingPriceUsd float64       `protobuf:"fixed64,12,opt,name=coin_minting_price_usd,json=coinMintingPriceUsd,proto3" json:"coin_minting_price_usd,omitempty"`
+	CoinMintingPrice float64       `protobuf:"fixed64,12,opt,name=coin_minting_price,json=coinMintingPrice,proto3" json:"coin_minting_price,omitempty"`
 	Quantity            *v1beta1.Coin `protobuf:"bytes,13,opt,name=quantity,proto3" json:"quantity,omitempty"`
 	Segment             string        `protobuf:"bytes,14,opt,name=segment,proto3" json:"segment,omitempty"`
 	SharePrice          float64       `protobuf:"fixed64,15,opt,name=share_price,json=sharePrice,proto3" json:"share_price,omitempty"`
@@ -2619,9 +2619,9 @@ func (x *TradeInfo) GetNumberOfShares() float64 {
 	return 0
 }
 
-func (x *TradeInfo) GetCoinMintingPriceUsd() float64 {
+func (x *TradeInfo) GetCoinMintingPrice() float64 {
 	if x != nil {
-		return x.CoinMintingPriceUsd
+		return x.CoinMintingPrice
 	}
 	return 0
 }
