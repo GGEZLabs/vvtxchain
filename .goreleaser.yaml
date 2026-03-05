@@ -12,7 +12,7 @@ builds:
     binary: vvtxchaind
     hooks:
       pre:
-        - wget https://github.com/CosmWasm/wasmvm/releases/download/{{ .Env.COSMWASM_VERSION }}/libwasmvm_muslc.x86_64.a -O /usr/lib/libwasmvm_muslc.x86_64.a
+        - wget https://github.com/CosmWasm/wasmvm/releases/download/{{ .Env.COSMWASM_VERSION }}/libwasmvm_muslc.x86_64.a -O /usr/local/lib/libwasmvm_muslc.x86_64.a
     goos:
       - linux
     goarch:
@@ -30,7 +30,7 @@ builds:
       - -X github.com/cosmos/cosmos-sdk/version.BuildTags=netgo,ledger,muslc,osusergo
       - -w -s
       - -linkmode=external
-      - -extldflags '-L/usr/lib -lwasmvm_muslc.x86_64 -Wl,-z,muldefs -static -lm'
+      - -extldflags '-L/usr/local/lib -lwasmvm_muslc.x86_64 -Wl,-z,muldefs -static -lm'
     tags:
       - netgo
       - ledger
@@ -42,7 +42,7 @@ builds:
     binary: vvtxchaind
     hooks:
       pre:
-        - wget https://github.com/CosmWasm/wasmvm/releases/download/{{ .Env.COSMWASM_VERSION }}/libwasmvm_muslc.aarch64.a -O /usr/lib/libwasmvm_muslc.aarch64.a
+        - wget https://github.com/CosmWasm/wasmvm/releases/download/{{ .Env.COSMWASM_VERSION }}/libwasmvm_muslc.aarch64.a -O /usr/local/lib/libwasmvm_muslc.aarch64.a
     goos:
       - linux
     goarch:
@@ -60,7 +60,7 @@ builds:
       - -X github.com/cosmos/cosmos-sdk/version.BuildTags=netgo,ledger,muslc,osusergo
       - -w -s
       - -linkmode=external
-      - -extldflags '-L/usr/lib -lwasmvm_muslc.aarch64 -Wl,-z,muldefs -static -lm'
+      - -extldflags '-L/usr/local/lib -lwasmvm_muslc.aarch64 -Wl,-z,muldefs -static -lm'
     tags:
       - netgo
       - ledger
@@ -72,11 +72,11 @@ builds:
     binary: vvtxchaind
     hooks:
       pre:
-        - wget https://github.com/CosmWasm/wasmvm/releases/download/{{ .Env.COSMWASM_VERSION }}/libwasmvmstatic_darwin.a -O /lib/libwasmvmstatic_darwin.a
+        - wget https://github.com/CosmWasm/wasmvm/releases/download/{{ .Env.COSMWASM_VERSION }}/libwasmvmstatic_darwin.a -O /usr/local/lib/libwasmvmstatic_darwin.a
     env:
       - CC=o64-clang
       - CGO_CFLAGS=-mmacosx-version-min=10.12
-      - CGO_LDFLAGS=-L/lib -mmacosx-version-min=10.12
+      - CGO_LDFLAGS=-L/usr/local/lib -mmacosx-version-min=10.12
     goos:
       - darwin
     goarch:
@@ -102,10 +102,10 @@ builds:
     binary: vvtxchaind
     hooks:
       pre:
-        - wget https://github.com/CosmWasm/wasmvm/releases/download/{{ .Env.COSMWASM_VERSION }}/libwasmvmstatic_darwin.a -O /lib/libwasmvmstatic_darwin.a
+        - wget https://github.com/CosmWasm/wasmvm/releases/download/{{ .Env.COSMWASM_VERSION }}/libwasmvmstatic_darwin.a -O /usr/local/lib/libwasmvmstatic_darwin.a
     env:
       - CC=oa64-clang
-      - CGO_LDFLAGS=-L/lib
+      - CGO_LDFLAGS=-L/usr/local/lib
     goos:
       - darwin
     goarch:

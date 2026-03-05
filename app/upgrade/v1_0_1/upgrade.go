@@ -1,4 +1,4 @@
-package v2_1_0
+package v1_0_1
 
 import (
 	"context"
@@ -16,8 +16,8 @@ func CreateUpgradeHandler(
 		ctx := sdk.UnwrapSDKContext(context)
 
 		logger := ctx.Logger().With("upgrade", UpgradeName)
-
 		logger.Debug("running module migrations ...")
+
 		return mm.RunMigrations(ctx, configurator, fromVM)
 	}
 }
